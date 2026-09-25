@@ -1,0 +1,43 @@
+{
+  "name": "vianoor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vianoor independent microservices foundation",
+  "engines": {
+    "node": ">=24.19.0 <25",
+    "npm": ">=11 <12"
+  },
+  "packageManager": "npm@11.9.0",
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build:packages": "npm run build --workspace @vianoor/contracts && npm run build --workspace @vianoor/service-runtime",
+    "build:services": "node scripts/workspaces.mjs build services",
+    "build:apps": "npm run build --workspace @vianoor/web && npm run build --workspace @vianoor/admin",
+    "build": "npm run build:packages && npm run build:services && npm run build:apps",
+    "typecheck": "node scripts/workspaces.mjs typecheck",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "check:architecture": "node scripts/check-architecture.mjs",
+    "check": "npm run check:architecture && npm run lint && npm run test && npm run build && npm run typecheck",
+    "dev:web": "npm run dev --workspace @vianoor/web",
+    "dev:admin": "npm run dev --workspace @vianoor/admin",
+    "dev:gateway": "npm run dev --workspace @vianoor/api-gateway",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "tsx": "4.20.6",
+    "@types/node": "24.10.1",
+    "eslint": "9.39.1",
+    "@eslint/js": "9.39.1",
+    "typescript-eslint": "8.48.0",
+    "prettier": "3.6.2",
+    "globals": "16.5.0"
+  }
+}
