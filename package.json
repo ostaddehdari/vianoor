@@ -28,7 +28,8 @@
     "dev:web": "npm run dev --workspace @vianoor/web",
     "dev:admin": "npm run dev --workspace @vianoor/admin",
     "dev:gateway": "npm run dev --workspace @vianoor/api-gateway",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "pretest": "npm run build:packages"
   },
   "devDependencies": {
     "typescript": "5.9.3",
