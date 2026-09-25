@@ -9,12 +9,8 @@
     "database": null,
     "databaseRole": null,
     "ownership": "بدون دادهٔ دامنه؛ مسیریابی و سیاست ورودی",
-    "entities": [
-      "request-context"
-    ],
-    "dependencies": [
-      "identity-service"
-    ],
+    "entities": ["request-context"],
+    "dependencies": ["identity-service"],
     "transport": "http+jetstream",
     "migrationOwner": "api-gateway",
     "backupPolicy": "pit-recovery-required"
@@ -29,16 +25,8 @@
     "database": "identity_db",
     "databaseRole": "identity_app",
     "ownership": "حساب، اعتبارنامه، نشست، روش ورود و MFA",
-    "entities": [
-      "account",
-      "credential",
-      "session",
-      "login-method"
-    ],
-    "dependencies": [
-      "notification-service",
-      "audit-service"
-    ],
+    "entities": ["account", "credential", "session", "login-method"],
+    "dependencies": ["notification-service", "audit-service"],
     "transport": "http+jetstream",
     "migrationOwner": "identity-service",
     "backupPolicy": "pit-recovery-required"
@@ -53,13 +41,8 @@
     "database": "profile_db",
     "databaseRole": "profile_app",
     "ownership": "مشخصات عمومی، زبان و منطقه زمانی کاربر",
-    "entities": [
-      "profile",
-      "preference"
-    ],
-    "dependencies": [
-      "identity-service"
-    ],
+    "entities": ["profile", "preference"],
+    "dependencies": ["identity-service"],
     "transport": "http+jetstream",
     "migrationOwner": "profile-service",
     "backupPolicy": "pit-recovery-required"
@@ -74,15 +57,8 @@
     "database": "organization_db",
     "databaseRole": "organization_app",
     "ownership": "سازمان، شعبه، عضویت و مجوزهای محدوده‌ای",
-    "entities": [
-      "organization",
-      "branch",
-      "membership",
-      "permission-grant"
-    ],
-    "dependencies": [
-      "identity-service"
-    ],
+    "entities": ["organization", "branch", "membership", "permission-grant"],
+    "dependencies": ["identity-service"],
     "transport": "http+jetstream",
     "migrationOwner": "organization-service",
     "backupPolicy": "pit-recovery-required"
@@ -97,12 +73,7 @@
     "database": "taxonomy_db",
     "databaseRole": "taxonomy_app",
     "ownership": "موضوع، تخصص، زبان و دیدگاه اختیاری",
-    "entities": [
-      "topic",
-      "specialty",
-      "school",
-      "localized-label"
-    ],
+    "entities": ["topic", "specialty", "school", "localized-label"],
     "dependencies": [],
     "transport": "http+jetstream",
     "migrationOwner": "taxonomy-service",
@@ -118,16 +89,8 @@
     "database": "scholar_db",
     "databaseRole": "scholar_app",
     "ownership": "پروفایل حرفه‌ای، مدارک، تأیید، خدمات و تعرفه",
-    "entities": [
-      "scholar",
-      "credential-review",
-      "offering"
-    ],
-    "dependencies": [
-      "profile-service",
-      "taxonomy-service",
-      "file-service"
-    ],
+    "entities": ["scholar", "credential-review", "offering"],
+    "dependencies": ["profile-service", "taxonomy-service", "file-service"],
     "transport": "http+jetstream",
     "migrationOwner": "scholar-service",
     "backupPolicy": "pit-recovery-required"
@@ -142,14 +105,8 @@
     "database": "availability_db",
     "databaseRole": "availability_app",
     "ownership": "برنامه کاری، استثنا، slot و نگهداری اتمیک ظرفیت",
-    "entities": [
-      "schedule",
-      "exception",
-      "slot-hold"
-    ],
-    "dependencies": [
-      "scholar-service"
-    ],
+    "entities": ["schedule", "exception", "slot-hold"],
+    "dependencies": ["scholar-service"],
     "transport": "http+jetstream",
     "migrationOwner": "availability-service",
     "backupPolicy": "pit-recovery-required"
@@ -164,12 +121,8 @@
     "database": "presence_db",
     "databaseRole": "presence_app",
     "ownership": "lease حضور آنلاین و TTL؛ منبع حقیقت فقط حضور موقت",
-    "entities": [
-      "presence-lease"
-    ],
-    "dependencies": [
-      "identity-service"
-    ],
+    "entities": ["presence-lease"],
+    "dependencies": ["identity-service"],
     "transport": "http+jetstream",
     "migrationOwner": "presence-service",
     "backupPolicy": "rebuildable"
@@ -184,15 +137,8 @@
     "database": "matching_db",
     "databaseRole": "matching_app",
     "ownership": "read model نامزدها و قواعد رتبه‌بندی؛ نه مالک پروفایل",
-    "entities": [
-      "candidate-projection",
-      "ranking-policy"
-    ],
-    "dependencies": [
-      "scholar-service",
-      "availability-service",
-      "presence-service"
-    ],
+    "entities": ["candidate-projection", "ranking-policy"],
+    "dependencies": ["scholar-service", "availability-service", "presence-service"],
     "transport": "http+jetstream",
     "migrationOwner": "matching-service",
     "backupPolicy": "rebuildable"
@@ -207,16 +153,8 @@
     "database": "booking_db",
     "databaseRole": "booking_app",
     "ownership": "رزرو، چرخه جلسه کسب‌وکار و saga مستقل از transport",
-    "entities": [
-      "booking",
-      "business-session",
-      "saga"
-    ],
-    "dependencies": [
-      "availability-service",
-      "payment-service",
-      "media-service"
-    ],
+    "entities": ["booking", "business-session", "saga"],
+    "dependencies": ["availability-service", "payment-service", "media-service"],
     "transport": "http+jetstream",
     "migrationOwner": "booking-service",
     "backupPolicy": "pit-recovery-required"
@@ -231,14 +169,8 @@
     "database": "instant_db",
     "databaseRole": "instant_app",
     "ownership": "درخواست فوری، صف پایدار، پیشنهاد و انقضای آن",
-    "entities": [
-      "instant-request",
-      "offer"
-    ],
-    "dependencies": [
-      "matching-service",
-      "booking-service"
-    ],
+    "entities": ["instant-request", "offer"],
+    "dependencies": ["matching-service", "booking-service"],
     "transport": "http+jetstream",
     "migrationOwner": "instant-service",
     "backupPolicy": "pit-recovery-required"
@@ -253,16 +185,8 @@
     "database": "media_db",
     "databaseRole": "media_app",
     "ownership": "اتصال اتاق به جلسه، سیاست توکن، ضبط و webhook",
-    "entities": [
-      "room-binding",
-      "recording-policy",
-      "media-event"
-    ],
-    "dependencies": [
-      "booking-service",
-      "consent-service",
-      "file-service"
-    ],
+    "entities": ["room-binding", "recording-policy", "media-event"],
+    "dependencies": ["booking-service", "consent-service", "file-service"],
     "transport": "http+jetstream",
     "migrationOwner": "media-service",
     "backupPolicy": "pit-recovery-required"
@@ -277,16 +201,8 @@
     "database": "messaging_db",
     "databaseRole": "messaging_app",
     "ownership": "مکالمه پایدار، عضو، پیام و رسید خواندن",
-    "entities": [
-      "conversation",
-      "member",
-      "message",
-      "receipt"
-    ],
-    "dependencies": [
-      "file-service",
-      "booking-service"
-    ],
+    "entities": ["conversation", "member", "message", "receipt"],
+    "dependencies": ["file-service", "booking-service"],
     "transport": "http+jetstream",
     "migrationOwner": "messaging-service",
     "backupPolicy": "pit-recovery-required"
@@ -301,14 +217,8 @@
     "database": "file_db",
     "databaseRole": "file_app",
     "ownership": "metadata، مالکیت، دسترسی و وضعیت اسکن؛ bytes در object storage",
-    "entities": [
-      "file",
-      "access-grant",
-      "scan-job"
-    ],
-    "dependencies": [
-      "consent-service"
-    ],
+    "entities": ["file", "access-grant", "scan-job"],
+    "dependencies": ["consent-service"],
     "transport": "http+jetstream",
     "migrationOwner": "file-service",
     "backupPolicy": "pit-recovery-required"
@@ -323,14 +233,8 @@
     "database": "payment_db",
     "databaseRole": "payment_app",
     "ownership": "intent، تراکنش درگاه، verification و idempotency",
-    "entities": [
-      "payment-intent",
-      "provider-transaction",
-      "webhook-receipt"
-    ],
-    "dependencies": [
-      "accounting-service"
-    ],
+    "entities": ["payment-intent", "provider-transaction", "webhook-receipt"],
+    "dependencies": ["accounting-service"],
     "transport": "http+jetstream",
     "migrationOwner": "payment-service",
     "backupPolicy": "pit-recovery-required"
@@ -345,15 +249,8 @@
     "database": "wallet_db",
     "databaseRole": "wallet_app",
     "ownership": "ورودی تغییر موجودی، hold و مانده قابل بازسازی",
-    "entities": [
-      "wallet-entry",
-      "hold",
-      "balance-projection"
-    ],
-    "dependencies": [
-      "accounting-service",
-      "payment-service"
-    ],
+    "entities": ["wallet-entry", "hold", "balance-projection"],
+    "dependencies": ["accounting-service", "payment-service"],
     "transport": "http+jetstream",
     "migrationOwner": "wallet-service",
     "backupPolicy": "pit-recovery-required"
@@ -368,12 +265,7 @@
     "database": "accounting_db",
     "databaseRole": "accounting_app",
     "ownership": "دفترکل دوطرفه، اسناد و تطبیق؛ مرجع حسابداری",
-    "entities": [
-      "ledger-account",
-      "journal",
-      "journal-line",
-      "reconciliation"
-    ],
+    "entities": ["ledger-account", "journal", "journal-line", "reconciliation"],
     "dependencies": [],
     "transport": "http+jetstream",
     "migrationOwner": "accounting-service",
@@ -389,15 +281,8 @@
     "database": "payout_db",
     "databaseRole": "payout_app",
     "ownership": "درآمد استاد، سهم، payable و انتقال تسویه",
-    "entities": [
-      "earning",
-      "payable",
-      "payout"
-    ],
-    "dependencies": [
-      "accounting-service",
-      "payment-service"
-    ],
+    "entities": ["earning", "payable", "payout"],
+    "dependencies": ["accounting-service", "payment-service"],
     "transport": "http+jetstream",
     "migrationOwner": "payout-service",
     "backupPolicy": "pit-recovery-required"
@@ -412,16 +297,8 @@
     "database": "dispute_db",
     "databaseRole": "dispute_app",
     "ownership": "پرونده اختلاف، تصمیم و orchestration بازپرداخت",
-    "entities": [
-      "dispute",
-      "resolution",
-      "refund-request"
-    ],
-    "dependencies": [
-      "payment-service",
-      "wallet-service",
-      "booking-service"
-    ],
+    "entities": ["dispute", "resolution", "refund-request"],
+    "dependencies": ["payment-service", "wallet-service", "booking-service"],
     "transport": "http+jetstream",
     "migrationOwner": "dispute-service",
     "backupPolicy": "pit-recovery-required"
@@ -436,16 +313,8 @@
     "database": "content_db",
     "databaseRole": "content_app",
     "ownership": "کانال، دنبال‌کردن، پست، مجموعه و انتشار",
-    "entities": [
-      "channel",
-      "follow",
-      "post",
-      "playlist"
-    ],
-    "dependencies": [
-      "file-service",
-      "moderation-service"
-    ],
+    "entities": ["channel", "follow", "post", "playlist"],
+    "dependencies": ["file-service", "moderation-service"],
     "transport": "http+jetstream",
     "migrationOwner": "content-service",
     "backupPolicy": "pit-recovery-required"
@@ -460,17 +329,8 @@
     "database": "event_db",
     "databaseRole": "event_app",
     "ownership": "رویداد، ظرفیت، ثبت‌نام، نقش‌ها، نظرسنجی و بازپخش",
-    "entities": [
-      "event",
-      "registration",
-      "poll",
-      "replay-grant"
-    ],
-    "dependencies": [
-      "media-service",
-      "payment-service",
-      "content-service"
-    ],
+    "entities": ["event", "registration", "poll", "replay-grant"],
+    "dependencies": ["media-service", "payment-service", "content-service"],
     "transport": "http+jetstream",
     "migrationOwner": "event-service",
     "backupPolicy": "pit-recovery-required"
@@ -485,17 +345,8 @@
     "database": "qa_db",
     "databaseRole": "qa_app",
     "ownership": "سؤال خصوصی، پاسخ، تخصیص، SLA و نسخه عمومی بانک دانش",
-    "entities": [
-      "question",
-      "answer",
-      "assignment",
-      "publication"
-    ],
-    "dependencies": [
-      "taxonomy-service",
-      "moderation-service",
-      "consent-service"
-    ],
+    "entities": ["question", "answer", "assignment", "publication"],
+    "dependencies": ["taxonomy-service", "moderation-service", "consent-service"],
     "transport": "http+jetstream",
     "migrationOwner": "qa-service",
     "backupPolicy": "pit-recovery-required"
@@ -510,15 +361,8 @@
     "database": "rating_db",
     "databaseRole": "rating_app",
     "ownership": "امتیاز پس از خدمت، بازخورد و aggregate اعتبار",
-    "entities": [
-      "rating",
-      "feedback",
-      "reputation"
-    ],
-    "dependencies": [
-      "booking-service",
-      "moderation-service"
-    ],
+    "entities": ["rating", "feedback", "reputation"],
+    "dependencies": ["booking-service", "moderation-service"],
     "transport": "http+jetstream",
     "migrationOwner": "rating-service",
     "backupPolicy": "pit-recovery-required"
@@ -533,16 +377,8 @@
     "database": "moderation_db",
     "databaseRole": "moderation_app",
     "ownership": "پرونده بازبینی علمی/محتوایی، گزارش و تصمیم؛ نه متن اصلی",
-    "entities": [
-      "review-case",
-      "report",
-      "decision"
-    ],
-    "dependencies": [
-      "scholar-service",
-      "qa-service",
-      "content-service"
-    ],
+    "entities": ["review-case", "report", "decision"],
+    "dependencies": ["scholar-service", "qa-service", "content-service"],
     "transport": "http+jetstream",
     "migrationOwner": "moderation-service",
     "backupPolicy": "pit-recovery-required"
@@ -557,13 +393,8 @@
     "database": "consent_db",
     "databaseRole": "consent_app",
     "ownership": "سیاست نسخه‌دار، پذیرش، لغو و دامنه رضایت",
-    "entities": [
-      "policy-version",
-      "consent-record"
-    ],
-    "dependencies": [
-      "identity-service"
-    ],
+    "entities": ["policy-version", "consent-record"],
+    "dependencies": ["identity-service"],
     "transport": "http+jetstream",
     "migrationOwner": "consent-service",
     "backupPolicy": "pit-recovery-required"
@@ -578,14 +409,8 @@
     "database": "notification_db",
     "databaseRole": "notification_app",
     "ownership": "قالب محلی‌شده، ترجیحات، کار ارسال و وضعیت تحویل",
-    "entities": [
-      "template",
-      "preference",
-      "delivery"
-    ],
-    "dependencies": [
-      "identity-service"
-    ],
+    "entities": ["template", "preference", "delivery"],
+    "dependencies": ["identity-service"],
     "transport": "http+jetstream",
     "migrationOwner": "notification-service",
     "backupPolicy": "pit-recovery-required"
@@ -600,16 +425,8 @@
     "database": "search_db",
     "databaseRole": "search_app",
     "ownership": "نمایه قابل بازسازی و checkpoint؛ نه مالک محتوای اصلی",
-    "entities": [
-      "index-checkpoint",
-      "search-projection"
-    ],
-    "dependencies": [
-      "scholar-service",
-      "qa-service",
-      "content-service",
-      "event-service"
-    ],
+    "entities": ["index-checkpoint", "search-projection"],
+    "dependencies": ["scholar-service", "qa-service", "content-service", "event-service"],
     "transport": "http+jetstream",
     "migrationOwner": "search-service",
     "backupPolicy": "rebuildable"
@@ -624,15 +441,8 @@
     "database": "analytics_db",
     "databaseRole": "analytics_app",
     "ownership": "read model تجمیعی بدون query مستقیم پایگاه‌های عملیاتی",
-    "entities": [
-      "aggregate",
-      "projection-checkpoint"
-    ],
-    "dependencies": [
-      "booking-service",
-      "payment-service",
-      "event-service"
-    ],
+    "entities": ["aggregate", "projection-checkpoint"],
+    "dependencies": ["booking-service", "payment-service", "event-service"],
     "transport": "http+jetstream",
     "migrationOwner": "analytics-service",
     "backupPolicy": "rebuildable"
@@ -647,9 +457,7 @@
     "database": "audit_db",
     "databaseRole": "audit_app",
     "ownership": "سوابق append-only عملیات حساس و دسترسی",
-    "entities": [
-      "audit-record"
-    ],
+    "entities": ["audit-record"],
     "dependencies": [],
     "transport": "http+jetstream",
     "migrationOwner": "audit-service",
@@ -665,15 +473,8 @@
     "database": "support_db",
     "databaseRole": "support_app",
     "ownership": "تیکت، مکاتبه پشتیبانی، ارجاع و پیگیری شکایت",
-    "entities": [
-      "ticket",
-      "support-message",
-      "assignment"
-    ],
-    "dependencies": [
-      "booking-service",
-      "dispute-service"
-    ],
+    "entities": ["ticket", "support-message", "assignment"],
+    "dependencies": ["booking-service", "dispute-service"],
     "transport": "http+jetstream",
     "migrationOwner": "support-service",
     "backupPolicy": "pit-recovery-required"
@@ -688,16 +489,8 @@
     "database": "ai_gateway_db",
     "databaseRole": "ai_gateway_app",
     "ownership": "provider، مرجع کلید، مدل هر قابلیت، بودجه و سیاست داده",
-    "entities": [
-      "provider",
-      "model-route",
-      "usage",
-      "policy"
-    ],
-    "dependencies": [
-      "consent-service",
-      "audit-service"
-    ],
+    "entities": ["provider", "model-route", "usage", "policy"],
+    "dependencies": ["consent-service", "audit-service"],
     "transport": "http+jetstream",
     "migrationOwner": "ai-gateway",
     "backupPolicy": "pit-recovery-required"
@@ -712,16 +505,8 @@
     "database": "telephony_db",
     "databaseRole": "telephony_app",
     "ownership": "trunk، شماره، مسیر، call leg، IVR و CDR",
-    "entities": [
-      "trunk",
-      "route",
-      "call-leg",
-      "cdr"
-    ],
-    "dependencies": [
-      "media-service",
-      "booking-service"
-    ],
+    "entities": ["trunk", "route", "call-leg", "cdr"],
+    "dependencies": ["media-service", "booking-service"],
     "transport": "http+jetstream",
     "migrationOwner": "telephony-service",
     "backupPolicy": "pit-recovery-required"

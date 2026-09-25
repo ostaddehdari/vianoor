@@ -55,19 +55,12 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "required": [
-                    "data",
-                    "meta",
-                    "trace_id"
-                  ],
+                  "required": ["data", "meta", "trace_id"],
                   "additionalProperties": false,
                   "properties": {
                     "data": {
                       "type": "object",
-                      "required": [
-                        "service",
-                        "stage"
-                      ],
+                      "required": ["service", "stage"],
                       "properties": {
                         "service": {
                           "type": "string"
@@ -97,18 +90,11 @@
     "schemas": {
       "Health": {
         "type": "object",
-        "required": [
-          "status",
-          "service",
-          "stage"
-        ],
+        "required": ["status", "service", "stage"],
         "additionalProperties": false,
         "properties": {
           "status": {
-            "enum": [
-              "live",
-              "not_ready"
-            ]
+            "enum": ["live", "not_ready"]
           },
           "service": {
             "type": "string"

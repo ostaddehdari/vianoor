@@ -13,15 +13,15 @@ Schema اجرایی در `packages/contracts/src/index.ts`؛ رویداد نمو
 
 ## نمونه رویدادهای برنامه‌ریزی‌شده
 
-| Subject | مالک | مصرف‌کننده | مرحله |
-|---|---|---|---|
-| identity.account.registered.v1 | Identity | Profile, Notification, Audit | ۴ |
-| scholar.scholar.verified.v1 | Scholar | Search, Matching, Notification | ۸ |
-| availability.slot.held.v1 | Availability | Booking | ۹ |
-| booking.booking.confirmed.v1 | Booking | Notification, Messaging, Media | ۹–۱۳ |
-| payment.payment.captured.v1 | Payment | Booking, Accounting, Wallet | ۱۱ |
-| booking.session.completed.v1 | Booking | Payout, Rating, Analytics | ۱۳ |
-| qa.answer.published.v1 | Q&A | Search, Notification | ۱۵ |
-| content.post.published.v1 | Content | Search, Notification | ۱۶ |
+| Subject                        | مالک         | مصرف‌کننده                     | مرحله |
+| ------------------------------ | ------------ | ------------------------------ | ----- |
+| identity.account.registered.v1 | Identity     | Profile, Notification, Audit   | ۴     |
+| scholar.scholar.verified.v1    | Scholar      | Search, Matching, Notification | ۸     |
+| availability.slot.held.v1      | Availability | Booking                        | ۹     |
+| booking.booking.confirmed.v1   | Booking      | Notification, Messaging, Media | ۹–۱۳  |
+| payment.payment.captured.v1    | Payment      | Booking, Accounting, Wallet    | ۱۱    |
+| booking.session.completed.v1   | Booking      | Payout, Rating, Analytics      | ۱۳    |
+| qa.answer.published.v1         | Q&A          | Search, Notification           | ۱۵    |
+| content.post.published.v1      | Content      | Search, Notification           | ۱۶    |
 
 فقط payment.captured payload در این مرحله schema اجرایی دارد؛ بقیه در مرحلهٔ مالک خود با payload حداقلی تثبیت می‌شوند.
