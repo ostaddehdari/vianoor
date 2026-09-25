@@ -24,16 +24,14 @@ class SafeExceptionFilter implements ExceptionFilter {
     const status = exception instanceof HttpException ? exception.getStatus() : 500;
     const response = host.switchToHttp().getResponse<ResponseLike>();
     // No raw exception, request body, provider key or stack is sent to clients.
-    response
-      .status(status)
-      .json({
-        error: {
-          code: status === 404 ? 'NOT_FOUND' : 'REQUEST_FAILED',
-          message: status === 404 ? 'Resource not found' : 'Request failed',
-          details: {},
-        },
-        trace_id: randomBytes(16).toString('hex'),
-      });
+    response.status(status).json({
+      error: {
+        code: status === 404 ? 'NOT_FOUND' : 'REQUEST_FAILED',
+        message: status === 404 ? 'Resource not found' : 'Request failed',
+        details: {},
+      },
+      trace_id: randomBytes(16).toString('hex'),
+    });
   }
 }
 
