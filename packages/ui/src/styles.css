@@ -3615,6 +3615,7 @@ select {
   padding-top: 20px;
 }
 .auth-card a {
+  text-decoration: underline;
   color: #2f5b41;
   text-underline-offset: 4px;
 }

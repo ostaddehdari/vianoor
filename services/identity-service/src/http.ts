@@ -102,16 +102,14 @@ export function identityRouter(identity: Identity, redis: RateStore) {
     } catch (error) {
       const known = error instanceof AuthError;
       if (known && error.status === 429) res.setHeader('Retry-After', '900');
-      res
-        .status(known ? error.status : 503)
-        .json({
-          error: {
-            code: known ? error.code : 'UNAVAILABLE',
-            message: 'Request failed',
-            details: {},
-          },
-          trace_id: currentTraceId(),
-        });
+      res.status(known ? error.status : 503).json({
+        error: {
+          code: known ? error.code : 'UNAVAILABLE',
+          message: 'Request failed',
+          details: {},
+        },
+        trace_id: currentTraceId(),
+      });
     } finally {
       if (acquired) active--;
     }

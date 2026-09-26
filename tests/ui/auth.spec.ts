@@ -28,14 +28,14 @@ for (const locale of ['fa', 'en']) {
         await page.locator('input[name=password]').fill('A valid long passphrase');
         await page.locator('input[name=confirm]').fill('Different long passphrase');
         await page.locator('button[type=submit]').click();
-        await expect(page.locator('[role=alert]')).not.toBeEmpty();
+        await expect(page.locator('.auth-card [role=alert]')).not.toBeEmpty();
       }
       if (action === 'login') {
         await page.locator('input[name=email]').fill('sample@example.test');
         await page.locator('input[name=password]').fill('A valid long passphrase');
         await page.locator('button[type=submit]').click();
         // This workflow deliberately has no backend: show the honest configuration state.
-        await expect(page.locator('[role=alert]')).not.toBeEmpty();
+        await expect(page.locator('.auth-card [role=alert]')).not.toBeEmpty();
       }
     });
   }
