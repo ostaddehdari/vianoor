@@ -1,8 +1,16 @@
 'use client';
 import { useState, useRef, useEffect, type ReactNode } from 'react';
 import { Icon, type IconName } from './icons';
-import { copy, roles, publicPages, sectionNames, rolePath, routeInfo } from './routing';
-import registry from './page-registry.json';
+import {
+  copy,
+  roles,
+  publicPages,
+  sectionNames,
+  rolePath,
+  routeInfo,
+  dashboardSections,
+} from './routing';
+import { ReleaseBadge } from './release';
 import type { Locale } from './messages';
 import { UserWorkspace, UserAccountMenu, MemberProfile } from './user-workspace';
 
@@ -277,6 +285,7 @@ function Footer({ locale }: { locale: Locale }) {
       <div className="footer-bottom">
         <span>{t.copyright}</span>
         <span>FA / EN</span>
+        <ReleaseBadge locale={locale} />
       </div>
     </footer>
   );
@@ -976,19 +985,7 @@ function Dashboard({
   }, [menu, narrow]);
   const preview = path.startsWith('preview/');
   const prefix = preview ? `preview/${role.id}` : rolePath(role.id);
-  const actualNav = registry
-    .filter(
-      (p) =>
-        p.path.startsWith(`/[locale]/${prefix}/`) &&
-        p.path.split('/').length === prefix.split('/').length + 3 &&
-        !p.path.includes('[', 11),
-    )
-    .map((p) => p.path.split('/').pop()!);
-  const sections = preview
-    ? ['activity', 'calendar', 'messages', 'settings']
-    : actualNav.length
-      ? actualNav
-      : ['questions', 'calendar', 'messages', 'settings'];
+  const sections = dashboardSections(role.id);
   const labels: Record<string, string> = {
     activity: t.activity,
     calendar: t.calendar,
@@ -1054,8 +1051,9 @@ function Dashboard({
           }
           if (e.key === 'Tab') {
             const items = Array.from(
-              sidebarRef.current?.querySelectorAll<HTMLElement>('a[href],button:not([disabled])') ??
-                [],
+              sidebarRef.current?.querySelectorAll<HTMLElement>(
+                'a[href],button:not([disabled]),select:not([disabled])',
+              ) ?? [],
             ).filter((el) => el.getClientRects().length);
             const first = items[0],
               last = items[items.length - 1];
@@ -1079,16 +1077,25 @@ function Dashboard({
             <Icon name="close" />
           </button>
         </div>
-        <a className="workspace-switch" href={url(locale, 'dashboards')}>
+        <label className="workspace-switch">
           <span className="icon-tile">
             <Icon name={role.icon} />
           </span>
           <span>
             <small>{t.chooseRole}</small>
-            <strong>{role.title[locale]}</strong>
+            <select
+              aria-label={t.chooseRole}
+              value={role.id}
+              onChange={(e) => window.location.assign(url(locale, `preview/${e.target.value}`))}
+            >
+              {roles.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.title[locale]}
+                </option>
+              ))}
+            </select>
           </span>
-          <Icon name="down" />
-        </a>
+        </label>{' '}
         <div className="side-caption">{t.dashboard}</div>
         <nav aria-label={t.workspaceNav}>
           {nav.map((n) => (
@@ -1105,6 +1112,7 @@ function Dashboard({
           ))}
         </nav>
         <div className="sidebar-bottom">
+          <ReleaseBadge locale={locale} />
           <div className="side-help">
             <span className="icon-tile">
               <Icon name="headset" />
