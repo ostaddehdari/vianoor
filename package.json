@@ -29,16 +29,23 @@
     "dev:admin": "npm run dev --workspace @vianoor/admin",
     "dev:gateway": "npm run dev --workspace @vianoor/api-gateway",
     "smoke": "node scripts/smoke.mjs",
-    "pretest": "npm run build:packages"
+    "pretest": "npm run build:packages",
+    "infra:prepare": "node scripts/infra/prepare.mjs",
+    "infra:generate": "node scripts/infra/compose.mjs",
+    "infra:up": "docker compose -f infra/compose.json up -d --build --wait",
+    "infra:test": "docker compose -f infra/compose.json run --rm test",
+    "infra:restart-test": "node scripts/infra/restart-test.mjs",
+    "infra:stop": "docker compose -f infra/compose.json stop"
   },
   "devDependencies": {
-    "typescript": "5.9.3",
-    "tsx": "4.20.6",
-    "@types/node": "24.10.1",
-    "eslint": "9.39.1",
     "@eslint/js": "9.39.1",
-    "typescript-eslint": "8.48.0",
+    "@types/node": "24.10.1",
+    "@types/pg": "8.15.6",
+    "eslint": "9.39.1",
+    "globals": "16.5.0",
     "prettier": "3.6.2",
-    "globals": "16.5.0"
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.48.0"
   }
 }

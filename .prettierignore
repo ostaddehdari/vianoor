@@ -5,3 +5,4 @@ dist
 *.tsbuildinfo
 **/next-env.d.ts
 docs/design/references/*.png
+infra/local/
