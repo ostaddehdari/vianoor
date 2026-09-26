@@ -30,6 +30,6 @@ jobs:
         with:
           name: ui-screenshots-and-report
           path: |
-            test-results/
+            test-results/**/*.png
             playwright-report/
           retention-days: 14

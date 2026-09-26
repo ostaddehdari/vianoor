@@ -6,7 +6,7 @@
   --accent: #2f8068;
   --gold: #ba9354;
   --ink: #263e36;
-  --muted: #6b7973;
+  --muted: #56675d;
   --line: #e4e9e2;
   --canvas: #f6f7f3;
   --serif: Georgia, serif;
@@ -223,7 +223,7 @@ html[dir='ltr'] .direction-icon {
   justify-content: space-between;
   padding: 8px max(44px, calc((100vw - 1200px) / 2));
   font-size: 11px;
-  color: #647663;
+  color: #52664f;
 }
 .topline span,
 .topline a {
@@ -266,7 +266,7 @@ html[dir='ltr'] .direction-icon {
   font-size: 9px;
   margin-top: 9px;
   letter-spacing: 0.1px;
-  color: #718274;
+  color: #566a58;
 }
 .desktop-nav {
   display: flex;
@@ -333,7 +333,7 @@ html[dir='ltr'] .direction-icon {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.2px;
-  color: #698258;
+  color: #526c42;
   display: flex;
   align-items: center;
   gap: 9px;
@@ -511,7 +511,7 @@ html[dir='ltr'] .direction-icon {
 }
 .quote-panel small {
   display: block;
-  color: #677d5f;
+  color: #506346;
   font-size: 10px;
   margin-top: 13px;
 }
@@ -703,7 +703,7 @@ html[dir='ltr'] .direction-icon {
 }
 .rose {
   background: #f1e4dd;
-  color: #aa8474;
+  color: #785447;
 }
 .sage {
   background: #e3ebdd;
@@ -711,7 +711,7 @@ html[dir='ltr'] .direction-icon {
 }
 .sand {
   background: #efe8d6;
-  color: #ab965e;
+  color: #766133;
 }
 .cover-lines {
   position: absolute;
@@ -807,7 +807,7 @@ html[dir='ltr'] .direction-icon {
 .step-number {
   font-size: 42px;
   font-weight: 300;
-  color: #bbaa7d;
+  color: #938054;
   line-height: 1.2;
   flex-shrink: 0;
 }
@@ -965,7 +965,7 @@ html[dir='ltr'] .direction-icon {
   display: flex;
   align-items: center;
   gap: 7px;
-  color: #7a775e;
+  color: #665f43;
   font-size: 10px;
   line-height: 1.7;
 }
@@ -1347,7 +1347,7 @@ select {
   min-height: 45px;
   padding: 9px 14px;
   border-radius: 9px;
-  color: #71806b;
+  color: #59684f;
 }
 .sidebar nav a > .icon {
   width: 16px;
@@ -1714,7 +1714,7 @@ select {
   min-height: 34px;
   padding: 5px 12px;
   font-size: 10px;
-  color: #7f8c74;
+  color: #5a684f;
 }
 .segmented button.active {
   background: white;
@@ -1900,7 +1900,7 @@ select {
 .calendar-note strong {
   margin-inline-start: auto;
   font-weight: 400;
-  color: #6f8162;
+  color: #546948;
 }
 .record-filters {
   display: flex;
@@ -1978,7 +1978,7 @@ select {
 }
 .badge-2 {
   background: #e9f1e6;
-  color: #5b7b4b;
+  color: #456638;
 }
 .record > .icon-button {
   width: 32px;
@@ -3132,7 +3132,7 @@ select {
 .mobile-bottom a,
 .service-grid small,
 .footer-bottom {
-  color: #67735f;
+  color: #56624d;
 }
 .calendar-grid button {
   color: #586c4c;

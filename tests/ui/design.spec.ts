@@ -17,7 +17,12 @@ for (const locale of ['fa', 'en'] as const) {
       fullPage: true,
     });
     const audit = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
-    expect(audit.violations).toEqual([]);
+    expect(
+      audit.violations.map((v) => ({
+        id: v.id,
+        nodes: v.nodes.map((n) => ({ target: n.target, summary: n.failureSummary })),
+      })),
+    ).toEqual([]);
     const broken = await page
       .locator('a[href^="/"]')
       .evaluateAll(
@@ -49,7 +54,12 @@ for (const locale of ['fa', 'en'] as const) {
       ).toBeTruthy();
       await expect(page.locator('h1')).toBeVisible();
       const audit = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
-      expect(audit.violations).toEqual([]);
+      expect(
+        audit.violations.map((v) => ({
+          id: v.id,
+          nodes: v.nodes.map((n) => ({ target: n.target, summary: n.failureSummary })),
+        })),
+      ).toEqual([]);
       await page.screenshot({
         path: info.outputPath(`${role.id}-${locale}-${info.project.name}.png`),
         fullPage: true,

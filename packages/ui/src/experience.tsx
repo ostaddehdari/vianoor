@@ -400,8 +400,12 @@ function Home({ locale }: { locale: Locale }) {
         <div className="hero-visual">
           <div className="arch-scene">
             <Ornament />
-            <span className="hero-star star-one">✦</span>
-            <span className="hero-star star-two">✧</span>
+            <span className="hero-star star-one" aria-hidden="true">
+              ✦
+            </span>
+            <span className="hero-star star-two" aria-hidden="true">
+              ✧
+            </span>
             <div className="book-sculpture">
               <div />
               <div />
@@ -859,7 +863,10 @@ function Calendar({ locale, onSelect }: { locale: Locale; onSelect: (day: number
             {label}
           </span>
         ))}
-        {Array.from({ length: 30 }, (_, i) => (
+        {Array.from({ length: locale === 'fa' ? 4 : 3 }, (_, i) => (
+          <span aria-hidden="true" key={`blank-${i}`} />
+        ))}
+        {Array.from({ length: locale === 'fa' ? 30 : 31 }, (_, i) => (
           <button
             key={i}
             className={day === i + 1 ? 'selected' : ''}
@@ -936,6 +943,30 @@ function Dashboard({
     [period, setPeriod] = useState('week'),
     [saved, setSaved] = useState(false),
     [selectedDay, setSelectedDay] = useState(15);
+  const [narrow, setNarrow] = useState(false);
+  const sidebarRef = useRef<HTMLElement>(null);
+  const menuRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 980px)');
+    const update = () => {
+      setNarrow(media.matches);
+      if (!media.matches) setMenu(false);
+    };
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
+  useEffect(() => {
+    if (!menu || !narrow) return;
+    const previous = document.activeElement as HTMLElement | null;
+    const oldOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    sidebarRef.current?.querySelector<HTMLElement>('button')?.focus();
+    return () => {
+      document.body.style.overflow = oldOverflow;
+      previous?.focus();
+    };
+  }, [menu, narrow]);
   const preview = path.startsWith('preview/');
   const prefix = preview ? `preview/${role.id}` : rolePath(role.id);
   const actualNav = registry
@@ -1003,7 +1034,33 @@ function Dashboard({
       <a className="skip-link" href="#main">
         {t.skip}
       </a>
-      <aside className={`sidebar ${menu ? 'open' : ''}`}>
+      <aside
+        ref={sidebarRef}
+        inert={narrow && !menu}
+        className={`sidebar ${menu ? 'open' : ''}`}
+        onKeyDown={(e) => {
+          if (!narrow || !menu) return;
+          if (e.key === 'Escape') {
+            setMenu(false);
+            menuRef.current?.focus();
+          }
+          if (e.key === 'Tab') {
+            const items = Array.from(
+              sidebarRef.current?.querySelectorAll<HTMLElement>('a[href],button:not([disabled])') ??
+                [],
+            ).filter((el) => el.getClientRects().length);
+            const first = items[0],
+              last = items[items.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last?.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first?.focus();
+            }
+          }
+        }}
+      >
         <div className="sidebar-brand">
           <Brand locale={locale} />
           <button
@@ -1060,12 +1117,13 @@ function Dashboard({
       {menu && (
         <button className="sidebar-backdrop" aria-label={t.close} onClick={() => setMenu(false)} />
       )}
-      <div className="workspace-main">
+      <div className="workspace-main" inert={narrow && menu}>
         <header className="workspace-header">
           <div className="workspace-heading">
             <button
               className="icon-button mobile-menu"
               aria-label={t.menu}
+              ref={menuRef}
               aria-expanded={menu}
               onClick={() => setMenu(!menu)}
             >
@@ -1095,7 +1153,7 @@ function Dashboard({
             <span className="avatar small-avatar">{locale === 'fa' ? 'و' : 'V'}</span>
           </div>
         </header>
-        <main id="main" className="dashboard-main">
+        <main tabIndex={-1} id="main" className="dashboard-main">
           <div className="dashboard-topline">
             <Preview locale={locale} />
             <span className="date-label">
@@ -1429,7 +1487,7 @@ export function Experience({
         {copy[locale].skip}
       </a>
       <Header locale={locale} path={path} />
-      <main id="main">
+      <main tabIndex={-1} id="main">
         {info?.kind === 'home' ? (
           <Home locale={locale} />
         ) : info?.kind === 'gallery' ? (
