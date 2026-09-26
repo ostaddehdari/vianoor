@@ -17,7 +17,11 @@ test('installed release, cache policy, role dropdown and protected workspace', a
   await expect(page.locator('.sidebar nav a[href$="/preview/admin/users"]')).toBeVisible();
   await page.locator('.workspace-switch select').selectOption('expert');
   await expect(page).toHaveURL(/\/fa\/preview\/expert$/);
-  if (info.project.name === 'mobile') await page.locator('.workspace-heading button').click();
+  await expect(page.locator('.workspace-heading small')).toContainText('استاد و مشاور');
+  if (info.project.name === 'mobile') {
+    await page.locator('.workspace-heading button').click();
+    await expect(page.locator('.sidebar')).toHaveClass(/open/);
+  }
   await expect(page.locator('.sidebar nav a[href$="/preview/expert/availability"]')).toBeVisible();
   await expect(page.locator('.sidebar nav a[href$="/preview/account/wallet"]')).toHaveCount(0);
   if (info.project.name === 'mobile') await page.locator('.sidebar-brand button').click();

@@ -255,7 +255,7 @@
     "id": "R06-01",
     "stage": 6,
     "title": "پروفایل",
-    "status": "in-progress",
+    "status": "verified-on-server",
     "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
     "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
@@ -264,7 +264,7 @@
     "id": "R06-02",
     "stage": 6,
     "title": "سازمان/شعبه",
-    "status": "in-progress",
+    "status": "verified-on-server",
     "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
     "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
@@ -273,7 +273,7 @@
     "id": "R06-03",
     "stage": 6,
     "title": "permission",
-    "status": "in-progress",
+    "status": "verified-on-server",
     "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
     "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
@@ -282,7 +282,7 @@
     "id": "R06-04",
     "stage": 6,
     "title": "tenant isolation",
-    "status": "in-progress",
+    "status": "verified-on-server",
     "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
     "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
@@ -291,7 +291,7 @@
     "id": "R06-05",
     "stage": 6,
     "title": "consent",
-    "status": "in-progress",
+    "status": "verified-on-server",
     "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
     "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
@@ -1011,7 +1011,7 @@
     "id": "R06-07",
     "stage": 6,
     "title": "شناسهٔ عمومی ۱۳کاراکتری",
-    "status": "in-progress",
+    "status": "verified-on-server",
     "acceptance": "حفظ UUID داخلی؛ مهاجرت و یکتایی کد مستقل از ایمیل/تلفن",
     "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
@@ -1020,7 +1020,7 @@
     "id": "R06-08",
     "stage": 6,
     "title": "فرم‌ساز پروفایل",
-    "status": "in-progress",
+    "status": "verified-on-server",
     "acceptance": "تب/مرحله، انواع فیلد، شرط، پیش‌نویس و انتشار نسخه‌دار، حفظ پاسخ قبلی",
     "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
@@ -1029,7 +1029,7 @@
     "id": "R06-09",
     "stage": 6,
     "title": "آواتار و بارگذاری عکس",
-    "status": "in-progress",
+    "status": "verified-on-server",
     "acceptance": "پنج تصویر کارتونی، اعتبارسنجی و تبدیل تصویر، کنترل مالکیت و رضایت",
     "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
@@ -1038,7 +1038,7 @@
     "id": "R06-10",
     "stage": 6,
     "title": "چند نقش و مدیریت کاربران",
-    "status": "in-progress",
+    "status": "verified-on-server",
     "acceptance": "پنل مراجع همگانی، انتخاب نقش واقعی، دعوت، ویرایش، ابطال دسترسی و منع ارتقای غیرمجاز",
     "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
