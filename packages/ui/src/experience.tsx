@@ -959,6 +959,7 @@ function Dashboard({
     [saved, setSaved] = useState(false),
     [selectedDay, setSelectedDay] = useState(15);
   const [narrow, setNarrow] = useState(false);
+  const [ready, setReady] = useState(false);
   const sidebarRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -968,6 +969,7 @@ function Dashboard({
       if (!media.matches) setMenu(false);
     };
     update();
+    setReady(true);
     media.addEventListener('change', update);
     return () => media.removeEventListener('change', update);
   }, []);
@@ -1084,6 +1086,7 @@ function Dashboard({
             <small>{t.chooseRole}</small>
             <select
               aria-label={t.chooseRole}
+              disabled={!ready}
               value={role.id}
               onChange={(e) => window.location.assign(url(locale, `preview/${e.target.value}`))}
             >
@@ -1139,6 +1142,7 @@ function Dashboard({
               className="icon-button mobile-menu"
               aria-label={t.menu}
               ref={menuRef}
+              disabled={!ready}
               aria-expanded={menu}
               aria-controls="workspace-navigation"
               onClick={() => setMenu(!menu)}
