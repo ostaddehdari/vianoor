@@ -38,6 +38,7 @@ compose(
   '-c',
   'CREATE TABLE IF NOT EXISTS infra_restart_probe (id integer PRIMARY KEY); INSERT INTO infra_restart_probe VALUES (1) ON CONFLICT DO NOTHING',
 );
+compose('exec', '-T', 'identity-service', 'node', 'scripts/infra/persistence-probe.mjs', 'write');
 for (const dependency of ['redis', 'nats']) {
   compose('stop', dependency);
   try {
@@ -65,4 +66,9 @@ compose(
   '-c',
   "DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM infra_restart_probe WHERE id=1) THEN RAISE EXCEPTION 'lost data'; END IF; END $$",
 );
-console.log('PASS restart persistence, dependency failure and recovery');
+await until(() =>
+  compose('exec', '-T', 'identity-service', 'node', 'scripts/infra/persistence-probe.mjs', 'read'),
+);
+console.log(
+  'PASS PostgreSQL, Redis and JetStream restart persistence, dependency failure and recovery',
+);

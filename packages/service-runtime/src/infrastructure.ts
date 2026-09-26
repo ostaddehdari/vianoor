@@ -55,7 +55,7 @@ export async function connectInfrastructure(service: string, env = process.env) 
         client.release();
       }
     }
-    const manager = await nc.jetstreamManager();
+    const manager = await nc.jetstreamManager({ timeout: 1500 });
     try {
       await manager.streams.info('VIANOOR');
     } catch (error) {
