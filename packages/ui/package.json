@@ -17,5 +17,9 @@
   },
   "devDependencies": {
     "@types/react": "19.3.0"
+  },
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "7.0.1",
+    "vazir-font": "30.1.0"
   }
 }

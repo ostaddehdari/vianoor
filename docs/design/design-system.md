@@ -10,7 +10,7 @@
 | زمینه       | #F6F7F3 و کارت سفید                                  |
 | کارت        | شعاع 16px؛ خط لطیف؛ سایه محدود                       |
 | فاصله       | مبنای 8px                                            |
-| فونت هدف    | Vazirmatn محلی در مرحلهٔ ۳؛ فعلاً system fallback    |
+| فونت هدف    | Vazir 30.1.0 محلی؛ انتخاب صریح کاربر در مرحلهٔ ۳     |
 | جهت         | logical CSS؛ fa RTL / en LTR                         |
 | موبایل      | کار اصلی بالا، کارت جای جدول، هدف لمس حداقل 44px     |
 | دسترس‌پذیری | focus واضح، label، کنتراست، keyboard، reduced motion |
@@ -22,3 +22,7 @@
 01 home؛ 02 client؛ 03 expert/responder؛ 04 scientific؛ 05 support؛ 06 finance؛ 07 content/events؛ 08 organization/region/branch؛ 09 super-admin؛ 10 AI؛ 11 call-center؛ 12 operations.
 
 در ماکاپ‌های تولیدی تفاوت جزئی لوگو و sidebar وجود دارد. در پیاده‌سازی پایهٔ مشترک را رعایت می‌کنیم: sidebar روشن، انتخاب یشمی ملایم؛ variant تیره فقط با تصمیم صریح design system. فرم AI نشان provider عمومی دارد؛ استفاده از نشان OpenAI به‌جای GapGPT تصحیح می‌شود. UI مالی staff دکمه شارژ کیف پول شخصی ندارد.
+
+## پیاده‌سازی مرحلهٔ ۳
+
+Font Awesome Free برای آیکون‌ها، فونت وزیر محلی، منوی جمع‌شونده و نوار پایین موبایل پیاده شده‌اند. گالری ۱۲ نقش از `/fa/dashboards` و `/en/dashboards` در دسترس است. جزئیات: [راهنمای مرحلهٔ ۳](../stages/03-responsive-ui.md).

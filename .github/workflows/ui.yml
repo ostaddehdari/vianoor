@@ -1,0 +1,35 @@
+name: Responsive UI
+on:
+  push:
+    branches: [main, 'stage/**']
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ui-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      NEXT_PUBLIC_BASE_PATH: /vianoor
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build --workspace @vianoor/web
+      - run: npm run test:ui
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ui-screenshots-and-report
+          path: |
+            test-results/**/*.png
+            playwright-report/
+          retention-days: 14

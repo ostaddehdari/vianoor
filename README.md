@@ -2,14 +2,14 @@
 
 پلتفرم چندزبانهٔ مشاوره، پاسخ‌گویی دینی و منبر آنلاین.
 
-**مرحلهٔ ۲ از ۲۰: زیرساخت اجرایی سرویس‌ها.** این نسخه پایهٔ قابل اجراست؛ ورود، رزرو، پرداخت و تماس هنوز قابلیت عملیاتی ندارند.
+**مرحلهٔ ۳ از ۲۰: رابط دو زبانه و واکنش‌گرا.** این نسخه پایهٔ قابل اجراست؛ ورود، رزرو، پرداخت و تماس هنوز قابلیت عملیاتی ندارند.
 
 ## اجرای توسعه
 
 پیش‌نیاز: Node.js `24.19.0` و npm `11.9.x`. نسخه‌های وابستگی در `package-lock.json` تثبیت شده‌اند.
 
 ```bash
-git clone --branch stage/02-infrastructure https://github.com/ostaddehdari/vianoor.git
+git clone --branch stage/03-responsive-ui https://github.com/ostaddehdari/vianoor.git
 cd vianoor
 npm ci
 npm run build:packages
@@ -82,3 +82,7 @@ npm audit --omit=dev --audit-level=high
 ## زیرساخت مرحلهٔ ۲
 
 Docker Compose، PostgreSQL با ۳۱ پایگاه و نقش مستقل، Redis، NATS JetStream، Outbox/Inbox و رهگیری درخواست در شاخهٔ مرحلهٔ ۲ اضافه شده‌اند. راه‌اندازی و محدودیت‌ها: [راهنمای مرحلهٔ ۲](docs/stages/02-infrastructure.md). این تغییر صفحات داشبورد یا ورود واقعی را فعال نمی‌کند و تنظیمات اختصاصی سرور را شامل نمی‌شود.
+
+## رابط مرحلهٔ ۳
+
+صفحهٔ اول جدید، صفحات عمومی و گالری ۱۲ داشبورد با فونت وزیر و Font Awesome. پس از اجرای وب، `/fa/dashboards` یا `/en/dashboards` را باز کنید. این صفحات پیش‌نمایش با دادهٔ نمونه هستند. [راهنمای مرحلهٔ ۳ و مسیرها](docs/stages/03-responsive-ui.md).
