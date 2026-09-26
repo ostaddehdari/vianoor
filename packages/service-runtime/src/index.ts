@@ -129,12 +129,10 @@ export async function createService(
           });
           res.status(response.status).json(await response.json());
         } catch {
-          res
-            .status(502)
-            .json({
-              error: { code: 'UPSTREAM_UNAVAILABLE', message: 'Upstream unavailable', details: {} },
-              trace_id: currentTraceId(),
-            });
+          res.status(502).json({
+            error: { code: 'UPSTREAM_UNAVAILABLE', message: 'Upstream unavailable', details: {} },
+            trace_id: currentTraceId(),
+          });
         }
       },
     );
