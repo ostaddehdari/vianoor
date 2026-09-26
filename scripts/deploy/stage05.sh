@@ -10,8 +10,10 @@ if [ "$(id -u)" -ne 0 ]; then
   echo 'Run as root on the Vianoor server.' >&2
   exit 1
 fi
-if [ "$(pwd -P)" != "$new" ] || [ "$(git rev-parse --short HEAD^)" != "$expected_commit" ]; then
-  echo "Stop: expected checkout $new directly after $expected_commit." >&2
+if [ "$(pwd -P)" != "$new" ] ||
+   [ "$(git branch --show-current)" != 'stage/05-multimethod-auth' ] ||
+   ! git merge-base --is-ancestor "$expected_commit" HEAD; then
+  echo "Stop: expected stage/05-multimethod-auth in $new containing $expected_commit." >&2
   exit 1
 fi
 if [ -n "$(git status --porcelain)" ]; then
