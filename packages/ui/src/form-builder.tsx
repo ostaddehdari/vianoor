@@ -88,7 +88,7 @@ export function FormBuilder({ locale }: { locale: Locale }) {
     [answers, setAnswers] = useState<Record<string, unknown>>({}),
     [error, setError] = useState(''),
     [notice, setNotice] = useState(''),
-    [busy, setBusy] = useState(false);
+    [busy, setBusy] = useState(true);
   const current = forms.find((f) => f.id === selected);
   const currentSection = draft?.sections[section];
   const currentField = currentSection?.fields[field];
@@ -104,7 +104,9 @@ export function FormBuilder({ locale }: { locale: Locale }) {
     }
   }
   useEffect(() => {
-    void load().catch((e) => setError(userError(e, locale)));
+    void load()
+      .catch((e) => setError(userError(e, locale)))
+      .finally(() => setBusy(false));
   }, []);
   function updateForm(change: (form: FormDefinition) => void) {
     if (!draft) return;
@@ -185,6 +187,7 @@ export function FormBuilder({ locale }: { locale: Locale }) {
         <label>
           {t.forms}
           <select
+            disabled={busy}
             value={selected}
             onChange={(e) => {
               const form = forms.find((f) => f.id === e.target.value)!;
@@ -206,7 +209,8 @@ export function FormBuilder({ locale }: { locale: Locale }) {
           {t.published}: {current?.published ?? 0} · {t.draft}: {current?.revision ?? 0}
         </span>
       </div>
-      {draft && (
+      {busy && <p aria-live="polite">{t.loading}</p>}
+      {draft && !busy && (
         <>
           <div className="user-actions">
             <button disabled={busy} onClick={() => void save()}>

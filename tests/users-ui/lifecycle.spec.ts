@@ -128,6 +128,7 @@ test('real invitation, profile wizard, avatar upload, form builder, role switchi
   ).toBeVisible();
   await page.goto('/vianoor/en/admin/forms');
   await page.getByRole('button', { name: 'New form', exact: true }).click();
+  await expect(page.getByRole('status')).toHaveText('Changes saved.');
   const title = 'Browser form ' + testInfo.project.name + ' ' + randomUUID().slice(0, 5);
   await page
     .getByRole('group', { name: 'Form title', exact: true })
@@ -190,13 +191,17 @@ test('real invitation, profile wizard, avatar upload, form builder, role switchi
     await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1),
   ).toBeTruthy();
   await editClient();
-  await page.getByRole('combobox', { name: 'Assigned profile form', exact: true }).selectOption({ label: title });
+  await page
+    .getByRole('combobox', { name: 'Assigned profile form', exact: true })
+    .selectOption({ label: title });
   page.once('dialog', (dialog) => dialog.accept());
   await page.getByRole('button', { name: 'Assign form', exact: true }).click();
   await expect(page.getByRole('status')).toHaveText('Changes saved.');
   await client.goto('http://127.0.0.1:18876/vianoor/en/account/profile');
   await client.getByLabel(/Favorite book/).fill('A sample title');
-  await client.getByRole('combobox', { name: 'Preferred time', exact: true }).selectOption({ label: 'Morning' });
+  await client
+    .getByRole('combobox', { name: 'Preferred time', exact: true })
+    .selectOption({ label: 'Morning' });
   await client.getByRole('button', { name: 'Complete profile', exact: true }).click();
   await expect(client.getByRole('status')).toHaveText('Changes saved.');
   await client.goto('http://127.0.0.1:18876/vianoor/en/members/' + code);

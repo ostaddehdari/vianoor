@@ -44,6 +44,9 @@
 .users-sidebar nav {
   display: grid;
   gap: 8px;
+  min-height: 0;
+  overflow-y: auto;
+  flex: 1;
 }
 .users-sidebar nav a {
   padding: 12px 14px;
