@@ -103,3 +103,18 @@ test('unknown route is a real 404', async ({ page }) => {
   const r = await page.goto(`${prefix}/fa/not-a-real-page`);
   expect(r?.status()).toBe(404);
 });
+
+test('small phone and tablet layouts stay within the viewport', async ({ page }) => {
+  for (const width of [320, 768]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const locale of ['fa', 'en'])
+      for (const route of ['', '/preview/account', '/preview/finance']) {
+        await page.goto(`${prefix}/${locale}${route}`);
+        await page.evaluate(() => document.fonts.ready);
+        expect(
+          await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+          `${locale}${route} at ${width}px`,
+        ).toBeTruthy();
+      }
+  }
+});

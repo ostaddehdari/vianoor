@@ -3186,3 +3186,197 @@ select {
     color: #5e6c51;
   }
 }
+/* Keep Persian and English labels readable on real screens. */
+.brand small {
+  font-size: 10px;
+}
+.topline {
+  font-size: 11px;
+}
+.expert-meta,
+.sample-tag {
+  font-size: 11px;
+}
+.book-sculpture > div {
+  left: 0;
+}
+.book-sculpture > div:nth-child(2) {
+  left: auto;
+  right: 0;
+}
+.sidebar nav a {
+  font-size: 13px;
+}
+.side-caption {
+  font-size: 11px;
+}
+.workspace-switch small {
+  font-size: 10px;
+}
+.workspace-switch strong {
+  font-size: 12px;
+}
+.side-help h3 {
+  font-size: 14px;
+}
+.side-help p,
+.side-help a,
+.back-home {
+  font-size: 12px;
+}
+.workspace-heading small {
+  font-size: 11px;
+}
+.workspace-heading strong {
+  font-size: 16px;
+}
+.workspace-tools .language {
+  font-size: 12px;
+}
+.dashboard-topline .preview-note,
+.date-label {
+  font-size: 11px;
+}
+.dashboard-title p {
+  font-size: 13px;
+}
+.welcome-banner .eyebrow {
+  font-size: 12px;
+}
+.welcome-banner p {
+  font-size: 13px;
+}
+.welcome-banner .button {
+  font-size: 12px;
+}
+.stat-card > p {
+  font-size: 13px;
+}
+.stat-foot,
+.stat-card .small {
+  font-size: 11px;
+}
+.panel-heading h2 {
+  font-size: 17px;
+}
+.panel-heading p {
+  font-size: 12px;
+}
+.segmented button {
+  font-size: 11px;
+}
+.chart-grid,
+.chart-bars small,
+.chart-legend {
+  font-size: 11px;
+}
+.quick-grid > a {
+  font-size: 12px;
+}
+.calendar-heading h3 {
+  font-size: 14px;
+}
+.calendar-grid .day-name {
+  font-size: 11px;
+}
+.calendar-grid button {
+  font-size: 12px;
+}
+.calendar-note {
+  font-size: 11px;
+}
+.record-info h3 {
+  font-size: 13px;
+}
+.record-info > span,
+.record .badge {
+  font-size: 11px;
+}
+.record-filters .search-field input,
+.record-filters select {
+  font-size: 12px;
+}
+.records-footer .small {
+  font-size: 11px;
+}
+.records-footer .text-link {
+  font-size: 12px;
+}
+.reflection-card h3 {
+  font-size: 16px;
+}
+.reflection-card p,
+.save-button {
+  font-size: 12px;
+}
+.dashboard-disclaimer {
+  font-size: 11px;
+}
+.provider-panel p {
+  font-size: 12px;
+}
+@media (max-width: 700px) {
+  .brand small {
+    font-size: 9px;
+  }
+  .topline {
+    font-size: 10px;
+  }
+  .workspace-heading small {
+    font-size: 9px;
+  }
+  .workspace-heading strong {
+    font-size: 13px;
+  }
+  .workspace-tools .language {
+    font-size: 10px;
+  }
+  .dashboard-topline .preview-note,
+  .date-label {
+    font-size: 10px;
+  }
+  .dashboard-title p {
+    font-size: 12px;
+  }
+  .welcome-banner .eyebrow {
+    font-size: 11px;
+  }
+  .welcome-banner p {
+    font-size: 12px;
+  }
+  .stat-card > p {
+    font-size: 12px;
+  }
+  .stat-foot,
+  .stat-card .small {
+    font-size: 10px;
+  }
+  .panel-heading h2 {
+    font-size: 16px;
+  }
+  .panel-heading p {
+    font-size: 10px;
+  }
+  .quick-grid > a {
+    font-size: 10px;
+  }
+  .mobile-bottom a {
+    font-size: 10px;
+  }
+  .chart-legend {
+    font-size: 10px;
+  }
+  .record-info h3 {
+    font-size: 12px;
+  }
+  .record-info > span,
+  .record .badge {
+    font-size: 10px;
+  }
+  .records-footer .small {
+    font-size: 10px;
+  }
+  .dashboard-disclaimer {
+    font-size: 10px;
+  }
+}

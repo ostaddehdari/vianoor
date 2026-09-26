@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { isLocale, messages } from '@vianoor/ui';
+import { isLocale, copy } from '@vianoor/ui';
 import '@vianoor/ui/styles.css';
 import type { Metadata } from 'next';
 export function generateStaticParams() {
@@ -13,8 +13,8 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   return {
-    title: messages[locale].brand,
-    description: messages[locale].intro,
+    title: copy[locale].brand,
+    description: copy[locale].intro,
     robots: { index: false, follow: false },
   };
 }

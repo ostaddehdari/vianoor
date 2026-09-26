@@ -848,8 +848,15 @@ function PublicPage({ locale, path }: { locale: Locale; path: string }) {
     </section>
   );
 }
-function Calendar({ locale, onSelect }: { locale: Locale; onSelect: (day: number) => void }) {
-  const [day, setDay] = useState(15);
+function Calendar({
+  locale,
+  day,
+  onSelect,
+}: {
+  locale: Locale;
+  day: number;
+  onSelect: (day: number) => void;
+}) {
   const t = copy[locale];
   return (
     <div className="calendar">
@@ -873,7 +880,6 @@ function Calendar({ locale, onSelect }: { locale: Locale; onSelect: (day: number
             aria-pressed={day === i + 1}
             aria-label={`${t.calendar} ${numbers(locale, i + 1)}`}
             onClick={() => {
-              setDay(i + 1);
               onSelect(i + 1);
             }}
           >
@@ -1036,6 +1042,7 @@ function Dashboard({
       </a>
       <aside
         ref={sidebarRef}
+        id="workspace-navigation"
         inert={narrow && !menu}
         className={`sidebar ${menu ? 'open' : ''}`}
         onKeyDown={(e) => {
@@ -1125,6 +1132,7 @@ function Dashboard({
               aria-label={t.menu}
               ref={menuRef}
               aria-expanded={menu}
+              aria-controls="workspace-navigation"
               onClick={() => setMenu(!menu)}
             >
               <Icon name="menu" />
@@ -1257,7 +1265,7 @@ function Dashboard({
                 <section className="panel">
                   <h2>{t.calendar}</h2>
                   <p>{t.calendarHint}</p>
-                  <Calendar locale={locale} onSelect={setSelectedDay} />
+                  <Calendar locale={locale} day={selectedDay} onSelect={setSelectedDay} />
                   <p role="status">
                     {t.selectedDay}: {numbers(locale, selectedDay)} · 10:30
                   </p>
@@ -1413,7 +1421,7 @@ function Dashboard({
                 </div>
               </section>
               <section className="panel calendar-panel">
-                <Calendar locale={locale} onSelect={setSelectedDay} />
+                <Calendar locale={locale} day={selectedDay} onSelect={setSelectedDay} />
                 <div className="calendar-note" role="status">
                   <span className="status-dot" />
                   {t.selectedDay} {numbers(locale, selectedDay)}
