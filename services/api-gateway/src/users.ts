@@ -14,7 +14,7 @@ const owners: Record<string, string> = {
   bookings: 'booking-service',
 };
 export function usersProxy() {
-  const router = internalRouter('3mb');
+  const router = internalRouter('3mb', true);
   router.use(
     endpoint(async (req, res) => {
       const group = req.path.split('/')[1] ?? '';

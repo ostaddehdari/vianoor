@@ -10,11 +10,19 @@ export class ServiceError extends Error {
   }
 }
 export type Principal = { id: string; public_id: string; email: string };
-export function internalRouter(limit = '64kb') {
+export function internalRouter(limit = '64kb', mountedAtApiPrefix = false) {
   const key = process.env.AUTH_INTERNAL_KEY ?? '';
   if (key.length < 48) throw new Error('Internal authentication configuration missing');
   const router = Router();
   router.use((req, res, next) => {
+    if (
+      !mountedAtApiPrefix &&
+      !req.path.startsWith('/api/v2/') &&
+      !req.path.startsWith('/internal/')
+    ) {
+      next('router');
+      return;
+    }
     res.setHeader('Cache-Control', 'no-store');
     const hash = (s: string) => createHash('sha256').update(s).digest();
     if (!timingSafeEqual(hash(key), hash(req.get('x-internal-key') ?? ''))) {
