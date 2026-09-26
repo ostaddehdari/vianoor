@@ -147,54 +147,54 @@
     "id": "R04-01",
     "stage": 4,
     "title": "ایمیل/رمز",
-    "status": "planned",
+    "status": "implemented-integration-tested",
     "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
-    "verification": "docs/testing/stage-04 (planned)",
+    "verification": "docs/testing/stage-04.md; .github/workflows/identity.yml; SMTP بیرونی نیازمند تنظیم و آزمون",
     "externalDependency": "SMTP یا email API"
   },
   {
     "id": "R04-02",
     "stage": 4,
     "title": "تأیید ایمیل",
-    "status": "planned",
+    "status": "implemented-integration-tested",
     "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
-    "verification": "docs/testing/stage-04 (planned)",
+    "verification": "docs/testing/stage-04.md; .github/workflows/identity.yml; SMTP بیرونی نیازمند تنظیم و آزمون",
     "externalDependency": "SMTP یا email API"
   },
   {
     "id": "R04-03",
     "stage": 4,
     "title": "بازیابی",
-    "status": "planned",
+    "status": "implemented-integration-tested",
     "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
-    "verification": "docs/testing/stage-04 (planned)",
+    "verification": "docs/testing/stage-04.md; .github/workflows/identity.yml; SMTP بیرونی نیازمند تنظیم و آزمون",
     "externalDependency": "SMTP یا email API"
   },
   {
     "id": "R04-04",
     "stage": 4,
     "title": "Argon2id",
-    "status": "planned",
+    "status": "implemented-integration-tested",
     "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
-    "verification": "docs/testing/stage-04 (planned)",
+    "verification": "docs/testing/stage-04.md; .github/workflows/identity.yml; SMTP بیرونی نیازمند تنظیم و آزمون",
     "externalDependency": "SMTP یا email API"
   },
   {
     "id": "R04-05",
     "stage": 4,
     "title": "نشست و rotation",
-    "status": "planned",
+    "status": "implemented-integration-tested",
     "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
-    "verification": "docs/testing/stage-04 (planned)",
+    "verification": "docs/testing/stage-04.md; .github/workflows/identity.yml; SMTP بیرونی نیازمند تنظیم و آزمون",
     "externalDependency": "SMTP یا email API"
   },
   {
     "id": "R04-06",
     "stage": 4,
     "title": "محدودیت تلاش",
-    "status": "planned",
+    "status": "implemented-integration-tested",
     "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
-    "verification": "docs/testing/stage-04 (planned)",
+    "verification": "docs/testing/stage-04.md; .github/workflows/identity.yml; SMTP بیرونی نیازمند تنظیم و آزمون",
     "externalDependency": "SMTP یا email API"
   },
   {

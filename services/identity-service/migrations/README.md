@@ -1,3 +1,5 @@
-# مالک migration: identity-service
+# migration هویت
 
-فقط `identity_db` با credential همین سرویس. مرحلهٔ ۲ جدول‌های فنی Outbox/Inbox را با migration idempotent و advisory lock در runtime ایجاد می‌کند. migration دامنه هنوز اضافه نشده است؛ ابزار نسخه‌بندی migration دامنه همراه پیاده‌سازی همین سرویس افزوده خواهد شد.
+DDL در `src/schema.ts` مالک همین سرویس است. هنگام فعال‌شدن AUTH_ENABLED در تراکنش و با advisory lock اجرا می‌شود؛ CREATE IF NOT EXISTS فقط bootstrap مرحلهٔ ۴ است و برای تغییر schema موجود در مراحل بعد migration نسخه‌دار افزوده خواهد شد.
+
+جدول‌های حساب، لینک یک‌بارمصرف، نشست، تاریخچهٔ refresh، صف رمز‌شدهٔ ایمیل و audit محلی مستقل از جدول‌های زیرساخت outbox/inbox هستند. برای برگشت نرم‌افزار، جدول و volume حذف نشود؛ دادهٔ ثبت‌نام کاربران قابل بازسازی نیست.

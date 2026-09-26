@@ -1,0 +1,51 @@
+name: Identity integration
+on:
+  push:
+    branches: [main, 'stage/**']
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: identity-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  lifecycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      AUTH_DEVELOPMENT: '1'
+      AUTH_PUBLIC_URL: http://127.0.0.1:15400/vianoor
+      VIANOOR_AUTH_WEB_PORT: '15400'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: node scripts/infra/prepare.mjs
+      - run: node scripts/identity/prepare.mjs
+      - name: Expose test mailbox on runner loopback only
+        run: node -e "const fs=require('fs'),p='infra/identity.compose.json',c=JSON.parse(fs.readFileSync(p));c.services.mailpit.ports=['127.0.0.1:18025:8025'];fs.writeFileSync(p,JSON.stringify(c));"
+      - run: docker compose -f infra/identity.compose.json config --quiet
+      - run: docker compose -f infra/identity.compose.json build api-gateway identity-service web
+      - run: docker compose -f infra/identity.compose.json up -d --wait --wait-timeout 180
+      - run: docker compose -f infra/identity.compose.json run --rm identity-test
+      - name: Restart identity and verify readiness
+        run: |
+          docker compose -f infra/identity.compose.json restart identity-service
+          docker compose -f infra/identity.compose.json up -d --wait --wait-timeout 120
+          docker compose -f infra/identity.compose.json exec -T identity-service node -e "fetch('http://127.0.0.1:4101/health/ready').then(r=>process.exit(r.ok?0:1))"
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --config playwright.identity.config.ts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: identity-browser-screenshots
+          path: test-results/**/*.png
+          retention-days: 7
+      - name: Sanitized service logs on failure
+        if: failure()
+        run: docker compose -f infra/identity.compose.json logs --tail 40 api-gateway identity-service
+      - name: Clean disposable CI volumes
+        if: always()
+        run: docker compose -f infra/identity.compose.json down -v
