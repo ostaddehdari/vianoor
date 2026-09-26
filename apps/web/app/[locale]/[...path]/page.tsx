@@ -2,7 +2,9 @@ import { notFound } from 'next/navigation';
 import { Experience, isLocale, routeInfo, pagePaths, copy, publicPages } from '@vianoor/ui';
 import type { Metadata } from 'next';
 export function generateStaticParams() {
-  return pagePaths('web').map((p) => ({ path: p.split('/') }));
+  return pagePaths('web')
+    .filter((p) => !p.startsWith('auth/') && p !== 'account/security')
+    .map((p) => ({ path: p.split('/') }));
 }
 export async function generateMetadata({
   params,
