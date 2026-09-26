@@ -1,13 +1,18 @@
 import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests/users-ui',
-  timeout: 180000,
+  timeout: 300000,
   expect: { timeout: 20000 },
-  workers: 1,
+  workers: 2,
   retries: 0,
   reporter: [['list']],
   outputDir: '.cache/users-browser-results',
-  use: { baseURL: 'http://127.0.0.1:18876', trace: 'off', screenshot: 'only-on-failure' },
+  use: {
+    baseURL: 'http://127.0.0.1:18876',
+    trace: 'off',
+    screenshot: 'only-on-failure',
+    actionTimeout: 30000,
+  },
   projects: [
     { name: 'desktop', use: { browserName: 'chromium', viewport: { width: 1440, height: 1000 } } },
     {

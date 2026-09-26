@@ -343,13 +343,17 @@ export function ProfileEditor({
     [avatar, setAvatar] = useState(profile.avatar),
     [answers, setAnswers] = useState(profile.answers),
     [consent, setConsent] = useState(false),
+    [consentLoading, setConsentLoading] = useState(!admin),
     [error, setError] = useState(''),
     [notice, setNotice] = useState(''),
     [busy, setBusy] = useState(false);
   useEffect(() => {
     if (!admin)
       void userApi<{ accepted: boolean }>('consents/profile')
-        .then((v) => setConsent(v.accepted))
+        .then((v) => {
+          setConsent(v.accepted);
+          setConsentLoading(false);
+        })
         .catch((e) => setError(userError(e, locale)));
   }, [admin, locale]);
   async function save(event: FormEvent, complete: boolean) {
@@ -458,15 +462,20 @@ export function ProfileEditor({
       />
       {!admin && (
         <label className="choice consent-choice">
-          <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+          <input
+            type="checkbox"
+            disabled={consentLoading}
+            checked={consent}
+            onChange={(e) => setConsent(e.target.checked)}
+          />
           {t.consent}
         </label>
       )}
       <div className="user-actions">
-        <button className="primary" type="submit" disabled={busy}>
+        <button className="primary" type="submit" disabled={busy || consentLoading}>
           {t.complete}
         </button>
-        <button type="button" disabled={busy} onClick={(e) => save(e, false)}>
+        <button type="button" disabled={busy || consentLoading} onClick={(e) => save(e, false)}>
           {t.save}
         </button>
       </div>

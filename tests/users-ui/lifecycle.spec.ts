@@ -25,6 +25,9 @@ test('real invitation, profile wizard, avatar upload, form builder, role switchi
   await login(page, admin.email, admin.password);
   await page.locator('.workspace-switch').selectOption('admin|platform');
   await expect(page).toHaveURL(/\/en\/admin$/);
+  await expect(page.locator('.release-badge')).toHaveText('V6.0.1');
+  await expect(page.locator('.users-sidebar nav a[href$="/admin/users"]')).toBeVisible();
+  await expect(page.locator('.users-sidebar nav a[href$="/account/wallet"]')).toHaveCount(0);
   await page.goto('/vianoor/en/admin/users');
   const email = `qa-browser-${randomUUID().slice(0, 8)}@example.test`;
   const password = 'Browser test only passphrase 2026!';
@@ -117,6 +120,8 @@ test('real invitation, profile wizard, avatar upload, form builder, role switchi
   await client.goto('http://127.0.0.1:18876/vianoor/en/account');
   await client.locator('.workspace-switch').selectOption('secretary|platform');
   await expect(client.getByRole('heading', { name: 'Secretary', exact: true })).toBeVisible();
+  await expect(client.locator('.users-sidebar nav a[href$="/secretary/requests"]')).toBeVisible();
+  await expect(client.locator('.users-sidebar nav a[href$="/admin/users"]')).toHaveCount(0);
   await page
     .locator('.grant-list li')
     .filter({ hasText: 'Secretary' })
@@ -197,11 +202,23 @@ test('real invitation, profile wizard, avatar upload, form builder, role switchi
   page.once('dialog', (dialog) => dialog.accept());
   await page.getByRole('button', { name: 'Assign form', exact: true }).click();
   await expect(page.getByRole('status')).toHaveText('Changes saved.');
+  let releaseConsent = () => {};
+  const consentGate = new Promise<void>((resolve) => {
+    releaseConsent = resolve;
+  });
+  await client.route('**/api/users/consents/profile', async (route) => {
+    if (route.request().method() === 'GET') await consentGate;
+    await route.continue();
+  });
   await client.goto('http://127.0.0.1:18876/vianoor/en/account/profile');
   await client.getByLabel(/Favorite book/).fill('A sample title');
   await client
     .getByRole('combobox', { name: 'Preferred time', exact: true })
     .selectOption({ label: 'Morning' });
+  await expect(
+    client.getByRole('button', { name: 'Complete profile', exact: true }),
+  ).toBeDisabled();
+  releaseConsent();
   await client.getByRole('button', { name: 'Complete profile', exact: true }).click();
   await expect(client.getByRole('status')).toHaveText('Changes saved.');
   await client.goto('http://127.0.0.1:18876/vianoor/en/members/' + code);
