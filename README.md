@@ -2,14 +2,14 @@
 
 پلتفرم چندزبانهٔ مشاوره، پاسخ‌گویی دینی و منبر آنلاین.
 
-**مرحلهٔ ۱ از ۲۰: معماری اجرایی و آماده‌سازی مخزن.** این نسخه پایهٔ قابل اجراست؛ ورود، رزرو، پرداخت و تماس هنوز قابلیت عملیاتی ندارند.
+**مرحلهٔ ۲ از ۲۰: زیرساخت اجرایی سرویس‌ها.** این نسخه پایهٔ قابل اجراست؛ ورود، رزرو، پرداخت و تماس هنوز قابلیت عملیاتی ندارند.
 
 ## اجرای توسعه
 
 پیش‌نیاز: Node.js `24.19.0` و npm `11.9.x`. نسخه‌های وابستگی در `package-lock.json` تثبیت شده‌اند.
 
 ```bash
-git clone --branch stage/01-foundation https://github.com/ostaddehdari/vianoor.git
+git clone --branch stage/02-infrastructure https://github.com/ostaddehdari/vianoor.git
 cd vianoor
 npm ci
 npm run build:packages
@@ -31,7 +31,7 @@ npm run dev:gateway
 | محیط کارکنان انگلیسی | http://127.0.0.1:3001/en          |
 | سلامت process درگاه  | http://127.0.0.1:4100/health/live |
 
-bind پیش‌فرض localhost است. Docker و دسترسی شبکهٔ محیط استقرار در مرحلهٔ ۲ تنظیم می‌شوند. برای هر سرویس دیگر: `npm run dev --workspace @vianoor/identity-service`؛ پورت در [کاتالوگ سرویس‌ها](docs/architecture/service-catalog.json).
+bind پیش‌فرض localhost است. اجرای Docker و سلامت وابستگی‌ها در راهنمای مرحلهٔ ۲ آمده است. برای هر سرویس دیگر: `npm run dev --workspace @vianoor/identity-service`؛ پورت در [کاتالوگ سرویس‌ها](docs/architecture/service-catalog.json).
 
 پس از تغییر package مشترک، `npm run build:packages` را مجدداً اجرا کنید؛ watcher سرویس فقط خروجی ساخته‌شدهٔ خودش را اجرا می‌کند. `.env.example` راز واقعی ندارد؛ runtime سرویس env را خودکار از فایل نمی‌خواند. روش تنظیم در README همان سرویس آمده است.
 
@@ -78,3 +78,7 @@ npm audit --omit=dev --audit-level=high
 ورود اصلی ایمیل/رمز است. GapGPT ارائه‌دهندهٔ اولیهٔ AI با آدرس، secret و مدل قابل تنظیم خواهد بود؛ اتصال واقعی در مرحلهٔ ۷ است. کلید واقعی در Git ثبت نمی‌شود.
 
 تاریخچه با کامیت‌های فارسی در شاخه‌های مرحله‌ای نگه‌داری می‌شود؛ روش ادغام merge commit است تا کامیت‌های جزئی حفظ شوند.
+
+## زیرساخت مرحلهٔ ۲
+
+Docker Compose، PostgreSQL با ۳۱ پایگاه و نقش مستقل، Redis، NATS JetStream، Outbox/Inbox و رهگیری درخواست در شاخهٔ مرحلهٔ ۲ اضافه شده‌اند. راه‌اندازی و محدودیت‌ها: [راهنمای مرحلهٔ ۲](docs/stages/02-infrastructure.md). این تغییر صفحات داشبورد یا ورود واقعی را فعال نمی‌کند و تنظیمات اختصاصی سرور را شامل نمی‌شود.

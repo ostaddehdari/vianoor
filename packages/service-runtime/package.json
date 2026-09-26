@@ -17,8 +17,11 @@
     "@nestjs/common": "12.1.0",
     "@nestjs/core": "12.1.0",
     "@nestjs/platform-express": "12.1.0",
+    "@vianoor/contracts": "0.1.0",
+    "nats": "2.29.3",
+    "pg": "8.16.3",
+    "redis": "5.10.0",
     "reflect-metadata": "0.2.2",
-    "rxjs": "7.8.2",
-    "@vianoor/contracts": "0.1.0"
+    "rxjs": "7.8.2"
   }
 }

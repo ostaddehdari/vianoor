@@ -1,0 +1,1522 @@
+{
+  "name": "vianoor-stage2",
+  "services": {
+    "postgres": {
+      "image": "postgres:17.6-bookworm",
+      "environment": {
+        "POSTGRES_PASSWORD_FILE": "/run/secrets/postgres-password"
+      },
+      "volumes": [
+        "postgres:/var/lib/postgresql/data",
+        "./local/init.sql:/docker-entrypoint-initdb.d/01-services.sql:ro",
+        "./local/postgres-password:/run/secrets/postgres-password:ro"
+      ],
+      "healthcheck": {
+        "test": ["CMD-SHELL", "pg_isready -U postgres"],
+        "interval": "5s",
+        "timeout": "3s",
+        "retries": 30
+      },
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "redis": {
+      "image": "redis:7.4.6-alpine",
+      "command": ["redis-server", "/etc/redis/redis.conf"],
+      "volumes": ["redis:/data", "./local/redis.conf:/etc/redis/redis.conf:ro"],
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "REDISCLI_AUTH=$(sed -n \"s/^requirepass //p\" /etc/redis/redis.conf) redis-cli ping | grep -q PONG"
+        ],
+        "interval": "5s",
+        "timeout": "3s",
+        "retries": 20
+      },
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "nats": {
+      "image": "nats:2.11.9-alpine",
+      "command": ["-c", "/etc/nats/nats.conf"],
+      "volumes": ["nats:/data", "./local/nats.conf:/etc/nats/nats.conf:ro"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "wget",
+          "-q",
+          "-O",
+          "/dev/null",
+          "http://127.0.0.1:8222/healthz?js-enabled-only=true"
+        ],
+        "interval": "5s",
+        "timeout": "3s",
+        "retries": 20
+      },
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "api-gateway": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/api-gateway/dist/main.js"],
+      "env_file": ["./local/api-gateway.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "ports": ["127.0.0.1:${VIANOOR_GATEWAY_PORT:-18871}:4100"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4100/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "identity-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/identity-service/dist/main.js"],
+      "env_file": ["./local/identity-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4101/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "profile-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/profile-service/dist/main.js"],
+      "env_file": ["./local/profile-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4102/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "organization-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/organization-service/dist/main.js"],
+      "env_file": ["./local/organization-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4103/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "taxonomy-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/taxonomy-service/dist/main.js"],
+      "env_file": ["./local/taxonomy-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4104/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "scholar-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/scholar-service/dist/main.js"],
+      "env_file": ["./local/scholar-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4105/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "availability-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/availability-service/dist/main.js"],
+      "env_file": ["./local/availability-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4106/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "presence-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/presence-service/dist/main.js"],
+      "env_file": ["./local/presence-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4107/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "matching-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/matching-service/dist/main.js"],
+      "env_file": ["./local/matching-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4108/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "booking-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/booking-service/dist/main.js"],
+      "env_file": ["./local/booking-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4109/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "instant-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/instant-service/dist/main.js"],
+      "env_file": ["./local/instant-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4110/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "media-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/media-service/dist/main.js"],
+      "env_file": ["./local/media-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4111/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "messaging-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/messaging-service/dist/main.js"],
+      "env_file": ["./local/messaging-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4112/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "file-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/file-service/dist/main.js"],
+      "env_file": ["./local/file-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4113/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "payment-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/payment-service/dist/main.js"],
+      "env_file": ["./local/payment-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4114/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "wallet-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/wallet-service/dist/main.js"],
+      "env_file": ["./local/wallet-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4115/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "accounting-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/accounting-service/dist/main.js"],
+      "env_file": ["./local/accounting-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4116/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "payout-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/payout-service/dist/main.js"],
+      "env_file": ["./local/payout-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4117/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "dispute-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/dispute-service/dist/main.js"],
+      "env_file": ["./local/dispute-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4118/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "content-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/content-service/dist/main.js"],
+      "env_file": ["./local/content-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4119/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "event-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/event-service/dist/main.js"],
+      "env_file": ["./local/event-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4120/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "qa-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/qa-service/dist/main.js"],
+      "env_file": ["./local/qa-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4121/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "rating-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/rating-service/dist/main.js"],
+      "env_file": ["./local/rating-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4122/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "moderation-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/moderation-service/dist/main.js"],
+      "env_file": ["./local/moderation-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4123/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "consent-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/consent-service/dist/main.js"],
+      "env_file": ["./local/consent-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4124/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "notification-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/notification-service/dist/main.js"],
+      "env_file": ["./local/notification-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4125/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "search-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/search-service/dist/main.js"],
+      "env_file": ["./local/search-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4126/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "analytics-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/analytics-service/dist/main.js"],
+      "env_file": ["./local/analytics-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4127/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "audit-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/audit-service/dist/main.js"],
+      "env_file": ["./local/audit-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4128/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "support-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/support-service/dist/main.js"],
+      "env_file": ["./local/support-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4129/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "ai-gateway": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/ai-gateway/dist/main.js"],
+      "env_file": ["./local/ai-gateway.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4130/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "telephony-service": {
+      "build": {
+        "context": "..",
+        "dockerfile": "infra/Dockerfile"
+      },
+      "image": "vianoor-services:stage2",
+      "command": ["node", "services/telephony-service/dist/main.js"],
+      "env_file": ["./local/telephony-service.env"],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy"
+        },
+        "redis": {
+          "condition": "service_healthy"
+        },
+        "nats": {
+          "condition": "service_healthy"
+        }
+      },
+      "profiles": ["all"],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:4131/health/infra').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 15
+      },
+      "init": true,
+      "mem_limit": "256m",
+      "pids_limit": 128,
+      "networks": ["backend"],
+      "restart": "unless-stopped",
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    },
+    "test": {
+      "image": "vianoor-services:stage2",
+      "profiles": ["test"],
+      "user": "0:0",
+      "volumes": ["./local:/run/vianoor:ro"],
+      "command": ["node", "--import", "tsx", "--test", "tests/integration/infra.test.ts"],
+      "depends_on": {
+        "api-gateway": {
+          "condition": "service_healthy"
+        },
+        "identity-service": {
+          "condition": "service_healthy"
+        }
+      },
+      "environment": {
+        "INFRA_TEST": "1"
+      },
+      "networks": ["backend"],
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    }
+  },
+  "networks": {
+    "backend": {}
+  },
+  "volumes": {
+    "postgres": {},
+    "redis": {},
+    "nats": {}
+  }
+}
