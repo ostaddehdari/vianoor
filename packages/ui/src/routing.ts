@@ -21,7 +21,9 @@ export function rolePath(id: string) {
   return id === 'ai' ? 'admin/ai' : id;
 }
 export function dashboardSections(id: string) {
-  const prefix = `/[locale]/${rolePath(id)}/`;
+  if (id === 'secretary') return ['requests', 'calendar', 'messages'];
+  if (id === 'auditor') return ['audit'];
+  const prefix = `/[locale]/${rolePath(id === 'call' ? 'call-center' : id)}/`;
   const sections = registry
     .filter((p) => p.path.startsWith(prefix))
     .map((p) => p.path.slice(prefix.length))
@@ -31,6 +33,8 @@ export function dashboardSections(id: string) {
   ];
 }
 export function routeInfo(path: string, app: 'web' | 'admin' = 'web') {
+  if (path === 'call-center' || path.startsWith('call-center/'))
+    path = path.replace(/^call-center/, 'call');
   if (/^members\/[A-Za-z0-9]{13}$/.test(path)) return { kind: 'member', path };
   const [workspace, section = ''] = path.split('/');
   if (
@@ -48,6 +52,7 @@ export function routeInfo(path: string, app: 'web' | 'admin' = 'web') {
       'settings',
       'activity',
       'calendar',
+      ...dashboardSections(workspace ?? ''),
     ].includes(section)
   )
     return { kind: 'dashboard', path, role: workspace!, section };
@@ -140,5 +145,7 @@ export function pagePaths(app: 'web' | 'admin') {
   if (app === 'web')
     for (const [root, slugs] of Object.entries(examples))
       for (const slug of slugs) paths.push(`${root}/${slug}`);
+  for (const role of Object.keys(usersCopy.en.roleNames))
+    for (const section of dashboardSections(role)) paths.push(`${role}/${section}`);
   return [...new Set(paths)].filter((path) => routeInfo(path, app));
 }

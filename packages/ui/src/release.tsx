@@ -1,4 +1,4 @@
-export const releaseVersion = 'V5.0.1';
+export const releaseVersion = 'V6.0.1';
 export function ReleaseBadge({ locale }: { locale: 'fa' | 'en' }) {
   const label = { fa: 'نسخهٔ نصب‌شده', en: 'Installed version' }[locale];
   return (

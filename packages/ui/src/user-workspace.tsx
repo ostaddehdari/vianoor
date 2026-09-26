@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { usersCopy } from './users-copy';
+import { dashboardSections, sectionNames } from './routing';
+import { ReleaseBadge } from './release';
 import {
   userApi,
   usersBase,
@@ -280,7 +282,8 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     [scope, setScope] = useState('platform'),
     [error, setError] = useState(''),
     [loading, setLoading] = useState(true);
-  const role = path.split('/')[0] || 'account';
+  const root = path.split('/')[0] || 'account';
+  const role = root === 'call-center' ? 'call' : root;
   const section = path.split('/')[1] ?? '';
   useEffect(() => {
     setScope(new URLSearchParams(window.location.search).get('scope') ?? 'platform');
@@ -324,7 +327,7 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     href(locale, role + (part ? '/' + part : '')) +
     (scope === 'platform' ? '' : '?scope=' + encodeURIComponent(scope));
   const links: [string, string][] = [
-    ['', t.title],
+    ['', roleName(locale, role)],
     ...(role === 'account' ? [['profile', t.editProfile] as [string, string]] : []),
     ...(admin
       ? ([
@@ -337,6 +340,14 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     ...(role === 'organization' ? [['organizations', t.organizations] as [string, string]] : []),
     ...(role === 'auditor' ? [['audit', t.audit] as [string, string]] : []),
   ];
+  const existing = new Set(links.map(([part]) => part));
+  if (['account', 'expert', 'secretary'].includes(role)) {
+    links.push(['requests', t.requests]);
+    existing.add('requests');
+  }
+  for (const part of dashboardSections(role)) {
+    if (!existing.has(part) && sectionNames[part]) links.push([part, sectionNames[part]![locale]]);
+  }
   return (
     <div className="users-app">
       <a className="skip-link" href="#workspace-main">
@@ -397,6 +408,7 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
             </h1>
           </div>
           <div className="user-actions">
+            <ReleaseBadge locale={locale} />
             <a
               href={
                 href(locale === 'fa' ? 'en' : 'fa', path) +
@@ -432,6 +444,13 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
             <Organizations locale={locale} admin={admin} scope={scope} />
           ) : (admin || role === 'auditor') && section === 'audit' ? (
             <Audit locale={locale} />
+          ) : section === 'requests' && ['account', 'expert', 'secretary'].includes(role) ? (
+            <SessionRequests
+              locale={locale}
+              role={role}
+              scope={scope}
+              complete={profile.complete}
+            />
           ) : section === '' ? (
             <>
               <section className="user-card welcome-card">
@@ -471,6 +490,7 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
             </>
           ) : (
             <section className="user-card">
+              <h2>{links.find(([part]) => part === section)?.[1] ?? roleName(locale, role)}</h2>
               <p>{t.roleReady}</p>
             </section>
           )}

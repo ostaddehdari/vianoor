@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { notFound } from 'next/navigation';
 import { isLocale, copy } from '@vianoor/ui';
 import '@vianoor/ui/styles.css';
