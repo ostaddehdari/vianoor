@@ -1,0 +1,31 @@
+name: Infrastructure integration
+on:
+  push:
+    branches: ['stage/**', main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: infrastructure-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: node scripts/infra/prepare.mjs
+      - run: docker compose -f infra/compose.json config --quiet
+      - run: docker compose -f infra/compose.json build api-gateway
+      - run: docker compose -f infra/compose.json up -d --wait --wait-timeout 180
+      - run: npm run infra:test
+      - run: npm run infra:restart-test
+      - name: Sanitized service logs on failure
+        if: failure()
+        run: docker compose -f infra/compose.json logs --tail 60 api-gateway identity-service
+      - name: Clean disposable CI volumes
+        if: always()
+        run: docker compose -f infra/compose.json down -v
