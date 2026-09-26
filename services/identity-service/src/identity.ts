@@ -3,7 +3,8 @@ import type { Pool, PoolClient } from 'pg';
 import { transaction, enqueue, currentTraceId } from '@vianoor/service-runtime';
 import { AuthError, digest, encrypt, token, passwordHash, passwordVerify } from './security.js';
 import type { IdentityConfig } from './config.js';
-import { identityMigration } from './schema.js';
+import { identityMigration, usersMigration } from './schema.js';
+import { publicId } from './public-id.js';
 const denied = () => new AuthError(401, 'INVALID_CREDENTIALS');
 const invalid = () => new AuthError(400, 'INVALID_TOKEN');
 export class Identity {
@@ -16,6 +17,19 @@ export class Identity {
     await transaction(this.pool, async (db) => {
       await db.query('SELECT pg_advisory_xact_lock(202604)');
       await db.query(identityMigration);
+      await db.query(usersMigration);
+      const accounts = await db.query(
+        'SELECT id FROM identity_accounts WHERE public_id IS NULL FOR UPDATE',
+      );
+      for (const account of accounts.rows) {
+        let id = publicId();
+        while (
+          (await db.query('SELECT 1 FROM identity_accounts WHERE public_id=$1', [id])).rowCount
+        )
+          id = publicId();
+        await db.query('UPDATE identity_accounts SET public_id=$2 WHERE id=$1', [account.id, id]);
+      }
+      await db.query('ALTER TABLE identity_accounts ALTER COLUMN public_id SET NOT NULL');
     });
     this.dummyHash = await passwordHash(token());
   }
@@ -70,8 +84,8 @@ export class Identity {
       id = randomUUID();
     await transaction(this.pool, async (db) => {
       const result = await db.query(
-        'INSERT INTO identity_accounts(id,email,password_hash) VALUES($1,$2,$3) ON CONFLICT(email) DO NOTHING RETURNING id,email',
-        [id, email, hash],
+        'INSERT INTO identity_accounts(id,email,password_hash,public_id) VALUES($1,$2,$3,$4) ON CONFLICT(email) DO NOTHING RETURNING id,email',
+        [id, email, hash, publicId()],
       );
       if (!result.rowCount) return;
       await this.issueMail(db, result.rows[0], 'verify', locale);
@@ -101,7 +115,7 @@ export class Identity {
   async requestMail(email: string, purpose: 'verify' | 'reset', locale: 'fa' | 'en') {
     await transaction(this.pool, async (db) => {
       const { rows } = await db.query(
-        'SELECT id,email,verified_at FROM identity_accounts WHERE email=$1 FOR UPDATE',
+        'SELECT id,email,verified_at FROM identity_accounts WHERE email=$1 AND disabled_at IS NULL FOR UPDATE',
         [email],
       );
       const account = rows[0];
@@ -131,7 +145,10 @@ export class Identity {
           [id],
         );
       } else {
-        await db.query('UPDATE identity_accounts SET password_hash=$2 WHERE id=$1', [id, hash]);
+        await db.query(
+          'UPDATE identity_accounts SET password_hash=$2, verified_at=COALESCE(verified_at,now()) WHERE id=$1 AND disabled_at IS NULL',
+          [id, hash],
+        );
         await db.query(
           'UPDATE identity_sessions SET revoked_at=now() WHERE account_id=$1 AND revoked_at IS NULL',
           [id],
@@ -148,10 +165,10 @@ export class Identity {
     const result = await this.pool.query('SELECT * FROM identity_accounts WHERE email=$1', [email]);
     const account = result.rows[0];
     const matches = await passwordVerify(account?.password_hash ?? this.dummyHash, password);
-    if (!matches || !account?.verified_at) throw denied();
+    if (!matches || !account?.verified_at || account.disabled_at) throw denied();
     return transaction(this.pool, async (db) => {
       const fresh = await db.query(
-        'SELECT password_hash FROM identity_accounts WHERE id=$1 FOR UPDATE',
+        'SELECT password_hash FROM identity_accounts WHERE id=$1 AND disabled_at IS NULL FOR UPDATE',
         [account.id],
       );
       if (fresh.rows[0]?.password_hash !== account.password_hash) throw denied();
@@ -223,12 +240,12 @@ export class Identity {
   }
   async session(access: string) {
     const result = await this.pool.query(
-      `SELECT s.id,s.account_id,a.email FROM identity_sessions s JOIN identity_accounts a ON a.id=s.account_id
-      WHERE access_hash=$1 AND s.revoked_at IS NULL AND access_expires_at>now() AND expires_at>now() AND absolute_expires_at>now()`,
+      `SELECT s.id,s.account_id,a.email,a.public_id FROM identity_sessions s JOIN identity_accounts a ON a.id=s.account_id
+      WHERE access_hash=$1 AND a.disabled_at IS NULL AND s.revoked_at IS NULL AND access_expires_at>now() AND expires_at>now() AND absolute_expires_at>now()`,
       [digest(access)],
     );
     if (!result.rowCount) throw denied();
-    return result.rows[0] as { id: string; account_id: string; email: string };
+    return result.rows[0] as { id: string; account_id: string; email: string; public_id: string };
   }
   async sessions(access: string) {
     const user = await this.session(access);
@@ -238,7 +255,7 @@ export class Identity {
       [user.account_id],
     );
     return {
-      user: { id: user.account_id, email: user.email },
+      user: { id: user.account_id, email: user.email, public_id: user.public_id },
       sessions: rows.map((s) => ({ ...s, current: s.id === user.id })),
     };
   }

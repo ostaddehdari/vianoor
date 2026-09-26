@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+export * from './internal-http.js';
 import { currentTraceId, newTrace, traceContext } from './trace.js';
 import { connectInfrastructure } from './infrastructure.js';
 export * from './messaging.js';

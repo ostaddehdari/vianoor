@@ -1,5 +1,6 @@
 @import 'vazir-font/dist/font-face.css';
 @import './tokens.css';
+@import './users.css';
 :root {
   --green: #164c3e;
   --deep: #123f35;

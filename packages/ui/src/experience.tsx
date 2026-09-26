@@ -4,6 +4,7 @@ import { Icon, type IconName } from './icons';
 import { copy, roles, publicPages, sectionNames, rolePath, routeInfo } from './routing';
 import registry from './page-registry.json';
 import type { Locale } from './messages';
+import { UserWorkspace, UserAccountMenu, MemberProfile } from './user-workspace';
 
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 const url = (locale: Locale, path = '') => `${base}/${locale}${path ? '/' + path : ''}`;
@@ -76,68 +77,7 @@ function Preview({ locale }: { locale: Locale }) {
   );
 }
 function DashboardAccountMenu({ locale }: { locale: Locale }) {
-  const [email, setEmail] = useState('');
-  useEffect(() => {
-    let mounted = true;
-    async function load() {
-      const endpoint = `${base}/api/auth/`;
-      let response = await fetch(endpoint + 'session', {
-        credentials: 'same-origin',
-        cache: 'no-store',
-      });
-      if (response.status === 401) {
-        const refreshed = await fetch(endpoint + 'refresh', {
-          method: 'POST',
-          credentials: 'same-origin',
-          headers: { 'Content-Type': 'application/json' },
-          body: '{}',
-        });
-        if (refreshed.ok)
-          response = await fetch(endpoint + 'session', {
-            credentials: 'same-origin',
-            cache: 'no-store',
-          });
-      }
-      if (response.ok && mounted) setEmail((await response.json()).data?.user?.email ?? '');
-    }
-    void load().catch(() => {});
-    return () => {
-      mounted = false;
-    };
-  }, []);
-  if (!email)
-    return (
-      <a className="workspace-signin" href={url(locale, 'auth/login')}>
-        {locale === 'fa' ? 'ورود' : 'Sign in'}
-      </a>
-    );
-  return (
-    <details className="dashboard-account-menu">
-      <summary aria-label={locale === 'fa' ? 'حساب کاربری' : 'Account'}>
-        <span className="avatar small-avatar">{email.slice(0, 1).toLocaleUpperCase()}</span>
-      </summary>
-      <div className="dashboard-account-popover">
-        <strong dir="ltr">{email}</strong>
-        <a href={url(locale, 'account/security')}>
-          {locale === 'fa' ? 'امنیت حساب' : 'Account security'}
-        </a>
-        <button
-          type="button"
-          onClick={async () => {
-            const response = await fetch(`${base}/api/auth/logout`, {
-              method: 'POST',
-              credentials: 'same-origin',
-              headers: { 'Content-Type': 'application/json' },
-              body: '{}',
-            });
-            if (response.ok) window.location.assign(url(locale));
-          }}
-        >
-          {locale === 'fa' ? 'خروج' : 'Sign out'}
-        </button>
-      </div>
-    </details>
-  );
+  return <UserAccountMenu locale={locale} />;
 }
 function Ornament() {
   return (
@@ -246,10 +186,7 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
             <Icon name="globe" />
             {t.language}
           </a>
-          <a className="button compact login-link" href={url(locale, 'auth/login')}>
-            <Icon name="user" />
-            {t.login}
-          </a>
+          <UserAccountMenu locale={locale} />
           <button
             className="icon-button mobile-menu"
             aria-expanded={open}
@@ -1543,6 +1480,9 @@ export function Experience({
   app?: 'web' | 'admin';
 }) {
   const info = routeInfo(path, app);
+  if (info?.kind === 'member') return <MemberProfile locale={locale} code={path.split('/')[1]!} />;
+  if (info?.kind === 'dashboard' && !path.startsWith('preview/'))
+    return <UserWorkspace key={`${locale}:${path}`} locale={locale} path={path} />;
   if (info?.kind === 'dashboard')
     return (
       <Dashboard

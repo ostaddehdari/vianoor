@@ -5,3 +5,7 @@
 **/.env*
 infra/local
 *.log
+.cache
+test-results
+playwright-report
+**/infra/local

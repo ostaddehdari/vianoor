@@ -10,7 +10,14 @@
     "databaseRole": null,
     "ownership": "بدون دادهٔ دامنه؛ مسیریابی و سیاست ورودی",
     "entities": ["request-context"],
-    "dependencies": ["identity-service"],
+    "dependencies": [
+      "identity-service",
+      "organization-service",
+      "profile-service",
+      "file-service",
+      "consent-service",
+      "booking-service"
+    ],
     "transport": "http+jetstream",
     "migrationOwner": "api-gateway",
     "backupPolicy": "pit-recovery-required"
@@ -26,7 +33,7 @@
     "databaseRole": "identity_app",
     "ownership": "حساب، اعتبارنامه، نشست، روش ورود و MFA",
     "entities": ["account", "credential", "session", "login-method"],
-    "dependencies": ["notification-service", "audit-service"],
+    "dependencies": ["notification-service", "audit-service", "organization-service"],
     "transport": "http+jetstream",
     "migrationOwner": "identity-service",
     "backupPolicy": "pit-recovery-required"
@@ -37,12 +44,12 @@
     "stage": 6,
     "port": 4102,
     "runtime": "nestjs",
-    "status": "scaffold",
+    "status": "in-validation",
     "database": "profile_db",
     "databaseRole": "profile_app",
     "ownership": "مشخصات عمومی، زبان و منطقه زمانی کاربر",
-    "entities": ["profile", "preference"],
-    "dependencies": ["identity-service"],
+    "entities": ["profile", "preference", "profile-form", "form-version", "profile-submission"],
+    "dependencies": ["identity-service", "organization-service", "file-service", "consent-service"],
     "transport": "http+jetstream",
     "migrationOwner": "profile-service",
     "backupPolicy": "pit-recovery-required"
@@ -53,7 +60,7 @@
     "stage": 6,
     "port": 4103,
     "runtime": "nestjs",
-    "status": "scaffold",
+    "status": "in-validation",
     "database": "organization_db",
     "databaseRole": "organization_app",
     "ownership": "سازمان، شعبه، عضویت و مجوزهای محدوده‌ای",
@@ -154,7 +161,14 @@
     "databaseRole": "booking_app",
     "ownership": "رزرو، چرخه جلسه کسب‌وکار و saga مستقل از transport",
     "entities": ["booking", "business-session", "saga"],
-    "dependencies": ["availability-service", "payment-service", "media-service"],
+    "dependencies": [
+      "availability-service",
+      "payment-service",
+      "media-service",
+      "identity-service",
+      "organization-service",
+      "profile-service"
+    ],
     "transport": "http+jetstream",
     "migrationOwner": "booking-service",
     "backupPolicy": "pit-recovery-required"
@@ -218,7 +232,12 @@
     "databaseRole": "file_app",
     "ownership": "metadata، مالکیت، دسترسی و وضعیت اسکن؛ bytes در object storage",
     "entities": ["file", "access-grant", "scan-job"],
-    "dependencies": ["consent-service"],
+    "dependencies": [
+      "consent-service",
+      "identity-service",
+      "organization-service",
+      "profile-service"
+    ],
     "transport": "http+jetstream",
     "migrationOwner": "file-service",
     "backupPolicy": "pit-recovery-required"

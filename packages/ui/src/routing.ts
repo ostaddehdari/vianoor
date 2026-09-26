@@ -1,5 +1,6 @@
 import registry from './page-registry.json';
 import { roles, publicPages } from './catalog';
+import { usersCopy } from './users-copy';
 export { roles, publicPages, sectionNames } from './catalog';
 export { copy } from './copy';
 export type { RoleId } from './catalog';
@@ -20,6 +21,26 @@ export function rolePath(id: string) {
   return id === 'ai' ? 'admin/ai' : id;
 }
 export function routeInfo(path: string, app: 'web' | 'admin' = 'web') {
+  if (/^members\/[A-Za-z0-9]{13}$/.test(path)) return { kind: 'member', path };
+  const [workspace, section = ''] = path.split('/');
+  if (
+    Object.hasOwn(usersCopy.en.roleNames, workspace ?? '') &&
+    path.split('/').length <= 2 &&
+    [
+      '',
+      'profile',
+      'users',
+      'forms',
+      'organizations',
+      'audit',
+      'requests',
+      'messages',
+      'settings',
+      'activity',
+      'calendar',
+    ].includes(section)
+  )
+    return { kind: 'dashboard', path, role: workspace!, section };
   if (!path) return { kind: app === 'web' ? 'home' : 'gallery', path };
   if (path === 'dashboards') return { kind: 'gallery', path };
   if (path.startsWith('preview/')) {
@@ -79,6 +100,16 @@ export function pagePaths(app: 'web' | 'admin') {
     'dashboards',
     'responder',
     ...['questions', 'calendar', 'messages', 'settings'].map((s) => `responder/${s}`),
+  );
+  for (const role of Object.keys(usersCopy.en.roleNames)) paths.push(role);
+  paths.push(
+    'account/profile',
+    'admin/users',
+    'admin/forms',
+    'admin/organizations',
+    'admin/audit',
+    'organization/organizations',
+    'auditor/audit',
   );
   for (const r of roles) {
     paths.push(`preview/${r.id}`);

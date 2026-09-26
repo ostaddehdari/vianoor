@@ -5,6 +5,7 @@ import {
   readRuntimeConfig,
 } from '@vianoor/service-runtime';
 import { authProxy } from './auth.js';
+import { usersProxy } from './users.js';
 if (process.env.AUTH_ENABLED !== '1') {
   await bootstrap('api-gateway', 4100);
 } else {
@@ -13,8 +14,10 @@ if (process.env.AUTH_ENABLED !== '1') {
   const app = await createService('api-gateway', {
     infrastructure,
     gatewayTarget: target,
-    configure: (app) =>
-      app.use('/api/v1/auth', authProxy(target, process.env.AUTH_INTERNAL_KEY ?? '')),
+    configure: (app) => {
+      app.use('/api/v1/auth', authProxy(target, process.env.AUTH_INTERNAL_KEY ?? ''));
+      if (process.env.USERS_ENABLED === '1') app.use('/api/v2', usersProxy());
+    },
   });
   const config = readRuntimeConfig(4100);
   await app.listen(config.port, config.host);

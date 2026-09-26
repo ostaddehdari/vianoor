@@ -4,7 +4,8 @@ import assert from 'node:assert/strict';
 const catalog = JSON.parse(readFileSync('docs/architecture/service-catalog.json', 'utf8'));
 async function probe(child, url, verify) {
   let lastError;
-  for (let i = 0; i < 40; i++) {
+  const deadline = Date.now() + 30000;
+  while (Date.now() < deadline) {
     if (child.exitCode !== null || child.signalCode !== null)
       throw new Error(`Process exited: ${child.exitCode}`);
     try {

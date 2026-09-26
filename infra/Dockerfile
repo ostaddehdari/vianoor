@@ -7,5 +7,6 @@ FROM node:24.19.0-bookworm-slim
 WORKDIR /app
 ENV NODE_ENV=production HOST=0.0.0.0
 COPY --from=build --chown=node:node /app /app
+RUN mkdir -p /var/lib/vianoor/avatars && chown node:node /var/lib/vianoor/avatars
 USER node
 CMD ["node", "services/api-gateway/dist/main.js"]

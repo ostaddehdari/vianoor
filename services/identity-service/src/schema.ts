@@ -29,3 +29,23 @@ CREATE TABLE IF NOT EXISTS identity_audit (
  id bigserial PRIMARY KEY, account_id uuid, action text NOT NULL, occurred_at timestamptz NOT NULL DEFAULT now()
 );
 `;
+export const usersMigration = `
+CREATE OR REPLACE FUNCTION identity_new_public_id() RETURNS varchar(13) LANGUAGE plpgsql AS $$
+DECLARE candidate varchar(13);
+BEGIN
+  LOOP
+    candidate := substr(translate(encode(uuid_send(gen_random_uuid()),'base64'),'+/','Az'),1,13);
+    EXIT WHEN candidate ~ '[A-Za-z]' AND candidate ~ '[0-9]';
+  END LOOP;
+  RETURN candidate;
+END;
+$$;
+ALTER TABLE identity_accounts ADD COLUMN IF NOT EXISTS public_id varchar(13);
+ALTER TABLE identity_accounts ALTER COLUMN public_id SET DEFAULT identity_new_public_id();
+ALTER TABLE identity_accounts ADD COLUMN IF NOT EXISTS disabled_at timestamptz;
+CREATE UNIQUE INDEX IF NOT EXISTS identity_accounts_public_id ON identity_accounts(public_id);
+CREATE TABLE IF NOT EXISTS identity_admin_audit (
+ id bigserial PRIMARY KEY, actor_id uuid NOT NULL, target_id uuid NOT NULL,
+ action text NOT NULL, occurred_at timestamptz NOT NULL DEFAULT now()
+);
+`;

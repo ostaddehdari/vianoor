@@ -255,54 +255,54 @@
     "id": "R06-01",
     "stage": 6,
     "title": "پروفایل",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
-    "verification": "docs/testing/stage-06 (planned)",
+    "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
   },
   {
     "id": "R06-02",
     "stage": 6,
     "title": "سازمان/شعبه",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
-    "verification": "docs/testing/stage-06 (planned)",
+    "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
   },
   {
     "id": "R06-03",
     "stage": 6,
     "title": "permission",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
-    "verification": "docs/testing/stage-06 (planned)",
+    "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
   },
   {
     "id": "R06-04",
     "stage": 6,
     "title": "tenant isolation",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
-    "verification": "docs/testing/stage-06 (planned)",
+    "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
   },
   {
     "id": "R06-05",
     "stage": 6,
     "title": "consent",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
-    "verification": "docs/testing/stage-06 (planned)",
+    "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
   },
   {
     "id": "R06-06",
     "stage": 6,
     "title": "audit",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
-    "verification": "docs/testing/stage-06 (planned)",
+    "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
   },
   {
@@ -1006,5 +1006,41 @@
     "acceptance": "چرخه کامل خدمت، restore روی محیط تمیز و گزارش ظرفیت",
     "verification": "docs/testing/stage-20 (planned)",
     "externalDependency": "سرور مقصد و سرویس‌های واقعی"
+  },
+  {
+    "id": "R06-07",
+    "stage": 6,
+    "title": "شناسهٔ عمومی ۱۳کاراکتری",
+    "status": "in-progress",
+    "acceptance": "حفظ UUID داخلی؛ مهاجرت و یکتایی کد مستقل از ایمیل/تلفن",
+    "verification": "docs/stages/06-users-permissions.md",
+    "externalDependency": "بدون حساب بیرونی"
+  },
+  {
+    "id": "R06-08",
+    "stage": 6,
+    "title": "فرم‌ساز پروفایل",
+    "status": "in-progress",
+    "acceptance": "تب/مرحله، انواع فیلد، شرط، پیش‌نویس و انتشار نسخه‌دار، حفظ پاسخ قبلی",
+    "verification": "docs/stages/06-users-permissions.md",
+    "externalDependency": "بدون حساب بیرونی"
+  },
+  {
+    "id": "R06-09",
+    "stage": 6,
+    "title": "آواتار و بارگذاری عکس",
+    "status": "in-progress",
+    "acceptance": "پنج تصویر کارتونی، اعتبارسنجی و تبدیل تصویر، کنترل مالکیت و رضایت",
+    "verification": "docs/stages/06-users-permissions.md",
+    "externalDependency": "بدون حساب بیرونی"
+  },
+  {
+    "id": "R06-10",
+    "stage": 6,
+    "title": "چند نقش و مدیریت کاربران",
+    "status": "in-progress",
+    "acceptance": "پنل مراجع همگانی، انتخاب نقش واقعی، دعوت، ویرایش، ابطال دسترسی و منع ارتقای غیرمجاز",
+    "verification": "docs/stages/06-users-permissions.md",
+    "externalDependency": "بدون حساب بیرونی"
   }
 ]

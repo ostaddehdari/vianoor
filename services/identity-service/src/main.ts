@@ -10,6 +10,7 @@ import { identityRouter } from './http.js';
 import { mailWorker } from './mail.js';
 import { equalSecret } from './security.js';
 import { Router } from 'express';
+import { usersRouter } from './users.js';
 if (process.env.AUTH_ENABLED !== '1') {
   await bootstrap('identity-service', 4101);
 } else {
@@ -42,6 +43,7 @@ if (process.env.AUTH_ENABLED !== '1') {
       });
       app.use('/internal/mail-status', status);
       app.use('/api/v1/auth', identityRouter(identity, infra.redis));
+      if (process.env.USERS_ENABLED === '1') app.use(usersRouter(identity));
     },
   });
   const runtime = readRuntimeConfig(4101);
