@@ -1,0 +1,7 @@
+package-lock.json
+node_modules
+dist
+.next
+*.tsbuildinfo
+**/next-env.d.ts
+docs/design/references/*.png

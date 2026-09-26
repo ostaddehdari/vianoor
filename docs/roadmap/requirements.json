@@ -1,0 +1,1010 @@
+[
+  {
+    "id": "R01-01",
+    "stage": 1,
+    "title": "۳۲ سرویس",
+    "status": "foundation",
+    "acceptance": "ساخت تمام workspaceها، تست قرارداد و کنترل مرز سرویس",
+    "verification": "tests + CI + smoke",
+    "externalDependency": "بدون اتصال بیرونی"
+  },
+  {
+    "id": "R01-02",
+    "stage": 1,
+    "title": "مالکیت داده",
+    "status": "foundation",
+    "acceptance": "ساخت تمام workspaceها، تست قرارداد و کنترل مرز سرویس",
+    "verification": "tests + CI + smoke",
+    "externalDependency": "بدون اتصال بیرونی"
+  },
+  {
+    "id": "R01-03",
+    "stage": 1,
+    "title": "قرارداد API و event",
+    "status": "foundation",
+    "acceptance": "ساخت تمام workspaceها، تست قرارداد و کنترل مرز سرویس",
+    "verification": "tests + CI + smoke",
+    "externalDependency": "بدون اتصال بیرونی"
+  },
+  {
+    "id": "R01-04",
+    "stage": 1,
+    "title": "مونوریپو و CI",
+    "status": "foundation",
+    "acceptance": "ساخت تمام workspaceها، تست قرارداد و کنترل مرز سرویس",
+    "verification": "tests + CI + smoke",
+    "externalDependency": "بدون اتصال بیرونی"
+  },
+  {
+    "id": "R02-01",
+    "stage": 2,
+    "title": "Docker",
+    "status": "planned",
+    "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
+    "verification": "docs/testing/stage-02 (planned)",
+    "externalDependency": "Docker و فضای ذخیره‌سازی"
+  },
+  {
+    "id": "R02-02",
+    "stage": 2,
+    "title": "DB/role مستقل",
+    "status": "planned",
+    "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
+    "verification": "docs/testing/stage-02 (planned)",
+    "externalDependency": "Docker و فضای ذخیره‌سازی"
+  },
+  {
+    "id": "R02-03",
+    "stage": 2,
+    "title": "Redis",
+    "status": "planned",
+    "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
+    "verification": "docs/testing/stage-02 (planned)",
+    "externalDependency": "Docker و فضای ذخیره‌سازی"
+  },
+  {
+    "id": "R02-04",
+    "stage": 2,
+    "title": "NATS",
+    "status": "planned",
+    "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
+    "verification": "docs/testing/stage-02 (planned)",
+    "externalDependency": "Docker و فضای ذخیره‌سازی"
+  },
+  {
+    "id": "R02-05",
+    "stage": 2,
+    "title": "Gateway",
+    "status": "planned",
+    "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
+    "verification": "docs/testing/stage-02 (planned)",
+    "externalDependency": "Docker و فضای ذخیره‌سازی"
+  },
+  {
+    "id": "R02-06",
+    "stage": 2,
+    "title": "Outbox/Inbox",
+    "status": "planned",
+    "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
+    "verification": "docs/testing/stage-02 (planned)",
+    "externalDependency": "Docker و فضای ذخیره‌سازی"
+  },
+  {
+    "id": "R02-07",
+    "stage": 2,
+    "title": "trace و health",
+    "status": "planned",
+    "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
+    "verification": "docs/testing/stage-02 (planned)",
+    "externalDependency": "Docker و فضای ذخیره‌سازی"
+  },
+  {
+    "id": "R03-01",
+    "stage": 3,
+    "title": "Design System",
+    "status": "planned",
+    "acceptance": "آزمون مسیر، ترجمه، keyboard و screenshot در چند viewport",
+    "verification": "docs/testing/stage-03 (planned)",
+    "externalDependency": "فونت و دارایی‌های برند"
+  },
+  {
+    "id": "R03-02",
+    "stage": 3,
+    "title": "صفحات عمومی",
+    "status": "planned",
+    "acceptance": "آزمون مسیر، ترجمه، keyboard و screenshot در چند viewport",
+    "verification": "docs/testing/stage-03 (planned)",
+    "externalDependency": "فونت و دارایی‌های برند"
+  },
+  {
+    "id": "R03-03",
+    "stage": 3,
+    "title": "پوسته ۱۲ داشبورد",
+    "status": "planned",
+    "acceptance": "آزمون مسیر، ترجمه، keyboard و screenshot در چند viewport",
+    "verification": "docs/testing/stage-03 (planned)",
+    "externalDependency": "فونت و دارایی‌های برند"
+  },
+  {
+    "id": "R03-04",
+    "stage": 3,
+    "title": "RTL/LTR",
+    "status": "planned",
+    "acceptance": "آزمون مسیر، ترجمه، keyboard و screenshot در چند viewport",
+    "verification": "docs/testing/stage-03 (planned)",
+    "externalDependency": "فونت و دارایی‌های برند"
+  },
+  {
+    "id": "R03-05",
+    "stage": 3,
+    "title": "موبایل",
+    "status": "planned",
+    "acceptance": "آزمون مسیر، ترجمه، keyboard و screenshot در چند viewport",
+    "verification": "docs/testing/stage-03 (planned)",
+    "externalDependency": "فونت و دارایی‌های برند"
+  },
+  {
+    "id": "R04-01",
+    "stage": 4,
+    "title": "ایمیل/رمز",
+    "status": "planned",
+    "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
+    "verification": "docs/testing/stage-04 (planned)",
+    "externalDependency": "SMTP یا email API"
+  },
+  {
+    "id": "R04-02",
+    "stage": 4,
+    "title": "تأیید ایمیل",
+    "status": "planned",
+    "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
+    "verification": "docs/testing/stage-04 (planned)",
+    "externalDependency": "SMTP یا email API"
+  },
+  {
+    "id": "R04-03",
+    "stage": 4,
+    "title": "بازیابی",
+    "status": "planned",
+    "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
+    "verification": "docs/testing/stage-04 (planned)",
+    "externalDependency": "SMTP یا email API"
+  },
+  {
+    "id": "R04-04",
+    "stage": 4,
+    "title": "Argon2id",
+    "status": "planned",
+    "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
+    "verification": "docs/testing/stage-04 (planned)",
+    "externalDependency": "SMTP یا email API"
+  },
+  {
+    "id": "R04-05",
+    "stage": 4,
+    "title": "نشست و rotation",
+    "status": "planned",
+    "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
+    "verification": "docs/testing/stage-04 (planned)",
+    "externalDependency": "SMTP یا email API"
+  },
+  {
+    "id": "R04-06",
+    "stage": 4,
+    "title": "محدودیت تلاش",
+    "status": "planned",
+    "acceptance": "ثبت‌نام تا خروج، token reuse، enumeration و rate limit",
+    "verification": "docs/testing/stage-04 (planned)",
+    "externalDependency": "SMTP یا email API"
+  },
+  {
+    "id": "R05-01",
+    "stage": 5,
+    "title": "OTP",
+    "status": "planned",
+    "acceptance": "انقضا، replay، account-link takeover و callback نامعتبر",
+    "verification": "docs/testing/stage-05 (planned)",
+    "externalDependency": "ارائه‌دهنده پیامک و OAuth"
+  },
+  {
+    "id": "R05-02",
+    "stage": 5,
+    "title": "Magic Link",
+    "status": "planned",
+    "acceptance": "انقضا، replay، account-link takeover و callback نامعتبر",
+    "verification": "docs/testing/stage-05 (planned)",
+    "externalDependency": "ارائه‌دهنده پیامک و OAuth"
+  },
+  {
+    "id": "R05-03",
+    "stage": 5,
+    "title": "Google",
+    "status": "planned",
+    "acceptance": "انقضا، replay، account-link takeover و callback نامعتبر",
+    "verification": "docs/testing/stage-05 (planned)",
+    "externalDependency": "ارائه‌دهنده پیامک و OAuth"
+  },
+  {
+    "id": "R05-04",
+    "stage": 5,
+    "title": "Apple",
+    "status": "planned",
+    "acceptance": "انقضا، replay، account-link takeover و callback نامعتبر",
+    "verification": "docs/testing/stage-05 (planned)",
+    "externalDependency": "ارائه‌دهنده پیامک و OAuth"
+  },
+  {
+    "id": "R05-05",
+    "stage": 5,
+    "title": "اتصال حساب",
+    "status": "planned",
+    "acceptance": "انقضا، replay، account-link takeover و callback نامعتبر",
+    "verification": "docs/testing/stage-05 (planned)",
+    "externalDependency": "ارائه‌دهنده پیامک و OAuth"
+  },
+  {
+    "id": "R05-06",
+    "stage": 5,
+    "title": "MFA و recovery",
+    "status": "planned",
+    "acceptance": "انقضا، replay، account-link takeover و callback نامعتبر",
+    "verification": "docs/testing/stage-05 (planned)",
+    "externalDependency": "ارائه‌دهنده پیامک و OAuth"
+  },
+  {
+    "id": "R06-01",
+    "stage": 6,
+    "title": "پروفایل",
+    "status": "planned",
+    "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
+    "verification": "docs/testing/stage-06 (planned)",
+    "externalDependency": "بدون حساب بیرونی"
+  },
+  {
+    "id": "R06-02",
+    "stage": 6,
+    "title": "سازمان/شعبه",
+    "status": "planned",
+    "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
+    "verification": "docs/testing/stage-06 (planned)",
+    "externalDependency": "بدون حساب بیرونی"
+  },
+  {
+    "id": "R06-03",
+    "stage": 6,
+    "title": "permission",
+    "status": "planned",
+    "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
+    "verification": "docs/testing/stage-06 (planned)",
+    "externalDependency": "بدون حساب بیرونی"
+  },
+  {
+    "id": "R06-04",
+    "stage": 6,
+    "title": "tenant isolation",
+    "status": "planned",
+    "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
+    "verification": "docs/testing/stage-06 (planned)",
+    "externalDependency": "بدون حساب بیرونی"
+  },
+  {
+    "id": "R06-05",
+    "stage": 6,
+    "title": "consent",
+    "status": "planned",
+    "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
+    "verification": "docs/testing/stage-06 (planned)",
+    "externalDependency": "بدون حساب بیرونی"
+  },
+  {
+    "id": "R06-06",
+    "stage": 6,
+    "title": "audit",
+    "status": "planned",
+    "acceptance": "deny-by-default، عبور tenant، رضایت نسخه‌دار و audit",
+    "verification": "docs/testing/stage-06 (planned)",
+    "externalDependency": "بدون حساب بیرونی"
+  },
+  {
+    "id": "R07-01",
+    "stage": 7,
+    "title": "آدرس API",
+    "status": "planned",
+    "acceptance": "کلید نامعتبر، مدل ناموجود، timeout، SSRF و منع خروج داده",
+    "verification": "docs/testing/stage-07 (planned)",
+    "externalDependency": "کلید GapGPT برای تست واقعی"
+  },
+  {
+    "id": "R07-02",
+    "stage": 7,
+    "title": "secret",
+    "status": "planned",
+    "acceptance": "کلید نامعتبر، مدل ناموجود، timeout، SSRF و منع خروج داده",
+    "verification": "docs/testing/stage-07 (planned)",
+    "externalDependency": "کلید GapGPT برای تست واقعی"
+  },
+  {
+    "id": "R07-03",
+    "stage": 7,
+    "title": "فهرست/ثبت مدل",
+    "status": "planned",
+    "acceptance": "کلید نامعتبر، مدل ناموجود، timeout، SSRF و منع خروج داده",
+    "verification": "docs/testing/stage-07 (planned)",
+    "externalDependency": "کلید GapGPT برای تست واقعی"
+  },
+  {
+    "id": "R07-04",
+    "stage": 7,
+    "title": "مدل هر capability",
+    "status": "planned",
+    "acceptance": "کلید نامعتبر، مدل ناموجود، timeout، SSRF و منع خروج داده",
+    "verification": "docs/testing/stage-07 (planned)",
+    "externalDependency": "کلید GapGPT برای تست واقعی"
+  },
+  {
+    "id": "R07-05",
+    "stage": 7,
+    "title": "budget و fallback",
+    "status": "planned",
+    "acceptance": "کلید نامعتبر، مدل ناموجود، timeout، SSRF و منع خروج داده",
+    "verification": "docs/testing/stage-07 (planned)",
+    "externalDependency": "کلید GapGPT برای تست واقعی"
+  },
+  {
+    "id": "R08-01",
+    "stage": 8,
+    "title": "تخصص",
+    "status": "planned",
+    "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
+    "verification": "docs/testing/stage-08 (planned)",
+    "externalDependency": "Object Storage و scanner"
+  },
+  {
+    "id": "R08-02",
+    "stage": 8,
+    "title": "مدارک",
+    "status": "planned",
+    "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
+    "verification": "docs/testing/stage-08 (planned)",
+    "externalDependency": "Object Storage و scanner"
+  },
+  {
+    "id": "R08-03",
+    "stage": 8,
+    "title": "تأیید",
+    "status": "planned",
+    "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
+    "verification": "docs/testing/stage-08 (planned)",
+    "externalDependency": "Object Storage و scanner"
+  },
+  {
+    "id": "R08-04",
+    "stage": 8,
+    "title": "تعرفه",
+    "status": "planned",
+    "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
+    "verification": "docs/testing/stage-08 (planned)",
+    "externalDependency": "Object Storage و scanner"
+  },
+  {
+    "id": "R08-05",
+    "stage": 8,
+    "title": "private upload",
+    "status": "planned",
+    "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
+    "verification": "docs/testing/stage-08 (planned)",
+    "externalDependency": "Object Storage و scanner"
+  },
+  {
+    "id": "R08-06",
+    "stage": 8,
+    "title": "malware scan",
+    "status": "planned",
+    "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
+    "verification": "docs/testing/stage-08 (planned)",
+    "externalDependency": "Object Storage و scanner"
+  },
+  {
+    "id": "R09-01",
+    "stage": 9,
+    "title": "schedule",
+    "status": "planned",
+    "acceptance": "رزرو همزمان یک slot، DST، انقضای hold و جبران",
+    "verification": "docs/testing/stage-09 (planned)",
+    "externalDependency": "PostgreSQL/Redis/NATS"
+  },
+  {
+    "id": "R09-02",
+    "stage": 9,
+    "title": "timezone",
+    "status": "planned",
+    "acceptance": "رزرو همزمان یک slot، DST، انقضای hold و جبران",
+    "verification": "docs/testing/stage-09 (planned)",
+    "externalDependency": "PostgreSQL/Redis/NATS"
+  },
+  {
+    "id": "R09-03",
+    "stage": 9,
+    "title": "hold اتمیک",
+    "status": "planned",
+    "acceptance": "رزرو همزمان یک slot، DST، انقضای hold و جبران",
+    "verification": "docs/testing/stage-09 (planned)",
+    "externalDependency": "PostgreSQL/Redis/NATS"
+  },
+  {
+    "id": "R09-04",
+    "stage": 9,
+    "title": "saga",
+    "status": "planned",
+    "acceptance": "رزرو همزمان یک slot، DST، انقضای hold و جبران",
+    "verification": "docs/testing/stage-09 (planned)",
+    "externalDependency": "PostgreSQL/Redis/NATS"
+  },
+  {
+    "id": "R09-05",
+    "stage": 9,
+    "title": "لغو و reschedule",
+    "status": "planned",
+    "acceptance": "رزرو همزمان یک slot، DST، انقضای hold و جبران",
+    "verification": "docs/testing/stage-09 (planned)",
+    "externalDependency": "PostgreSQL/Redis/NATS"
+  },
+  {
+    "id": "R10-01",
+    "stage": 10,
+    "title": "OpenSearch",
+    "status": "planned",
+    "acceptance": "بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence",
+    "verification": "docs/testing/stage-10 (planned)",
+    "externalDependency": "OpenSearch"
+  },
+  {
+    "id": "R10-02",
+    "stage": 10,
+    "title": "normalize فارسی",
+    "status": "planned",
+    "acceptance": "بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence",
+    "verification": "docs/testing/stage-10 (planned)",
+    "externalDependency": "OpenSearch"
+  },
+  {
+    "id": "R10-03",
+    "stage": 10,
+    "title": "projection",
+    "status": "planned",
+    "acceptance": "بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence",
+    "verification": "docs/testing/stage-10 (planned)",
+    "externalDependency": "OpenSearch"
+  },
+  {
+    "id": "R10-04",
+    "stage": 10,
+    "title": "presence",
+    "status": "planned",
+    "acceptance": "بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence",
+    "verification": "docs/testing/stage-10 (planned)",
+    "externalDependency": "OpenSearch"
+  },
+  {
+    "id": "R10-05",
+    "stage": 10,
+    "title": "ranking",
+    "status": "planned",
+    "acceptance": "بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence",
+    "verification": "docs/testing/stage-10 (planned)",
+    "externalDependency": "OpenSearch"
+  },
+  {
+    "id": "R11-01",
+    "stage": 11,
+    "title": "Payment",
+    "status": "planned",
+    "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
+    "verification": "docs/testing/stage-11 (planned)",
+    "externalDependency": "درگاه و حساب تسویه"
+  },
+  {
+    "id": "R11-02",
+    "stage": 11,
+    "title": "Wallet",
+    "status": "planned",
+    "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
+    "verification": "docs/testing/stage-11 (planned)",
+    "externalDependency": "درگاه و حساب تسویه"
+  },
+  {
+    "id": "R11-03",
+    "stage": 11,
+    "title": "Ledger",
+    "status": "planned",
+    "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
+    "verification": "docs/testing/stage-11 (planned)",
+    "externalDependency": "درگاه و حساب تسویه"
+  },
+  {
+    "id": "R11-04",
+    "stage": 11,
+    "title": "Payout",
+    "status": "planned",
+    "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
+    "verification": "docs/testing/stage-11 (planned)",
+    "externalDependency": "درگاه و حساب تسویه"
+  },
+  {
+    "id": "R11-05",
+    "stage": 11,
+    "title": "Dispute/refund",
+    "status": "planned",
+    "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
+    "verification": "docs/testing/stage-11 (planned)",
+    "externalDependency": "درگاه و حساب تسویه"
+  },
+  {
+    "id": "R11-06",
+    "stage": 11,
+    "title": "reconciliation",
+    "status": "planned",
+    "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
+    "verification": "docs/testing/stage-11 (planned)",
+    "externalDependency": "درگاه و حساب تسویه"
+  },
+  {
+    "id": "R12-01",
+    "stage": 12,
+    "title": "persistent chat",
+    "status": "planned",
+    "acceptance": "Refresh، عضویت، تکرار، ترتیب و خطای ارسال",
+    "verification": "docs/testing/stage-12 (planned)",
+    "externalDependency": "SMTP/پیامک/ذخیره‌سازی"
+  },
+  {
+    "id": "R12-02",
+    "stage": 12,
+    "title": "reply",
+    "status": "planned",
+    "acceptance": "Refresh، عضویت، تکرار، ترتیب و خطای ارسال",
+    "verification": "docs/testing/stage-12 (planned)",
+    "externalDependency": "SMTP/پیامک/ذخیره‌سازی"
+  },
+  {
+    "id": "R12-03",
+    "stage": 12,
+    "title": "voice/file",
+    "status": "planned",
+    "acceptance": "Refresh، عضویت، تکرار، ترتیب و خطای ارسال",
+    "verification": "docs/testing/stage-12 (planned)",
+    "externalDependency": "SMTP/پیامک/ذخیره‌سازی"
+  },
+  {
+    "id": "R12-04",
+    "stage": 12,
+    "title": "receipts",
+    "status": "planned",
+    "acceptance": "Refresh، عضویت، تکرار، ترتیب و خطای ارسال",
+    "verification": "docs/testing/stage-12 (planned)",
+    "externalDependency": "SMTP/پیامک/ذخیره‌سازی"
+  },
+  {
+    "id": "R12-05",
+    "stage": 12,
+    "title": "notification و reminder",
+    "status": "planned",
+    "acceptance": "Refresh، عضویت، تکرار، ترتیب و خطای ارسال",
+    "verification": "docs/testing/stage-12 (planned)",
+    "externalDependency": "SMTP/پیامک/ذخیره‌سازی"
+  },
+  {
+    "id": "R13-01",
+    "stage": 13,
+    "title": "waiting room",
+    "status": "planned",
+    "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
+    "verification": "docs/testing/stage-13 (planned)",
+    "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
+  },
+  {
+    "id": "R13-02",
+    "stage": 13,
+    "title": "device check",
+    "status": "planned",
+    "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
+    "verification": "docs/testing/stage-13 (planned)",
+    "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
+  },
+  {
+    "id": "R13-03",
+    "stage": 13,
+    "title": "LiveKit/TURN",
+    "status": "planned",
+    "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
+    "verification": "docs/testing/stage-13 (planned)",
+    "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
+  },
+  {
+    "id": "R13-04",
+    "stage": 13,
+    "title": "reconnect",
+    "status": "planned",
+    "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
+    "verification": "docs/testing/stage-13 (planned)",
+    "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
+  },
+  {
+    "id": "R13-05",
+    "stage": 13,
+    "title": "consent recording",
+    "status": "planned",
+    "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
+    "verification": "docs/testing/stage-13 (planned)",
+    "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
+  },
+  {
+    "id": "R13-06",
+    "stage": 13,
+    "title": "rating",
+    "status": "planned",
+    "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
+    "verification": "docs/testing/stage-13 (planned)",
+    "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
+  },
+  {
+    "id": "R14-01",
+    "stage": 14,
+    "title": "Talk Now",
+    "status": "planned",
+    "acceptance": "دو accept همزمان، timeout، آفلاین‌شدن و شکست پرداخت",
+    "verification": "docs/testing/stage-14 (planned)",
+    "externalDependency": "زیرساخت تماس و پرداخت"
+  },
+  {
+    "id": "R14-02",
+    "stage": 14,
+    "title": "timed offers",
+    "status": "planned",
+    "acceptance": "دو accept همزمان، timeout، آفلاین‌شدن و شکست پرداخت",
+    "verification": "docs/testing/stage-14 (planned)",
+    "externalDependency": "زیرساخت تماس و پرداخت"
+  },
+  {
+    "id": "R14-03",
+    "stage": 14,
+    "title": "single winner",
+    "status": "planned",
+    "acceptance": "دو accept همزمان، timeout، آفلاین‌شدن و شکست پرداخت",
+    "verification": "docs/testing/stage-14 (planned)",
+    "externalDependency": "زیرساخت تماس و پرداخت"
+  },
+  {
+    "id": "R14-04",
+    "stage": 14,
+    "title": "cancellation",
+    "status": "planned",
+    "acceptance": "دو accept همزمان، timeout، آفلاین‌شدن و شکست پرداخت",
+    "verification": "docs/testing/stage-14 (planned)",
+    "externalDependency": "زیرساخت تماس و پرداخت"
+  },
+  {
+    "id": "R14-05",
+    "stage": 14,
+    "title": "tickets و complaint",
+    "status": "planned",
+    "acceptance": "دو accept همزمان، timeout، آفلاین‌شدن و شکست پرداخت",
+    "verification": "docs/testing/stage-14 (planned)",
+    "externalDependency": "زیرساخت تماس و پرداخت"
+  },
+  {
+    "id": "R15-01",
+    "stage": 15,
+    "title": "free/paid/priority",
+    "status": "planned",
+    "acceptance": "private-to-public leakage، مهلت پاسخ و نسخه انتشار",
+    "verification": "docs/testing/stage-15 (planned)",
+    "externalDependency": "بازبین علمی"
+  },
+  {
+    "id": "R15-02",
+    "stage": 15,
+    "title": "ناشناس",
+    "status": "planned",
+    "acceptance": "private-to-public leakage، مهلت پاسخ و نسخه انتشار",
+    "verification": "docs/testing/stage-15 (planned)",
+    "externalDependency": "بازبین علمی"
+  },
+  {
+    "id": "R15-03",
+    "stage": 15,
+    "title": "تخصیص",
+    "status": "planned",
+    "acceptance": "private-to-public leakage، مهلت پاسخ و نسخه انتشار",
+    "verification": "docs/testing/stage-15 (planned)",
+    "externalDependency": "بازبین علمی"
+  },
+  {
+    "id": "R15-04",
+    "stage": 15,
+    "title": "SLA",
+    "status": "planned",
+    "acceptance": "private-to-public leakage، مهلت پاسخ و نسخه انتشار",
+    "verification": "docs/testing/stage-15 (planned)",
+    "externalDependency": "بازبین علمی"
+  },
+  {
+    "id": "R15-05",
+    "stage": 15,
+    "title": "review",
+    "status": "planned",
+    "acceptance": "private-to-public leakage، مهلت پاسخ و نسخه انتشار",
+    "verification": "docs/testing/stage-15 (planned)",
+    "externalDependency": "بازبین علمی"
+  },
+  {
+    "id": "R15-06",
+    "stage": 15,
+    "title": "انتشار رضایتمند",
+    "status": "planned",
+    "acceptance": "private-to-public leakage، مهلت پاسخ و نسخه انتشار",
+    "verification": "docs/testing/stage-15 (planned)",
+    "externalDependency": "بازبین علمی"
+  },
+  {
+    "id": "R16-01",
+    "stage": 16,
+    "title": "follow",
+    "status": "planned",
+    "acceptance": "انتشار زمان‌دار، دسترسی فایل و fanout اعلان",
+    "verification": "docs/testing/stage-16 (planned)",
+    "externalDependency": "ذخیره‌سازی"
+  },
+  {
+    "id": "R16-02",
+    "stage": 16,
+    "title": "article/audio/video",
+    "status": "planned",
+    "acceptance": "انتشار زمان‌دار، دسترسی فایل و fanout اعلان",
+    "verification": "docs/testing/stage-16 (planned)",
+    "externalDependency": "ذخیره‌سازی"
+  },
+  {
+    "id": "R16-03",
+    "stage": 16,
+    "title": "playlist",
+    "status": "planned",
+    "acceptance": "انتشار زمان‌دار، دسترسی فایل و fanout اعلان",
+    "verification": "docs/testing/stage-16 (planned)",
+    "externalDependency": "ذخیره‌سازی"
+  },
+  {
+    "id": "R16-04",
+    "stage": 16,
+    "title": "draft/schedule",
+    "status": "planned",
+    "acceptance": "انتشار زمان‌دار، دسترسی فایل و fanout اعلان",
+    "verification": "docs/testing/stage-16 (planned)",
+    "externalDependency": "ذخیره‌سازی"
+  },
+  {
+    "id": "R16-05",
+    "stage": 16,
+    "title": "reports",
+    "status": "planned",
+    "acceptance": "انتشار زمان‌دار، دسترسی فایل و fanout اعلان",
+    "verification": "docs/testing/stage-16 (planned)",
+    "externalDependency": "ذخیره‌سازی"
+  },
+  {
+    "id": "R17-01",
+    "stage": 17,
+    "title": "public/private",
+    "status": "planned",
+    "acceptance": "ظرفیت همزمان، نقش مدیر/مخاطب، بلیت و replay ACL",
+    "verification": "docs/testing/stage-17 (planned)",
+    "externalDependency": "LiveKit/Egress"
+  },
+  {
+    "id": "R17-02",
+    "stage": 17,
+    "title": "paid/free",
+    "status": "planned",
+    "acceptance": "ظرفیت همزمان، نقش مدیر/مخاطب، بلیت و replay ACL",
+    "verification": "docs/testing/stage-17 (planned)",
+    "externalDependency": "LiveKit/Egress"
+  },
+  {
+    "id": "R17-03",
+    "stage": 17,
+    "title": "capacity",
+    "status": "planned",
+    "acceptance": "ظرفیت همزمان، نقش مدیر/مخاطب، بلیت و replay ACL",
+    "verification": "docs/testing/stage-17 (planned)",
+    "externalDependency": "LiveKit/Egress"
+  },
+  {
+    "id": "R17-04",
+    "stage": 17,
+    "title": "live chat",
+    "status": "planned",
+    "acceptance": "ظرفیت همزمان، نقش مدیر/مخاطب، بلیت و replay ACL",
+    "verification": "docs/testing/stage-17 (planned)",
+    "externalDependency": "LiveKit/Egress"
+  },
+  {
+    "id": "R17-05",
+    "stage": 17,
+    "title": "hand",
+    "status": "planned",
+    "acceptance": "ظرفیت همزمان، نقش مدیر/مخاطب، بلیت و replay ACL",
+    "verification": "docs/testing/stage-17 (planned)",
+    "externalDependency": "LiveKit/Egress"
+  },
+  {
+    "id": "R17-06",
+    "stage": 17,
+    "title": "polls",
+    "status": "planned",
+    "acceptance": "ظرفیت همزمان، نقش مدیر/مخاطب، بلیت و replay ACL",
+    "verification": "docs/testing/stage-17 (planned)",
+    "externalDependency": "LiveKit/Egress"
+  },
+  {
+    "id": "R17-07",
+    "stage": 17,
+    "title": "replay",
+    "status": "planned",
+    "acceptance": "ظرفیت همزمان، نقش مدیر/مخاطب، بلیت و replay ACL",
+    "verification": "docs/testing/stage-17 (planned)",
+    "externalDependency": "LiveKit/Egress"
+  },
+  {
+    "id": "R18-01",
+    "stage": 18,
+    "title": "classification",
+    "status": "planned",
+    "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
+    "verification": "docs/testing/stage-18 (planned)",
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+  },
+  {
+    "id": "R18-02",
+    "stage": 18,
+    "title": "translation",
+    "status": "planned",
+    "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
+    "verification": "docs/testing/stage-18 (planned)",
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+  },
+  {
+    "id": "R18-03",
+    "stage": 18,
+    "title": "STT",
+    "status": "planned",
+    "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
+    "verification": "docs/testing/stage-18 (planned)",
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+  },
+  {
+    "id": "R18-04",
+    "stage": 18,
+    "title": "summary",
+    "status": "planned",
+    "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
+    "verification": "docs/testing/stage-18 (planned)",
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+  },
+  {
+    "id": "R18-05",
+    "stage": 18,
+    "title": "embeddings",
+    "status": "planned",
+    "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
+    "verification": "docs/testing/stage-18 (planned)",
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+  },
+  {
+    "id": "R18-06",
+    "stage": 18,
+    "title": "semantic search",
+    "status": "planned",
+    "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
+    "verification": "docs/testing/stage-18 (planned)",
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+  },
+  {
+    "id": "R19-01",
+    "stage": 19,
+    "title": "SIP/PSTN",
+    "status": "planned",
+    "acceptance": "تماس واقعی ورودی/خروجی، reconciliation CDR و داده تجمیعی",
+    "verification": "docs/testing/stage-19 (planned)",
+    "externalDependency": "SIP trunk و شماره"
+  },
+  {
+    "id": "R19-02",
+    "stage": 19,
+    "title": "IVR",
+    "status": "planned",
+    "acceptance": "تماس واقعی ورودی/خروجی، reconciliation CDR و داده تجمیعی",
+    "verification": "docs/testing/stage-19 (planned)",
+    "externalDependency": "SIP trunk و شماره"
+  },
+  {
+    "id": "R19-03",
+    "stage": 19,
+    "title": "CDR",
+    "status": "planned",
+    "acceptance": "تماس واقعی ورودی/خروجی، reconciliation CDR و داده تجمیعی",
+    "verification": "docs/testing/stage-19 (planned)",
+    "externalDependency": "SIP trunk و شماره"
+  },
+  {
+    "id": "R19-04",
+    "stage": 19,
+    "title": "costs",
+    "status": "planned",
+    "acceptance": "تماس واقعی ورودی/خروجی، reconciliation CDR و داده تجمیعی",
+    "verification": "docs/testing/stage-19 (planned)",
+    "externalDependency": "SIP trunk و شماره"
+  },
+  {
+    "id": "R19-05",
+    "stage": 19,
+    "title": "command center",
+    "status": "planned",
+    "acceptance": "تماس واقعی ورودی/خروجی، reconciliation CDR و داده تجمیعی",
+    "verification": "docs/testing/stage-19 (planned)",
+    "externalDependency": "SIP trunk و شماره"
+  },
+  {
+    "id": "R19-06",
+    "stage": 19,
+    "title": "aggregate map",
+    "status": "planned",
+    "acceptance": "تماس واقعی ورودی/خروجی، reconciliation CDR و داده تجمیعی",
+    "verification": "docs/testing/stage-19 (planned)",
+    "externalDependency": "SIP trunk و شماره"
+  },
+  {
+    "id": "R20-01",
+    "stage": 20,
+    "title": "E2E",
+    "status": "planned",
+    "acceptance": "چرخه کامل خدمت، restore روی محیط تمیز و گزارش ظرفیت",
+    "verification": "docs/testing/stage-20 (planned)",
+    "externalDependency": "سرور مقصد و سرویس‌های واقعی"
+  },
+  {
+    "id": "R20-02",
+    "stage": 20,
+    "title": "load/security",
+    "status": "planned",
+    "acceptance": "چرخه کامل خدمت، restore روی محیط تمیز و گزارش ظرفیت",
+    "verification": "docs/testing/stage-20 (planned)",
+    "externalDependency": "سرور مقصد و سرویس‌های واقعی"
+  },
+  {
+    "id": "R20-03",
+    "stage": 20,
+    "title": "backup/restore",
+    "status": "planned",
+    "acceptance": "چرخه کامل خدمت، restore روی محیط تمیز و گزارش ظرفیت",
+    "verification": "docs/testing/stage-20 (planned)",
+    "externalDependency": "سرور مقصد و سرویس‌های واقعی"
+  },
+  {
+    "id": "R20-04",
+    "stage": 20,
+    "title": "migration/rollback",
+    "status": "planned",
+    "acceptance": "چرخه کامل خدمت، restore روی محیط تمیز و گزارش ظرفیت",
+    "verification": "docs/testing/stage-20 (planned)",
+    "externalDependency": "سرور مقصد و سرویس‌های واقعی"
+  },
+  {
+    "id": "R20-05",
+    "stage": 20,
+    "title": "نصب و راهنمای فارسی",
+    "status": "planned",
+    "acceptance": "چرخه کامل خدمت، restore روی محیط تمیز و گزارش ظرفیت",
+    "verification": "docs/testing/stage-20 (planned)",
+    "externalDependency": "سرور مقصد و سرویس‌های واقعی"
+  }
+]

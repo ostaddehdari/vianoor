@@ -1,0 +1,3 @@
+# مالک migration: audit-service
+
+فقط `audit_db` با credential همان سرویس. schema و ابزار migration در مرحلهٔ زیرساخت تثبیت می‌شوند. این پوشه اکنون migration اجرایی ندارد.
