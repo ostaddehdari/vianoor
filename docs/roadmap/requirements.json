@@ -39,63 +39,63 @@
     "id": "R02-01",
     "stage": 2,
     "title": "Docker",
-    "status": "planned",
+    "status": "verified-in-ci",
     "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
-    "verification": "docs/testing/stage-02 (planned)",
+    "verification": "docs/stages/02-infrastructure.md; .github/workflows/infrastructure.yml",
     "externalDependency": "Docker و فضای ذخیره‌سازی"
   },
   {
     "id": "R02-02",
     "stage": 2,
     "title": "DB/role مستقل",
-    "status": "planned",
+    "status": "verified-in-ci",
     "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
-    "verification": "docs/testing/stage-02 (planned)",
+    "verification": "docs/stages/02-infrastructure.md; .github/workflows/infrastructure.yml",
     "externalDependency": "Docker و فضای ذخیره‌سازی"
   },
   {
     "id": "R02-03",
     "stage": 2,
     "title": "Redis",
-    "status": "planned",
+    "status": "verified-in-ci",
     "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
-    "verification": "docs/testing/stage-02 (planned)",
+    "verification": "docs/stages/02-infrastructure.md; .github/workflows/infrastructure.yml",
     "externalDependency": "Docker و فضای ذخیره‌سازی"
   },
   {
     "id": "R02-04",
     "stage": 2,
     "title": "NATS",
-    "status": "planned",
+    "status": "verified-in-ci",
     "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
-    "verification": "docs/testing/stage-02 (planned)",
+    "verification": "docs/stages/02-infrastructure.md; .github/workflows/infrastructure.yml",
     "externalDependency": "Docker و فضای ذخیره‌سازی"
   },
   {
     "id": "R02-05",
     "stage": 2,
     "title": "Gateway",
-    "status": "planned",
+    "status": "verified-in-ci",
     "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
-    "verification": "docs/testing/stage-02 (planned)",
+    "verification": "docs/stages/02-infrastructure.md; .github/workflows/infrastructure.yml",
     "externalDependency": "Docker و فضای ذخیره‌سازی"
   },
   {
     "id": "R02-06",
     "stage": 2,
     "title": "Outbox/Inbox",
-    "status": "planned",
+    "status": "verified-in-ci",
     "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
-    "verification": "docs/testing/stage-02 (planned)",
+    "verification": "docs/stages/02-infrastructure.md; .github/workflows/infrastructure.yml",
     "externalDependency": "Docker و فضای ذخیره‌سازی"
   },
   {
     "id": "R02-07",
     "stage": 2,
     "title": "trace و health",
-    "status": "planned",
+    "status": "verified-in-ci",
     "acceptance": "آزمون restart، duplicate delivery، DB isolation و trace",
-    "verification": "docs/testing/stage-02 (planned)",
+    "verification": "docs/stages/02-infrastructure.md; .github/workflows/infrastructure.yml",
     "externalDependency": "Docker و فضای ذخیره‌سازی"
   },
   {
