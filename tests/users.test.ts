@@ -78,6 +78,11 @@ test('image uploads reject non-images and excessive bytes and are re-encoded wit
   assert.equal(meta.format, 'webp');
   assert.equal(meta.width, 512);
   assert.equal(meta.exif, undefined);
+  const rotated = await sharp(input).withMetadata({ orientation: 6 }).toBuffer();
+  const clean = await sharp(await normalizeImage(rotated)).metadata();
+  assert.equal(clean.width, 384);
+  assert.equal(clean.height, 512);
+  assert.equal(clean.exif, undefined);
 });
 test('stage 6 Persian and English dictionaries stay synchronized', () => {
   assert.deepEqual(Object.keys(usersCopy.fa).sort(), Object.keys(usersCopy.en).sort());
