@@ -5,6 +5,7 @@ export * from './messaging.js';
 export * from './trace.js';
 export * from './infrastructure.js';
 import {
+  type INestApplication,
   Controller,
   Get,
   Module,
@@ -44,6 +45,8 @@ export async function createService(
   options: {
     infrastructure?: { healthy(): Promise<boolean>; close(): Promise<void> };
     gatewayTarget?: string;
+    configure?: (app: INestApplication) => void;
+    ready?: () => Promise<boolean>;
   } = {},
 ) {
   @Controller()
@@ -62,7 +65,8 @@ export async function createService(
     }
 
     @Get('/health/ready')
-    ready() {
+    async ready() {
+      if (await options.ready?.()) return { status: 'ready', service, stage: 'identity' };
       throw new HttpException(
         { status: 'not_ready', service, stage: 'scaffold' },
         HttpStatus.SERVICE_UNAVAILABLE,
@@ -110,6 +114,7 @@ export async function createService(
       traceContext.run(context, next);
     },
   );
+  options.configure?.(app);
   if (service === 'api-gateway' && options.gatewayTarget) {
     // Explicit metadata-only route; no arbitrary upstream URL or domain endpoints before auth.
     const target = new URL('/api/v1', options.gatewayTarget).href;
