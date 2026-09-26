@@ -36,7 +36,10 @@
     "infra:test": "docker compose -f infra/compose.json run --rm test",
     "infra:restart-test": "node scripts/infra/restart-test.mjs",
     "infra:stop": "docker compose -f infra/compose.json stop",
-    "test:ui": "playwright test"
+    "test:ui": "playwright test",
+    "identity:prepare": "node scripts/identity/prepare.mjs",
+    "identity:up": "docker compose -f infra/identity.compose.json up -d --build --wait",
+    "identity:test": "docker compose -f infra/identity.compose.json run --rm identity-test"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.1",
