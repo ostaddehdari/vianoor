@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends libglib2.0-0 li
 COPY --from=native-image /usr/local/lib /usr/local/lib
 COPY --from=build --chown=node:node /app /app
 COPY --from=native-image --chown=node:node /native/node_modules/sharp/src/build/Release /app/node_modules/sharp/src/build/Release
+RUN node scripts/users/check-image-runtime.mjs
 RUN mkdir -p /var/lib/vianoor/avatars && chown node:node /var/lib/vianoor/avatars
 USER node
 CMD ["node", "services/api-gateway/dist/main.js"]
