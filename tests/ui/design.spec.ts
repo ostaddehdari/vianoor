@@ -118,3 +118,25 @@ test('small phone and tablet layouts stay within the viewport', async ({ page })
       }
   }
 });
+
+test('workspace dropdown changes the role and its sidebar pages', async ({ page }, info) => {
+  await page.goto(`${prefix}/fa/preview/admin`);
+  for (const [role, section] of [
+    ['admin', 'users'],
+    ['expert', 'availability'],
+    ['finance', 'reconciliation'],
+  ]) {
+    if (info.project.name === 'mobile') await page.locator('.workspace-heading button').click();
+    if (role !== 'admin') {
+      await page.locator('.workspace-switch select').selectOption(role!);
+      await expect(page).toHaveURL(new RegExp(`/preview/${role}$`));
+      if (info.project.name === 'mobile') await page.locator('.workspace-heading button').click();
+    }
+    await expect(page.locator('.workspace-switch select')).toHaveValue(role!);
+    const link = page.locator(`.sidebar nav a[href$="/preview/${role}/${section}"]`);
+    await expect(link).toBeVisible();
+    await link.click();
+    await expect(page).toHaveURL(new RegExp(`/preview/${role}/${section}$`));
+  }
+  await expect(page.locator('.release-badge')).toContainText('V');
+});
