@@ -12,7 +12,7 @@ for (const locale of ['fa', 'en']) {
   ]) {
     test(`${locale} ${action} accessible responsive identity form`, async ({ page }, info) => {
       await page.goto(`${prefix}/${locale}/auth/${action}`);
-      await expect(page.locator('h1')).toBeVisible();
+      await expect(page.locator(action === 'login' ? '.auth-dialog h1' : 'h1')).toBeVisible();
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
         true,
       );
@@ -32,6 +32,7 @@ for (const locale of ['fa', 'en']) {
       }
       if (action === 'login') {
         await page.locator('input[name=email]').fill('sample@example.test');
+        await page.locator('.auth-dialog button[type=submit]').click();
         await page.locator('input[name=password]').fill('A valid long passphrase');
         await page.locator('button[type=submit]').click();
         // This workflow deliberately has no backend: show the honest configuration state.

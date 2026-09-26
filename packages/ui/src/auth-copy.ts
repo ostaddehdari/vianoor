@@ -23,7 +23,7 @@ export const authCopy = {
     newHere: 'حساب ندارید؟',
     haveAccount: 'قبلاً ثبت‌نام کرده‌اید؟',
     forgotLink: 'رمز را فراموش کرده‌اید؟',
-    sent: 'اگر این نشانی واجد شرایط باشد، ایمیل راهنما ارسال می‌شود. پوشهٔ هرزنامه را هم بررسی کنید.',
+    sent: 'درخواست ثبت شد. اگر نشانی واجد شرایط باشد، پیام در صف ارسال قرار می‌گیرد؛ رسیدن آن را در صندوق ورودی و هرزنامه بررسی کنید.',
     verified: 'ایمیل شما تأیید شد. اکنون وارد شوید.',
     resetDone: 'رمز تغییر کرد و نشست‌های قبلی باطل شدند. با رمز جدید وارد شوید.',
     mismatch: 'تکرار رمز با رمز عبور یکسان نیست.',
@@ -83,7 +83,7 @@ export const authCopy = {
     newHere: 'New to Vianoor?',
     haveAccount: 'Already have an account?',
     forgotLink: 'Forgot your password?',
-    sent: 'If this address is eligible, an email will arrive with instructions. Check your spam folder too.',
+    sent: 'Request accepted. If eligible, a message is queued for delivery. Check your inbox and spam folder.',
     verified: 'Your email is verified. You can now sign in.',
     resetDone:
       'Your password was changed and previous sessions revoked. Sign in with your new password.',

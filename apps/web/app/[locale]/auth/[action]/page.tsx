@@ -24,5 +24,12 @@ export default async function Page({
     if (!routeInfo(`auth/${action}`, 'web')) notFound();
     return <Experience locale={locale} path={`auth/${action}`} app="web" />;
   }
+  if (action === 'login')
+    return (
+      <>
+        <Experience locale={locale} app="web" />
+        <AuthForm locale={locale} action="login" modal />
+      </>
+    );
   return <AuthForm locale={locale} action={action as AuthAction} />;
 }

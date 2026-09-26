@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { Icon } from './icons';
 import { authCopy } from './auth-copy';
 type Locale = 'fa' | 'en';
@@ -88,8 +88,19 @@ function Frame({
     </div>
   );
 }
-export function AuthForm({ locale, action }: { locale: Locale; action: AuthAction }) {
+export function AuthForm({
+  locale,
+  action,
+  modal = false,
+}: {
+  locale: Locale;
+  action: AuthAction;
+  modal?: boolean;
+}) {
   const t = authCopy[locale];
+  const dialog = useRef<HTMLDialogElement>(null);
+  const [step, setStep] = useState<'email' | 'password'>('email');
+  const [loginEmail, setLoginEmail] = useState('');
   const [busy, setBusy] = useState(false),
     [error, setError] = useState(''),
     [success, setSuccess] = useState(''),
@@ -110,6 +121,12 @@ export function AuthForm({ locale, action }: { locale: Locale; action: AuthActio
   const needsToken = action === 'verify-email' || action === 'reset-password';
   const needsPassword = ['login', 'register', 'reset-password'].includes(action);
   useEffect(() => {
+    if (!modal) return;
+    const element = dialog.current;
+    element?.showModal();
+    return () => element?.close();
+  }, [modal]);
+  useEffect(() => {
     if (needsToken) {
       const value = new URLSearchParams(window.location.hash.slice(1)).get('token') ?? '';
       setSecret(/^[A-Za-z0-9_-]{43}$/.test(value) ? value : '');
@@ -121,6 +138,11 @@ export function AuthForm({ locale, action }: { locale: Locale; action: AuthActio
     setSuccess('');
     const data = new FormData(event.currentTarget),
       password = String(data.get('password') ?? '');
+    if (modal && action === 'login' && step === 'email') {
+      setLoginEmail(String(data.get('email') ?? '').trim());
+      setStep('password');
+      return;
+    }
     if (['register', 'reset-password'].includes(action) && password !== data.get('confirm')) {
       setError(t.mismatch);
       return;
@@ -132,14 +154,16 @@ export function AuthForm({ locale, action }: { locale: Locale; action: AuthActio
     setBusy(true);
     try {
       await request(action, {
-        ...(!needsToken ? { email: data.get('email') } : { token: secret }),
+        ...(!needsToken
+          ? { email: modal && action === 'login' ? loginEmail : data.get('email') }
+          : { token: secret }),
         ...(needsPassword ? { password } : {}),
         ...(['register', 'forgot-password', 'resend-verification'].includes(action)
           ? { locale }
           : {}),
       });
       if (action === 'login') {
-        window.location.assign(path(locale, 'account/security'));
+        window.location.assign(path(locale, 'account'));
         return;
       }
       setSuccess(
@@ -156,7 +180,7 @@ export function AuthForm({ locale, action }: { locale: Locale; action: AuthActio
       setBusy(false);
     }
   }
-  return (
+  const content = (
     <Frame locale={locale} route={`auth/${action}`}>
       <span className="auth-card-icon">
         <Icon name={action === 'login' ? 'user' : needsToken ? 'shield' : 'mail'} />
@@ -169,6 +193,36 @@ export function AuthForm({ locale, action }: { locale: Locale; action: AuthActio
             ? t.hint
             : t.intro}
       </p>
+      {modal && step === 'email' && (
+        <div
+          className="auth-providers"
+          aria-label={locale === 'fa' ? 'روش‌های ورود' : 'Sign-in methods'}
+        >
+          {(['Google', 'Apple', 'Facebook', locale === 'fa' ? 'موبایل' : 'Phone'] as const).map(
+            (provider) => (
+              <button
+                type="button"
+                disabled
+                key={provider}
+                title={
+                  locale === 'fa'
+                    ? 'پس از تنظیم ارائه‌دهنده فعال می‌شود'
+                    : 'Available after provider configuration'
+                }
+              >
+                {locale === 'fa' ? 'ادامه با ' : 'Continue with '}
+                {provider}
+              </button>
+            ),
+          )}
+          <p className="auth-hint">
+            {locale === 'fa'
+              ? 'ورود با این روش‌ها پس از اتصال امن ارائه‌دهنده فعال می‌شود.'
+              : 'These methods become available after secure provider setup.'}
+          </p>
+          <div className="auth-divider">{locale === 'fa' ? 'یا' : 'or'}</div>
+        </div>
+      )}
       {success ? (
         <div className="auth-message success" role="status">
           <Icon name="check" />
@@ -176,7 +230,7 @@ export function AuthForm({ locale, action }: { locale: Locale; action: AuthActio
         </div>
       ) : (
         <form onSubmit={submit} aria-busy={busy}>
-          {!needsToken && (
+          {!needsToken && (!modal || action !== 'login' || step === 'email') && (
             <label className="auth-field">
               {t.email}
               <input
@@ -190,8 +244,13 @@ export function AuthForm({ locale, action }: { locale: Locale; action: AuthActio
               />
             </label>
           )}
-          {needsPassword && (
+          {needsPassword && (!modal || action !== 'login' || step === 'password') && (
             <>
+              {modal && action === 'login' && (
+                <button className="auth-email-back" type="button" onClick={() => setStep('email')}>
+                  {loginEmail} · {locale === 'fa' ? 'تغییر ایمیل' : 'Change email'}
+                </button>
+              )}
               <label className="auth-field">
                 {t.password}
                 <input
@@ -235,7 +294,7 @@ export function AuthForm({ locale, action }: { locale: Locale; action: AuthActio
           {needsToken && !secret && <p className="auth-hint">{t.missingToken}</p>}
           <div role="alert">{error && <p className="auth-message error">{error}</p>}</div>
           <button className="auth-submit" disabled={busy || (needsToken && !secret)} type="submit">
-            {busy ? t.busy : title}
+            {busy ? t.busy : modal && action === 'login' && step === 'email' ? t.submit : title}
             <Icon name={locale === 'fa' ? 'arrow' : 'right'} />
           </button>
         </form>
@@ -268,6 +327,28 @@ export function AuthForm({ locale, action }: { locale: Locale; action: AuthActio
         )}
       </nav>
     </Frame>
+  );
+  if (!modal) return content;
+  return (
+    <dialog
+      ref={dialog}
+      className="auth-dialog"
+      aria-label={title}
+      onClose={() => window.location.assign(path(locale, ''))}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) dialog.current?.close();
+      }}
+    >
+      <button
+        className="auth-dialog-close"
+        type="button"
+        aria-label={locale === 'fa' ? 'بستن' : 'Close'}
+        onClick={() => dialog.current?.close()}
+      >
+        ×
+      </button>
+      {content}
+    </dialog>
   );
 }
 type AccountSessions = {

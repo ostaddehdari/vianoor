@@ -41,9 +41,11 @@ for (const locale of ['fa', 'en'])
     await expect(page.locator('.auth-message.success')).toBeVisible();
     await page.goto(`${base}/auth/login`);
     await page.locator('input[name=email]').fill(email);
+    await page.locator('.auth-dialog button[type=submit]').click();
     await page.locator('input[name=password]').fill(password);
     await page.locator('button[type=submit]').click();
-    await expect(page).toHaveURL(new RegExp(`${base}/account/security$`));
+    await expect(page).toHaveURL(new RegExp(`${base}/account$`));
+    await page.goto(`${base}/account/security`);
     await expect(page.locator('.auth-account')).toContainText(email);
     expect(
       (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze()).violations,
@@ -73,7 +75,10 @@ for (const locale of ['fa', 'en'])
     await expect(page.locator('.auth-message.success')).toBeVisible();
     await page.goto(`${base}/auth/login`);
     await page.locator('input[name=email]').fill(email);
+    await page.locator('.auth-dialog button[type=submit]').click();
     await page.locator('input[name=password]').fill(newPassword);
     await page.locator('button[type=submit]').click();
+    await expect(page).toHaveURL(new RegExp(`${base}/account$`));
+    await page.goto(`${base}/account/security`);
     await expect(page.locator('.auth-account')).toContainText(email);
   });

@@ -3382,6 +3382,155 @@ select {
 }
 
 /* Identity screens: shared visual language, real forms and session data. */
+.auth-dialog {
+  border: 0;
+  padding: 0;
+  width: min(470px, calc(100vw - 24px));
+  max-height: min(90svh, 800px);
+  border-radius: 24px;
+  overflow: auto;
+  background: #fff;
+  box-shadow: 0 24px 90px #102c2460;
+  color: #203e33;
+}
+.auth-dialog::backdrop {
+  background: #14292098;
+  backdrop-filter: blur(7px);
+}
+.auth-dialog .auth-page {
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+}
+.auth-dialog .auth-header,
+.auth-dialog .auth-footer,
+.auth-dialog .auth-story {
+  display: none;
+}
+.auth-dialog .auth-layout {
+  display: block;
+  margin: 0;
+}
+.auth-dialog .auth-card {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 48px 38px 34px;
+}
+.auth-dialog .auth-card-icon {
+  margin-inline: auto;
+}
+.auth-dialog .auth-card h1,
+.auth-dialog .auth-card-intro {
+  text-align: center;
+}
+.auth-dialog-close {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 14px;
+  border: 0;
+  background: transparent;
+  color: #344f43;
+  font-size: 28px;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+}
+.auth-providers {
+  display: grid;
+  gap: 10px;
+}
+.auth-providers button {
+  min-height: 48px;
+  border: 1px solid #cdd7ce;
+  border-radius: 24px;
+  background: white;
+  font: inherit;
+  font-weight: 600;
+}
+.auth-providers button:disabled {
+  cursor: not-allowed;
+  color: #68776d;
+  background: #f8faf7;
+}
+.auth-providers .auth-hint {
+  text-align: center;
+  margin: 0;
+}
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  color: #68776d;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e1e8df;
+}
+.auth-email-back {
+  border: 0;
+  background: none;
+  color: #315841;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}
+.dashboard-account-menu {
+  position: relative;
+}
+.dashboard-account-menu summary {
+  list-style: none;
+  cursor: pointer;
+}
+.dashboard-account-menu summary::-webkit-details-marker {
+  display: none;
+}
+.dashboard-account-menu summary:focus-visible {
+  outline: 3px solid #45673d;
+}
+.dashboard-account-popover {
+  position: absolute;
+  inset-inline-end: 0;
+  top: calc(100% + 12px);
+  z-index: 20;
+  width: max-content;
+  min-width: 210px;
+  max-width: min(320px, 85vw);
+  background: white;
+  border: 1px solid #e1e8df;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 14px 30px #203e3325;
+  display: grid;
+  gap: 10px;
+  font-size: 13px;
+}
+.dashboard-account-popover strong {
+  overflow-wrap: anywhere;
+}
+.dashboard-account-popover a,
+.dashboard-account-popover button {
+  color: #28533e;
+  background: transparent;
+  border: 0;
+  text-align: start;
+  padding: 8px;
+  font: inherit;
+  cursor: pointer;
+}
+.workspace-signin {
+  color: #28533e;
+  font-weight: 700;
+}
+@media (max-width: 480px) {
+  .auth-dialog .auth-card {
+    padding: 48px 22px 24px;
+  }
+}
 .auth-page {
   min-height: 100svh;
   background: #f8f7f2;

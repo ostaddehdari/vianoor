@@ -44,6 +44,22 @@ export function mailWorker(pool: Pool, config: IdentityConfig) {
   };
   tick();
   return {
+    async inspect() {
+      const { rows } = await pool.query(
+        `SELECT count(*)::int AS pending,
+          count(*) FILTER (WHERE attempts > 0)::int AS retried,
+          coalesce(max(attempts), 0)::int AS max_attempts,
+          min(next_at) AS next_attempt_at
+         FROM identity_mail WHERE expires_at > now()`,
+      );
+      let smtpReady = false;
+      try {
+        smtpReady = await transport.verify();
+      } catch {
+        // Never expose provider errors or credentials to a diagnostic response.
+      }
+      return { smtp_ready: smtpReady, queue: rows[0] };
+    },
     async close() {
       stopped = true;
       clearTimeout(timer);

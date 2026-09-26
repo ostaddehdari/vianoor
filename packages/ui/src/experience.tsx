@@ -75,6 +75,70 @@ function Preview({ locale }: { locale: Locale }) {
     </div>
   );
 }
+function DashboardAccountMenu({ locale }: { locale: Locale }) {
+  const [email, setEmail] = useState('');
+  useEffect(() => {
+    let mounted = true;
+    async function load() {
+      const endpoint = `${base}/api/auth/`;
+      let response = await fetch(endpoint + 'session', {
+        credentials: 'same-origin',
+        cache: 'no-store',
+      });
+      if (response.status === 401) {
+        const refreshed = await fetch(endpoint + 'refresh', {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: { 'Content-Type': 'application/json' },
+          body: '{}',
+        });
+        if (refreshed.ok)
+          response = await fetch(endpoint + 'session', {
+            credentials: 'same-origin',
+            cache: 'no-store',
+          });
+      }
+      if (response.ok && mounted) setEmail((await response.json()).data?.user?.email ?? '');
+    }
+    void load().catch(() => {});
+    return () => {
+      mounted = false;
+    };
+  }, []);
+  if (!email)
+    return (
+      <a className="workspace-signin" href={url(locale, 'auth/login')}>
+        {locale === 'fa' ? 'ورود' : 'Sign in'}
+      </a>
+    );
+  return (
+    <details className="dashboard-account-menu">
+      <summary aria-label={locale === 'fa' ? 'حساب کاربری' : 'Account'}>
+        <span className="avatar small-avatar">{email.slice(0, 1).toLocaleUpperCase()}</span>
+      </summary>
+      <div className="dashboard-account-popover">
+        <strong dir="ltr">{email}</strong>
+        <a href={url(locale, 'account/security')}>
+          {locale === 'fa' ? 'امنیت حساب' : 'Account security'}
+        </a>
+        <button
+          type="button"
+          onClick={async () => {
+            const response = await fetch(`${base}/api/auth/logout`, {
+              method: 'POST',
+              credentials: 'same-origin',
+              headers: { 'Content-Type': 'application/json' },
+              body: '{}',
+            });
+            if (response.ok) window.location.assign(url(locale));
+          }}
+        >
+          {locale === 'fa' ? 'خروج' : 'Sign out'}
+        </button>
+      </div>
+    </details>
+  );
+}
 function Ornament() {
   return (
     <div className="ornament" aria-hidden="true">
@@ -1158,7 +1222,7 @@ function Dashboard({
               <i />
             </button>
             <span className="header-separator" />
-            <span className="avatar small-avatar">{locale === 'fa' ? 'و' : 'V'}</span>
+            <DashboardAccountMenu locale={locale} />
           </div>
         </header>
         <main tabIndex={-1} id="main" className="dashboard-main">
