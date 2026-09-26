@@ -107,11 +107,11 @@ test('real invitation, profile wizard, avatar upload, form builder, role switchi
     const code = (await row.locator('td').first().innerText()).trim();
     expect(code).toMatch(/^[A-Za-z0-9]{13}$/);
     await row.getByRole('button', { name: 'Edit', exact: true }).click();
-    await expect(page.getByLabel('User roles', { exact: true })).toBeVisible();
+    await expect(page.getByRole('combobox', { name: 'User roles', exact: true })).toBeVisible();
     return code;
   }
   const code = await editClient();
-  await page.getByLabel('User roles', { exact: true }).selectOption('secretary');
+  await page.getByRole('combobox', { name: 'User roles', exact: true }).selectOption('secretary');
   await page.getByRole('button', { name: 'Add role', exact: true }).click();
   await expect(page.locator('.grant-list li').filter({ hasText: 'Secretary' })).toBeVisible();
   await client.goto('http://127.0.0.1:18876/vianoor/en/account');
@@ -156,7 +156,7 @@ test('real invitation, profile wizard, avatar upload, form builder, role switchi
   await page.getByLabel('Required', { exact: true }).check();
   await page
     .locator('.field-settings')
-    .getByLabel('Access scope', { exact: true })
+    .getByRole('combobox', { name: 'Access scope', exact: true })
     .selectOption('members');
   await page
     .locator('.field-palette')
@@ -180,7 +180,7 @@ test('real invitation, profile wizard, avatar upload, form builder, role switchi
     .getByRole('group', { name: 'Section title', exact: true })
     .getByLabel('English', { exact: true })
     .fill('Preferences');
-  await page.getByLabel('Form layout', { exact: true }).selectOption('tabs');
+  await page.getByRole('combobox', { name: 'Form layout', exact: true }).selectOption('tabs');
   page.once('dialog', (dialog) => dialog.accept());
   await page.getByRole('button', { name: 'Publish form', exact: true }).click();
   await expect(page.getByRole('status')).toHaveText('Changes saved.');
@@ -190,13 +190,13 @@ test('real invitation, profile wizard, avatar upload, form builder, role switchi
     await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1),
   ).toBeTruthy();
   await editClient();
-  await page.getByLabel('Assigned profile form', { exact: true }).selectOption({ label: title });
+  await page.getByRole('combobox', { name: 'Assigned profile form', exact: true }).selectOption({ label: title });
   page.once('dialog', (dialog) => dialog.accept());
   await page.getByRole('button', { name: 'Assign form', exact: true }).click();
   await expect(page.getByRole('status')).toHaveText('Changes saved.');
   await client.goto('http://127.0.0.1:18876/vianoor/en/account/profile');
   await client.getByLabel(/Favorite book/).fill('A sample title');
-  await client.getByLabel('Preferred time', { exact: true }).selectOption({ label: 'Morning' });
+  await client.getByRole('combobox', { name: 'Preferred time', exact: true }).selectOption({ label: 'Morning' });
   await client.getByRole('button', { name: 'Complete profile', exact: true }).click();
   await expect(client.getByRole('status')).toHaveText('Changes saved.');
   await client.goto('http://127.0.0.1:18876/vianoor/en/members/' + code);
