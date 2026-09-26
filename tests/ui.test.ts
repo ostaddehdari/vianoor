@@ -1,7 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { roles, copy, pagePaths, routeInfo } from '../packages/ui/src/routing.ts';
+import {
+  roles,
+  copy,
+  pagePaths,
+  routeInfo,
+  dashboardSections,
+} from '../packages/ui/src/routing.ts';
 test('all twelve role previews exist in both apps', () => {
   assert.equal(roles.length, 12);
   assert.equal(new Set(roles.map((r) => r.id)).size, 12);
@@ -28,4 +34,17 @@ test('page registry copy stays synchronized and routes reject arbitrary slugs', 
   }
   for (const p of ['not-real', 'experts/unknown', 'preview/finance/delete-all', 'preview/unknown'])
     assert.equal(routeInfo(p), null);
+});
+
+test('role menus use their own registered pages and preview links keep the selected role', () => {
+  assert.ok(dashboardSections('admin').includes('users'));
+  assert.ok(!dashboardSections('expert').includes('wallet'));
+  assert.ok(dashboardSections('expert').includes('availability'));
+  assert.ok(dashboardSections('finance').includes('reconciliation'));
+  for (const role of roles)
+    for (const section of dashboardSections(role.id)) {
+      const path = `preview/${role.id}/${section}`;
+      assert.equal(routeInfo(path)?.role, role.id);
+      assert.ok(pagePaths('web').includes(path));
+    }
 });

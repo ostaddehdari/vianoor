@@ -19,13 +19,28 @@ export const examples: Record<string, string[]> = {
 export function rolePath(id: string) {
   return id === 'ai' ? 'admin/ai' : id;
 }
+export function dashboardSections(id: string) {
+  const prefix = `/[locale]/${rolePath(id)}/`;
+  const sections = registry
+    .filter((p) => p.path.startsWith(prefix))
+    .map((p) => p.path.slice(prefix.length))
+    .filter((s) => s && !s.includes('/') && !s.includes('['));
+  return [
+    ...new Set(sections.length ? sections : ['questions', 'calendar', 'messages', 'settings']),
+  ];
+}
 export function routeInfo(path: string, app: 'web' | 'admin' = 'web') {
   if (!path) return { kind: app === 'web' ? 'home' : 'gallery', path };
   if (path === 'dashboards') return { kind: 'gallery', path };
   if (path.startsWith('preview/')) {
     const [, id, ...rest] = path.split('/');
     if (!roles.some((r) => r.id === id)) return null;
-    if (rest.length && !['activity', 'calendar', 'messages', 'settings'].includes(rest.join('/')))
+    if (
+      rest.length &&
+      ![...dashboardSections(id!), 'activity', 'calendar', 'messages', 'settings'].includes(
+        rest.join('/'),
+      )
+    )
       return null;
     return { kind: 'dashboard', path, role: id!, section: rest.join('/') };
   }
@@ -82,7 +97,13 @@ export function pagePaths(app: 'web' | 'admin') {
   );
   for (const r of roles) {
     paths.push(`preview/${r.id}`);
-    for (const section of ['activity', 'calendar', 'messages', 'settings'])
+    for (const section of [
+      ...dashboardSections(r.id),
+      'activity',
+      'calendar',
+      'messages',
+      'settings',
+    ])
       paths.push(`preview/${r.id}/${section}`);
   }
   if (app === 'web')

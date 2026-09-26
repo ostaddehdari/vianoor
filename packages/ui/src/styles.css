@@ -3380,3 +3380,23 @@ select {
     font-size: 10px;
   }
 }
+.workspace-switch select {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  padding-block: 6px;
+}
+.release-badge {
+  display: inline-block;
+  color: #52614e;
+  background: #edf2e9;
+  border: 1px solid #ccd8c5;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font: 600 11px/1.6 sans-serif;
+}
