@@ -13,3 +13,4 @@ test-results/
 playwright-report/
 .cache/
 infra/local/
+infra/identity.compose.json
