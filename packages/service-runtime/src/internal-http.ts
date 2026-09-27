@@ -61,7 +61,7 @@ export async function internalCall<T = Record<string, unknown>>(
   const response = await fetch(new URL(path, target), {
     method: method ?? (body === undefined ? 'GET' : 'POST'),
     redirect: 'error',
-    signal: AbortSignal.timeout(10000),
+    signal: AbortSignal.timeout(path.startsWith('/api/v2/matching/') ? 60000 : 10000),
     headers: { 'content-type': 'application/json', 'x-internal-key': key, authorization },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });

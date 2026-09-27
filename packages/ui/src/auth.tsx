@@ -1,8 +1,10 @@
 'use client';
+import { LanguageSwitcher } from './language-switcher';
+import { localizedText } from './localization-runtime';
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { Icon } from './icons';
 import { authCopy } from './auth-copy';
-type Locale = 'fa' | 'en';
+type Locale = string;
 export type AuthAction =
   | 'login'
   | 'register'
@@ -26,19 +28,19 @@ async function request(action: string, data?: unknown) {
 }
 function errorText(error: unknown, locale: Locale) {
   const code = error instanceof Error ? error.message : 'UNAVAILABLE';
-  const messages = authCopy[locale].errors;
+  const messages = authCopy[locale]!.errors;
   return messages[code as keyof typeof messages] ?? messages.UNAVAILABLE;
 }
 function Frame({
   locale,
   children,
-  route,
+  route: _route,
 }: {
   locale: Locale;
   children: ReactNode;
   route: string;
 }) {
-  const t = authCopy[locale];
+  const t = authCopy[locale]!;
   return (
     <div className="auth-page">
       <header className="auth-header">
@@ -46,17 +48,7 @@ function Frame({
           <Icon name="leaf" />
           {t.brand}
         </a>
-        <a
-          className="auth-language"
-          href={path(locale === 'fa' ? 'en' : 'fa', route)}
-          onClick={(e) => {
-            // Preserve a one-time link only in the fragment, never in the query or referrer.
-            if (window.location.hash) e.currentTarget.href += window.location.hash;
-          }}
-        >
-          <Icon name="globe" />
-          {t.language}
-        </a>
+        <LanguageSwitcher locale={locale} />
       </header>
       <main className="auth-layout" id="main">
         <aside className="auth-story">
@@ -97,7 +89,7 @@ export function AuthForm({
   action: AuthAction;
   modal?: boolean;
 }) {
-  const t = authCopy[locale];
+  const t = authCopy[locale]!;
   const dialog = useRef<HTMLDialogElement>(null);
   const [step, setStep] = useState<'email' | 'password'>('email');
   const [loginEmail, setLoginEmail] = useState('');
@@ -159,7 +151,7 @@ export function AuthForm({
           : { token: secret }),
         ...(needsPassword ? { password } : {}),
         ...(['register', 'forgot-password', 'resend-verification'].includes(action)
-          ? { locale }
+          ? { locale: locale === 'fa' ? 'fa' : 'en' }
           : {}),
       });
       if (action === 'login') {
@@ -196,31 +188,47 @@ export function AuthForm({
       {modal && step === 'email' && (
         <div
           className="auth-providers"
-          aria-label={locale === 'fa' ? 'روش‌های ورود' : 'Sign-in methods'}
-        >
-          {(['Google', 'Apple', 'Facebook', locale === 'fa' ? 'موبایل' : 'Phone'] as const).map(
-            (provider) => (
-              <button
-                type="button"
-                disabled
-                key={provider}
-                title={
-                  locale === 'fa'
-                    ? 'پس از تنظیم ارائه‌دهنده فعال می‌شود'
-                    : 'Available after provider configuration'
-                }
-              >
-                {locale === 'fa' ? 'ادامه با ' : 'Continue with '}
-                {provider}
-              </button>
-            ),
+          aria-label={localizedText(
+            locale,
+            'inline.auth.6b1d0f27ccb3',
+            'Sign-in methods',
+            'روش‌های ورود',
           )}
+        >
+          {(
+            [
+              'Google',
+              'Apple',
+              'Facebook',
+              localizedText(locale, 'inline.auth.f08d5319d3e7', 'Phone', 'موبایل'),
+            ] as const
+          ).map((provider) => (
+            <button
+              type="button"
+              disabled
+              key={provider}
+              title={localizedText(
+                locale,
+                'inline.auth.1e9cca2d3cfb',
+                'Available after provider configuration',
+                'پس از تنظیم ارائه‌دهنده فعال می‌شود',
+              )}
+            >
+              {localizedText(locale, 'inline.auth.cfc29632e854', 'Continue with ', 'ادامه با ')}
+              {provider}
+            </button>
+          ))}
           <p className="auth-hint">
-            {locale === 'fa'
-              ? 'ورود با این روش‌ها پس از اتصال امن ارائه‌دهنده فعال می‌شود.'
-              : 'These methods become available after secure provider setup.'}
+            {localizedText(
+              locale,
+              'inline.auth.e388e66b96ee',
+              'These methods become available after secure provider setup.',
+              'ورود با این روش‌ها پس از اتصال امن ارائه‌دهنده فعال می‌شود.',
+            )}
           </p>
-          <div className="auth-divider">{locale === 'fa' ? 'یا' : 'or'}</div>
+          <div className="auth-divider">
+            {localizedText(locale, 'inline.auth.c81b4d2033a6', 'or', 'یا')}
+          </div>
         </div>
       )}
       {success ? (
@@ -248,7 +256,8 @@ export function AuthForm({
             <>
               {modal && action === 'login' && (
                 <button className="auth-email-back" type="button" onClick={() => setStep('email')}>
-                  {loginEmail} · {locale === 'fa' ? 'تغییر ایمیل' : 'Change email'}
+                  {loginEmail} ·{' '}
+                  {localizedText(locale, 'inline.auth.6fb49f1cfec2', 'Change email', 'تغییر ایمیل')}
                 </button>
               )}
               <label className="auth-field">
@@ -342,7 +351,7 @@ export function AuthForm({
       <button
         className="auth-dialog-close"
         type="button"
-        aria-label={locale === 'fa' ? 'بستن' : 'Close'}
+        aria-label={localizedText(locale, 'inline.auth.b6bb5c9a478a', 'Close', 'بستن')}
         onClick={() => dialog.current?.close()}
       >
         ×
@@ -356,7 +365,7 @@ type AccountSessions = {
   sessions: { id: string; created_at: string; expires_at: string; current: boolean }[];
 };
 export function AccountSecurity({ locale }: { locale: Locale }) {
-  const t = authCopy[locale];
+  const t = authCopy[locale]!;
   const [data, setData] = useState<AccountSessions | null>(null),
     [busy, setBusy] = useState(true),
     [error, setError] = useState('');
@@ -426,12 +435,10 @@ export function AccountSecurity({ locale }: { locale: Locale }) {
                     {s.current ? t.current : `${t.session} ${i + 1}`}
                   </strong>
                   <span>
-                    {t.created}:{' '}
-                    {new Date(s.created_at).toLocaleString(locale === 'fa' ? 'fa-IR' : 'en-GB')}
+                    {t.created}: {new Date(s.created_at).toLocaleString(locale)}
                   </span>
                   <span>
-                    {t.expires}:{' '}
-                    {new Date(s.expires_at).toLocaleDateString(locale === 'fa' ? 'fa-IR' : 'en-GB')}
+                    {t.expires}: {new Date(s.expires_at).toLocaleDateString(locale)}
                   </span>
                 </div>
                 <button disabled={busy} onClick={() => operate('revoke', s.id)}>

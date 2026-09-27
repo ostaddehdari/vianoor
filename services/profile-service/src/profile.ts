@@ -18,6 +18,10 @@ const avatarSchema = z.union([
   z.object({ kind: z.literal('upload'), value: z.string().uuid() }).strict(),
 ]);
 export async function initializeProfile(pool: Pool) {
+  if (process.env.DISCOVERY_ENABLED === '1')
+    await pool.query(
+      "CREATE TABLE IF NOT EXISTS profile_languages(account_id uuid PRIMARY KEY,language text NOT NULL DEFAULT 'en')",
+    );
   await pool.query(
     "CREATE TABLE IF NOT EXISTS profile_timezones(account_id uuid PRIMARY KEY,timezone text NOT NULL DEFAULT 'Asia/Tehran')",
   );
@@ -52,6 +56,45 @@ export async function initializeProfile(pool: Pool) {
 }
 export function profileRouter(pool: Pool) {
   const router = internalRouter();
+  if (process.env.DISCOVERY_ENABLED === '1') {
+    router.get(
+      '/api/v2/profiles/language',
+      endpoint(async (req, res) => {
+        const user = await principal(req);
+        res.json({
+          data: {
+            language:
+              (
+                await pool.query('SELECT language FROM profile_languages WHERE account_id=$1', [
+                  user.id,
+                ])
+              ).rows[0]?.language ?? 'en',
+          },
+        });
+      }),
+    );
+    router.put(
+      '/api/v2/profiles/language',
+      endpoint(async (req, res) => {
+        const user = await principal(req),
+          input = z
+            .object({
+              language: z
+                .string()
+                .regex(/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/)
+                .max(35),
+            })
+            .strict()
+            .parse(req.body);
+        await internalCall('taxonomy-service', '/api/v2/languages/' + input.language);
+        await pool.query(
+          'INSERT INTO profile_languages(account_id,language) VALUES($1,$2) ON CONFLICT(account_id) DO UPDATE SET language=$2',
+          [user.id, input.language],
+        );
+        res.json({ data: input });
+      }),
+    );
+  }
   router.get(
     '/api/v2/profiles/timezone',
     endpoint(async (req, res) => {

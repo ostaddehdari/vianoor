@@ -457,46 +457,46 @@
   {
     "id": "R10-01",
     "stage": 10,
-    "title": "OpenSearch",
-    "status": "planned",
-    "acceptance": "بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence",
-    "verification": "docs/testing/stage-10 (planned)",
+    "title": "جستجوی چندزبانه OpenSearch",
+    "status": "verified-on-server",
+    "acceptance": "جستجوی بین‌زبانی، ابطال متن منسوخ، کنترل مالک داده و بررسی ظرفیت UTC",
+    "verification": "docs/stages/10-multilingual-discovery.md; tests/discovery.test.ts; tests/integration/discovery.test.ts",
     "externalDependency": "OpenSearch"
   },
   {
     "id": "R10-02",
     "stage": 10,
-    "title": "normalize فارسی",
-    "status": "planned",
-    "acceptance": "بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence",
-    "verification": "docs/testing/stage-10 (planned)",
+    "title": "نرمال‌سازی و تحلیل زبان",
+    "status": "verified-on-server",
+    "acceptance": "جستجوی بین‌زبانی، ابطال متن منسوخ، کنترل مالک داده و بررسی ظرفیت UTC",
+    "verification": "docs/stages/10-multilingual-discovery.md; tests/discovery.test.ts; tests/integration/discovery.test.ts",
     "externalDependency": "OpenSearch"
   },
   {
     "id": "R10-03",
     "stage": 10,
-    "title": "projection",
-    "status": "planned",
-    "acceptance": "بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence",
-    "verification": "docs/testing/stage-10 (planned)",
+    "title": "نمایه رویدادمحور و ACL تازه",
+    "status": "verified-on-server",
+    "acceptance": "جستجوی بین‌زبانی، ابطال متن منسوخ، کنترل مالک داده و بررسی ظرفیت UTC",
+    "verification": "docs/stages/10-multilingual-discovery.md; tests/discovery.test.ts; tests/integration/discovery.test.ts",
     "externalDependency": "OpenSearch"
   },
   {
     "id": "R10-04",
     "stage": 10,
-    "title": "presence",
-    "status": "planned",
-    "acceptance": "بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence",
-    "verification": "docs/testing/stage-10 (planned)",
+    "title": "تطبیق با زبان و ظرفیت واقعی",
+    "status": "verified-on-server",
+    "acceptance": "جستجوی بین‌زبانی، ابطال متن منسوخ، کنترل مالک داده و بررسی ظرفیت UTC",
+    "verification": "docs/stages/10-multilingual-discovery.md; tests/discovery.test.ts; tests/integration/discovery.test.ts",
     "externalDependency": "OpenSearch"
   },
   {
     "id": "R10-05",
     "stage": 10,
-    "title": "ranking",
-    "status": "planned",
-    "acceptance": "بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence",
-    "verification": "docs/testing/stage-10 (planned)",
+    "title": "رتبه‌بندی متنی و فرهنگ مفهوم",
+    "status": "verified-on-server",
+    "acceptance": "جستجوی بین‌زبانی، ابطال متن منسوخ، کنترل مالک داده و بررسی ظرفیت UTC",
+    "verification": "docs/stages/10-multilingual-discovery.md; tests/discovery.test.ts; tests/integration/discovery.test.ts",
     "externalDependency": "OpenSearch"
   },
   {
@@ -1053,5 +1053,59 @@
     "acceptance": "پنل مراجع همگانی، انتخاب نقش واقعی، دعوت، ویرایش، ابطال دسترسی و منع ارتقای غیرمجاز",
     "verification": "docs/stages/06-users-permissions.md",
     "externalDependency": "بدون حساب بیرونی"
+  },
+  {
+    "id": "R10-06",
+    "stage": 10,
+    "title": "فهرست ۱۴۷ زبان و تنظیمات مدیر",
+    "status": "verified-on-server",
+    "acceptance": "مطابق docs/stages/10-scope.md؛ AI در این مرحله فراخوانی نمی‌شود",
+    "verification": "docs/stages/10-data-model.md; docs/stages/10-multilingual-discovery.md",
+    "externalDependency": "PostgreSQL؛ بدون ارائه‌دهندهٔ AI فعال"
+  },
+  {
+    "id": "R10-07",
+    "stage": 10,
+    "title": "ترجمهٔ دیتابیسی صفحات و fallback انگلیسی",
+    "status": "verified-on-server",
+    "acceptance": "مطابق docs/stages/10-scope.md؛ AI در این مرحله فراخوانی نمی‌شود",
+    "verification": "docs/stages/10-data-model.md; docs/stages/10-multilingual-discovery.md",
+    "externalDependency": "PostgreSQL؛ بدون ارائه‌دهندهٔ AI فعال"
+  },
+  {
+    "id": "R10-08",
+    "stage": 10,
+    "title": "ترجمهٔ پروفایل، تخصص و خدمات",
+    "status": "verified-on-server",
+    "acceptance": "مطابق docs/stages/10-scope.md؛ AI در این مرحله فراخوانی نمی‌شود",
+    "verification": "docs/stages/10-data-model.md; docs/stages/10-multilingual-discovery.md",
+    "externalDependency": "PostgreSQL؛ بدون ارائه‌دهندهٔ AI فعال"
+  },
+  {
+    "id": "R10-09",
+    "stage": 10,
+    "title": "گردش پیش‌نویس، بازبینی و انتشار",
+    "status": "verified-on-server",
+    "acceptance": "مطابق docs/stages/10-scope.md؛ AI در این مرحله فراخوانی نمی‌شود",
+    "verification": "docs/stages/10-data-model.md; docs/stages/10-multilingual-discovery.md",
+    "externalDependency": "PostgreSQL؛ بدون ارائه‌دهندهٔ AI فعال"
+  },
+  {
+    "id": "R10-10",
+    "stage": 10,
+    "title": "صف غیرفعال ترجمه و قرارداد آیندهٔ صوت/چت",
+    "status": "verified-on-server",
+    "acceptance": "مطابق docs/stages/10-scope.md؛ AI در این مرحله فراخوانی نمی‌شود",
+    "verification": "docs/stages/10-data-model.md; docs/stages/10-multilingual-discovery.md",
+    "externalDependency": "PostgreSQL؛ بدون ارائه‌دهندهٔ AI فعال"
+  },
+  {
+    "id": "R10-11",
+    "stage": 10,
+    "title": "بازبینی مدل داده پیش از مرحلهٔ ۱۱",
+    "status": "verified-on-server",
+    "acceptance": "مطابق docs/stages/10-scope.md؛ AI در این مرحله فراخوانی نمی‌شود",
+    "verification": "docs/stages/10-data-model.md; docs/stages/10-multilingual-discovery.md",
+    "externalDependency": "PostgreSQL؛ بدون ارائه‌دهندهٔ AI فعال"
   }
 ]

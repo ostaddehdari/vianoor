@@ -15,6 +15,10 @@ const owners: Record<string, string> = {
   experts: 'scholar-service',
   taxonomy: 'taxonomy-service',
   availability: 'availability-service',
+  languages: 'taxonomy-service',
+  localization: 'taxonomy-service',
+  search: 'search-service',
+  matching: 'matching-service',
 };
 export function usersProxy() {
   const router = internalRouter('28mb', true);
@@ -31,6 +35,11 @@ export function usersProxy() {
       const publicRead =
         req.method === 'GET' &&
         (req.path === '/experts/public' ||
+          (req.path === '/languages' && req.query.admin !== '1') ||
+          /^\/languages\/[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(req.path) ||
+          ['/localization/bundle', '/localization/translation', '/search/experts'].includes(
+            req.path,
+          ) ||
           /^\/experts\/public\/[a-z0-9-]+$/.test(req.path) ||
           /^\/files\/public\/[a-f0-9-]+$/.test(req.path) ||
           (req.path === '/taxonomy' && req.query.admin !== '1'));

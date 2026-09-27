@@ -11,6 +11,7 @@ export type Taxon = {
   revision: number;
 };
 export type Professional = {
+  source_language?: string;
   display_name: string;
   contact_phone: string;
   title: string;
@@ -43,6 +44,7 @@ export type DocumentDetails = {
   public_summary: boolean;
 };
 export type Offering = {
+  source_language?: string;
   title: string;
   summary: string;
   description: string;

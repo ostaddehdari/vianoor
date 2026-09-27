@@ -1,4 +1,5 @@
 'use client';
+import { languageValue } from './localization-runtime';
 import { useEffect, useState } from 'react';
 import { usersCopy } from './users-copy';
 import {
@@ -9,7 +10,7 @@ import {
   type Localized,
 } from './users-client';
 import { DynamicProfileForm, userError } from './user-profile';
-type Locale = 'fa' | 'en';
+type Locale = string;
 const id = () => `f${crypto.randomUUID().slice(0, 8)}`;
 function Bilingual({
   label,
@@ -55,7 +56,7 @@ function ConditionValue({
   value: string | boolean;
   onChange: (v: string | boolean) => void;
 }) {
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   if (controller?.type === 'checkbox')
     return (
       <select value={String(value)} onChange={(e) => onChange(e.target.value === 'true')}>
@@ -70,7 +71,7 @@ function ConditionValue({
         <option value="">{t.choose}</option>
         {controller.options.map((o) => (
           <option value={o.value} key={o.value}>
-            {o.label[locale]}
+            {languageValue(o.label, locale)}
           </option>
         ))}
       </select>
@@ -78,7 +79,7 @@ function ConditionValue({
   return <input value={String(value)} onChange={(e) => onChange(e.target.value)} />;
 }
 export function FormBuilder({ locale }: { locale: Locale }) {
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   const [forms, setForms] = useState<FormDraft[]>([]),
     [selected, setSelected] = useState(''),
     [draft, setDraft] = useState<FormDefinition | null>(null),
@@ -199,7 +200,7 @@ export function FormBuilder({ locale }: { locale: Locale }) {
           >
             {forms.map((form) => (
               <option key={form.id} value={form.id}>
-                {form.draft.title[locale]}
+                {languageValue(form.draft.title, locale)}
                 {form.is_default ? ` · ${t.defaultForm}` : ''}
               </option>
             ))}
@@ -266,7 +267,7 @@ export function FormBuilder({ locale }: { locale: Locale }) {
                       setField(-1);
                     }}
                   >
-                    {s.title[locale]}
+                    {languageValue(s.title, locale)}
                   </button>
                 ))}
                 <button
@@ -381,7 +382,7 @@ export function FormBuilder({ locale }: { locale: Locale }) {
                           onClick={() => setField(i)}
                         >
                           <strong>
-                            {item.label[locale]}
+                            {languageValue(item.label, locale)}
                             {item.required ? ' *' : ''}
                           </strong>
                           <span>{t.fieldTypes[item.type]}</span>
@@ -525,7 +526,7 @@ export function FormBuilder({ locale }: { locale: Locale }) {
                                 )
                                 .map((f) => (
                                   <option key={f.id} value={f.id}>
-                                    {f.label[locale]}
+                                    {languageValue(f.label, locale)}
                                   </option>
                                 ))}
                             </select>

@@ -1,3 +1,4 @@
+import { getCatalog } from '../../../../lib/localization';
 import { AuthForm, isLocale, type AuthAction, Experience, routeInfo } from '@vianoor/ui';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -19,6 +20,7 @@ export default async function Page({
   params: Promise<{ locale: string; action: string }>;
 }) {
   const { locale, action } = await params;
+  await getCatalog(locale);
   if (!isLocale(locale)) notFound();
   if (!actions.includes(action)) {
     if (!routeInfo(`auth/${action}`, 'web')) notFound();

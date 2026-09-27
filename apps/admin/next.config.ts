@@ -4,5 +4,6 @@ const config: NextConfig = {
   transpilePackages: ['@vianoor/ui'],
   poweredByHeader: false,
   reactStrictMode: true,
+  experimental: { cpus: 2 },
 };
 export default config;

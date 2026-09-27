@@ -32,6 +32,9 @@ export const roles = {
   organization: ['membership.manage'],
   admin: [
     'calendar.manage',
+    'translation.manage',
+    'translation.review',
+    'search.manage',
     'booking.manage',
     'expert.read',
     'expert.review',

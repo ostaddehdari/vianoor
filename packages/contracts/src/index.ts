@@ -102,3 +102,24 @@ export const aiProviderConfigSchema = z.strictObject({
   default_model_id: z.string().trim().min(1).max(200),
   timeout_ms: z.number().int().min(1000).max(120000),
 });
+
+// Versioned technical provenance for future translation transport, not a chat entity.
+// Consent is required before any future external provider sees private content.
+export const translationProvenanceV1Schema = z.strictObject({
+  version: z.literal(1),
+  source_language: z
+    .string()
+    .regex(/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/)
+    .max(35),
+  target_language: z
+    .string()
+    .regex(/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/)
+    .max(35),
+  original_content_ref: z.string().uuid(),
+  original_sha256: z.string().regex(/^[a-f0-9]{64}$/),
+  translation_revision: z.number().int().positive(),
+  consent_ref: z.string().uuid(),
+  consent_version: z.number().int().positive(),
+  provider_ref: z.string().max(120).nullable(),
+  created_at: z.string().datetime(),
+});

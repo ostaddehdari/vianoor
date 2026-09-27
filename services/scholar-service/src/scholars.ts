@@ -1,3 +1,4 @@
+import { publicProjection, translatedFields } from './discovery.js';
 import { randomUUID } from 'node:crypto';
 import type { Pool, PoolClient } from 'pg';
 import type { Request } from 'express';
@@ -120,7 +121,12 @@ async function record(
     [randomUUID(), scholar.account_id, scholar.id, event],
   );
 }
+async function sourceLanguage(code: string | undefined) {
+  if (process.env.DISCOVERY_ENABLED === '1' && code && code !== 'und')
+    await internalCall('taxonomy-service', '/api/v2/languages/' + code);
+}
 async function taxonomy(req: Request, profile: Professional) {
+  await sourceLanguage(profile.source_language);
   await internalCall('taxonomy-service', '/internal/taxonomy/validate', auth(req), {
     specialties: profile.specialties,
     languages: profile.languages.map((l) => l.id),
@@ -689,6 +695,7 @@ export function scholarsRouter(pool: Pool) {
       const { user, row } = await mine(req);
       if (!row) throw new ServiceError(404, 'NOT_FOUND');
       const input = offeringSchema.parse(req.body);
+      await sourceLanguage(input.source_language);
       await internalCall('taxonomy-service', '/internal/taxonomy/validate', auth(req), {
         specialties: [input.specialty_id],
         languages: [],
@@ -734,6 +741,7 @@ export function scholarsRouter(pool: Pool) {
         languages: [],
         categories: input.details.category_id ? [input.details.category_id] : [],
       });
+      await sourceLanguage(input.details.source_language);
       await pinImage(req, input.details.image_id, user.public_id, 'scholar-service:' + id);
       await transaction(pool, async (db) => {
         const current = await load(db, row.id, true);
@@ -874,7 +882,24 @@ export function scholarsRouter(pool: Pool) {
   );
   router.get(
     '/api/v2/experts/public',
-    endpoint(async (_req, res) => {
+    endpoint(async (req, res) => {
+      if (process.env.DISCOVERY_ENABLED === '1') {
+        const locale = z
+          .string()
+          .regex(/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/)
+          .default('en')
+          .parse(req.query.language);
+        await internalCall('taxonomy-service', '/api/v2/languages/' + locale);
+        const projection = await publicProjection(pool, { locale });
+        res.json({
+          data: projection.items.map((item) => ({
+            slug: item.slug,
+            public_id: item.code,
+            ...item.profile,
+          })),
+        });
+        return;
+      }
       const rows = (
         await pool.query(
           "SELECT slug,public_id,profile->>'display_name' AS display_name,profile->>'title' AS title,profile->>'short_bio' AS short_bio FROM scholars WHERE status='APPROVED' AND (valid_until IS NULL OR valid_until>now()) AND profile->>'visibility'='PUBLIC' ORDER BY slug LIMIT 100",
@@ -938,7 +963,17 @@ export function scholarsRouter(pool: Pool) {
         viewpoints,
         seo_title,
         seo_description,
-      } = row.profile;
+      } = await translatedFields(
+        pool,
+        'expert',
+        row.id,
+        row.profile,
+        z
+          .string()
+          .regex(/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/)
+          .default('en')
+          .parse(req.query.language),
+      );
       res.json({
         data: {
           slug,
@@ -974,12 +1009,23 @@ export function scholarsRouter(pool: Pool) {
               issuer: d.details.issuer,
               kind: d.details.kind,
             })),
-          services: (
-            await pool.query(
-              "SELECT id,details FROM scholar_offerings WHERE scholar_id=$1 AND status='PUBLISHED' AND details->>'specialty_id'=ANY($2::text[])",
-              [row.id, specialties],
-            )
-          ).rows,
+          services: await Promise.all(
+            (
+              await pool.query(
+                "SELECT id,details FROM scholar_offerings WHERE scholar_id=$1 AND status='PUBLISHED' AND details->>'specialty_id'=ANY($2::text[])",
+                [row.id, specialties],
+              )
+            ).rows.map(async (offering) => ({
+              ...offering,
+              details: await translatedFields(
+                pool,
+                'service',
+                offering.id,
+                offering.details,
+                String(req.query.language ?? 'en'),
+              ),
+            })),
+          ),
         },
       });
     }),

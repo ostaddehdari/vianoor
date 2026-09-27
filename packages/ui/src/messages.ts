@@ -1,4 +1,5 @@
-export const messages = {
+import { createDictionary } from './localization-runtime';
+export const messages = createDictionary('messages', {
   fa: {
     brand: 'ویانور',
     tagline: 'همراه شما برای یافتن پاسخ',
@@ -78,8 +79,8 @@ export const messages = {
     nextText: 'Docker, isolated databases, Redis, NATS, and observability.',
     footer: 'Development foundation · No real user data',
   },
-} as const;
-export type Locale = keyof typeof messages;
+} as const);
+export type Locale = string;
 export function isLocale(value: string): value is Locale {
-  return value === 'fa' || value === 'en';
+  return /^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(value);
 }

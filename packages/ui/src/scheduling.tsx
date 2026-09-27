@@ -5,7 +5,7 @@ import { schedulingCopy } from './scheduling-copy';
 import { ThreeCalendar } from './three-calendar';
 import { threeCalendarCopy } from './three-calendar-copy';
 import { addDays } from './calendar-dates';
-type Locale = 'fa' | 'en';
+type Locale = string;
 type Copy = typeof schedulingCopy.en;
 type Rule = { day: number; start: string; end: string };
 type Calendar = {
@@ -71,7 +71,7 @@ function failure(t: Copy, e: unknown) {
 function format(value: string, zone: string, locale: Locale) {
   try {
     return (
-      new Intl.DateTimeFormat(locale === 'fa' ? 'fa-IR' : 'en-GB', {
+      new Intl.DateTimeFormat(locale, {
         timeZone: zone,
         dateStyle: 'medium',
         timeStyle: 'short',
@@ -162,7 +162,7 @@ function Rules({
   );
 }
 function CalendarEditor({ locale }: { locale: Locale }) {
-  const t = schedulingCopy[locale],
+  const t = schedulingCopy[locale]!,
     [value, setValue] = useState<Calendar | null>(null),
     [error, setError] = useState(''),
     [message, setMessage] = useState(''),
@@ -381,7 +381,7 @@ function BookingFlow({
   move?: Booking;
   onDone?: () => void;
 }) {
-  const t = schedulingCopy[locale],
+  const t = schedulingCopy[locale]!,
     [services, setServices] = useState<Service[]>([]),
     [expert, setExpert] = useState(move?.expert_code ?? ''),
     [service, setService] = useState(move?.service_id ?? ''),
@@ -688,7 +688,7 @@ function BookingFlow({
   );
 }
 function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert' | 'admin' }) {
-  const t = schedulingCopy[locale],
+  const t = schedulingCopy[locale]!,
     [rows, setRows] = useState<Booking[]>([]),
     [notes, setNotes] = useState<Note[]>([]),
     [zone, setZone] = useState('Asia/Tehran'),
@@ -764,7 +764,7 @@ function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert'
       </h2>
       {error && <p role="alert">{error}</p>}
       <Zone t={t} value={zone} onChange={setZone} />
-      <p>{threeCalendarCopy[locale].selectDay}</p>
+      <p>{threeCalendarCopy[locale]!.selectDay}</p>
       <ThreeCalendar
         locale={locale}
         timezone={zone}
@@ -781,7 +781,7 @@ function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert'
             setOffset(0);
           }}
         >
-          {threeCalendarCopy[locale].allDates}
+          {threeCalendarCopy[locale]!.allDates}
         </button>
       )}
       <label>
@@ -905,7 +905,7 @@ function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert'
   );
 }
 function HolidayManager({ locale }: { locale: Locale }) {
-  const t = schedulingCopy[locale],
+  const t = schedulingCopy[locale]!,
     [items, setItems] = useState<
       {
         id: string;

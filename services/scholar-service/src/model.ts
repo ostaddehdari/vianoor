@@ -20,6 +20,11 @@ const webUrl = z
   .refine((v) => new URL(v).protocol === 'https:');
 export const professionalSchema = z
   .object({
+    source_language: z
+      .string()
+      .regex(/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/)
+      .max(35)
+      .default('und'),
     display_name: text,
     contact_phone: z
       .string()
@@ -92,6 +97,11 @@ export const documentSchema = z
   .refine((v) => !v.issued_at || !v.expires_at || v.issued_at <= v.expires_at);
 export const offeringSchema = z
   .object({
+    source_language: z
+      .string()
+      .regex(/^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/)
+      .max(35)
+      .default('und'),
     title: text.min(1),
     summary: z.string().trim().min(1).max(400),
     description: z.string().trim().max(10000),

@@ -1,3 +1,4 @@
+import { translateTaxons } from './specialty-translations.js';
 import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import type { Pool } from 'pg';
@@ -68,12 +69,15 @@ export function taxonomyRouter(pool: Pool) {
       const admin = req.query.admin === '1';
       if (admin) await requirePermission(req, 'specialty.manage');
       res.json({
-        data: (
-          await pool.query(
-            'WITH RECURSIVE hidden AS (SELECT id FROM taxonomy_entries WHERE NOT active UNION SELECT t.id FROM taxonomy_entries t JOIN hidden h ON t.parent_id=h.id) SELECT * FROM taxonomy_entries WHERE $1 OR id NOT IN (SELECT id FROM hidden) ORDER BY position,id',
-            [admin],
-          )
-        ).rows,
+        data: await translateTaxons(
+          pool,
+          (
+            await pool.query(
+              'WITH RECURSIVE hidden AS (SELECT id FROM taxonomy_entries WHERE NOT active UNION SELECT t.id FROM taxonomy_entries t JOIN hidden h ON t.parent_id=h.id) SELECT * FROM taxonomy_entries WHERE $1 OR id NOT IN (SELECT id FROM hidden) ORDER BY position,id',
+              [admin],
+            )
+          ).rows,
+        ),
       });
     }),
   );
@@ -110,6 +114,8 @@ export function taxonomyRouter(pool: Pool) {
     endpoint(async (req, res) => {
       const user = await requirePermission(req, 'specialty.manage');
       const input = entrySchema.parse(req.body);
+      if (process.env.DISCOVERY_ENABLED === '1' && input.kind === 'language')
+        throw new ServiceError(400, 'USE_LANGUAGE_REGISTRY');
       const id = randomUUID();
       await pinImage(req, input.image_id, user.public_id, id);
       await transaction(pool, async (db) => {
@@ -155,6 +161,8 @@ export function taxonomyRouter(pool: Pool) {
       const input = entrySchema
         .extend({ revision: z.number().int().nonnegative() })
         .parse(req.body);
+      if (process.env.DISCOVERY_ENABLED === '1' && input.kind === 'language')
+        throw new ServiceError(400, 'USE_LANGUAGE_REGISTRY');
       const previous = (await pool.query('SELECT image_id FROM taxonomy_entries WHERE id=$1', [id]))
         .rows[0];
       if (!previous) throw new ServiceError(404, 'NOT_FOUND');

@@ -1,4 +1,8 @@
 'use client';
+import { LocalizationManager } from './localization-manager';
+import { discoveryCopy } from './discovery-copy';
+import { LanguageSwitcher } from './language-switcher';
+import { languageValue } from './localization-runtime';
 import { useEffect, useState } from 'react';
 import { usersCopy } from './users-copy';
 import { dashboardSections, sectionNames } from './routing';
@@ -18,10 +22,10 @@ import { ScholarWorkspace, TaxonomyManager, FileManager, ServiceReviewQueue } fr
 import { scholarsCopy } from './scholars-copy';
 import { schedulingCopy } from './scheduling-copy';
 import { SchedulingWorkspace } from './scheduling';
-type Locale = 'fa' | 'en';
+type Locale = string;
 const href = (locale: Locale, path: string) => `${usersBase}/${locale}/${path}`;
 const roleName = (locale: Locale, role: string) =>
-  usersCopy[locale].roleNames[role as keyof typeof usersCopy.fa.roleNames] ?? role;
+  usersCopy[locale]!.roleNames[role as keyof typeof usersCopy.fa.roleNames] ?? role;
 async function logout(locale: Locale) {
   const result = await fetch(`${usersBase}/api/auth/logout`, {
     method: 'POST',
@@ -34,7 +38,7 @@ async function logout(locale: Locale) {
 export function UserAccountMenu({ locale, profile: given }: { locale: Locale; profile?: Profile }) {
   const [profile, setProfile] = useState<Profile | undefined>(given),
     [error, setError] = useState('');
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   useEffect(() => {
     if (given) {
       setProfile(given);
@@ -91,7 +95,7 @@ function SessionRequests({
   scope: string;
   complete: boolean;
 }) {
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   const [items, setItems] = useState<SessionRequest[]>([]),
     [experts, setExperts] = useState<
       { public_id: string; display_name: string; avatar: AvatarValue }[]
@@ -258,7 +262,7 @@ function Audit({ locale }: { locale: Locale }) {
       { id: number; action: string; scope: string; occurred_at: string }[]
     >([]),
     [error, setError] = useState('');
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   useEffect(() => {
     void userApi<typeof rows>('access/audit')
       .then(setRows)
@@ -280,7 +284,7 @@ function Audit({ locale }: { locale: Locale }) {
   );
 }
 export function UserWorkspace({ locale, path }: { locale: Locale; path: string }) {
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   const [profile, setProfile] = useState<Profile | null>(null),
     [workspaces, setWorkspaces] = useState<Workspace[]>([]),
     [scope, setScope] = useState('platform'),
@@ -334,39 +338,40 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     ['', roleName(locale, role)],
     ...(role === 'account'
       ? ([
-          ['book', schedulingCopy[locale].book],
-          ['bookings', schedulingCopy[locale].bookings],
+          ['book', schedulingCopy[locale]!.book],
+          ['bookings', schedulingCopy[locale]!.bookings],
         ] as [string, string][])
       : []),
     ...(role === 'expert'
       ? ([
-          ['calendar', schedulingCopy[locale].calendar],
-          ['bookings', schedulingCopy[locale].expertBookings],
+          ['calendar', schedulingCopy[locale]!.calendar],
+          ['bookings', schedulingCopy[locale]!.expertBookings],
         ] as [string, string][])
       : []),
     ...(admin
       ? ([
-          ['bookings', schedulingCopy[locale].adminBookings],
-          ['calendar-settings', schedulingCopy[locale].holidays],
+          ['bookings', schedulingCopy[locale]!.adminBookings],
+          ['calendar-settings', schedulingCopy[locale]!.holidays],
         ] as [string, string][])
       : []),
     ...(['account', 'expert'].includes(role)
-      ? [['professional', scholarsCopy[locale].professional] as [string, string]]
+      ? [['professional', scholarsCopy[locale]!.professional] as [string, string]]
       : []),
     ...(admin || role === 'scientific'
       ? ([
-          ['experts', scholarsCopy[locale].experts],
-          ['expert-applications', scholarsCopy[locale].applications],
-          ['verification', scholarsCopy[locale].verification],
-          ['expert-documents', scholarsCopy[locale].documents],
-          ['services', scholarsCopy[locale].services],
-          ['taxonomy', scholarsCopy[locale].taxonomy],
+          ['experts', scholarsCopy[locale]!.experts],
+          ['expert-applications', scholarsCopy[locale]!.applications],
+          ['verification', scholarsCopy[locale]!.verification],
+          ['expert-documents', scholarsCopy[locale]!.documents],
+          ['services', scholarsCopy[locale]!.services],
+          ['taxonomy', scholarsCopy[locale]!.taxonomy],
         ] as [string, string][])
       : []),
-    ...(admin ? [['files', scholarsCopy[locale].files] as [string, string]] : []),
+    ...(admin ? [['files', scholarsCopy[locale]!.files] as [string, string]] : []),
     ...(role === 'account' ? [['profile', t.editProfile] as [string, string]] : []),
     ...(admin
       ? ([
+          ['localization', discoveryCopy[locale]!.admin],
           ['users', t.users],
           ['forms', t.forms],
           ['organizations', t.organizations],
@@ -382,7 +387,7 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     existing.add('requests');
   }
   for (const part of dashboardSections(role)) {
-    if (!existing.has(part) && sectionNames[part]) links.push([part, sectionNames[part]![locale]]);
+    if (!existing.has(part) && sectionNames[part]) links.push([part, sectionNames[part]![locale]!]);
   }
   return (
     <div className="users-app">
@@ -445,14 +450,7 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
           </div>
           <div className="user-actions">
             <ReleaseBadge locale={locale} />
-            <a
-              href={
-                href(locale === 'fa' ? 'en' : 'fa', path) +
-                (scope === 'platform' ? '' : '?scope=' + encodeURIComponent(scope))
-              }
-            >
-              {t.language}
-            </a>
+            <LanguageSwitcher locale={locale} />
             <UserAccountMenu locale={locale} profile={profile} />
           </div>
         </header>
@@ -465,7 +463,9 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
               </a>
             </div>
           )}
-          {role === 'account' && section === 'book' ? (
+          {admin && section === 'localization' ? (
+            <LocalizationManager locale={locale} />
+          ) : role === 'account' && section === 'book' ? (
             <SchedulingWorkspace locale={locale} mode="book" />
           ) : role === 'account' && ['bookings', 'calendar'].includes(section) ? (
             <SchedulingWorkspace locale={locale} mode="mine" />
@@ -599,7 +599,7 @@ type Member = {
   form?: Profile['form'];
 };
 export function MemberProfile({ locale, code }: { locale: Locale; code: string }) {
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   const [profile, setProfile] = useState<Member | null>(null),
     [error, setError] = useState('');
   useEffect(() => {
@@ -616,7 +616,10 @@ export function MemberProfile({ locale, code }: { locale: Locale; code: string }
   const display = (value: unknown, field: (typeof fields)[number]): string => {
     if (Array.isArray(value)) return value.map((v) => display(v, field)).join('، ');
     if (typeof value === 'boolean') return value ? '✓' : '—';
-    return field.options?.find((o) => o.value === value)?.label[locale] ?? String(value ?? '—');
+    return (
+      languageValue(field.options?.find((o) => o.value === value)?.label, locale) ??
+      String(value ?? '—')
+    );
   };
   return (
     <main className="member-profile">
@@ -642,12 +645,12 @@ export function MemberProfile({ locale, code }: { locale: Locale; code: string }
               .filter((f) => f.value !== undefined && f.value !== null && f.value !== '')
               .map((f) => (
                 <div className="profile-property" key={f.id}>
-                  <dt>{f.label[locale]}</dt>
+                  <dt>{languageValue(f.label, locale)}</dt>
                   <dd>
                     {f.type === 'image' ? (
                       <UserAvatar
                         avatar={{ kind: 'upload', value: String(f.value) }}
-                        name={f.label[locale]}
+                        name={languageValue(f.label, locale)}
                         size={120}
                       />
                     ) : (

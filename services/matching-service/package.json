@@ -10,6 +10,8 @@
     "start": "node dist/main.js"
   },
   "dependencies": {
-    "@vianoor/service-runtime": "0.1.0"
+    "@vianoor/service-runtime": "0.1.0",
+    "zod": "3.25.76",
+    "pg": "8.16.3"
   }
 }

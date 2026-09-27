@@ -1,4 +1,5 @@
-export const usersCopy = {
+import { createDictionary } from './localization-runtime';
+export const usersCopy = createDictionary('usersCopy', {
   fa: {
     title: 'حساب من',
     loading: 'در حال دریافت اطلاعات…',
@@ -358,4 +359,4 @@ export const usersCopy = {
       heading: 'Heading',
     },
   },
-} as const;
+} as const);

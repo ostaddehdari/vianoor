@@ -1,4 +1,5 @@
-export const authCopy = {
+import { createDictionary } from './localization-runtime';
+export const authCopy = createDictionary('authCopy', {
   fa: {
     brand: 'ویانور',
     home: 'بازگشت به ویانور',
@@ -120,4 +121,4 @@ export const authCopy = {
       FORBIDDEN: 'The request was not accepted. Open the site at its official address.',
     },
   },
-};
+});

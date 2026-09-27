@@ -18,6 +18,10 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       'experts',
       'taxonomy',
       'availability',
+      'languages',
+      'localization',
+      'search',
+      'matching',
     ].includes(path[0]!)
   )
     return fail('NOT_FOUND', 404);
@@ -45,7 +49,10 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
   const access = req.cookies.get((secure ? '__Secure-vianoor-' : 'vianoor-') + 'access')?.value;
   const publicRead =
     req.method === 'GET' &&
-    ((path[0] === 'experts' && path[1] === 'public') ||
+    ((path[0] === 'languages' && req.nextUrl.searchParams.get('admin') !== '1') ||
+      (path[0] === 'localization' && ['bundle', 'translation'].includes(path[1] ?? '')) ||
+      (path[0] === 'search' && path[1] === 'experts') ||
+      (path[0] === 'experts' && path[1] === 'public') ||
       (path[0] === 'files' && path[1] === 'public') ||
       (path.length === 1 &&
         path[0] === 'taxonomy' &&
@@ -82,7 +89,7 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
         method: req.method,
         redirect: 'error',
         cache: 'no-store',
-        signal: AbortSignal.timeout(20000),
+        signal: AbortSignal.timeout(path[0] === 'matching' ? 65000 : 20000),
         headers: {
           'content-type': 'application/json',
           'x-internal-key': key,

@@ -1,0 +1,6732 @@
+[
+  {
+    "key": "authCopy.account",
+    "module": "authcopy",
+    "en": "Your account",
+    "fa": "حساب شما",
+    "ar": "Your account"
+  },
+  {
+    "key": "authCopy.brand",
+    "module": "authcopy",
+    "en": "Vianoor",
+    "fa": "ویانور",
+    "ar": "Vianoor"
+  },
+  {
+    "key": "authCopy.busy",
+    "module": "authcopy",
+    "en": "Working…",
+    "fa": "در حال انجام…",
+    "ar": "Working…"
+  },
+  {
+    "key": "authCopy.confirm",
+    "module": "authcopy",
+    "en": "Confirm password",
+    "fa": "تکرار رمز عبور",
+    "ar": "Confirm password"
+  },
+  {
+    "key": "authCopy.confirmRevoke",
+    "module": "authcopy",
+    "en": "End all sessions, including this one?",
+    "fa": "آیا می‌خواهید همهٔ نشست‌ها، از جمله این نشست، پایان یابند؟",
+    "ar": "End all sessions, including this one?"
+  },
+  {
+    "key": "authCopy.created",
+    "module": "authcopy",
+    "en": "Signed in",
+    "fa": "زمان ورود",
+    "ar": "Signed in"
+  },
+  {
+    "key": "authCopy.current",
+    "module": "authcopy",
+    "en": "This session",
+    "fa": "این نشست",
+    "ar": "This session"
+  },
+  {
+    "key": "authCopy.demo",
+    "module": "authcopy",
+    "en": "Dashboard previews still display sample data.",
+    "fa": "قالب داشبوردها همچنان با دادهٔ نمونه نمایش داده می‌شود.",
+    "ar": "Dashboard previews still display sample data."
+  },
+  {
+    "key": "authCopy.email",
+    "module": "authcopy",
+    "en": "Email address",
+    "fa": "نشانی ایمیل",
+    "ar": "Email address"
+  },
+  {
+    "key": "authCopy.errors.BUSY",
+    "module": "authcopy",
+    "en": "The service is busy. Please try again.",
+    "fa": "سرویس در حال پاسخ‌گویی به درخواست‌های دیگر است. دوباره تلاش کنید.",
+    "ar": "The service is busy. Please try again."
+  },
+  {
+    "key": "authCopy.errors.FORBIDDEN",
+    "module": "authcopy",
+    "en": "The request was not accepted. Open the site at its official address.",
+    "fa": "درخواست تأیید نشد. صفحه را از نشانی اصلی سایت باز کنید.",
+    "ar": "The request was not accepted. Open the site at its official address."
+  },
+  {
+    "key": "authCopy.errors.INVALID_CREDENTIALS",
+    "module": "authcopy",
+    "en": "Unable to sign in. Check your credentials and email verification.",
+    "fa": "ورود ممکن نشد. اطلاعات ورود و تأیید ایمیل را بررسی کنید.",
+    "ar": "Unable to sign in. Check your credentials and email verification."
+  },
+  {
+    "key": "authCopy.errors.INVALID_INPUT",
+    "module": "authcopy",
+    "en": "Please check your email address and password length.",
+    "fa": "اطلاعات واردشده معتبر نیست. نشانی ایمیل و طول رمز را بررسی کنید.",
+    "ar": "Please check your email address and password length."
+  },
+  {
+    "key": "authCopy.errors.INVALID_TOKEN",
+    "module": "authcopy",
+    "en": "This link is invalid, expired or already used.",
+    "fa": "این لینک معتبر نیست، منقضی شده یا قبلاً استفاده شده است.",
+    "ar": "This link is invalid, expired or already used."
+  },
+  {
+    "key": "authCopy.errors.NOT_CONFIGURED",
+    "module": "authcopy",
+    "en": "Sign-in is not configured on this installation yet.",
+    "fa": "ورود هنوز روی این نصب تنظیم نشده است.",
+    "ar": "Sign-in is not configured on this installation yet."
+  },
+  {
+    "key": "authCopy.errors.RATE_LIMITED",
+    "module": "authcopy",
+    "en": "Too many attempts. Please try again later.",
+    "fa": "تعداد تلاش‌ها زیاد است. کمی بعد دوباره امتحان کنید.",
+    "ar": "Too many attempts. Please try again later."
+  },
+  {
+    "key": "authCopy.errors.UNAVAILABLE",
+    "module": "authcopy",
+    "en": "Unable to reach the service. Please try again.",
+    "fa": "ارتباط با سرویس برقرار نشد. دوباره تلاش کنید.",
+    "ar": "Unable to reach the service. Please try again."
+  },
+  {
+    "key": "authCopy.expires",
+    "module": "authcopy",
+    "en": "Expires",
+    "fa": "پایان اعتبار",
+    "ar": "Expires"
+  },
+  {
+    "key": "authCopy.eyebrow",
+    "module": "authcopy",
+    "en": "A space to grow and connect",
+    "fa": "فضایی برای رشد و گفت‌وگو",
+    "ar": "A space to grow and connect"
+  },
+  {
+    "key": "authCopy.footer",
+    "module": "authcopy",
+    "en": "Email sign-in • Session management • Secure connection",
+    "fa": "ورود با ایمیل • مدیریت نشست • ارتباط امن",
+    "ar": "Email sign-in • Session management • Secure connection"
+  },
+  {
+    "key": "authCopy.forgot",
+    "module": "authcopy",
+    "en": "Recover your password",
+    "fa": "بازیابی رمز عبور",
+    "ar": "Recover your password"
+  },
+  {
+    "key": "authCopy.forgotLink",
+    "module": "authcopy",
+    "en": "Forgot your password?",
+    "fa": "رمز را فراموش کرده‌اید؟",
+    "ar": "Forgot your password?"
+  },
+  {
+    "key": "authCopy.gallery",
+    "module": "authcopy",
+    "en": "Explore dashboard previews",
+    "fa": "دیدن قالب داشبوردها",
+    "ar": "Explore dashboard previews"
+  },
+  {
+    "key": "authCopy.haveAccount",
+    "module": "authcopy",
+    "en": "Already have an account?",
+    "fa": "قبلاً ثبت‌نام کرده‌اید؟",
+    "ar": "Already have an account?"
+  },
+  {
+    "key": "authCopy.hero",
+    "module": "authcopy",
+    "en": "A calmer beginning.\nYour journey starts here.",
+    "fa": "با آرامش وارد شوید؛\nمسیر شما از اینجا آغاز می‌شود.",
+    "ar": "A calmer beginning.\nYour journey starts here."
+  },
+  {
+    "key": "authCopy.hide",
+    "module": "authcopy",
+    "en": "Hide password",
+    "fa": "پنهان کردن رمز",
+    "ar": "Hide password"
+  },
+  {
+    "key": "authCopy.hint",
+    "module": "authcopy",
+    "en": "Use 15–128 characters. Choose a long, unique passphrase.",
+    "fa": "حداقل ۱۵ و حداکثر ۱۲۸ نویسه؛ یک عبارت طولانی و یکتا انتخاب کنید.",
+    "ar": "Use 15–128 characters. Choose a long, unique passphrase."
+  },
+  {
+    "key": "authCopy.home",
+    "module": "authcopy",
+    "en": "Back to Vianoor",
+    "fa": "بازگشت به ویانور",
+    "ar": "Back to Vianoor"
+  },
+  {
+    "key": "authCopy.intro",
+    "module": "authcopy",
+    "en": "One account for your personal journey with Vianoor.",
+    "fa": "یک حساب برای پیگیری مسیر شخصی شما در ویانور.",
+    "ar": "One account for your personal journey with Vianoor."
+  },
+  {
+    "key": "authCopy.language",
+    "module": "authcopy",
+    "en": "فارسی",
+    "fa": "English",
+    "ar": "فارسی"
+  },
+  {
+    "key": "authCopy.loading",
+    "module": "authcopy",
+    "en": "Checking your account…",
+    "fa": "در حال بررسی حساب…",
+    "ar": "Checking your account…"
+  },
+  {
+    "key": "authCopy.login",
+    "module": "authcopy",
+    "en": "Sign in",
+    "fa": "ورود به حساب",
+    "ar": "Sign in"
+  },
+  {
+    "key": "authCopy.loginRequired",
+    "module": "authcopy",
+    "en": "Sign in to view your account security.",
+    "fa": "برای مشاهدهٔ امنیت حساب وارد شوید.",
+    "ar": "Sign in to view your account security."
+  },
+  {
+    "key": "authCopy.logout",
+    "module": "authcopy",
+    "en": "Sign out",
+    "fa": "خروج",
+    "ar": "Sign out"
+  },
+  {
+    "key": "authCopy.mismatch",
+    "module": "authcopy",
+    "en": "The passwords do not match.",
+    "fa": "تکرار رمز با رمز عبور یکسان نیست.",
+    "ar": "The passwords do not match."
+  },
+  {
+    "key": "authCopy.missingToken",
+    "module": "authcopy",
+    "en": "No valid link was found. Open the link in your email or request a new one.",
+    "fa": "لینک معتبر در این صفحه پیدا نشد؛ لینک ایمیل را باز کنید یا درخواست جدید بدهید.",
+    "ar": "No valid link was found. Open the link in your email or request a new one."
+  },
+  {
+    "key": "authCopy.newHere",
+    "module": "authcopy",
+    "en": "New to Vianoor?",
+    "fa": "حساب ندارید؟",
+    "ar": "New to Vianoor?"
+  },
+  {
+    "key": "authCopy.password",
+    "module": "authcopy",
+    "en": "Password",
+    "fa": "رمز عبور",
+    "ar": "Password"
+  },
+  {
+    "key": "authCopy.privacy",
+    "module": "authcopy",
+    "en": "Your password is stored as a secure hash.",
+    "fa": "رمز شما به‌صورت هش‌شده نگهداری می‌شود.",
+    "ar": "Your password is stored as a secure hash."
+  },
+  {
+    "key": "authCopy.refresh",
+    "module": "authcopy",
+    "en": "Refresh session",
+    "fa": "تازه‌سازی نشست",
+    "ar": "Refresh session"
+  },
+  {
+    "key": "authCopy.register",
+    "module": "authcopy",
+    "en": "Create an account",
+    "fa": "ساخت حساب",
+    "ar": "Create an account"
+  },
+  {
+    "key": "authCopy.resend",
+    "module": "authcopy",
+    "en": "Resend verification link",
+    "fa": "ارسال دوبارهٔ لینک تأیید",
+    "ar": "Resend verification link"
+  },
+  {
+    "key": "authCopy.reset",
+    "module": "authcopy",
+    "en": "Choose a new password",
+    "fa": "انتخاب رمز جدید",
+    "ar": "Choose a new password"
+  },
+  {
+    "key": "authCopy.resetDone",
+    "module": "authcopy",
+    "en": "Your password was changed and previous sessions revoked. Sign in with your new password.",
+    "fa": "رمز تغییر کرد و نشست‌های قبلی باطل شدند. با رمز جدید وارد شوید.",
+    "ar": "Your password was changed and previous sessions revoked. Sign in with your new password."
+  },
+  {
+    "key": "authCopy.revoke",
+    "module": "authcopy",
+    "en": "End this session",
+    "fa": "پایان این نشست",
+    "ar": "End this session"
+  },
+  {
+    "key": "authCopy.revokeAll",
+    "module": "authcopy",
+    "en": "End all sessions",
+    "fa": "پایان همهٔ نشست‌ها",
+    "ar": "End all sessions"
+  },
+  {
+    "key": "authCopy.security",
+    "module": "authcopy",
+    "en": "Account security",
+    "fa": "امنیت حساب",
+    "ar": "Account security"
+  },
+  {
+    "key": "authCopy.securityIntro",
+    "module": "authcopy",
+    "en": "Review your active sessions and end access on your devices.",
+    "fa": "نشست‌های فعال حساب خود را ببینید و دسترسی دستگاه‌ها را پایان دهید.",
+    "ar": "Review your active sessions and end access on your devices."
+  },
+  {
+    "key": "authCopy.sent",
+    "module": "authcopy",
+    "en": "Request accepted. If eligible, a message is queued for delivery. Check your inbox and spam folder.",
+    "fa": "درخواست ثبت شد. اگر نشانی واجد شرایط باشد، پیام در صف ارسال قرار می‌گیرد؛ رسیدن آن را در صندوق ورودی و هرزنامه بررسی کنید.",
+    "ar": "Request accepted. If eligible, a message is queued for delivery. Check your inbox and spam folder."
+  },
+  {
+    "key": "authCopy.session",
+    "module": "authcopy",
+    "en": "Session",
+    "fa": "نشست",
+    "ar": "Session"
+  },
+  {
+    "key": "authCopy.sessions",
+    "module": "authcopy",
+    "en": "Active sessions",
+    "fa": "نشست‌های فعال",
+    "ar": "Active sessions"
+  },
+  {
+    "key": "authCopy.show",
+    "module": "authcopy",
+    "en": "Show password",
+    "fa": "نمایش رمز",
+    "ar": "Show password"
+  },
+  {
+    "key": "authCopy.submit",
+    "module": "authcopy",
+    "en": "Continue",
+    "fa": "ادامه",
+    "ar": "Continue"
+  },
+  {
+    "key": "authCopy.verified",
+    "module": "authcopy",
+    "en": "Your email is verified. You can now sign in.",
+    "fa": "ایمیل شما تأیید شد. اکنون وارد شوید.",
+    "ar": "Your email is verified. You can now sign in."
+  },
+  {
+    "key": "authCopy.verify",
+    "module": "authcopy",
+    "en": "Verify your email",
+    "fa": "تأیید ایمیل",
+    "ar": "Verify your email"
+  },
+  {
+    "key": "authCopy.verifyHint",
+    "module": "authcopy",
+    "en": "Press the button below to verify your email address.",
+    "fa": "برای تأیید نشانی ایمیل، دکمهٔ زیر را بزنید.",
+    "ar": "Press the button below to verify your email address."
+  },
+  {
+    "key": "copy.about",
+    "module": "copy",
+    "en": "About",
+    "fa": "دربارهٔ ما",
+    "ar": "About"
+  },
+  {
+    "key": "copy.aboutService",
+    "module": "copy",
+    "en": "About this service",
+    "fa": "دربارهٔ این خدمت",
+    "ar": "About this service"
+  },
+  {
+    "key": "copy.aboutText",
+    "module": "copy",
+    "en": "Vianoor begins with a simple idea: making thoughtful, respectful guidance more accessible. Listening, choice, and personal privacy shape this space.",
+    "fa": "ویانور با یک ایده شکل می‌گیرد: دسترسی آسان‌تر به همراهی آگاهانه و محترمانه. در طراحی این فضا، شنیده‌شدن، انتخاب و حفظ حریم شخصی در مرکز توجه قرار دارند.",
+    "ar": "Vianoor begins with a simple idea: making thoughtful, respectful guidance more accessible. Listening, choice, and personal privacy shape this space."
+  },
+  {
+    "key": "copy.action",
+    "module": "copy",
+    "en": "Details",
+    "fa": "جزئیات",
+    "ar": "Details"
+  },
+  {
+    "key": "copy.activity",
+    "module": "copy",
+    "en": "Activity overview",
+    "fa": "روند فعالیت",
+    "ar": "Activity overview"
+  },
+  {
+    "key": "copy.activityHint",
+    "module": "copy",
+    "en": "Sample activity for the selected period",
+    "fa": "نمایش نمونهٔ فعالیت در بازهٔ انتخابی",
+    "ar": "Sample activity for the selected period"
+  },
+  {
+    "key": "copy.all",
+    "module": "copy",
+    "en": "All",
+    "fa": "همه",
+    "ar": "All"
+  },
+  {
+    "key": "copy.approach",
+    "module": "copy",
+    "en": "Approach & expertise",
+    "fa": "رویکرد و زمینهٔ همراهی",
+    "ar": "Approach & expertise"
+  },
+  {
+    "key": "copy.article1",
+    "module": "copy",
+    "en": "Listening is where a good conversation begins",
+    "fa": "شنیدن، اولین قدمِ یک گفت‌وگوی خوب",
+    "ar": "Listening is where a good conversation begins"
+  },
+  {
+    "key": "copy.article2",
+    "module": "copy",
+    "en": "How do we ask a better question?",
+    "fa": "چطور پرسش بهتری بپرسیم؟",
+    "ar": "How do we ask a better question?"
+  },
+  {
+    "key": "copy.article3",
+    "module": "copy",
+    "en": "Growth begins with small steps",
+    "fa": "برای رشد، از قدم‌های کوچک شروع کنیم",
+    "ar": "Growth begins with small steps"
+  },
+  {
+    "key": "copy.articleText",
+    "module": "copy",
+    "en": "A conversation begins with attention. Before answering, we can pause, clarify the question, and make space for another person’s experience. This short passage illustrates the content-page design.",
+    "fa": "گفت‌وگو با توجه آغاز می‌شود. پیش از پاسخ‌دادن، کمی مکث کنیم، پرسش را روشن‌تر کنیم و برای شنیدن تجربهٔ دیگری جا باز کنیم. این متن کوتاه برای نمایش طراحی صفحهٔ محتوا نوشته شده است.",
+    "ar": "A conversation begins with attention. Before answering, we can pause, clarify the question, and make space for another person’s experience. This short passage illustrates the content-page design."
+  },
+  {
+    "key": "copy.ask",
+    "module": "copy",
+    "en": "Explore questions",
+    "fa": "پرسش‌های دینی",
+    "ar": "Explore questions"
+  },
+  {
+    "key": "copy.authText",
+    "module": "copy",
+    "en": "Sign-in and registration arrive in the next stage. You can explore the workspaces now without entering personal information.",
+    "fa": "ورود و ثبت‌نام در مرحلهٔ بعد فعال می‌شوند. اکنون می‌توانید بدون واردکردن اطلاعات شخصی، ظاهر محیط‌های کاری را ببینید.",
+    "ar": "Sign-in and registration arrive in the next stage. You can explore the workspaces now without entering personal information."
+  },
+  {
+    "key": "copy.available",
+    "module": "copy",
+    "en": "Sample conversation times",
+    "fa": "زمان‌های نمونهٔ گفت‌وگو",
+    "ar": "Sample conversation times"
+  },
+  {
+    "key": "copy.backHome",
+    "module": "copy",
+    "en": "Back to home",
+    "fa": "بازگشت به خانه",
+    "ar": "Back to home"
+  },
+  {
+    "key": "copy.balance",
+    "module": "copy",
+    "en": "Sample report summary",
+    "fa": "خلاصهٔ گزارش نمونه",
+    "ar": "Sample report summary"
+  },
+  {
+    "key": "copy.brand",
+    "module": "copy",
+    "en": "Vianoor",
+    "fa": "ویانور",
+    "ar": "Vianoor"
+  },
+  {
+    "key": "copy.calendar",
+    "module": "copy",
+    "en": "Calendar",
+    "fa": "تقویم",
+    "ar": "Calendar"
+  },
+  {
+    "key": "copy.calendarHint",
+    "module": "copy",
+    "en": "Select a day to see the sample schedule.",
+    "fa": "روز مورد نظر را برای مشاهدهٔ برنامهٔ نمونه انتخاب کنید.",
+    "ar": "Select a day to see the sample schedule."
+  },
+  {
+    "key": "copy.chooseRole",
+    "module": "copy",
+    "en": "Choose a workspace",
+    "fa": "انتخاب محیط کاری",
+    "ar": "Choose a workspace"
+  },
+  {
+    "key": "copy.clear",
+    "module": "copy",
+    "en": "Clear filters",
+    "fa": "پاک کردن فیلترها",
+    "ar": "Clear filters"
+  },
+  {
+    "key": "copy.close",
+    "module": "copy",
+    "en": "Close",
+    "fa": "بستن",
+    "ar": "Close"
+  },
+  {
+    "key": "copy.complete",
+    "module": "copy",
+    "en": "Complete",
+    "fa": "تکمیل‌شده",
+    "ar": "Complete"
+  },
+  {
+    "key": "copy.contact",
+    "module": "copy",
+    "en": "Contact",
+    "fa": "ارتباط با ما",
+    "ar": "Contact"
+  },
+  {
+    "key": "copy.contactText",
+    "module": "copy",
+    "en": "Official contact channels will be announced when the service launches. For now, explore the help center and frequently asked questions.",
+    "fa": "راه‌های ارتباط رسمی در زمان راه‌اندازی خدمت اعلام می‌شوند. فعلاً می‌توانید راهنما و پرسش‌های متداول را مرور کنید.",
+    "ar": "Official contact channels will be announced when the service launches. For now, explore the help center and frequently asked questions."
+  },
+  {
+    "key": "copy.continue",
+    "module": "copy",
+    "en": "Got it",
+    "fa": "متوجه شدم",
+    "ar": "Got it"
+  },
+  {
+    "key": "copy.copyright",
+    "module": "copy",
+    "en": "Vianoor · Interface preview",
+    "fa": "ویانور · پیش‌نمایش رابط کاربری",
+    "ar": "Vianoor · Interface preview"
+  },
+  {
+    "key": "copy.cta",
+    "module": "copy",
+    "en": "You don’t have to find every answer alone.",
+    "fa": "لازم نیست همهٔ پاسخ‌ها را تنها پیدا کنید.",
+    "ar": "You don’t have to find every answer alone."
+  },
+  {
+    "key": "copy.ctaText",
+    "module": "copy",
+    "en": "Explore your topic and discover the ways Vianoor can help.",
+    "fa": "موضوعتان را پیدا کنید و با مسیرهای همراهی ویانور آشنا شوید.",
+    "ar": "Explore your topic and discover the ways Vianoor can help."
+  },
+  {
+    "key": "copy.dashboard",
+    "module": "copy",
+    "en": "Overview",
+    "fa": "نمای کلی",
+    "ar": "Overview"
+  },
+  {
+    "key": "copy.dashboards",
+    "module": "copy",
+    "en": "Workspaces",
+    "fa": "محیط‌های کاری",
+    "ar": "Workspaces"
+  },
+  {
+    "key": "copy.demo",
+    "module": "copy",
+    "en": "Design preview · Sample data",
+    "fa": "پیش‌نمایش طراحی · اطلاعات نمونه",
+    "ar": "Design preview · Sample data"
+  },
+  {
+    "key": "copy.demoDetail",
+    "module": "copy",
+    "en": "This workspace previews the design. All records are samples; no real operations are performed.",
+    "fa": "این محیط برای بررسی طراحی است. اطلاعات نمایشی‌اند و عملیات واقعی انجام نمی‌شود.",
+    "ar": "This workspace previews the design. All records are samples; no real operations are performed."
+  },
+  {
+    "key": "copy.details",
+    "module": "copy",
+    "en": "View details",
+    "fa": "مشاهدهٔ جزئیات",
+    "ar": "View details"
+  },
+  {
+    "key": "copy.download",
+    "module": "copy",
+    "en": "Download sample report",
+    "fa": "دریافت گزارش نمونه",
+    "ar": "Download sample report"
+  },
+  {
+    "key": "copy.empty",
+    "module": "copy",
+    "en": "No results found",
+    "fa": "نتیجه‌ای پیدا نشد",
+    "ar": "No results found"
+  },
+  {
+    "key": "copy.emptyHint",
+    "module": "copy",
+    "en": "Try another phrase or clear your filters.",
+    "fa": "عبارت دیگری را امتحان کنید یا فیلترها را پاک کنید.",
+    "ar": "Try another phrase or clear your filters."
+  },
+  {
+    "key": "copy.emptyLive",
+    "module": "copy",
+    "en": "There are no live records in this section yet.",
+    "fa": "هنوز اطلاعات واقعی در این بخش وجود ندارد.",
+    "ar": "There are no live records in this section yet."
+  },
+  {
+    "key": "copy.events",
+    "module": "copy",
+    "en": "Events",
+    "fa": "رویدادها",
+    "ar": "Events"
+  },
+  {
+    "key": "copy.eventText",
+    "module": "copy",
+    "en": "An educational event preview. Final dates and speakers will be announced after launch.",
+    "fa": "پیش‌نمایش رویداد آموزشی؛ زمان و سخنران نهایی پس از راه‌اندازی اعلام می‌شوند.",
+    "ar": "An educational event preview. Final dates and speakers will be announced after launch."
+  },
+  {
+    "key": "copy.expertBio",
+    "module": "copy",
+    "en": "This profile demonstrates the design and does not represent a real person. Expertise, approach, and bookable times will appear here in the final service.",
+    "fa": "این پروفایل برای نمایش طراحی ساخته شده و متعلق به فرد واقعی نیست. در نسخهٔ نهایی، تخصص‌ها، رویکرد و زمان‌های قابل رزرو در این قسمت نمایش داده می‌شوند.",
+    "ar": "This profile demonstrates the design and does not represent a real person. Expertise, approach, and bookable times will appear here in the final service."
+  },
+  {
+    "key": "copy.experts",
+    "module": "copy",
+    "en": "Experts",
+    "fa": "اساتید و مشاوران",
+    "ar": "Experts"
+  },
+  {
+    "key": "copy.expertsIntro",
+    "module": "copy",
+    "en": "Preview how expertise, approach, and availability come together.",
+    "fa": "پیش‌نمایشی از شیوهٔ معرفی تخصص، رویکرد و زمان گفت‌وگو.",
+    "ar": "Preview how expertise, approach, and availability come together."
+  },
+  {
+    "key": "copy.expertsTitle",
+    "module": "copy",
+    "en": "A thoughtful person on the other side",
+    "fa": "همراهانی برای شنیدن شما",
+    "ar": "A thoughtful person on the other side"
+  },
+  {
+    "key": "copy.explore",
+    "module": "copy",
+    "en": "Explore",
+    "fa": "کشف کنید",
+    "ar": "Explore"
+  },
+  {
+    "key": "copy.eyebrow",
+    "module": "copy",
+    "en": "A little understanding. A clearer path.",
+    "fa": "با آگاهی، آرام‌تر قدم بردارید",
+    "ar": "A little understanding. A clearer path."
+  },
+  {
+    "key": "copy.faith",
+    "module": "copy",
+    "en": "Faith & everyday life",
+    "fa": "دین و زندگی",
+    "ar": "Faith & everyday life"
+  },
+  {
+    "key": "copy.family",
+    "module": "copy",
+    "en": "Family & relationships",
+    "fa": "خانواده و روابط",
+    "ar": "Family & relationships"
+  },
+  {
+    "key": "copy.faq",
+    "module": "copy",
+    "en": "FAQ",
+    "fa": "پرسش‌های متداول",
+    "ar": "FAQ"
+  },
+  {
+    "key": "copy.faq1",
+    "module": "copy",
+    "en": "Can I book a session in this version?",
+    "fa": "آیا در این نسخه می‌توانم جلسه رزرو کنم؟",
+    "ar": "Can I book a session in this version?"
+  },
+  {
+    "key": "copy.faq1Answer",
+    "module": "copy",
+    "en": "This is a design preview. Real booking and payment will be added in later stages.",
+    "fa": "این نسخه پیش‌نمایش طراحی است. رزرو و پرداخت واقعی در مراحل بعد فعال می‌شوند.",
+    "ar": "This is a design preview. Real booking and payment will be added in later stages."
+  },
+  {
+    "key": "copy.faq2",
+    "module": "copy",
+    "en": "How do I find a suitable expert?",
+    "fa": "چگونه استاد مناسب را پیدا کنم؟",
+    "ar": "How do I find a suitable expert?"
+  },
+  {
+    "key": "copy.faq2Answer",
+    "module": "copy",
+    "en": "Choose a topic in the expert directory and explore profiles. Current profiles are samples.",
+    "fa": "در فهرست اساتید، موضوع را انتخاب کنید و پروفایل‌ها را بررسی کنید. اطلاعات فعلی نمونه هستند.",
+    "ar": "Choose a topic in the expert directory and explore profiles. Current profiles are samples."
+  },
+  {
+    "key": "copy.faq3",
+    "module": "copy",
+    "en": "Can I change the interface language?",
+    "fa": "آیا می‌توانم زبان محیط را تغییر دهم؟",
+    "ar": "Can I change the interface language?"
+  },
+  {
+    "key": "copy.faq3Answer",
+    "module": "copy",
+    "en": "Yes. Use the language switch in the header to view the same page in the other language.",
+    "fa": "بله؛ از انتخاب زبان در بالای صفحه استفاده کنید. همان صفحه به زبان دیگر نمایش داده می‌شود.",
+    "ar": "Yes. Use the language switch in the header to view the same page in the other language."
+  },
+  {
+    "key": "copy.filters",
+    "module": "copy",
+    "en": "Topic filter",
+    "fa": "فیلتر موضوع",
+    "ar": "Topic filter"
+  },
+  {
+    "key": "copy.findExpert",
+    "module": "copy",
+    "en": "Find an expert",
+    "fa": "پیدا کردن استاد",
+    "ar": "Find an expert"
+  },
+  {
+    "key": "copy.footerText",
+    "module": "copy",
+    "en": "A place for respectful conversations, honest questions, and thoughtful steps.",
+    "fa": "جایی برای گفت‌وگوهای محترمانه، پرسش‌های صادقانه و قدم‌های آگاهانه.",
+    "ar": "A place for respectful conversations, honest questions, and thoughtful steps."
+  },
+  {
+    "key": "copy.greeting",
+    "module": "copy",
+    "en": "Welcome to your space",
+    "fa": "سلام، به فضای خودتان خوش آمدید",
+    "ar": "Welcome to your space"
+  },
+  {
+    "key": "copy.growth",
+    "module": "copy",
+    "en": "Personal growth",
+    "fa": "رشد فردی",
+    "ar": "Personal growth"
+  },
+  {
+    "key": "copy.help",
+    "module": "copy",
+    "en": "Help & support",
+    "fa": "راهنما و پشتیبانی",
+    "ar": "Help & support"
+  },
+  {
+    "key": "copy.helpCard",
+    "module": "copy",
+    "en": "We’re here to help",
+    "fa": "همراه شما هستیم",
+    "ar": "We’re here to help"
+  },
+  {
+    "key": "copy.helpCardText",
+    "module": "copy",
+    "en": "Find your way around your workspace.",
+    "fa": "راهنمای محیط کاری را مرور کنید.",
+    "ar": "Find your way around your workspace."
+  },
+  {
+    "key": "copy.hero1",
+    "module": "copy",
+    "en": "For every question,",
+    "fa": "برای هر پرسش،",
+    "ar": "For every question,"
+  },
+  {
+    "key": "copy.hero2",
+    "module": "copy",
+    "en": "a thoughtful companion.",
+    "fa": "یک همراهِ روشن.",
+    "ar": "a thoughtful companion."
+  },
+  {
+    "key": "copy.home",
+    "module": "copy",
+    "en": "Home",
+    "fa": "خانه",
+    "ar": "Home"
+  },
+  {
+    "key": "copy.intro",
+    "module": "copy",
+    "en": "A thoughtful space to ask, be heard, and find a clearer way forward with caring experts.",
+    "fa": "فضایی برای پرسیدن، شنیده‌شدن و پیدا کردن راهی روشن‌تر؛ در کنار همراهانی آگاه.",
+    "ar": "A thoughtful space to ask, be heard, and find a clearer way forward with caring experts."
+  },
+  {
+    "key": "copy.joinText",
+    "module": "copy",
+    "en": "In the operational release, this space will guide you through sharing your expertise, credential review, and joining the community.",
+    "fa": "در نسخهٔ عملیاتی، مسیر ثبت تخصص، بررسی مدارک و آغاز همکاری از این بخش در دسترس خواهد بود.",
+    "ar": "In the operational release, this space will guide you through sharing your expertise, credential review, and joining the community."
+  },
+  {
+    "key": "copy.journey",
+    "module": "copy",
+    "en": "Three small steps to begin",
+    "fa": "همراهی، در سه قدم ساده",
+    "ar": "Three small steps to begin"
+  },
+  {
+    "key": "copy.language",
+    "module": "copy",
+    "en": "فارسی",
+    "fa": "English",
+    "ar": "فارسی"
+  },
+  {
+    "key": "copy.library",
+    "module": "copy",
+    "en": "Library",
+    "fa": "کتابخانه",
+    "ar": "Library"
+  },
+  {
+    "key": "copy.links",
+    "module": "copy",
+    "en": "Quick links",
+    "fa": "دسترسی سریع",
+    "ar": "Quick links"
+  },
+  {
+    "key": "copy.login",
+    "module": "copy",
+    "en": "Sign in / Join",
+    "fa": "ورود و عضویت",
+    "ar": "Sign in / Join"
+  },
+  {
+    "key": "copy.menu",
+    "module": "copy",
+    "en": "Menu",
+    "fa": "فهرست",
+    "ar": "Menu"
+  },
+  {
+    "key": "copy.minutes",
+    "module": "copy",
+    "en": "min read",
+    "fa": "دقیقه مطالعه",
+    "ar": "min read"
+  },
+  {
+    "key": "copy.month",
+    "module": "copy",
+    "en": "This month",
+    "fa": "این ماه",
+    "ar": "This month"
+  },
+  {
+    "key": "copy.navLabel",
+    "module": "copy",
+    "en": "Main navigation",
+    "fa": "ناوبری اصلی",
+    "ar": "Main navigation"
+  },
+  {
+    "key": "copy.noAction",
+    "module": "copy",
+    "en": "This action will be available in the operational release.",
+    "fa": "این قابلیت در نسخهٔ عملیاتی فعال خواهد شد.",
+    "ar": "This action will be available in the operational release."
+  },
+  {
+    "key": "copy.notifications",
+    "module": "copy",
+    "en": "Notifications",
+    "fa": "اعلان‌ها",
+    "ar": "Notifications"
+  },
+  {
+    "key": "copy.notificationText",
+    "module": "copy",
+    "en": "Your sample workspace is ready to explore.",
+    "fa": "محیط نمونهٔ شما آمادهٔ بررسی است.",
+    "ar": "Your sample workspace is ready to explore."
+  },
+  {
+    "key": "copy.online",
+    "module": "copy",
+    "en": "Online conversation",
+    "fa": "گفت‌وگوی آنلاین",
+    "ar": "Online conversation"
+  },
+  {
+    "key": "copy.overviewText",
+    "module": "copy",
+    "en": "Your priorities and follow-ups, together in one thoughtful space.",
+    "fa": "مهم‌ترین کارها و پیگیری‌ها، یک‌جا و در دسترس شما.",
+    "ar": "Your priorities and follow-ups, together in one thoughtful space."
+  },
+  {
+    "key": "copy.parenting",
+    "module": "copy",
+    "en": "Parenting",
+    "fa": "تربیت فرزند",
+    "ar": "Parenting"
+  },
+  {
+    "key": "copy.pending",
+    "module": "copy",
+    "en": "Pending",
+    "fa": "در انتظار",
+    "ar": "Pending"
+  },
+  {
+    "key": "copy.policyText",
+    "module": "copy",
+    "en": "The final policy will be published before the service launches. This page previews the document layout and is not a legal agreement to accept.",
+    "fa": "متن نهایی این سیاست پیش از راه‌اندازی خدمت منتشر خواهد شد. این صفحه صرفاً پیش‌نمایش چیدمان سند است و توافق حقوقی قابل پذیرش نیست.",
+    "ar": "The final policy will be published before the service launches. This page previews the document layout and is not a legal agreement to accept."
+  },
+  {
+    "key": "copy.preview",
+    "module": "copy",
+    "en": "Sample",
+    "fa": "نمونه",
+    "ar": "Sample"
+  },
+  {
+    "key": "copy.privacy",
+    "module": "copy",
+    "en": "Privacy",
+    "fa": "حریم خصوصی",
+    "ar": "Privacy"
+  },
+  {
+    "key": "copy.profile",
+    "module": "copy",
+    "en": "View profile",
+    "fa": "مشاهدهٔ پروفایل",
+    "ar": "View profile"
+  },
+  {
+    "key": "copy.quick",
+    "module": "copy",
+    "en": "Quick actions",
+    "fa": "دسترسی سریع",
+    "ar": "Quick actions"
+  },
+  {
+    "key": "copy.quote",
+    "module": "copy",
+    "en": "Sometimes, a good conversation\nis the start of something new.",
+    "fa": "گاهی، یک گفت‌وگوی خوب\nآغاز یک مسیر تازه است.",
+    "ar": "Sometimes, a good conversation\nis the start of something new."
+  },
+  {
+    "key": "copy.quoteSource",
+    "module": "copy",
+    "en": "The spirit of Vianoor",
+    "fa": "نگاه ویانور به همراهی",
+    "ar": "The spirit of Vianoor"
+  },
+  {
+    "key": "copy.reading",
+    "module": "copy",
+    "en": "A few minutes for yourself",
+    "fa": "چند دقیقه برای خودتان",
+    "ar": "A few minutes for yourself"
+  },
+  {
+    "key": "copy.readMore",
+    "module": "copy",
+    "en": "Read the story",
+    "fa": "ادامهٔ مطلب",
+    "ar": "Read the story"
+  },
+  {
+    "key": "copy.recent",
+    "module": "copy",
+    "en": "At a glance",
+    "fa": "در یک نگاه",
+    "ar": "At a glance"
+  },
+  {
+    "key": "copy.review",
+    "module": "copy",
+    "en": "Needs review",
+    "fa": "نیازمند بررسی",
+    "ar": "Needs review"
+  },
+  {
+    "key": "copy.roleAction",
+    "module": "copy",
+    "en": "Explore today’s plan",
+    "fa": "بررسی برنامهٔ امروز",
+    "ar": "Explore today’s plan"
+  },
+  {
+    "key": "copy.roleIntro",
+    "module": "copy",
+    "en": "Each role has a space built around its responsibilities. These previews are not connected to real data.",
+    "fa": "هر نقش، فضای متناسب با مسئولیت‌های خودش را دارد. این پیش‌نمایش‌ها به دادهٔ واقعی متصل نیستند.",
+    "ar": "Each role has a space built around its responsibilities. These previews are not connected to real data."
+  },
+  {
+    "key": "copy.sampleDate",
+    "module": "copy",
+    "en": "Wednesday, 7 October · Sample day",
+    "fa": "چهارشنبه، ۱۵ مهر · روز نمونه",
+    "ar": "Wednesday, 7 October · Sample day"
+  },
+  {
+    "key": "copy.sampleExpert",
+    "module": "copy",
+    "en": "Sample profile",
+    "fa": "پروفایل نمونه",
+    "ar": "Sample profile"
+  },
+  {
+    "key": "copy.sampleName",
+    "module": "copy",
+    "en": "Sample user",
+    "fa": "کاربر نمونه",
+    "ar": "Sample user"
+  },
+  {
+    "key": "copy.sampleNotice",
+    "module": "copy",
+    "en": "Preview details; no real request is submitted.",
+    "fa": "جزئیات نمایشی؛ هیچ درخواست واقعی ثبت نمی‌شود.",
+    "ar": "Preview details; no real request is submitted."
+  },
+  {
+    "key": "copy.save",
+    "module": "copy",
+    "en": "Save sample",
+    "fa": "ذخیرهٔ نمونه",
+    "ar": "Save sample"
+  },
+  {
+    "key": "copy.saved",
+    "module": "copy",
+    "en": "Saved",
+    "fa": "ذخیره شد",
+    "ar": "Saved"
+  },
+  {
+    "key": "copy.scheduled",
+    "module": "copy",
+    "en": "Scheduled",
+    "fa": "برنامه‌ریزی‌شده",
+    "ar": "Scheduled"
+  },
+  {
+    "key": "copy.search",
+    "module": "copy",
+    "en": "Search",
+    "fa": "جست‌وجو",
+    "ar": "Search"
+  },
+  {
+    "key": "copy.searchExperts",
+    "module": "copy",
+    "en": "Name or area of expertise…",
+    "fa": "نام یا تخصص استاد…",
+    "ar": "Name or area of expertise…"
+  },
+  {
+    "key": "copy.searchHint",
+    "module": "copy",
+    "en": "What’s on your mind?",
+    "fa": "چه چیزی در ذهن شماست؟",
+    "ar": "What’s on your mind?"
+  },
+  {
+    "key": "copy.searchWork",
+    "module": "copy",
+    "en": "Search this workspace…",
+    "fa": "جست‌وجو در این محیط…",
+    "ar": "Search this workspace…"
+  },
+  {
+    "key": "copy.sectionIntro",
+    "module": "copy",
+    "en": "Sample records to explore this section’s layout and interactions.",
+    "fa": "فهرست نمونه برای بررسی چیدمان و تعامل این بخش.",
+    "ar": "Sample records to explore this section’s layout and interactions."
+  },
+  {
+    "key": "copy.selectedDay",
+    "module": "copy",
+    "en": "Selected day’s schedule",
+    "fa": "برنامهٔ روز انتخاب‌شده",
+    "ar": "Selected day’s schedule"
+  },
+  {
+    "key": "copy.services",
+    "module": "copy",
+    "en": "Services",
+    "fa": "خدمات",
+    "ar": "Services"
+  },
+  {
+    "key": "copy.settings",
+    "module": "copy",
+    "en": "Settings",
+    "fa": "تنظیمات",
+    "ar": "Settings"
+  },
+  {
+    "key": "copy.showAll",
+    "module": "copy",
+    "en": "Show all records",
+    "fa": "نمایش همهٔ موارد",
+    "ar": "Show all records"
+  },
+  {
+    "key": "copy.skip",
+    "module": "copy",
+    "en": "Skip to main content",
+    "fa": "رفتن به محتوای اصلی",
+    "ar": "Skip to main content"
+  },
+  {
+    "key": "copy.specialties",
+    "module": "copy",
+    "en": "One step closer to clarity",
+    "fa": "یک قدم نزدیک‌تر به پاسخ",
+    "ar": "One step closer to clarity"
+  },
+  {
+    "key": "copy.specialtiesIntro",
+    "module": "copy",
+    "en": "Start with what matters to you today.",
+    "fa": "موضوعی را انتخاب کنید که این روزها بیشتر به آن فکر می‌کنید.",
+    "ar": "Start with what matters to you today."
+  },
+  {
+    "key": "copy.status",
+    "module": "copy",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "copy.step1",
+    "module": "copy",
+    "en": "Find your topic",
+    "fa": "موضوعتان را پیدا کنید",
+    "ar": "Find your topic"
+  },
+  {
+    "key": "copy.step1Text",
+    "module": "copy",
+    "en": "Choose the topic closest to what you need.",
+    "fa": "از میان موضوع‌ها، مسیر نزدیک به نیازتان را انتخاب کنید.",
+    "ar": "Choose the topic closest to what you need."
+  },
+  {
+    "key": "copy.step2",
+    "module": "copy",
+    "en": "Meet your companion",
+    "fa": "همراهتان را بشناسید",
+    "ar": "Meet your companion"
+  },
+  {
+    "key": "copy.step2Text",
+    "module": "copy",
+    "en": "Take your time to explore an expert’s approach.",
+    "fa": "تخصص و رویکرد استاد را با آرامش بررسی کنید.",
+    "ar": "Take your time to explore an expert’s approach."
+  },
+  {
+    "key": "copy.step3",
+    "module": "copy",
+    "en": "Continue with clarity",
+    "fa": "با آگاهی ادامه دهید",
+    "ar": "Continue with clarity"
+  },
+  {
+    "key": "copy.step3Text",
+    "module": "copy",
+    "en": "Booking a time for your conversation will follow in a later release.",
+    "fa": "در مراحل بعد، زمان مناسب را برای گفت‌وگو رزرو خواهید کرد.",
+    "ar": "Booking a time for your conversation will follow in a later release."
+  },
+  {
+    "key": "copy.tagline",
+    "module": "copy",
+    "en": "A little light for life",
+    "fa": "همراهِ روشنِ زندگی",
+    "ar": "A little light for life"
+  },
+  {
+    "key": "copy.terms",
+    "module": "copy",
+    "en": "Terms",
+    "fa": "شرایط استفاده",
+    "ar": "Terms"
+  },
+  {
+    "key": "copy.time",
+    "module": "copy",
+    "en": "Sample time",
+    "fa": "زمان نمونه",
+    "ar": "Sample time"
+  },
+  {
+    "key": "copy.title",
+    "module": "copy",
+    "en": "Title",
+    "fa": "عنوان",
+    "ar": "Title"
+  },
+  {
+    "key": "copy.today",
+    "module": "copy",
+    "en": "Today",
+    "fa": "امروز",
+    "ar": "Today"
+  },
+  {
+    "key": "copy.trust1",
+    "module": "copy",
+    "en": "Respect for your privacy",
+    "fa": "با احترام به حریم شما",
+    "ar": "Respect for your privacy"
+  },
+  {
+    "key": "copy.trust2",
+    "module": "copy",
+    "en": "Space for an informed choice",
+    "fa": "فرصت انتخاب آگاهانه",
+    "ar": "Space for an informed choice"
+  },
+  {
+    "key": "copy.trust3",
+    "module": "copy",
+    "en": "Guidance in your language",
+    "fa": "همراهی به زبان شما",
+    "ar": "Guidance in your language"
+  },
+  {
+    "key": "copy.trustText",
+    "module": "copy",
+    "en": "Your comfort and choice belong in every conversation.",
+    "fa": "آرامش و اختیار شما، بخشی از هر گفت‌وگوست.",
+    "ar": "Your comfort and choice belong in every conversation."
+  },
+  {
+    "key": "copy.upcoming",
+    "module": "copy",
+    "en": "Coming up next",
+    "fa": "برنامهٔ پیش رو",
+    "ar": "Coming up next"
+  },
+  {
+    "key": "copy.viewAll",
+    "module": "copy",
+    "en": "View all",
+    "fa": "مشاهدهٔ همه",
+    "ar": "View all"
+  },
+  {
+    "key": "copy.viewDashboard",
+    "module": "copy",
+    "en": "Open preview",
+    "fa": "ورود به پیش‌نمایش",
+    "ar": "Open preview"
+  },
+  {
+    "key": "copy.viewGuide",
+    "module": "copy",
+    "en": "Read the guide",
+    "fa": "مشاهدهٔ راهنما",
+    "ar": "Read the guide"
+  },
+  {
+    "key": "copy.viewTopics",
+    "module": "copy",
+    "en": "Explore topics",
+    "fa": "مشاهدهٔ موضوع‌ها",
+    "ar": "Explore topics"
+  },
+  {
+    "key": "copy.week",
+    "module": "copy",
+    "en": "This week",
+    "fa": "این هفته",
+    "ar": "This week"
+  },
+  {
+    "key": "copy.weekdays",
+    "module": "copy",
+    "en": "M T W T F S S",
+    "fa": "ش ی د س چ پ ج",
+    "ar": "M T W T F S S"
+  },
+  {
+    "key": "copy.welcomeName",
+    "module": "copy",
+    "en": "Dear companion",
+    "fa": "همراه عزیز",
+    "ar": "Dear companion"
+  },
+  {
+    "key": "copy.wellbeing",
+    "module": "copy",
+    "en": "Pause. Breathe. Begin again.",
+    "fa": "کمی مکث، کمی آرامش",
+    "ar": "Pause. Breathe. Begin again."
+  },
+  {
+    "key": "copy.wellbeingText",
+    "module": "copy",
+    "en": "Give yourself a moment to make room for clarity.",
+    "fa": "برای تصمیم‌های بهتر، به خودتان فرصت بدهید.",
+    "ar": "Give yourself a moment to make room for clarity."
+  },
+  {
+    "key": "copy.working",
+    "module": "copy",
+    "en": "Coming soon",
+    "fa": "در حال آماده‌سازی",
+    "ar": "Coming soon"
+  },
+  {
+    "key": "copy.workspaceNav",
+    "module": "copy",
+    "en": "Workspace navigation",
+    "fa": "ناوبری محیط کاری",
+    "ar": "Workspace navigation"
+  },
+  {
+    "key": "demoExperts.0.initials",
+    "module": "demoexperts",
+    "en": "MR",
+    "fa": "م ر"
+  },
+  {
+    "key": "demoExperts.0.name",
+    "module": "demoexperts",
+    "en": "Mina Rezaei",
+    "fa": "مینا رضایی"
+  },
+  {
+    "key": "demoExperts.1.initials",
+    "module": "demoexperts",
+    "en": "AN",
+    "fa": "ع ن"
+  },
+  {
+    "key": "demoExperts.1.name",
+    "module": "demoexperts",
+    "en": "Ali Nouri",
+    "fa": "علی نوری"
+  },
+  {
+    "key": "demoExperts.2.initials",
+    "module": "demoexperts",
+    "en": "SM",
+    "fa": "س م"
+  },
+  {
+    "key": "demoExperts.2.name",
+    "module": "demoexperts",
+    "en": "Sara Mehr",
+    "fa": "سارا مهر"
+  },
+  {
+    "key": "discoveryCopy.active",
+    "module": "discoverycopy",
+    "en": "Active",
+    "fa": "فعال",
+    "ar": "Active"
+  },
+  {
+    "key": "discoveryCopy.add",
+    "module": "discoverycopy",
+    "en": "Add",
+    "fa": "افزودن",
+    "ar": "Add"
+  },
+  {
+    "key": "discoveryCopy.admin",
+    "module": "discoverycopy",
+    "en": "Languages and translations",
+    "fa": "زبان‌ها و ترجمه‌ها",
+    "ar": "Languages and translations"
+  },
+  {
+    "key": "discoveryCopy.ai",
+    "module": "discoverycopy",
+    "en": "AI capability",
+    "fa": "قابلیت هوش مصنوعی",
+    "ar": "AI capability"
+  },
+  {
+    "key": "discoveryCopy.all",
+    "module": "discoverycopy",
+    "en": "All",
+    "fa": "همه",
+    "ar": "All"
+  },
+  {
+    "key": "discoveryCopy.any",
+    "module": "discoverycopy",
+    "en": "Any language",
+    "fa": "همه زبان‌ها",
+    "ar": "Any language"
+  },
+  {
+    "key": "discoveryCopy.approve",
+    "module": "discoverycopy",
+    "en": "Approve and publish",
+    "fa": "تأیید و انتشار",
+    "ar": "Approve and publish"
+  },
+  {
+    "key": "discoveryCopy.book",
+    "module": "discoverycopy",
+    "en": "Book this session",
+    "fa": "رزرو این جلسه",
+    "ar": "Book this session"
+  },
+  {
+    "key": "discoveryCopy.busy",
+    "module": "discoverycopy",
+    "en": "Loading…",
+    "fa": "در حال دریافت…",
+    "ar": "Loading…"
+  },
+  {
+    "key": "discoveryCopy.choose",
+    "module": "discoverycopy",
+    "en": "Choose an item",
+    "fa": "انتخاب کنید",
+    "ar": "Choose an item"
+  },
+  {
+    "key": "discoveryCopy.close",
+    "module": "discoverycopy",
+    "en": "Close",
+    "fa": "بستن",
+    "ar": "Close"
+  },
+  {
+    "key": "discoveryCopy.code",
+    "module": "discoverycopy",
+    "en": "Language code",
+    "fa": "کد زبان",
+    "ar": "Language code"
+  },
+  {
+    "key": "discoveryCopy.coverage",
+    "module": "discoverycopy",
+    "en": "Published translations",
+    "fa": "ترجمه‌های منتشرشده",
+    "ar": "Published translations"
+  },
+  {
+    "key": "discoveryCopy.createKey",
+    "module": "discoverycopy",
+    "en": "Add English text",
+    "fa": "افزودن متن انگلیسی",
+    "ar": "Add English text"
+  },
+  {
+    "key": "discoveryCopy.dictionarySource",
+    "module": "discoverycopy",
+    "en": "Source phrase",
+    "fa": "عبارت مبدأ",
+    "ar": "Source phrase"
+  },
+  {
+    "key": "discoveryCopy.dictionaryTarget",
+    "module": "discoverycopy",
+    "en": "Equivalent phrase",
+    "fa": "عبارت هم‌معنی",
+    "ar": "Equivalent phrase"
+  },
+  {
+    "key": "discoveryCopy.direction",
+    "module": "discoverycopy",
+    "en": "Direction",
+    "fa": "جهت نوشتار",
+    "ar": "Direction"
+  },
+  {
+    "key": "discoveryCopy.dynamic",
+    "module": "discoverycopy",
+    "en": "Profile and service translations",
+    "fa": "ترجمه پروفایل و خدمات",
+    "ar": "Profile and service translations"
+  },
+  {
+    "key": "discoveryCopy.edit",
+    "module": "discoverycopy",
+    "en": "Edit",
+    "fa": "ویرایش",
+    "ar": "Edit"
+  },
+  {
+    "key": "discoveryCopy.empty",
+    "module": "discoverycopy",
+    "en": "No matching experts found.",
+    "fa": "استادی با این شرایط پیدا نشد.",
+    "ar": "No matching experts found."
+  },
+  {
+    "key": "discoveryCopy.error",
+    "module": "discoverycopy",
+    "en": "The request could not be completed. Please try again.",
+    "fa": "درخواست انجام نشد؛ دوباره تلاش کنید.",
+    "ar": "The request could not be completed. Please try again."
+  },
+  {
+    "key": "discoveryCopy.fallback",
+    "module": "discoverycopy",
+    "en": "Missing translations use English.",
+    "fa": "ترجمه‌های ناقص به انگلیسی نمایش داده می‌شوند.",
+    "ar": "Missing translations use English."
+  },
+  {
+    "key": "discoveryCopy.fields.biography",
+    "module": "discoverycopy",
+    "en": "Biography",
+    "fa": "زندگی‌نامه",
+    "ar": "Biography"
+  },
+  {
+    "key": "discoveryCopy.fields.city",
+    "module": "discoverycopy",
+    "en": "City",
+    "fa": "شهر",
+    "ar": "City"
+  },
+  {
+    "key": "discoveryCopy.fields.country",
+    "module": "discoverycopy",
+    "en": "Country",
+    "fa": "کشور",
+    "ar": "Country"
+  },
+  {
+    "key": "discoveryCopy.fields.description",
+    "module": "discoverycopy",
+    "en": "Description",
+    "fa": "توضیح",
+    "ar": "Description"
+  },
+  {
+    "key": "discoveryCopy.fields.display_name",
+    "module": "discoverycopy",
+    "en": "Display name",
+    "fa": "نام نمایشی",
+    "ar": "Display name"
+  },
+  {
+    "key": "discoveryCopy.fields.education",
+    "module": "discoverycopy",
+    "en": "Education",
+    "fa": "تحصیلات",
+    "ar": "Education"
+  },
+  {
+    "key": "discoveryCopy.fields.experience",
+    "module": "discoverycopy",
+    "en": "Experience",
+    "fa": "سوابق",
+    "ar": "Experience"
+  },
+  {
+    "key": "discoveryCopy.fields.seo_description",
+    "module": "discoverycopy",
+    "en": "Search description",
+    "fa": "توضیح جستجو",
+    "ar": "Search description"
+  },
+  {
+    "key": "discoveryCopy.fields.seo_title",
+    "module": "discoverycopy",
+    "en": "Search title",
+    "fa": "عنوان جستجو",
+    "ar": "Search title"
+  },
+  {
+    "key": "discoveryCopy.fields.short_bio",
+    "module": "discoverycopy",
+    "en": "Short introduction",
+    "fa": "معرفی کوتاه",
+    "ar": "Short introduction"
+  },
+  {
+    "key": "discoveryCopy.fields.summary",
+    "module": "discoverycopy",
+    "en": "Summary",
+    "fa": "خلاصه",
+    "ar": "Summary"
+  },
+  {
+    "key": "discoveryCopy.fields.terms",
+    "module": "discoverycopy",
+    "en": "Terms",
+    "fa": "شرایط",
+    "ar": "Terms"
+  },
+  {
+    "key": "discoveryCopy.fields.title",
+    "module": "discoverycopy",
+    "en": "Title",
+    "fa": "عنوان",
+    "ar": "Title"
+  },
+  {
+    "key": "discoveryCopy.filter",
+    "module": "discoverycopy",
+    "en": "Filter",
+    "fa": "فیلتر",
+    "ar": "Filter"
+  },
+  {
+    "key": "discoveryCopy.guided",
+    "module": "discoverycopy",
+    "en": "Find a time",
+    "fa": "پیدا کردن زمان",
+    "ar": "Find a time"
+  },
+  {
+    "key": "discoveryCopy.intent",
+    "module": "discoverycopy",
+    "en": "What help do you need?",
+    "fa": "در چه زمینه‌ای کمک می‌خواهید؟",
+    "ar": "What help do you need?"
+  },
+  {
+    "key": "discoveryCopy.key",
+    "module": "discoverycopy",
+    "en": "Key",
+    "fa": "کلید",
+    "ar": "Key"
+  },
+  {
+    "key": "discoveryCopy.language",
+    "module": "discoverycopy",
+    "en": "Language",
+    "fa": "زبان",
+    "ar": "Language"
+  },
+  {
+    "key": "discoveryCopy.languages",
+    "module": "discoverycopy",
+    "en": "Languages",
+    "fa": "زبان‌ها",
+    "ar": "Languages"
+  },
+  {
+    "key": "discoveryCopy.missing",
+    "module": "discoverycopy",
+    "en": "Only missing translations",
+    "fa": "فقط ترجمه‌های ناقص",
+    "ar": "Only missing translations"
+  },
+  {
+    "key": "discoveryCopy.module",
+    "module": "discoverycopy",
+    "en": "Module",
+    "fa": "بخش",
+    "ar": "Module"
+  },
+  {
+    "key": "discoveryCopy.name",
+    "module": "discoverycopy",
+    "en": "English name",
+    "fa": "نام انگلیسی",
+    "ar": "English name"
+  },
+  {
+    "key": "discoveryCopy.native",
+    "module": "discoverycopy",
+    "en": "Native name",
+    "fa": "نام بومی",
+    "ar": "Native name"
+  },
+  {
+    "key": "discoveryCopy.next",
+    "module": "discoverycopy",
+    "en": "Next",
+    "fa": "بعدی",
+    "ar": "Next"
+  },
+  {
+    "key": "discoveryCopy.pending",
+    "module": "discoverycopy",
+    "en": "Not published",
+    "fa": "منتشر نشده",
+    "ar": "Not published"
+  },
+  {
+    "key": "discoveryCopy.previous",
+    "module": "discoverycopy",
+    "en": "Previous",
+    "fa": "قبلی",
+    "ar": "Previous"
+  },
+  {
+    "key": "discoveryCopy.profile",
+    "module": "discoverycopy",
+    "en": "Profile",
+    "fa": "پروفایل",
+    "ar": "Profile"
+  },
+  {
+    "key": "discoveryCopy.published",
+    "module": "discoverycopy",
+    "en": "Published",
+    "fa": "منتشرشده",
+    "ar": "Published"
+  },
+  {
+    "key": "discoveryCopy.queue",
+    "module": "discoverycopy",
+    "en": "Queue translation",
+    "fa": "افزودن به صف ترجمه",
+    "ar": "Queue translation"
+  },
+  {
+    "key": "discoveryCopy.rebuild",
+    "module": "discoverycopy",
+    "en": "Refresh search index",
+    "fa": "به‌روزرسانی نمایه جستجو",
+    "ar": "Refresh search index"
+  },
+  {
+    "key": "discoveryCopy.remove",
+    "module": "discoverycopy",
+    "en": "Remove",
+    "fa": "حذف",
+    "ar": "Remove"
+  },
+  {
+    "key": "discoveryCopy.review",
+    "module": "discoverycopy",
+    "en": "Mark as reviewed",
+    "fa": "ثبت بازبینی",
+    "ar": "Mark as reviewed"
+  },
+  {
+    "key": "discoveryCopy.save",
+    "module": "discoverycopy",
+    "en": "Save draft",
+    "fa": "ذخیره پیش‌نویس",
+    "ar": "Save draft"
+  },
+  {
+    "key": "discoveryCopy.saved",
+    "module": "discoverycopy",
+    "en": "Saved",
+    "fa": "ذخیره شد",
+    "ar": "Saved"
+  },
+  {
+    "key": "discoveryCopy.search",
+    "module": "discoverycopy",
+    "en": "Search",
+    "fa": "جستجو",
+    "ar": "Search"
+  },
+  {
+    "key": "discoveryCopy.service",
+    "module": "discoverycopy",
+    "en": "Service",
+    "fa": "خدمت",
+    "ar": "Service"
+  },
+  {
+    "key": "discoveryCopy.source",
+    "module": "discoverycopy",
+    "en": "English source",
+    "fa": "متن اصلی انگلیسی",
+    "ar": "English source"
+  },
+  {
+    "key": "discoveryCopy.sourceCode",
+    "module": "discoverycopy",
+    "en": "Source language",
+    "fa": "زبان مبدأ",
+    "ar": "Source language"
+  },
+  {
+    "key": "discoveryCopy.sourceLanguage",
+    "module": "discoverycopy",
+    "en": "Original content language",
+    "fa": "زبان متن اصلی",
+    "ar": "Original content language"
+  },
+  {
+    "key": "discoveryCopy.specialties",
+    "module": "discoverycopy",
+    "en": "Specialty translations",
+    "fa": "ترجمه تخصص‌ها",
+    "ar": "Specialty translations"
+  },
+  {
+    "key": "discoveryCopy.speech",
+    "module": "discoverycopy",
+    "en": "Speech capability",
+    "fa": "قابلیت گفتار",
+    "ar": "Speech capability"
+  },
+  {
+    "key": "discoveryCopy.spoken",
+    "module": "discoverycopy",
+    "en": "Consultation language",
+    "fa": "زبان جلسه",
+    "ar": "Consultation language"
+  },
+  {
+    "key": "discoveryCopy.status",
+    "module": "discoverycopy",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "discoveryCopy.synonyms",
+    "module": "discoverycopy",
+    "en": "Search dictionary",
+    "fa": "واژه‌نامه جستجو",
+    "ar": "Search dictionary"
+  },
+  {
+    "key": "discoveryCopy.targetCode",
+    "module": "discoverycopy",
+    "en": "Target language",
+    "fa": "زبان مقصد",
+    "ar": "Target language"
+  },
+  {
+    "key": "discoveryCopy.timeNote",
+    "module": "discoverycopy",
+    "en": "Availability is checked now. Your time is reserved only after booking.",
+    "fa": "ظرفیت همین حالا بررسی می‌شود. زمان فقط پس از انجام رزرو برای شما نگه داشته می‌شود.",
+    "ar": "Availability is checked now. Your time is reserved only after booking."
+  },
+  {
+    "key": "discoveryCopy.timezone",
+    "module": "discoverycopy",
+    "en": "Time zone",
+    "fa": "منطقه زمانی",
+    "ar": "Time zone"
+  },
+  {
+    "key": "discoveryCopy.title",
+    "module": "discoverycopy",
+    "en": "Find an expert",
+    "fa": "جستجوی استاد",
+    "ar": "Find an expert"
+  },
+  {
+    "key": "discoveryCopy.translation",
+    "module": "discoverycopy",
+    "en": "Translation capability",
+    "fa": "قابلیت ترجمه",
+    "ar": "Translation capability"
+  },
+  {
+    "key": "discoveryCopy.translations",
+    "module": "discoverycopy",
+    "en": "Page translations",
+    "fa": "ترجمه صفحات",
+    "ar": "Page translations"
+  },
+  {
+    "key": "discoveryCopy.unknown",
+    "module": "discoverycopy",
+    "en": "Unspecified",
+    "fa": "مشخص نشده",
+    "ar": "Unspecified"
+  },
+  {
+    "key": "discoveryCopy.value",
+    "module": "discoverycopy",
+    "en": "Translation",
+    "fa": "ترجمه",
+    "ar": "Translation"
+  },
+  {
+    "key": "discoveryCopy.waiting",
+    "module": "discoverycopy",
+    "en": "Waiting for a translation provider",
+    "fa": "در انتظار اتصال سرویس ترجمه",
+    "ar": "Waiting for a translation provider"
+  },
+  {
+    "key": "discoveryCopy.when",
+    "module": "discoverycopy",
+    "en": "Your local date and time",
+    "fa": "تاریخ و ساعت به وقت شما",
+    "ar": "Your local date and time"
+  },
+  {
+    "key": "expertsPublicCopy.back",
+    "module": "expertspubliccopy",
+    "en": "Expert directory",
+    "fa": "فهرست اساتید",
+    "ar": "Expert directory"
+  },
+  {
+    "key": "expertsPublicCopy.book",
+    "module": "expertspubliccopy",
+    "en": "View times and book free",
+    "fa": "مشاهده زمان‌ها و رزرو رایگان",
+    "ar": "View times and book free"
+  },
+  {
+    "key": "expertsPublicCopy.documents",
+    "module": "expertspubliccopy",
+    "en": "Verified credentials",
+    "fa": "مدارک تأییدشده",
+    "ar": "Verified credentials"
+  },
+  {
+    "key": "expertsPublicCopy.education",
+    "module": "expertspubliccopy",
+    "en": "Education",
+    "fa": "تحصیلات",
+    "ar": "Education"
+  },
+  {
+    "key": "expertsPublicCopy.empty",
+    "module": "expertspubliccopy",
+    "en": "No public profiles have been published yet.",
+    "fa": "هنوز پروفایل عمومی منتشر نشده است.",
+    "ar": "No public profiles have been published yet."
+  },
+  {
+    "key": "expertsPublicCopy.experience",
+    "module": "expertspubliccopy",
+    "en": "Experience",
+    "fa": "سوابق",
+    "ar": "Experience"
+  },
+  {
+    "key": "expertsPublicCopy.home",
+    "module": "expertspubliccopy",
+    "en": "Home",
+    "fa": "خانه",
+    "ar": "Home"
+  },
+  {
+    "key": "expertsPublicCopy.languages",
+    "module": "expertspubliccopy",
+    "en": "Languages",
+    "fa": "زبان‌ها",
+    "ar": "Languages"
+  },
+  {
+    "key": "expertsPublicCopy.minutes",
+    "module": "expertspubliccopy",
+    "en": "minutes",
+    "fa": "دقیقه",
+    "ar": "minutes"
+  },
+  {
+    "key": "expertsPublicCopy.note",
+    "module": "expertspubliccopy",
+    "en": "Free sessions can be booked from your client workspace. Payment for paid services will be added later.",
+    "fa": "رزرو خدمات رایگان از پنل مراجع انجام می‌شود. پرداخت خدمات پولی در مرحلهٔ بعد فعال خواهد شد.",
+    "ar": "Free sessions can be booked from your client workspace. Payment for paid services will be added later."
+  },
+  {
+    "key": "expertsPublicCopy.services",
+    "module": "expertspubliccopy",
+    "en": "Services and pricing",
+    "fa": "خدمات و تعرفه‌ها",
+    "ar": "Services and pricing"
+  },
+  {
+    "key": "expertsPublicCopy.specialties",
+    "module": "expertspubliccopy",
+    "en": "Specialties",
+    "fa": "تخصص‌ها",
+    "ar": "Specialties"
+  },
+  {
+    "key": "expertsPublicCopy.title",
+    "module": "expertspubliccopy",
+    "en": "Verified experts",
+    "fa": "اساتید تأییدشده",
+    "ar": "Verified experts"
+  },
+  {
+    "key": "expertsPublicCopy.unavailable",
+    "module": "expertspubliccopy",
+    "en": "Expert directory is unavailable.",
+    "fa": "فهرست اساتید در دسترس نیست.",
+    "ar": "Expert directory is unavailable."
+  },
+  {
+    "key": "expertsPublicCopy.verified",
+    "module": "expertspubliccopy",
+    "en": "Verified expert",
+    "fa": "استاد تأییدشده",
+    "ar": "Verified expert"
+  },
+  {
+    "key": "inline.auth.1e9cca2d3cfb",
+    "module": "inline",
+    "en": "Available after provider configuration",
+    "fa": "پس از تنظیم ارائه‌دهنده فعال می‌شود"
+  },
+  {
+    "key": "inline.auth.6b1d0f27ccb3",
+    "module": "inline",
+    "en": "Sign-in methods",
+    "fa": "روش‌های ورود"
+  },
+  {
+    "key": "inline.auth.6fb49f1cfec2",
+    "module": "inline",
+    "en": "Change email",
+    "fa": "تغییر ایمیل"
+  },
+  {
+    "key": "inline.auth.b6bb5c9a478a",
+    "module": "inline",
+    "en": "Close",
+    "fa": "بستن"
+  },
+  {
+    "key": "inline.auth.c81b4d2033a6",
+    "module": "inline",
+    "en": "or",
+    "fa": "یا"
+  },
+  {
+    "key": "inline.auth.cfc29632e854",
+    "module": "inline",
+    "en": "Continue with ",
+    "fa": "ادامه با "
+  },
+  {
+    "key": "inline.auth.e388e66b96ee",
+    "module": "inline",
+    "en": "These methods become available after secure provider setup.",
+    "fa": "ورود با این روش‌ها پس از اتصال امن ارائه‌دهنده فعال می‌شود."
+  },
+  {
+    "key": "inline.auth.f08d5319d3e7",
+    "module": "inline",
+    "en": "Phone",
+    "fa": "موبایل"
+  },
+  {
+    "key": "inline.experience.2fd08e63b45b",
+    "module": "inline",
+    "en": "Persian",
+    "fa": "فارسی"
+  },
+  {
+    "key": "inline.experience.8efac8bde0b4",
+    "module": "inline",
+    "en": "0",
+    "fa": "۰"
+  },
+  {
+    "key": "inline.experience.c34436feb353",
+    "module": "inline",
+    "en": "October 2026 · Sample",
+    "fa": "مهر ۱۴۰۵ · نمونه"
+  },
+  {
+    "key": "languageSwitcher.label",
+    "module": "languageswitcher",
+    "en": "Language",
+    "fa": "زبان"
+  },
+  {
+    "key": "messages.adminIntro",
+    "module": "messages",
+    "en": "A shared foundation for organization and operations workspaces with independent permissions.",
+    "fa": "پایهٔ مشترک پنل‌های سازمانی و عملیاتی، با دسترسی‌های مستقل.",
+    "ar": "A shared foundation for organization and operations workspaces with independent permissions."
+  },
+  {
+    "key": "messages.adminTitle",
+    "module": "messages",
+    "en": "Vianoor administration",
+    "fa": "محیط مدیریت ویانور",
+    "ar": "Vianoor administration"
+  },
+  {
+    "key": "messages.ai",
+    "module": "messages",
+    "en": "GapGPT with model selection",
+    "fa": "GapGPT با انتخاب مدل",
+    "ar": "GapGPT with model selection"
+  },
+  {
+    "key": "messages.badge",
+    "module": "messages",
+    "en": "Stage 1 of 20 · Software foundation",
+    "fa": "مرحلهٔ ۱ از ۲۰ · زیرساخت نرم‌افزار",
+    "ar": "Stage 1 of 20 · Software foundation"
+  },
+  {
+    "key": "messages.bilingual",
+    "module": "messages",
+    "en": "Persian and English",
+    "fa": "فارسی و انگلیسی",
+    "ar": "Persian and English"
+  },
+  {
+    "key": "messages.brand",
+    "module": "messages",
+    "en": "Vianoor",
+    "fa": "ویانور",
+    "ar": "Vianoor"
+  },
+  {
+    "key": "messages.consultation",
+    "module": "messages",
+    "en": "Consultation",
+    "fa": "مشاوره",
+    "ar": "Consultation"
+  },
+  {
+    "key": "messages.consultationText",
+    "module": "messages",
+    "en": "Find the right expert and a suitable time",
+    "fa": "انتخاب استاد و زمان مناسب برای گفت‌وگو",
+    "ar": "Find the right expert and a suitable time"
+  },
+  {
+    "key": "messages.content",
+    "module": "messages",
+    "en": "Content & events",
+    "fa": "محتوا و رویداد",
+    "ar": "Content & events"
+  },
+  {
+    "key": "messages.events",
+    "module": "messages",
+    "en": "Live Minbar",
+    "fa": "منبر آنلاین",
+    "ar": "Live Minbar"
+  },
+  {
+    "key": "messages.eventsText",
+    "module": "messages",
+    "en": "Live events and educational content",
+    "fa": "رویدادهای زنده و محتوای آموزشی",
+    "ar": "Live events and educational content"
+  },
+  {
+    "key": "messages.experts",
+    "module": "messages",
+    "en": "Experts",
+    "fa": "اساتید",
+    "ar": "Experts"
+  },
+  {
+    "key": "messages.expertsText",
+    "module": "messages",
+    "en": "Professional profiles and verified expertise",
+    "fa": "پروفایل حرفه‌ای و تخصص‌های تأییدشده",
+    "ar": "Professional profiles and verified expertise"
+  },
+  {
+    "key": "messages.finance",
+    "module": "messages",
+    "en": "Finance",
+    "fa": "مدیریت مالی",
+    "ar": "Finance"
+  },
+  {
+    "key": "messages.footer",
+    "module": "messages",
+    "en": "Development foundation · No real user data",
+    "fa": "نسخهٔ پایهٔ توسعه · بدون دادهٔ واقعی کاربران",
+    "ar": "Development foundation · No real user data"
+  },
+  {
+    "key": "messages.foundation",
+    "module": "messages",
+    "en": "Project foundations",
+    "fa": "پایه‌های پروژه",
+    "ar": "Project foundations"
+  },
+  {
+    "key": "messages.identity",
+    "module": "messages",
+    "en": "Email and password first",
+    "fa": "ورود اصلی با ایمیل و رمز عبور",
+    "ar": "Email and password first"
+  },
+  {
+    "key": "messages.independent",
+    "module": "messages",
+    "en": "32 independent services",
+    "fa": "۳۲ سرویس مستقل",
+    "ar": "32 independent services"
+  },
+  {
+    "key": "messages.intro",
+    "module": "messages",
+    "en": "Building the foundation for consultation, religious guidance, and meaningful conversations with experts.",
+    "fa": "پایهٔ سامانهٔ مشاوره، پاسخ‌گویی دینی و ارتباط با اساتید آماده می‌شود.",
+    "ar": "Building the foundation for consultation, religious guidance, and meaningful conversations with experts."
+  },
+  {
+    "key": "messages.language",
+    "module": "messages",
+    "en": "فارسی",
+    "fa": "English",
+    "ar": "فارسی"
+  },
+  {
+    "key": "messages.later",
+    "module": "messages",
+    "en": "Planned for a later stage",
+    "fa": "در مراحل بعد تکمیل می‌شود",
+    "ar": "Planned for a later stage"
+  },
+  {
+    "key": "messages.next",
+    "module": "messages",
+    "en": "Up next",
+    "fa": "مرحلهٔ بعد",
+    "ar": "Up next"
+  },
+  {
+    "key": "messages.nextText",
+    "module": "messages",
+    "en": "Docker, isolated databases, Redis, NATS, and observability.",
+    "fa": "Docker، پایگاه‌های مستقل، Redis، NATS و مشاهده‌پذیری.",
+    "ar": "Docker, isolated databases, Redis, NATS, and observability."
+  },
+  {
+    "key": "messages.nextTitle",
+    "module": "messages",
+    "en": "Infrastructure and service communication",
+    "fa": "زیرساخت و ارتباط سرویس‌ها",
+    "ar": "Infrastructure and service communication"
+  },
+  {
+    "key": "messages.notice",
+    "module": "messages",
+    "en": "This is a development foundation. Sign-in, booking, payments, and operational dashboards are not active yet.",
+    "fa": "این صفحه نمای پایهٔ توسعه است. ورود، رزرو، پرداخت و پنل‌های عملیاتی هنوز فعال نیستند.",
+    "ar": "This is a development foundation. Sign-in, booking, payments, and operational dashboards are not active yet."
+  },
+  {
+    "key": "messages.operations",
+    "module": "messages",
+    "en": "Technical operations",
+    "fa": "عملیات فنی",
+    "ar": "Technical operations"
+  },
+  {
+    "key": "messages.organization",
+    "module": "messages",
+    "en": "Organizations",
+    "fa": "مدیریت سازمان",
+    "ar": "Organizations"
+  },
+  {
+    "key": "messages.questions",
+    "module": "messages",
+    "en": "Questions & answers",
+    "fa": "پرسش‌وپاسخ",
+    "ar": "Questions & answers"
+  },
+  {
+    "key": "messages.questionsText",
+    "module": "messages",
+    "en": "Private questions and scientifically reviewed answers",
+    "fa": "پرسش خصوصی و پاسخ با بازبینی علمی",
+    "ar": "Private questions and scientifically reviewed answers"
+  },
+  {
+    "key": "messages.scientific",
+    "module": "messages",
+    "en": "Scientific review",
+    "fa": "نظارت علمی",
+    "ar": "Scientific review"
+  },
+  {
+    "key": "messages.sections",
+    "module": "messages",
+    "en": "Your future pathways",
+    "fa": "مسیرهای آیندهٔ شما",
+    "ar": "Your future pathways"
+  },
+  {
+    "key": "messages.skip",
+    "module": "messages",
+    "en": "Skip to main content",
+    "fa": "رفتن به محتوای اصلی",
+    "ar": "Skip to main content"
+  },
+  {
+    "key": "messages.staffSections",
+    "module": "messages",
+    "en": "Planned workspaces",
+    "fa": "محیط‌های کاری پیش‌بینی‌شده",
+    "ar": "Planned workspaces"
+  },
+  {
+    "key": "messages.support",
+    "module": "messages",
+    "en": "Support",
+    "fa": "پشتیبانی",
+    "ar": "Support"
+  },
+  {
+    "key": "messages.tagline",
+    "module": "messages",
+    "en": "Guidance, with understanding",
+    "fa": "همراه شما برای یافتن پاسخ",
+    "ar": "Guidance, with understanding"
+  },
+  {
+    "key": "messages.title",
+    "module": "messages",
+    "en": "A thoughtful beginning",
+    "fa": "آغاز یک همراهی روشن",
+    "ar": "A thoughtful beginning"
+  },
+  {
+    "key": "publicPages.0.title",
+    "module": "publicpages",
+    "en": "About Vianoor",
+    "fa": "دربارهٔ ویانور"
+  },
+  {
+    "key": "publicPages.1.title",
+    "module": "publicpages",
+    "en": "How it works",
+    "fa": "چگونه همراه شما هستیم؟"
+  },
+  {
+    "key": "publicPages.10.title",
+    "module": "publicpages",
+    "en": "Share your expertise",
+    "fa": "دانش شما، همراه راه دیگران"
+  },
+  {
+    "key": "publicPages.11.title",
+    "module": "publicpages",
+    "en": "Partner with Vianoor",
+    "fa": "همکاری برای اثری ماندگار"
+  },
+  {
+    "key": "publicPages.12.title",
+    "module": "publicpages",
+    "en": "Questions and understanding",
+    "fa": "پرسش شما، آغاز روشنایی"
+  },
+  {
+    "key": "publicPages.13.title",
+    "module": "publicpages",
+    "en": "Read, listen, reflect",
+    "fa": "برای دانستن و بهتر زیستن"
+  },
+  {
+    "key": "publicPages.14.title",
+    "module": "publicpages",
+    "en": "Learn together",
+    "fa": "فرصتی برای با هم آموختن"
+  },
+  {
+    "key": "publicPages.15.title",
+    "module": "publicpages",
+    "en": "Explore the workspaces",
+    "fa": "محیط‌های کاری ویانور"
+  },
+  {
+    "key": "publicPages.2.title",
+    "module": "publicpages",
+    "en": "Ways we can help",
+    "fa": "راه‌های همراهی"
+  },
+  {
+    "key": "publicPages.3.title",
+    "module": "publicpages",
+    "en": "Find your starting point",
+    "fa": "از کجا شروع کنیم؟"
+  },
+  {
+    "key": "publicPages.4.title",
+    "module": "publicpages",
+    "en": "Find your expert",
+    "fa": "همراهی یک نگاه آگاه"
+  },
+  {
+    "key": "publicPages.5.title",
+    "module": "publicpages",
+    "en": "Explore Vianoor",
+    "fa": "جست‌وجو در ویانور"
+  },
+  {
+    "key": "publicPages.6.title",
+    "module": "publicpages",
+    "en": "Help center",
+    "fa": "مرکز راهنما"
+  },
+  {
+    "key": "publicPages.7.title",
+    "module": "publicpages",
+    "en": "Frequently asked questions",
+    "fa": "پرسش‌های متداول"
+  },
+  {
+    "key": "publicPages.8.title",
+    "module": "publicpages",
+    "en": "Get in touch",
+    "fa": "با ما در ارتباط باشید"
+  },
+  {
+    "key": "publicPages.9.title",
+    "module": "publicpages",
+    "en": "Vianoor updates",
+    "fa": "تازه‌های ویانور"
+  },
+  {
+    "key": "release.installed",
+    "module": "release",
+    "en": "Installed version",
+    "fa": "نسخهٔ نصب‌شده"
+  },
+  {
+    "key": "roles.0.headline",
+    "module": "roles",
+    "en": "A little clarity, every day",
+    "fa": "مسیر آرامش شما، از همین‌جا"
+  },
+  {
+    "key": "roles.0.items.0",
+    "module": "roles",
+    "en": "Family consultation",
+    "fa": "جلسه مشاوره خانواده"
+  },
+  {
+    "key": "roles.0.items.1",
+    "module": "roles",
+    "en": "An answer to your question",
+    "fa": "پاسخ به پرسش شما"
+  },
+  {
+    "key": "roles.0.items.2",
+    "module": "roles",
+    "en": "Upcoming session reminder",
+    "fa": "یادآوری جلسه آینده"
+  },
+  {
+    "key": "roles.0.metrics.0",
+    "module": "roles",
+    "en": "Upcoming sessions",
+    "fa": "جلسات پیش رو"
+  },
+  {
+    "key": "roles.0.metrics.1",
+    "module": "roles",
+    "en": "My questions",
+    "fa": "پرسش‌های من"
+  },
+  {
+    "key": "roles.0.metrics.2",
+    "module": "roles",
+    "en": "Answers received",
+    "fa": "پاسخ‌های دریافت‌شده"
+  },
+  {
+    "key": "roles.0.metrics.3",
+    "module": "roles",
+    "en": "Saved notes",
+    "fa": "یادداشت‌های ذخیره‌شده"
+  },
+  {
+    "key": "roles.0.title",
+    "module": "roles",
+    "en": "My space",
+    "fa": "مراجعه‌کننده"
+  },
+  {
+    "key": "roles.1.headline",
+    "module": "roles",
+    "en": "Make room for meaningful conversations",
+    "fa": "برای گفت‌وگوهای اثرگذار آماده‌اید؟"
+  },
+  {
+    "key": "roles.1.items.0",
+    "module": "roles",
+    "en": "Scheduled conversation",
+    "fa": "گفت‌وگوی برنامه‌ریزی‌شده"
+  },
+  {
+    "key": "roles.1.items.1",
+    "module": "roles",
+    "en": "Review weekly availability",
+    "fa": "بررسی برنامه هفتگی"
+  },
+  {
+    "key": "roles.1.items.2",
+    "module": "roles",
+    "en": "A parenting question",
+    "fa": "پرسش درباره تربیت فرزند"
+  },
+  {
+    "key": "roles.1.metrics.0",
+    "module": "roles",
+    "en": "Sessions today",
+    "fa": "جلسات امروز"
+  },
+  {
+    "key": "roles.1.metrics.1",
+    "module": "roles",
+    "en": "Weekly clients",
+    "fa": "مراجعان این هفته"
+  },
+  {
+    "key": "roles.1.metrics.2",
+    "module": "roles",
+    "en": "New questions",
+    "fa": "پرسش‌های تازه"
+  },
+  {
+    "key": "roles.1.metrics.3",
+    "module": "roles",
+    "en": "Sample satisfaction",
+    "fa": "رضایت نمونه"
+  },
+  {
+    "key": "roles.1.title",
+    "module": "roles",
+    "en": "Expert workspace",
+    "fa": "استاد و مشاور"
+  },
+  {
+    "key": "roles.10.headline",
+    "module": "roles",
+    "en": "Every call is a chance to help",
+    "fa": "هر تماس، فرصتی برای همراهی"
+  },
+  {
+    "key": "roles.10.items.0",
+    "module": "roles",
+    "en": "Consultation follow-up",
+    "fa": "پیگیری تماس مشاوره"
+  },
+  {
+    "key": "roles.10.items.1",
+    "module": "roles",
+    "en": "Review call routing",
+    "fa": "بررسی مسیر تماس"
+  },
+  {
+    "key": "roles.10.items.2",
+    "module": "roles",
+    "en": "Connection quality report",
+    "fa": "گزارش کیفیت ارتباط"
+  },
+  {
+    "key": "roles.10.metrics.0",
+    "module": "roles",
+    "en": "Sample calls",
+    "fa": "تماس‌های نمونه"
+  },
+  {
+    "key": "roles.10.metrics.1",
+    "module": "roles",
+    "en": "Sample queue",
+    "fa": "در صف نمونه"
+  },
+  {
+    "key": "roles.10.metrics.2",
+    "module": "roles",
+    "en": "Sample agents",
+    "fa": "پاسخ‌گوهای نمونه"
+  },
+  {
+    "key": "roles.10.metrics.3",
+    "module": "roles",
+    "en": "Follow-up calls",
+    "fa": "تماس‌های پیگیری"
+  },
+  {
+    "key": "roles.10.title",
+    "module": "roles",
+    "en": "Call center",
+    "fa": "مرکز تماس"
+  },
+  {
+    "key": "roles.11.headline",
+    "module": "roles",
+    "en": "Reliability behind every good experience",
+    "fa": "پایداری، پشت صحنهٔ یک تجربهٔ خوب"
+  },
+  {
+    "key": "roles.11.items.0",
+    "module": "roles",
+    "en": "Review sample alert",
+    "fa": "بررسی هشدار نمونه"
+  },
+  {
+    "key": "roles.11.items.1",
+    "module": "roles",
+    "en": "Backup report",
+    "fa": "گزارش پشتیبان‌گیری"
+  },
+  {
+    "key": "roles.11.items.2",
+    "module": "roles",
+    "en": "Review message queue",
+    "fa": "مرور صف پیام"
+  },
+  {
+    "key": "roles.11.metrics.0",
+    "module": "roles",
+    "en": "Sample services",
+    "fa": "سرویس‌های نمونه"
+  },
+  {
+    "key": "roles.11.metrics.1",
+    "module": "roles",
+    "en": "Sample alerts",
+    "fa": "هشدارهای نمونه"
+  },
+  {
+    "key": "roles.11.metrics.2",
+    "module": "roles",
+    "en": "Pending jobs",
+    "fa": "کارهای منتظر"
+  },
+  {
+    "key": "roles.11.metrics.3",
+    "module": "roles",
+    "en": "Recorded releases",
+    "fa": "نسخه‌های ثبت‌شده"
+  },
+  {
+    "key": "roles.11.title",
+    "module": "roles",
+    "en": "Operations",
+    "fa": "عملیات فنی"
+  },
+  {
+    "key": "roles.2.headline",
+    "module": "roles",
+    "en": "Every answer lights a way",
+    "fa": "هر پاسخ، چراغ یک مسیر"
+  },
+  {
+    "key": "roles.2.items.0",
+    "module": "roles",
+    "en": "Everyday ethics question",
+    "fa": "پرسش درباره اخلاق روزمره"
+  },
+  {
+    "key": "roles.2.items.1",
+    "module": "roles",
+    "en": "Review a draft answer",
+    "fa": "بازبینی پاسخ پیشنهادی"
+  },
+  {
+    "key": "roles.2.items.2",
+    "module": "roles",
+    "en": "Complete answer references",
+    "fa": "تکمیل منابع پاسخ"
+  },
+  {
+    "key": "roles.2.metrics.0",
+    "module": "roles",
+    "en": "Waiting questions",
+    "fa": "پرسش‌های منتظر"
+  },
+  {
+    "key": "roles.2.metrics.1",
+    "module": "roles",
+    "en": "Draft answers",
+    "fa": "پاسخ‌های آماده"
+  },
+  {
+    "key": "roles.2.metrics.2",
+    "module": "roles",
+    "en": "In review",
+    "fa": "در بازبینی"
+  },
+  {
+    "key": "roles.2.metrics.3",
+    "module": "roles",
+    "en": "Published answers",
+    "fa": "پاسخ‌های منتشرشده"
+  },
+  {
+    "key": "roles.2.title",
+    "module": "roles",
+    "en": "Responder workspace",
+    "fa": "پاسخ‌گو"
+  },
+  {
+    "key": "roles.3.headline",
+    "module": "roles",
+    "en": "Careful review builds trust",
+    "fa": "دقت علمی، پشتوانهٔ اعتماد"
+  },
+  {
+    "key": "roles.3.items.0",
+    "module": "roles",
+    "en": "Review a guidance answer",
+    "fa": "ارزیابی پاسخ مشاوره"
+  },
+  {
+    "key": "roles.3.items.1",
+    "module": "roles",
+    "en": "Expert credential review",
+    "fa": "بررسی مدارک استاد"
+  },
+  {
+    "key": "roles.3.items.2",
+    "module": "roles",
+    "en": "Verify a scientific reference",
+    "fa": "بازبینی منبع علمی"
+  },
+  {
+    "key": "roles.3.metrics.0",
+    "module": "roles",
+    "en": "Awaiting review",
+    "fa": "در انتظار بررسی"
+  },
+  {
+    "key": "roles.3.metrics.1",
+    "module": "roles",
+    "en": "Today’s referrals",
+    "fa": "ارجاع‌های امروز"
+  },
+  {
+    "key": "roles.3.metrics.2",
+    "module": "roles",
+    "en": "Approved",
+    "fa": "تأییدشده"
+  },
+  {
+    "key": "roles.3.metrics.3",
+    "module": "roles",
+    "en": "Needs revision",
+    "fa": "نیازمند اصلاح"
+  },
+  {
+    "key": "roles.3.title",
+    "module": "roles",
+    "en": "Scientific review",
+    "fa": "ناظر علمی"
+  },
+  {
+    "key": "roles.4.headline",
+    "module": "roles",
+    "en": "Good support starts with listening",
+    "fa": "یک همراهی خوب، با شنیدن شروع می‌شود"
+  },
+  {
+    "key": "roles.4.items.0",
+    "module": "roles",
+    "en": "Session rescheduling",
+    "fa": "پیگیری تغییر زمان جلسه"
+  },
+  {
+    "key": "roles.4.items.1",
+    "module": "roles",
+    "en": "Help joining a session",
+    "fa": "راهنمای ورود به جلسه"
+  },
+  {
+    "key": "roles.4.items.2",
+    "module": "roles",
+    "en": "Booking follow-up",
+    "fa": "درخواست پیگیری رزرو"
+  },
+  {
+    "key": "roles.4.metrics.0",
+    "module": "roles",
+    "en": "Open tickets",
+    "fa": "تیکت‌های باز"
+  },
+  {
+    "key": "roles.4.metrics.1",
+    "module": "roles",
+    "en": "Awaiting reply",
+    "fa": "در انتظار پاسخ"
+  },
+  {
+    "key": "roles.4.metrics.2",
+    "module": "roles",
+    "en": "Resolved today",
+    "fa": "حل‌شده امروز"
+  },
+  {
+    "key": "roles.4.metrics.3",
+    "module": "roles",
+    "en": "Sample response time",
+    "fa": "میانگین پاسخ نمونه"
+  },
+  {
+    "key": "roles.4.title",
+    "module": "roles",
+    "en": "Support desk",
+    "fa": "پشتیبانی"
+  },
+  {
+    "key": "roles.5.headline",
+    "module": "roles",
+    "en": "A clear view of financial activity",
+    "fa": "تصویری روشن از جریان مالی"
+  },
+  {
+    "key": "roles.5.items.0",
+    "module": "roles",
+    "en": "Expert payout request",
+    "fa": "درخواست تسویه استاد"
+  },
+  {
+    "key": "roles.5.items.1",
+    "module": "roles",
+    "en": "Reconcile sample transaction",
+    "fa": "تطبیق تراکنش نمونه"
+  },
+  {
+    "key": "roles.5.items.2",
+    "module": "roles",
+    "en": "Review a refund",
+    "fa": "بررسی بازپرداخت"
+  },
+  {
+    "key": "roles.5.metrics.0",
+    "module": "roles",
+    "en": "Sample transactions",
+    "fa": "تراکنش‌های نمونه"
+  },
+  {
+    "key": "roles.5.metrics.1",
+    "module": "roles",
+    "en": "Pending payouts",
+    "fa": "تسویه‌های منتظر"
+  },
+  {
+    "key": "roles.5.metrics.2",
+    "module": "roles",
+    "en": "To reconcile",
+    "fa": "نیازمند تطبیق"
+  },
+  {
+    "key": "roles.5.metrics.3",
+    "module": "roles",
+    "en": "Refunds",
+    "fa": "بازپرداخت‌ها"
+  },
+  {
+    "key": "roles.5.title",
+    "module": "roles",
+    "en": "Finance workspace",
+    "fa": "مدیریت مالی"
+  },
+  {
+    "key": "roles.6.headline",
+    "module": "roles",
+    "en": "Give meaningful knowledge a home",
+    "fa": "دانش ارزشمند، در قالبی ماندگار"
+  },
+  {
+    "key": "roles.6.items.0",
+    "module": "roles",
+    "en": "The art of conversation",
+    "fa": "مقاله هنر گفت‌وگو"
+  },
+  {
+    "key": "roles.6.items.1",
+    "module": "roles",
+    "en": "Mindful family event",
+    "fa": "رویداد خانواده آگاه"
+  },
+  {
+    "key": "roles.6.items.2",
+    "module": "roles",
+    "en": "Edit a learning collection",
+    "fa": "ویرایش مجموعه آموزشی"
+  },
+  {
+    "key": "roles.6.metrics.0",
+    "module": "roles",
+    "en": "Drafts",
+    "fa": "پیش‌نویس‌ها"
+  },
+  {
+    "key": "roles.6.metrics.1",
+    "module": "roles",
+    "en": "Awaiting review",
+    "fa": "منتظر بازبینی"
+  },
+  {
+    "key": "roles.6.metrics.2",
+    "module": "roles",
+    "en": "Upcoming events",
+    "fa": "رویدادهای آینده"
+  },
+  {
+    "key": "roles.6.metrics.3",
+    "module": "roles",
+    "en": "Published content",
+    "fa": "محتوای منتشرشده"
+  },
+  {
+    "key": "roles.6.title",
+    "module": "roles",
+    "en": "Content studio",
+    "fa": "محتوا و رویداد"
+  },
+  {
+    "key": "roles.7.headline",
+    "module": "roles",
+    "en": "Connected people, shared purpose",
+    "fa": "همراهی هماهنگ، در تمام شعب"
+  },
+  {
+    "key": "roles.7.items.0",
+    "module": "roles",
+    "en": "Central branch program",
+    "fa": "برنامه شعبه مرکزی"
+  },
+  {
+    "key": "roles.7.items.1",
+    "module": "roles",
+    "en": "New member invitation",
+    "fa": "دعوت همکار جدید"
+  },
+  {
+    "key": "roles.7.items.2",
+    "module": "roles",
+    "en": "Monthly activity report",
+    "fa": "گزارش فعالیت ماهانه"
+  },
+  {
+    "key": "roles.7.metrics.0",
+    "module": "roles",
+    "en": "Sample branches",
+    "fa": "شعب نمونه"
+  },
+  {
+    "key": "roles.7.metrics.1",
+    "module": "roles",
+    "en": "Sample active members",
+    "fa": "اعضای فعال نمونه"
+  },
+  {
+    "key": "roles.7.metrics.2",
+    "module": "roles",
+    "en": "Affiliated experts",
+    "fa": "اساتید همکار"
+  },
+  {
+    "key": "roles.7.metrics.3",
+    "module": "roles",
+    "en": "Current programs",
+    "fa": "برنامه‌های جاری"
+  },
+  {
+    "key": "roles.7.title",
+    "module": "roles",
+    "en": "Organization workspace",
+    "fa": "مدیریت سازمان"
+  },
+  {
+    "key": "roles.8.headline",
+    "module": "roles",
+    "en": "The bigger picture, thoughtfully organized",
+    "fa": "نگاهی جامع به دنیای ویانور"
+  },
+  {
+    "key": "roles.8.items.0",
+    "module": "roles",
+    "en": "Organization request",
+    "fa": "بررسی درخواست سازمان"
+  },
+  {
+    "key": "roles.8.items.1",
+    "module": "roles",
+    "en": "Review access roles",
+    "fa": "بازبینی نقش‌های دسترسی"
+  },
+  {
+    "key": "roles.8.items.2",
+    "module": "roles",
+    "en": "Update consent policy",
+    "fa": "به‌روزرسانی سیاست رضایت"
+  },
+  {
+    "key": "roles.8.metrics.0",
+    "module": "roles",
+    "en": "Sample users",
+    "fa": "کاربران نمونه"
+  },
+  {
+    "key": "roles.8.metrics.1",
+    "module": "roles",
+    "en": "Organizations",
+    "fa": "سازمان‌ها"
+  },
+  {
+    "key": "roles.8.metrics.2",
+    "module": "roles",
+    "en": "Open requests",
+    "fa": "درخواست‌های باز"
+  },
+  {
+    "key": "roles.8.metrics.3",
+    "module": "roles",
+    "en": "Sample policies",
+    "fa": "سیاست‌های فعال نمونه"
+  },
+  {
+    "key": "roles.8.title",
+    "module": "roles",
+    "en": "Administration",
+    "fa": "مدیریت کل"
+  },
+  {
+    "key": "roles.9.headline",
+    "module": "roles",
+    "en": "Intelligence in support of human care",
+    "fa": "هوش مصنوعی، در خدمت همراهی انسانی"
+  },
+  {
+    "key": "roles.9.items.0",
+    "module": "roles",
+    "en": "Evaluate summary quality",
+    "fa": "ارزیابی کیفیت خلاصه‌سازی"
+  },
+  {
+    "key": "roles.9.items.1",
+    "module": "roles",
+    "en": "Review translation route",
+    "fa": "بازبینی مسیر ترجمه"
+  },
+  {
+    "key": "roles.9.items.2",
+    "module": "roles",
+    "en": "Review data policy",
+    "fa": "بررسی سیاست داده"
+  },
+  {
+    "key": "roles.9.metrics.0",
+    "module": "roles",
+    "en": "Model routes",
+    "fa": "مسیرهای مدل"
+  },
+  {
+    "key": "roles.9.metrics.1",
+    "module": "roles",
+    "en": "Sample requests",
+    "fa": "درخواست‌های نمونه"
+  },
+  {
+    "key": "roles.9.metrics.2",
+    "module": "roles",
+    "en": "Pending evaluations",
+    "fa": "ارزیابی‌های منتظر"
+  },
+  {
+    "key": "roles.9.metrics.3",
+    "module": "roles",
+    "en": "Capabilities",
+    "fa": "قابلیت‌ها"
+  },
+  {
+    "key": "roles.9.title",
+    "module": "roles",
+    "en": "AI workspace",
+    "fa": "مدیریت هوش مصنوعی"
+  },
+  {
+    "key": "schedulingCopy.add",
+    "module": "schedulingcopy",
+    "en": "Add interval",
+    "fa": "افزودن بازه",
+    "ar": "Add interval"
+  },
+  {
+    "key": "schedulingCopy.adminBookings",
+    "module": "schedulingcopy",
+    "en": "Booking management",
+    "fa": "مدیریت رزروها",
+    "ar": "Booking management"
+  },
+  {
+    "key": "schedulingCopy.after",
+    "module": "schedulingcopy",
+    "en": "Buffer after (minutes)",
+    "fa": "فاصلهٔ پس از جلسه (دقیقه)",
+    "ar": "Buffer after (minutes)"
+  },
+  {
+    "key": "schedulingCopy.all",
+    "module": "schedulingcopy",
+    "en": "All",
+    "fa": "همه",
+    "ar": "All"
+  },
+  {
+    "key": "schedulingCopy.ambiguous",
+    "module": "schedulingcopy",
+    "en": "This clock time is missing or repeated. Change the time or choose an occurrence.",
+    "fa": "این ساعت وجود ندارد یا دو بار تکرار می‌شود؛ ساعت یا گزینهٔ رفع ابهام را تغییر دهید.",
+    "ar": "This clock time is missing or repeated. Change the time or choose an occurrence."
+  },
+  {
+    "key": "schedulingCopy.annual",
+    "module": "schedulingcopy",
+    "en": "Repeat every year",
+    "fa": "هر سال تکرار شود",
+    "ar": "Repeat every year"
+  },
+  {
+    "key": "schedulingCopy.available",
+    "module": "schedulingcopy",
+    "en": "Additional working time",
+    "fa": "زمان کاری اضافه",
+    "ar": "Additional working time"
+  },
+  {
+    "key": "schedulingCopy.back",
+    "module": "schedulingcopy",
+    "en": "Back",
+    "fa": "بازگشت",
+    "ar": "Back"
+  },
+  {
+    "key": "schedulingCopy.before",
+    "module": "schedulingcopy",
+    "en": "Buffer before (minutes)",
+    "fa": "فاصلهٔ پیش از جلسه (دقیقه)",
+    "ar": "Buffer before (minutes)"
+  },
+  {
+    "key": "schedulingCopy.book",
+    "module": "schedulingcopy",
+    "en": "Book a session",
+    "fa": "رزرو جلسه",
+    "ar": "Book a session"
+  },
+  {
+    "key": "schedulingCopy.bookings",
+    "module": "schedulingcopy",
+    "en": "My bookings and calendar",
+    "fa": "رزروها و تقویم من",
+    "ar": "My bookings and calendar"
+  },
+  {
+    "key": "schedulingCopy.breaks",
+    "module": "schedulingcopy",
+    "en": "Breaks",
+    "fa": "زمان‌های استراحت",
+    "ar": "Breaks"
+  },
+  {
+    "key": "schedulingCopy.calendar",
+    "module": "schedulingcopy",
+    "en": "Working calendar",
+    "fa": "تقویم کاری",
+    "ar": "Working calendar"
+  },
+  {
+    "key": "schedulingCopy.calendarNote",
+    "module": "schedulingcopy",
+    "en": "Weekly hours follow the expert’s time zone. Exceptions are converted to exact UTC instants. Calendar edits do not cancel existing bookings.",
+    "fa": "ساعت‌های هفتگی براساس منطقهٔ زمانی استاد هستند؛ استثناها به لحظهٔ دقیق UTC تبدیل می‌شوند. تغییر تقویم رزروهای قبلی را لغو نمی‌کند.",
+    "ar": "Weekly hours follow the expert’s time zone. Exceptions are converted to exact UTC instants. Calendar edits do not cancel existing bookings."
+  },
+  {
+    "key": "schedulingCopy.calendarType",
+    "module": "schedulingcopy",
+    "en": "Holiday date calendar",
+    "fa": "تقویم تاریخ تعطیلی",
+    "ar": "Holiday date calendar"
+  },
+  {
+    "key": "schedulingCopy.cancel",
+    "module": "schedulingcopy",
+    "en": "Cancel booking",
+    "fa": "لغو رزرو",
+    "ar": "Cancel booking"
+  },
+  {
+    "key": "schedulingCopy.cancelled",
+    "module": "schedulingcopy",
+    "en": "Cancelled and expired",
+    "fa": "لغوشده و منقضی",
+    "ar": "Cancelled and expired"
+  },
+  {
+    "key": "schedulingCopy.complete",
+    "module": "schedulingcopy",
+    "en": "Mark session completed",
+    "fa": "ثبت پایان جلسه",
+    "ar": "Mark session completed"
+  },
+  {
+    "key": "schedulingCopy.confirm",
+    "module": "schedulingcopy",
+    "en": "Confirm free booking",
+    "fa": "تأیید رزرو رایگان",
+    "ar": "Confirm free booking"
+  },
+  {
+    "key": "schedulingCopy.conflict",
+    "module": "schedulingcopy",
+    "en": "Someone else reserved this time. Choose another time.",
+    "fa": "این زمان را شخص دیگری گرفته است. زمان دیگری انتخاب کنید.",
+    "ar": "Someone else reserved this time. Choose another time."
+  },
+  {
+    "key": "schedulingCopy.cutoff",
+    "module": "schedulingcopy",
+    "en": "Cancellation or rescheduling cutoff (hours before session)",
+    "fa": "مهلت لغو یا تغییر زمان (ساعت پیش از جلسه)",
+    "ar": "Cancellation or rescheduling cutoff (hours before session)"
+  },
+  {
+    "key": "schedulingCopy.cutoffError",
+    "module": "schedulingcopy",
+    "en": "The cancellation or rescheduling deadline has passed.",
+    "fa": "مهلت مجاز لغو یا تغییر زمان گذشته است.",
+    "ar": "The cancellation or rescheduling deadline has passed."
+  },
+  {
+    "key": "schedulingCopy.date",
+    "module": "schedulingcopy",
+    "en": "Date (Gregorian)",
+    "fa": "روز مورد نظر (تاریخ میلادی)",
+    "ar": "Date (Gregorian)"
+  },
+  {
+    "key": "schedulingCopy.day",
+    "module": "schedulingcopy",
+    "en": "Weekday",
+    "fa": "روز هفته",
+    "ar": "Weekday"
+  },
+  {
+    "key": "schedulingCopy.days.0",
+    "module": "schedulingcopy",
+    "en": "Monday",
+    "fa": "دوشنبه",
+    "ar": "Monday"
+  },
+  {
+    "key": "schedulingCopy.days.1",
+    "module": "schedulingcopy",
+    "en": "Tuesday",
+    "fa": "سه‌شنبه",
+    "ar": "Tuesday"
+  },
+  {
+    "key": "schedulingCopy.days.2",
+    "module": "schedulingcopy",
+    "en": "Wednesday",
+    "fa": "چهارشنبه",
+    "ar": "Wednesday"
+  },
+  {
+    "key": "schedulingCopy.days.3",
+    "module": "schedulingcopy",
+    "en": "Thursday",
+    "fa": "پنجشنبه",
+    "ar": "Thursday"
+  },
+  {
+    "key": "schedulingCopy.days.4",
+    "module": "schedulingcopy",
+    "en": "Friday",
+    "fa": "جمعه",
+    "ar": "Friday"
+  },
+  {
+    "key": "schedulingCopy.days.5",
+    "module": "schedulingcopy",
+    "en": "Saturday",
+    "fa": "شنبه",
+    "ar": "Saturday"
+  },
+  {
+    "key": "schedulingCopy.days.6",
+    "module": "schedulingcopy",
+    "en": "Sunday",
+    "fa": "یکشنبه",
+    "ar": "Sunday"
+  },
+  {
+    "key": "schedulingCopy.disambiguation",
+    "module": "schedulingcopy",
+    "en": "Repeated clock time during DST change",
+    "fa": "ساعت تکراری هنگام تغییر ساعت تابستانی",
+    "ar": "Repeated clock time during DST change"
+  },
+  {
+    "key": "schedulingCopy.earlier",
+    "module": "schedulingcopy",
+    "en": "First occurrence",
+    "fa": "بار اول ساعت تکراری",
+    "ar": "First occurrence"
+  },
+  {
+    "key": "schedulingCopy.empty",
+    "module": "schedulingcopy",
+    "en": "No results found.",
+    "fa": "موردی یافت نشد.",
+    "ar": "No results found."
+  },
+  {
+    "key": "schedulingCopy.end",
+    "module": "schedulingcopy",
+    "en": "End",
+    "fa": "پایان",
+    "ar": "End"
+  },
+  {
+    "key": "schedulingCopy.endDate",
+    "module": "schedulingcopy",
+    "en": "Inclusive end date (YYYY-MM-DD)",
+    "fa": "تاریخ پایان، شامل این روز (YYYY-MM-DD)",
+    "ar": "Inclusive end date (YYYY-MM-DD)"
+  },
+  {
+    "key": "schedulingCopy.error",
+    "module": "schedulingcopy",
+    "en": "The operation failed. Check the information and try again.",
+    "fa": "عملیات انجام نشد؛ اطلاعات را بررسی و دوباره تلاش کنید.",
+    "ar": "The operation failed. Check the information and try again."
+  },
+  {
+    "key": "schedulingCopy.exceptions",
+    "module": "schedulingcopy",
+    "en": "Calendar exceptions",
+    "fa": "استثناهای تقویم",
+    "ar": "Calendar exceptions"
+  },
+  {
+    "key": "schedulingCopy.expert",
+    "module": "schedulingcopy",
+    "en": "Expert",
+    "fa": "استاد",
+    "ar": "Expert"
+  },
+  {
+    "key": "schedulingCopy.expertBookings",
+    "module": "schedulingcopy",
+    "en": "Expert bookings",
+    "fa": "رزروهای استاد",
+    "ar": "Expert bookings"
+  },
+  {
+    "key": "schedulingCopy.expired",
+    "module": "schedulingcopy",
+    "en": "The hold has expired.",
+    "fa": "مهلت نگهداری زمان پایان یافته است.",
+    "ar": "The hold has expired."
+  },
+  {
+    "key": "schedulingCopy.expires",
+    "module": "schedulingcopy",
+    "en": "Confirmation deadline",
+    "fa": "مهلت تأیید",
+    "ar": "Confirmation deadline"
+  },
+  {
+    "key": "schedulingCopy.find",
+    "module": "schedulingcopy",
+    "en": "Find available times",
+    "fa": "نمایش زمان‌های آزاد",
+    "ar": "Find available times"
+  },
+  {
+    "key": "schedulingCopy.free",
+    "module": "schedulingcopy",
+    "en": "Only free services can be booked at this stage. No payment is collected.",
+    "fa": "در این مرحله فقط خدمات رایگان قابل رزرو هستند؛ پرداختی دریافت نمی‌شود.",
+    "ar": "Only free services can be booked at this stage. No payment is collected."
+  },
+  {
+    "key": "schedulingCopy.future",
+    "module": "schedulingcopy",
+    "en": "Upcoming",
+    "fa": "آینده",
+    "ar": "Upcoming"
+  },
+  {
+    "key": "schedulingCopy.gregorian",
+    "module": "schedulingcopy",
+    "en": "Gregorian",
+    "fa": "میلادی",
+    "ar": "Gregorian"
+  },
+  {
+    "key": "schedulingCopy.hold",
+    "module": "schedulingcopy",
+    "en": "Hold this time",
+    "fa": "نگهداری موقت زمان",
+    "ar": "Hold this time"
+  },
+  {
+    "key": "schedulingCopy.holdSeconds",
+    "module": "schedulingcopy",
+    "en": "Hold duration (seconds)",
+    "fa": "مهلت نگهداری ظرفیت (ثانیه)",
+    "ar": "Hold duration (seconds)"
+  },
+  {
+    "key": "schedulingCopy.holidays",
+    "module": "schedulingcopy",
+    "en": "Holidays and calendar settings",
+    "fa": "تعطیلی‌ها و تنظیمات تقویم",
+    "ar": "Holidays and calendar settings"
+  },
+  {
+    "key": "schedulingCopy.horizon",
+    "module": "schedulingcopy",
+    "en": "Booking horizon (days)",
+    "fa": "حداکثر بازهٔ رزرو (روز)",
+    "ar": "Booking horizon (days)"
+  },
+  {
+    "key": "schedulingCopy.kind",
+    "module": "schedulingcopy",
+    "en": "Type",
+    "fa": "نوع",
+    "ar": "Type"
+  },
+  {
+    "key": "schedulingCopy.later",
+    "module": "schedulingcopy",
+    "en": "Second occurrence",
+    "fa": "بار دوم ساعت تکراری",
+    "ar": "Second occurrence"
+  },
+  {
+    "key": "schedulingCopy.loading",
+    "module": "schedulingcopy",
+    "en": "Loading…",
+    "fa": "در حال بارگذاری…",
+    "ar": "Loading…"
+  },
+  {
+    "key": "schedulingCopy.localEnd",
+    "module": "schedulingcopy",
+    "en": "Local end (Gregorian date)",
+    "fa": "پایان محلی (تاریخ میلادی)",
+    "ar": "Local end (Gregorian date)"
+  },
+  {
+    "key": "schedulingCopy.localStart",
+    "module": "schedulingcopy",
+    "en": "Local start (Gregorian date)",
+    "fa": "شروع محلی (تاریخ میلادی)",
+    "ar": "Local start (Gregorian date)"
+  },
+  {
+    "key": "schedulingCopy.moveNote",
+    "module": "schedulingcopy",
+    "en": "Your original reservation stays reserved until the new time is secured.",
+    "fa": "تا قطعی‌شدن زمان جدید، رزرو قبلی محفوظ می‌ماند.",
+    "ar": "Your original reservation stays reserved until the new time is secured."
+  },
+  {
+    "key": "schedulingCopy.next",
+    "module": "schedulingcopy",
+    "en": "Next page",
+    "fa": "صفحهٔ بعد",
+    "ar": "Next page"
+  },
+  {
+    "key": "schedulingCopy.noPenalty",
+    "module": "schedulingcopy",
+    "en": "There are no monetary penalties or refunds in stage 9.",
+    "fa": "در مرحلهٔ ۹ جریمه و بازپرداخت مالی نداریم.",
+    "ar": "There are no monetary penalties or refunds in stage 9."
+  },
+  {
+    "key": "schedulingCopy.notice",
+    "module": "schedulingcopy",
+    "en": "Minimum booking notice (minutes)",
+    "fa": "حداقل فاصله تا رزرو (دقیقه)",
+    "ar": "Minimum booking notice (minutes)"
+  },
+  {
+    "key": "schedulingCopy.notifications",
+    "module": "schedulingcopy",
+    "en": "Booking notifications",
+    "fa": "اعلان‌های رزرو",
+    "ar": "Booking notifications"
+  },
+  {
+    "key": "schedulingCopy.past",
+    "module": "schedulingcopy",
+    "en": "Past",
+    "fa": "گذشته",
+    "ar": "Past"
+  },
+  {
+    "key": "schedulingCopy.pending",
+    "module": "schedulingcopy",
+    "en": "Finalizing. Refresh shortly.",
+    "fa": "در حال نهایی‌سازی؛ دوباره به‌روزرسانی کنید.",
+    "ar": "Finalizing. Refresh shortly."
+  },
+  {
+    "key": "schedulingCopy.period",
+    "module": "schedulingcopy",
+    "en": "Display period",
+    "fa": "بازهٔ نمایش",
+    "ar": "Display period"
+  },
+  {
+    "key": "schedulingCopy.persian",
+    "module": "schedulingcopy",
+    "en": "Persian",
+    "fa": "هجری شمسی",
+    "ar": "Persian"
+  },
+  {
+    "key": "schedulingCopy.policy",
+    "module": "schedulingcopy",
+    "en": "Clients may cancel or reschedule until this many hours before the session:",
+    "fa": "لغو و تغییر زمان توسط مراجع تا این تعداد ساعت پیش از شروع مجاز است:",
+    "ar": "Clients may cancel or reschedule until this many hours before the session:"
+  },
+  {
+    "key": "schedulingCopy.previous",
+    "module": "schedulingcopy",
+    "en": "Previous page",
+    "fa": "صفحهٔ قبل",
+    "ar": "Previous page"
+  },
+  {
+    "key": "schedulingCopy.read",
+    "module": "schedulingcopy",
+    "en": "Mark read",
+    "fa": "خوانده شد",
+    "ar": "Mark read"
+  },
+  {
+    "key": "schedulingCopy.refresh",
+    "module": "schedulingcopy",
+    "en": "Refresh",
+    "fa": "به‌روزرسانی",
+    "ar": "Refresh"
+  },
+  {
+    "key": "schedulingCopy.reject",
+    "module": "schedulingcopy",
+    "en": "Reject ambiguous time",
+    "fa": "در صورت ابهام ثبت نشود",
+    "ar": "Reject ambiguous time"
+  },
+  {
+    "key": "schedulingCopy.remaining",
+    "module": "schedulingcopy",
+    "en": "seconds remaining",
+    "fa": "ثانیه باقی مانده",
+    "ar": "seconds remaining"
+  },
+  {
+    "key": "schedulingCopy.remove",
+    "module": "schedulingcopy",
+    "en": "Remove",
+    "fa": "حذف",
+    "ar": "Remove"
+  },
+  {
+    "key": "schedulingCopy.reschedule",
+    "module": "schedulingcopy",
+    "en": "Reschedule",
+    "fa": "تغییر زمان",
+    "ar": "Reschedule"
+  },
+  {
+    "key": "schedulingCopy.save",
+    "module": "schedulingcopy",
+    "en": "Save",
+    "fa": "ذخیره",
+    "ar": "Save"
+  },
+  {
+    "key": "schedulingCopy.saved",
+    "module": "schedulingcopy",
+    "en": "Saved.",
+    "fa": "ذخیره شد.",
+    "ar": "Saved."
+  },
+  {
+    "key": "schedulingCopy.saveTimezone",
+    "module": "schedulingcopy",
+    "en": "Save my time zone",
+    "fa": "ذخیره منطقهٔ زمانی من",
+    "ar": "Save my time zone"
+  },
+  {
+    "key": "schedulingCopy.search",
+    "module": "schedulingcopy",
+    "en": "Search",
+    "fa": "جستجو",
+    "ar": "Search"
+  },
+  {
+    "key": "schedulingCopy.searchAt",
+    "module": "schedulingcopy",
+    "en": "Your desired time (Gregorian date)",
+    "fa": "زمان مورد نظر شما (تاریخ میلادی)",
+    "ar": "Your desired time (Gregorian date)"
+  },
+  {
+    "key": "schedulingCopy.searchTime",
+    "module": "schedulingcopy",
+    "en": "Find experts by time",
+    "fa": "جستجوی استاد براساس زمان",
+    "ar": "Find experts by time"
+  },
+  {
+    "key": "schedulingCopy.select",
+    "module": "schedulingcopy",
+    "en": "Select",
+    "fa": "انتخاب کنید",
+    "ar": "Select"
+  },
+  {
+    "key": "schedulingCopy.service",
+    "module": "schedulingcopy",
+    "en": "Service",
+    "fa": "خدمت",
+    "ar": "Service"
+  },
+  {
+    "key": "schedulingCopy.serviceUnavailable",
+    "module": "schedulingcopy",
+    "en": "This service is currently unavailable for booking.",
+    "fa": "این خدمت در حال حاضر قابل رزرو نیست.",
+    "ar": "This service is currently unavailable for booking."
+  },
+  {
+    "key": "schedulingCopy.slots",
+    "module": "schedulingcopy",
+    "en": "Available times",
+    "fa": "زمان‌های آزاد",
+    "ar": "Available times"
+  },
+  {
+    "key": "schedulingCopy.start",
+    "module": "schedulingcopy",
+    "en": "Start",
+    "fa": "شروع",
+    "ar": "Start"
+  },
+  {
+    "key": "schedulingCopy.startDate",
+    "module": "schedulingcopy",
+    "en": "Start date (YYYY-MM-DD)",
+    "fa": "تاریخ شروع (YYYY-MM-DD)",
+    "ar": "Start date (YYYY-MM-DD)"
+  },
+  {
+    "key": "schedulingCopy.states.CANCELLED",
+    "module": "schedulingcopy",
+    "en": "Cancelled",
+    "fa": "لغوشده",
+    "ar": "Cancelled"
+  },
+  {
+    "key": "schedulingCopy.states.COMPLETED",
+    "module": "schedulingcopy",
+    "en": "Completed",
+    "fa": "پایان‌یافته",
+    "ar": "Completed"
+  },
+  {
+    "key": "schedulingCopy.states.CONFIRMED",
+    "module": "schedulingcopy",
+    "en": "Confirmed",
+    "fa": "تأییدشده",
+    "ar": "Confirmed"
+  },
+  {
+    "key": "schedulingCopy.states.EXPIRED",
+    "module": "schedulingcopy",
+    "en": "Expired",
+    "fa": "منقضی",
+    "ar": "Expired"
+  },
+  {
+    "key": "schedulingCopy.states.HELD",
+    "module": "schedulingcopy",
+    "en": "Temporarily held",
+    "fa": "موقتاً نگه داشته‌شده",
+    "ar": "Temporarily held"
+  },
+  {
+    "key": "schedulingCopy.states.REMINDER",
+    "module": "schedulingcopy",
+    "en": "Session reminder",
+    "fa": "یادآوری جلسه",
+    "ar": "Session reminder"
+  },
+  {
+    "key": "schedulingCopy.states.REQUESTED",
+    "module": "schedulingcopy",
+    "en": "Requested",
+    "fa": "درخواست‌شده",
+    "ar": "Requested"
+  },
+  {
+    "key": "schedulingCopy.states.RESCHEDULE_REJECTED",
+    "module": "schedulingcopy",
+    "en": "Reschedule failed",
+    "fa": "تغییر زمان ناموفق",
+    "ar": "Reschedule failed"
+  },
+  {
+    "key": "schedulingCopy.states.RESCHEDULE_REQUESTED",
+    "module": "schedulingcopy",
+    "en": "Reschedule requested",
+    "fa": "درخواست تغییر زمان",
+    "ar": "Reschedule requested"
+  },
+  {
+    "key": "schedulingCopy.states.RESCHEDULED",
+    "module": "schedulingcopy",
+    "en": "Rescheduled",
+    "fa": "زمان تغییرکرده",
+    "ar": "Rescheduled"
+  },
+  {
+    "key": "schedulingCopy.status",
+    "module": "schedulingcopy",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "schedulingCopy.timezone",
+    "module": "schedulingcopy",
+    "en": "Time zone",
+    "fa": "منطقهٔ زمانی",
+    "ar": "Time zone"
+  },
+  {
+    "key": "schedulingCopy.title",
+    "module": "schedulingcopy",
+    "en": "Title",
+    "fa": "عنوان",
+    "ar": "Title"
+  },
+  {
+    "key": "schedulingCopy.unavailable",
+    "module": "schedulingcopy",
+    "en": "Blocked time",
+    "fa": "زمان مسدود",
+    "ar": "Blocked time"
+  },
+  {
+    "key": "schedulingCopy.utcOffset",
+    "module": "schedulingcopy",
+    "en": "Times are displayed in the selected time zone.",
+    "fa": "زمان‌ها با منطقهٔ زمانی انتخابی نمایش داده می‌شوند.",
+    "ar": "Times are displayed in the selected time zone."
+  },
+  {
+    "key": "schedulingCopy.weekly",
+    "module": "schedulingcopy",
+    "en": "Weekly working hours",
+    "fa": "ساعات کاری هفتگی",
+    "ar": "Weekly working hours"
+  },
+  {
+    "key": "scholarsCopy.access",
+    "module": "scholarscopy",
+    "en": "Access",
+    "fa": "دسترسی",
+    "ar": "Access"
+  },
+  {
+    "key": "scholarsCopy.actions",
+    "module": "scholarscopy",
+    "en": "Actions",
+    "fa": "عملیات",
+    "ar": "Actions"
+  },
+  {
+    "key": "scholarsCopy.active",
+    "module": "scholarscopy",
+    "en": "Active",
+    "fa": "فعال",
+    "ar": "Active"
+  },
+  {
+    "key": "scholarsCopy.add",
+    "module": "scholarscopy",
+    "en": "Add",
+    "fa": "افزودن",
+    "ar": "Add"
+  },
+  {
+    "key": "scholarsCopy.all",
+    "module": "scholarscopy",
+    "en": "All",
+    "fa": "همه",
+    "ar": "All"
+  },
+  {
+    "key": "scholarsCopy.application",
+    "module": "scholarscopy",
+    "en": "Apply to become an expert",
+    "fa": "درخواست استادشدن",
+    "ar": "Apply to become an expert"
+  },
+  {
+    "key": "scholarsCopy.applications",
+    "module": "scholarscopy",
+    "en": "New expert applications",
+    "fa": "درخواست‌های جدید اساتید",
+    "ar": "New expert applications"
+  },
+  {
+    "key": "scholarsCopy.applyNote",
+    "module": "scholarscopy",
+    "en": "Complete your profile and upload clean documents, then submit your application for review.",
+    "fa": "پس از تکمیل اطلاعات و بارگذاری مدارک سالم، پرونده را برای مدیریت ارسال کنید.",
+    "ar": "Complete your profile and upload clean documents, then submit your application for review."
+  },
+  {
+    "key": "scholarsCopy.back",
+    "module": "scholarscopy",
+    "en": "Back",
+    "fa": "بازگشت",
+    "ar": "Back"
+  },
+  {
+    "key": "scholarsCopy.biography",
+    "module": "scholarscopy",
+    "en": "Professional biography",
+    "fa": "زندگی‌نامه حرفه‌ای",
+    "ar": "Professional biography"
+  },
+  {
+    "key": "scholarsCopy.booking_required",
+    "module": "scholarscopy",
+    "en": "Requires booking",
+    "fa": "نیازمند رزرو",
+    "ar": "Requires booking"
+  },
+  {
+    "key": "scholarsCopy.category_id",
+    "module": "scholarscopy",
+    "en": "Service category",
+    "fa": "دستهٔ خدمت",
+    "ar": "Service category"
+  },
+  {
+    "key": "scholarsCopy.city",
+    "module": "scholarscopy",
+    "en": "City",
+    "fa": "شهر",
+    "ar": "City"
+  },
+  {
+    "key": "scholarsCopy.completion",
+    "module": "scholarscopy",
+    "en": "Completion percentage",
+    "fa": "درصد تکمیل",
+    "ar": "Completion percentage"
+  },
+  {
+    "key": "scholarsCopy.contact_phone",
+    "module": "scholarscopy",
+    "en": "Contact phone (private; management review only)",
+    "fa": "تلفن تماس (خصوصی؛ فقط برای بررسی مدیریت)",
+    "ar": "Contact phone (private; management review only)"
+  },
+  {
+    "key": "scholarsCopy.country",
+    "module": "scholarscopy",
+    "en": "Country",
+    "fa": "کشور",
+    "ar": "Country"
+  },
+  {
+    "key": "scholarsCopy.create",
+    "module": "scholarscopy",
+    "en": "Create",
+    "fa": "ایجاد",
+    "ar": "Create"
+  },
+  {
+    "key": "scholarsCopy.currency",
+    "module": "scholarscopy",
+    "en": "Currency",
+    "fa": "ارز",
+    "ar": "Currency"
+  },
+  {
+    "key": "scholarsCopy.description",
+    "module": "scholarscopy",
+    "en": "Description",
+    "fa": "توضیحات",
+    "ar": "Description"
+  },
+  {
+    "key": "scholarsCopy.disable",
+    "module": "scholarscopy",
+    "en": "Disable",
+    "fa": "غیرفعال‌کردن",
+    "ar": "Disable"
+  },
+  {
+    "key": "scholarsCopy.display_name",
+    "module": "scholarscopy",
+    "en": "Display name",
+    "fa": "نام نمایشی",
+    "ar": "Display name"
+  },
+  {
+    "key": "scholarsCopy.documents",
+    "module": "scholarscopy",
+    "en": "Documents",
+    "fa": "مدارک",
+    "ar": "Documents"
+  },
+  {
+    "key": "scholarsCopy.download",
+    "module": "scholarscopy",
+    "en": "Download file",
+    "fa": "دریافت فایل",
+    "ar": "Download file"
+  },
+  {
+    "key": "scholarsCopy.duration_minutes",
+    "module": "scholarscopy",
+    "en": "Duration (minutes; leave blank for no duration)",
+    "fa": "مدت (دقیقه؛ برای بدون مدت خالی بگذارید)",
+    "ar": "Duration (minutes; leave blank for no duration)"
+  },
+  {
+    "key": "scholarsCopy.edit",
+    "module": "scholarscopy",
+    "en": "Edit",
+    "fa": "ویرایش",
+    "ar": "Edit"
+  },
+  {
+    "key": "scholarsCopy.editNote",
+    "module": "scholarscopy",
+    "en": "Editing an approved profile pauses publication until it is reviewed again.",
+    "fa": "ویرایش پروفایل تأییدشده، انتشار آن را تا بررسی مجدد متوقف می‌کند.",
+    "ar": "Editing an approved profile pauses publication until it is reviewed again."
+  },
+  {
+    "key": "scholarsCopy.education",
+    "module": "scholarscopy",
+    "en": "Education",
+    "fa": "تحصیلات",
+    "ar": "Education"
+  },
+  {
+    "key": "scholarsCopy.empty",
+    "module": "scholarscopy",
+    "en": "No entries yet.",
+    "fa": "موردی ثبت نشده است.",
+    "ar": "No entries yet."
+  },
+  {
+    "key": "scholarsCopy.error",
+    "module": "scholarscopy",
+    "en": "Unable to complete the action. Check the information and your permissions.",
+    "fa": "عملیات انجام نشد؛ اطلاعات و دسترسی را بررسی کنید.",
+    "ar": "Unable to complete the action. Check the information and your permissions."
+  },
+  {
+    "key": "scholarsCopy.experience",
+    "module": "scholarscopy",
+    "en": "Academic and professional experience",
+    "fa": "سوابق علمی و اجرایی",
+    "ar": "Academic and professional experience"
+  },
+  {
+    "key": "scholarsCopy.experts",
+    "module": "scholarscopy",
+    "en": "Experts and applications",
+    "fa": "اساتید و بررسی صلاحیت",
+    "ar": "Experts and applications"
+  },
+  {
+    "key": "scholarsCopy.expires_at",
+    "module": "scholarscopy",
+    "en": "Expiry date",
+    "fa": "تاریخ انقضا",
+    "ar": "Expiry date"
+  },
+  {
+    "key": "scholarsCopy.file",
+    "module": "scholarscopy",
+    "en": "File",
+    "fa": "فایل",
+    "ar": "File"
+  },
+  {
+    "key": "scholarsCopy.files",
+    "module": "scholarscopy",
+    "en": "File management",
+    "fa": "مدیریت فایل‌ها",
+    "ar": "File management"
+  },
+  {
+    "key": "scholarsCopy.from",
+    "module": "scholarscopy",
+    "en": "Submitted from",
+    "fa": "از تاریخ درخواست",
+    "ar": "Submitted from"
+  },
+  {
+    "key": "scholarsCopy.history",
+    "module": "scholarscopy",
+    "en": "Review decisions",
+    "fa": "نتیجهٔ بررسی",
+    "ar": "Review decisions"
+  },
+  {
+    "key": "scholarsCopy.icon",
+    "module": "scholarscopy",
+    "en": "Icon name",
+    "fa": "نام آیکون",
+    "ar": "Icon name"
+  },
+  {
+    "key": "scholarsCopy.image_id",
+    "module": "scholarscopy",
+    "en": "Professional image",
+    "fa": "تصویر حرفه‌ای",
+    "ar": "Professional image"
+  },
+  {
+    "key": "scholarsCopy.internal_note",
+    "module": "scholarscopy",
+    "en": "Internal management note",
+    "fa": "یادداشت داخلی مدیریت",
+    "ar": "Internal management note"
+  },
+  {
+    "key": "scholarsCopy.issued_at",
+    "module": "scholarscopy",
+    "en": "Issue date",
+    "fa": "تاریخ صدور",
+    "ar": "Issue date"
+  },
+  {
+    "key": "scholarsCopy.issuer",
+    "module": "scholarscopy",
+    "en": "Issuing institution",
+    "fa": "مؤسسه صادرکننده",
+    "ar": "Issuing institution"
+  },
+  {
+    "key": "scholarsCopy.kind",
+    "module": "scholarscopy",
+    "en": "Type",
+    "fa": "نوع",
+    "ar": "Type"
+  },
+  {
+    "key": "scholarsCopy.labelEn",
+    "module": "scholarscopy",
+    "en": "English label",
+    "fa": "عنوان انگلیسی",
+    "ar": "English label"
+  },
+  {
+    "key": "scholarsCopy.labelFa",
+    "module": "scholarscopy",
+    "en": "Persian label",
+    "fa": "عنوان فارسی",
+    "ar": "Persian label"
+  },
+  {
+    "key": "scholarsCopy.languages",
+    "module": "scholarscopy",
+    "en": "Languages",
+    "fa": "زبان‌ها",
+    "ar": "Languages"
+  },
+  {
+    "key": "scholarsCopy.level",
+    "module": "scholarscopy",
+    "en": "Language level",
+    "fa": "سطح زبان",
+    "ar": "Language level"
+  },
+  {
+    "key": "scholarsCopy.limit",
+    "module": "scholarscopy",
+    "en": "Maximum size (bytes)",
+    "fa": "حداکثر حجم (بایت)",
+    "ar": "Maximum size (bytes)"
+  },
+  {
+    "key": "scholarsCopy.links",
+    "module": "scholarscopy",
+    "en": "Websites and social links (one HTTPS URL per line)",
+    "fa": "وب‌سایت و شبکه‌های اجتماعی (هر خط یک نشانی HTTPS)",
+    "ar": "Websites and social links (one HTTPS URL per line)"
+  },
+  {
+    "key": "scholarsCopy.loading",
+    "module": "scholarscopy",
+    "en": "Loading…",
+    "fa": "در حال دریافت…",
+    "ar": "Loading…"
+  },
+  {
+    "key": "scholarsCopy.missing",
+    "module": "scholarscopy",
+    "en": "Missing information",
+    "fa": "موارد ناقص",
+    "ar": "Missing information"
+  },
+  {
+    "key": "scholarsCopy.name",
+    "module": "scholarscopy",
+    "en": "Name",
+    "fa": "نام",
+    "ar": "Name"
+  },
+  {
+    "key": "scholarsCopy.noBooking",
+    "module": "scholarscopy",
+    "en": "Published rates; booking and payment will be added in the next stage.",
+    "fa": "تعرفه‌های معرفی‌شده؛ رزرو و پرداخت در مرحلهٔ بعد فعال می‌شوند.",
+    "ar": "Published rates; booking and payment will be added in the next stage."
+  },
+  {
+    "key": "scholarsCopy.notifications",
+    "module": "scholarscopy",
+    "en": "Application notifications",
+    "fa": "اعلان‌های پرونده",
+    "ar": "Application notifications"
+  },
+  {
+    "key": "scholarsCopy.number",
+    "module": "scholarscopy",
+    "en": "Document number",
+    "fa": "شماره مدرک",
+    "ar": "Document number"
+  },
+  {
+    "key": "scholarsCopy.owner",
+    "module": "scholarscopy",
+    "en": "Owner",
+    "fa": "مالک",
+    "ar": "Owner"
+  },
+  {
+    "key": "scholarsCopy.parent_id",
+    "module": "scholarscopy",
+    "en": "Parent category",
+    "fa": "دستهٔ والد",
+    "ar": "Parent category"
+  },
+  {
+    "key": "scholarsCopy.position",
+    "module": "scholarscopy",
+    "en": "Sort order",
+    "fa": "ترتیب",
+    "ar": "Sort order"
+  },
+  {
+    "key": "scholarsCopy.price_minor",
+    "module": "scholarscopy",
+    "en": "Integer amount (rial/toman; cents for USD/EUR)",
+    "fa": "مبلغ صحیح (ریال/تومان؛ سنت برای دلار و یورو)",
+    "ar": "Integer amount (rial/toman; cents for USD/EUR)"
+  },
+  {
+    "key": "scholarsCopy.professional",
+    "module": "scholarscopy",
+    "en": "Professional profile",
+    "fa": "پروفایل حرفه‌ای",
+    "ar": "Professional profile"
+  },
+  {
+    "key": "scholarsCopy.profile",
+    "module": "scholarscopy",
+    "en": "Professional information",
+    "fa": "اطلاعات حرفه‌ای",
+    "ar": "Professional information"
+  },
+  {
+    "key": "scholarsCopy.public_summary",
+    "module": "scholarscopy",
+    "en": "Show the title and institution publicly (the file always stays private)",
+    "fa": "عنوان و مؤسسه در پروفایل عمومی نمایش داده شود (فایل همیشه خصوصی است)",
+    "ar": "Show the title and institution publicly (the file always stays private)"
+  },
+  {
+    "key": "scholarsCopy.publicProfile",
+    "module": "scholarscopy",
+    "en": "Public profile",
+    "fa": "پروفایل عمومی",
+    "ar": "Public profile"
+  },
+  {
+    "key": "scholarsCopy.publish",
+    "module": "scholarscopy",
+    "en": "Request publication",
+    "fa": "درخواست انتشار",
+    "ar": "Request publication"
+  },
+  {
+    "key": "scholarsCopy.reason",
+    "module": "scholarscopy",
+    "en": "Reason visible to the expert",
+    "fa": "دلیل قابل مشاهده برای استاد",
+    "ar": "Reason visible to the expert"
+  },
+  {
+    "key": "scholarsCopy.references",
+    "module": "scholarscopy",
+    "en": "References",
+    "fa": "ارجاعات",
+    "ar": "References"
+  },
+  {
+    "key": "scholarsCopy.refresh",
+    "module": "scholarscopy",
+    "en": "Refresh",
+    "fa": "به‌روزرسانی",
+    "ar": "Refresh"
+  },
+  {
+    "key": "scholarsCopy.remove",
+    "module": "scholarscopy",
+    "en": "Remove",
+    "fa": "حذف",
+    "ar": "Remove"
+  },
+  {
+    "key": "scholarsCopy.review",
+    "module": "scholarscopy",
+    "en": "Save review",
+    "fa": "ثبت بررسی",
+    "ar": "Save review"
+  },
+  {
+    "key": "scholarsCopy.review_services",
+    "module": "scholarscopy",
+    "en": "Services require management approval before publication",
+    "fa": "انتشار خدمت نیازمند تأیید مدیریت باشد",
+    "ar": "Services require management approval before publication"
+  },
+  {
+    "key": "scholarsCopy.save",
+    "module": "scholarscopy",
+    "en": "Save",
+    "fa": "ذخیره",
+    "ar": "Save"
+  },
+  {
+    "key": "scholarsCopy.saved",
+    "module": "scholarscopy",
+    "en": "Saved.",
+    "fa": "ذخیره شد.",
+    "ar": "Saved."
+  },
+  {
+    "key": "scholarsCopy.scan",
+    "module": "scholarscopy",
+    "en": "Scan",
+    "fa": "اسکن",
+    "ar": "Scan"
+  },
+  {
+    "key": "scholarsCopy.scanPending",
+    "module": "scholarscopy",
+    "en": "File scanning is in progress. Refresh after a few moments.",
+    "fa": "فایل در حال اسکن است. پس از چند لحظه به‌روزرسانی را بزنید.",
+    "ar": "File scanning is in progress. Refresh after a few moments."
+  },
+  {
+    "key": "scholarsCopy.search",
+    "module": "scholarscopy",
+    "en": "Search name, email or public ID",
+    "fa": "جستجوی نام، ایمیل یا شناسه",
+    "ar": "Search name, email or public ID"
+  },
+  {
+    "key": "scholarsCopy.select",
+    "module": "scholarscopy",
+    "en": "Select",
+    "fa": "انتخاب کنید",
+    "ar": "Select"
+  },
+  {
+    "key": "scholarsCopy.seo_description",
+    "module": "scholarscopy",
+    "en": "SEO description",
+    "fa": "توضیح موتور جستجو",
+    "ar": "SEO description"
+  },
+  {
+    "key": "scholarsCopy.seo_title",
+    "module": "scholarscopy",
+    "en": "SEO title",
+    "fa": "عنوان موتور جستجو",
+    "ar": "SEO title"
+  },
+  {
+    "key": "scholarsCopy.services",
+    "module": "scholarscopy",
+    "en": "Services and pricing",
+    "fa": "خدمات و تعرفه‌ها",
+    "ar": "Services and pricing"
+  },
+  {
+    "key": "scholarsCopy.short_bio",
+    "module": "scholarscopy",
+    "en": "Short introduction",
+    "fa": "معرفی کوتاه",
+    "ar": "Short introduction"
+  },
+  {
+    "key": "scholarsCopy.size",
+    "module": "scholarscopy",
+    "en": "Size",
+    "fa": "حجم",
+    "ar": "Size"
+  },
+  {
+    "key": "scholarsCopy.slug",
+    "module": "scholarscopy",
+    "en": "Unique URL slug",
+    "fa": "نشانی یکتا (حروف انگلیسی)",
+    "ar": "Unique URL slug"
+  },
+  {
+    "key": "scholarsCopy.specialties",
+    "module": "scholarscopy",
+    "en": "Specialties",
+    "fa": "تخصص‌ها",
+    "ar": "Specialties"
+  },
+  {
+    "key": "scholarsCopy.specialty_id",
+    "module": "scholarscopy",
+    "en": "Related specialty",
+    "fa": "تخصص مرتبط",
+    "ar": "Related specialty"
+  },
+  {
+    "key": "scholarsCopy.states.ADMIN_ONLY",
+    "module": "scholarscopy",
+    "en": "Authorized administration only",
+    "fa": "فقط مدیریت مجاز",
+    "ar": "Authorized administration only"
+  },
+  {
+    "key": "scholarsCopy.states.APPROVED",
+    "module": "scholarscopy",
+    "en": "Approved",
+    "fa": "تأییدشده",
+    "ar": "Approved"
+  },
+  {
+    "key": "scholarsCopy.states.AUDIO",
+    "module": "scholarscopy",
+    "en": "Audio",
+    "fa": "صوتی",
+    "ar": "Audio"
+  },
+  {
+    "key": "scholarsCopy.states.AUTHORIZED_USERS",
+    "module": "scholarscopy",
+    "en": "Authorized users",
+    "fa": "کاربران مجاز",
+    "ar": "Authorized users"
+  },
+  {
+    "key": "scholarsCopy.states.avatar",
+    "module": "scholarscopy",
+    "en": "Avatar",
+    "fa": "آواتار",
+    "ar": "Avatar"
+  },
+  {
+    "key": "scholarsCopy.states.BLOCK",
+    "module": "scholarscopy",
+    "en": "Block",
+    "fa": "مسدودکردن",
+    "ar": "Block"
+  },
+  {
+    "key": "scholarsCopy.states.CASE_REVIEW",
+    "module": "scholarscopy",
+    "en": "Case review",
+    "fa": "بررسی پرونده",
+    "ar": "Case review"
+  },
+  {
+    "key": "scholarsCopy.states.category",
+    "module": "scholarscopy",
+    "en": "Category",
+    "fa": "دسته",
+    "ar": "Category"
+  },
+  {
+    "key": "scholarsCopy.states.CERTIFICATE",
+    "module": "scholarscopy",
+    "en": "Certificate",
+    "fa": "گواهینامه تخصصی",
+    "ar": "Certificate"
+  },
+  {
+    "key": "scholarsCopy.states.CLEAN",
+    "module": "scholarscopy",
+    "en": "Clean",
+    "fa": "سالم",
+    "ar": "Clean"
+  },
+  {
+    "key": "scholarsCopy.states.CONVERSATIONAL",
+    "module": "scholarscopy",
+    "en": "Conversational",
+    "fa": "مکالمه",
+    "ar": "Conversational"
+  },
+  {
+    "key": "scholarsCopy.states.CV",
+    "module": "scholarscopy",
+    "en": "CV",
+    "fa": "رزومه",
+    "ar": "CV"
+  },
+  {
+    "key": "scholarsCopy.states.DEGREE",
+    "module": "scholarscopy",
+    "en": "Academic degree",
+    "fa": "مدرک تحصیلی",
+    "ar": "Academic degree"
+  },
+  {
+    "key": "scholarsCopy.states.DELETE",
+    "module": "scholarscopy",
+    "en": "Safe delete",
+    "fa": "حذف امن",
+    "ar": "Safe delete"
+  },
+  {
+    "key": "scholarsCopy.states.DELETED",
+    "module": "scholarscopy",
+    "en": "Deleted",
+    "fa": "حذف‌شده",
+    "ar": "Deleted"
+  },
+  {
+    "key": "scholarsCopy.states.DISABLED",
+    "module": "scholarscopy",
+    "en": "Disabled",
+    "fa": "غیرفعال",
+    "ar": "Disabled"
+  },
+  {
+    "key": "scholarsCopy.states.document",
+    "module": "scholarscopy",
+    "en": "Document",
+    "fa": "مدرک",
+    "ar": "Document"
+  },
+  {
+    "key": "scholarsCopy.states.DRAFT",
+    "module": "scholarscopy",
+    "en": "Draft",
+    "fa": "پیش‌نویس",
+    "ar": "Draft"
+  },
+  {
+    "key": "scholarsCopy.states.EXPIRED",
+    "module": "scholarscopy",
+    "en": "Expired",
+    "fa": "منقضی",
+    "ar": "Expired"
+  },
+  {
+    "key": "scholarsCopy.states.FLUENT",
+    "module": "scholarscopy",
+    "en": "Fluent",
+    "fa": "مسلط",
+    "ar": "Fluent"
+  },
+  {
+    "key": "scholarsCopy.states.HIDDEN",
+    "module": "scholarscopy",
+    "en": "Hidden",
+    "fa": "مخفی",
+    "ar": "Hidden"
+  },
+  {
+    "key": "scholarsCopy.states.IDENTITY",
+    "module": "scholarscopy",
+    "en": "Identity document",
+    "fa": "مدرک هویت",
+    "ar": "Identity document"
+  },
+  {
+    "key": "scholarsCopy.states.image",
+    "module": "scholarscopy",
+    "en": "Image",
+    "fa": "تصویر",
+    "ar": "Image"
+  },
+  {
+    "key": "scholarsCopy.states.IN_PERSON",
+    "module": "scholarscopy",
+    "en": "In person",
+    "fa": "حضوری",
+    "ar": "In person"
+  },
+  {
+    "key": "scholarsCopy.states.INACTIVE",
+    "module": "scholarscopy",
+    "en": "Temporarily inactive",
+    "fa": "موقتاً غیرفعال",
+    "ar": "Temporarily inactive"
+  },
+  {
+    "key": "scholarsCopy.states.INFECTED",
+    "module": "scholarscopy",
+    "en": "Infected",
+    "fa": "آلوده",
+    "ar": "Infected"
+  },
+  {
+    "key": "scholarsCopy.states.INTERMEDIATE",
+    "module": "scholarscopy",
+    "en": "Intermediate",
+    "fa": "متوسط",
+    "ar": "Intermediate"
+  },
+  {
+    "key": "scholarsCopy.states.language",
+    "module": "scholarscopy",
+    "en": "Language",
+    "fa": "زبان",
+    "ar": "Language"
+  },
+  {
+    "key": "scholarsCopy.states.LICENSE",
+    "module": "scholarscopy",
+    "en": "Professional licence",
+    "fa": "مجوز حرفه‌ای",
+    "ar": "Professional licence"
+  },
+  {
+    "key": "scholarsCopy.states.NATIVE",
+    "module": "scholarscopy",
+    "en": "Native",
+    "fa": "زبان مادری",
+    "ar": "Native"
+  },
+  {
+    "key": "scholarsCopy.states.NEEDS_CHANGES",
+    "module": "scholarscopy",
+    "en": "Changes requested",
+    "fa": "نیازمند اصلاح",
+    "ar": "Changes requested"
+  },
+  {
+    "key": "scholarsCopy.states.OTHER",
+    "module": "scholarscopy",
+    "en": "Other",
+    "fa": "سایر",
+    "ar": "Other"
+  },
+  {
+    "key": "scholarsCopy.states.OWNER_ONLY",
+    "module": "scholarscopy",
+    "en": "Owner and authorized reviewer",
+    "fa": "مالک و بررسی‌کنندهٔ مجاز",
+    "ar": "Owner and authorized reviewer"
+  },
+  {
+    "key": "scholarsCopy.states.PENDING",
+    "module": "scholarscopy",
+    "en": "Pending",
+    "fa": "در انتظار",
+    "ar": "Pending"
+  },
+  {
+    "key": "scholarsCopy.states.PENDING_REVIEW",
+    "module": "scholarscopy",
+    "en": "Pending publication",
+    "fa": "در انتظار انتشار",
+    "ar": "Pending publication"
+  },
+  {
+    "key": "scholarsCopy.states.PROCESSING",
+    "module": "scholarscopy",
+    "en": "Quarantined",
+    "fa": "قرنطینه",
+    "ar": "Quarantined"
+  },
+  {
+    "key": "scholarsCopy.states.PUBLIC",
+    "module": "scholarscopy",
+    "en": "Public",
+    "fa": "عمومی",
+    "ar": "Public"
+  },
+  {
+    "key": "scholarsCopy.states.PUBLISHED",
+    "module": "scholarscopy",
+    "en": "Published",
+    "fa": "منتشرشده",
+    "ar": "Published"
+  },
+  {
+    "key": "scholarsCopy.states.QUARANTINE",
+    "module": "scholarscopy",
+    "en": "Quarantine",
+    "fa": "قرنطینه",
+    "ar": "Quarantine"
+  },
+  {
+    "key": "scholarsCopy.states.QUESTION",
+    "module": "scholarscopy",
+    "en": "Question",
+    "fa": "پاسخ به سؤال",
+    "ar": "Question"
+  },
+  {
+    "key": "scholarsCopy.states.READY",
+    "module": "scholarscopy",
+    "en": "Ready",
+    "fa": "آماده",
+    "ar": "Ready"
+  },
+  {
+    "key": "scholarsCopy.states.REFERENCE",
+    "module": "scholarscopy",
+    "en": "Reference",
+    "fa": "معرفی‌نامه",
+    "ar": "Reference"
+  },
+  {
+    "key": "scholarsCopy.states.REJECTED",
+    "module": "scholarscopy",
+    "en": "Rejected",
+    "fa": "ردشده",
+    "ar": "Rejected"
+  },
+  {
+    "key": "scholarsCopy.states.RESCAN",
+    "module": "scholarscopy",
+    "en": "Rescan",
+    "fa": "اسکن مجدد",
+    "ar": "Rescan"
+  },
+  {
+    "key": "scholarsCopy.states.SCANNING",
+    "module": "scholarscopy",
+    "en": "Scanning",
+    "fa": "در حال اسکن",
+    "ar": "Scanning"
+  },
+  {
+    "key": "scholarsCopy.states.SEMINARY",
+    "module": "scholarscopy",
+    "en": "Seminary degree",
+    "fa": "مدرک حوزوی",
+    "ar": "Seminary degree"
+  },
+  {
+    "key": "scholarsCopy.states.specialty",
+    "module": "scholarscopy",
+    "en": "Specialty",
+    "fa": "تخصص",
+    "ar": "Specialty"
+  },
+  {
+    "key": "scholarsCopy.states.SUBMITTED",
+    "module": "scholarscopy",
+    "en": "Submitted",
+    "fa": "ارسال‌شده",
+    "ar": "Submitted"
+  },
+  {
+    "key": "scholarsCopy.states.SUSPENDED",
+    "module": "scholarscopy",
+    "en": "Suspended",
+    "fa": "تعلیق‌شده",
+    "ar": "Suspended"
+  },
+  {
+    "key": "scholarsCopy.states.TEXT",
+    "module": "scholarscopy",
+    "en": "Text",
+    "fa": "متنی",
+    "ar": "Text"
+  },
+  {
+    "key": "scholarsCopy.states.TRAINING",
+    "module": "scholarscopy",
+    "en": "Training",
+    "fa": "آموزش",
+    "ar": "Training"
+  },
+  {
+    "key": "scholarsCopy.states.UNDER_REVIEW",
+    "module": "scholarscopy",
+    "en": "Under review",
+    "fa": "در حال بررسی",
+    "ar": "Under review"
+  },
+  {
+    "key": "scholarsCopy.states.UPLOADING",
+    "module": "scholarscopy",
+    "en": "Uploading",
+    "fa": "در حال بارگذاری",
+    "ar": "Uploading"
+  },
+  {
+    "key": "scholarsCopy.states.VIDEO",
+    "module": "scholarscopy",
+    "en": "Video",
+    "fa": "تصویری",
+    "ar": "Video"
+  },
+  {
+    "key": "scholarsCopy.status",
+    "module": "scholarscopy",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "scholarsCopy.submit",
+    "module": "scholarscopy",
+    "en": "Submit for review",
+    "fa": "ارسال برای بررسی",
+    "ar": "Submit for review"
+  },
+  {
+    "key": "scholarsCopy.summary",
+    "module": "scholarscopy",
+    "en": "Short description",
+    "fa": "توضیح کوتاه",
+    "ar": "Short description"
+  },
+  {
+    "key": "scholarsCopy.taxonomy",
+    "module": "scholarscopy",
+    "en": "Specialties, categories and languages",
+    "fa": "تخصص‌ها، دسته‌ها و زبان‌ها",
+    "ar": "Specialties, categories and languages"
+  },
+  {
+    "key": "scholarsCopy.terms",
+    "module": "scholarscopy",
+    "en": "Service terms",
+    "fa": "شرایط خدمت",
+    "ar": "Service terms"
+  },
+  {
+    "key": "scholarsCopy.text",
+    "module": "scholarscopy",
+    "en": "Professional view",
+    "fa": "دیدگاه",
+    "ar": "Professional view"
+  },
+  {
+    "key": "scholarsCopy.title",
+    "module": "scholarscopy",
+    "en": "Title",
+    "fa": "عنوان",
+    "ar": "Title"
+  },
+  {
+    "key": "scholarsCopy.to",
+    "module": "scholarscopy",
+    "en": "Submitted until",
+    "fa": "تا تاریخ درخواست",
+    "ar": "Submitted until"
+  },
+  {
+    "key": "scholarsCopy.topic",
+    "module": "scholarscopy",
+    "en": "Topic",
+    "fa": "موضوع",
+    "ar": "Topic"
+  },
+  {
+    "key": "scholarsCopy.upload",
+    "module": "scholarscopy",
+    "en": "Upload",
+    "fa": "بارگذاری",
+    "ar": "Upload"
+  },
+  {
+    "key": "scholarsCopy.valid_until",
+    "module": "scholarscopy",
+    "en": "Verification valid until",
+    "fa": "اعتبار تأیید تا",
+    "ar": "Verification valid until"
+  },
+  {
+    "key": "scholarsCopy.verification",
+    "module": "scholarscopy",
+    "en": "Qualification review",
+    "fa": "بررسی صلاحیت",
+    "ar": "Qualification review"
+  },
+  {
+    "key": "scholarsCopy.verified",
+    "module": "scholarscopy",
+    "en": "Verified expert",
+    "fa": "استاد تأییدشده",
+    "ar": "Verified expert"
+  },
+  {
+    "key": "scholarsCopy.viewpoints",
+    "module": "scholarscopy",
+    "en": "Topics and professional views",
+    "fa": "موضوعات و دیدگاه‌های علمی",
+    "ar": "Topics and professional views"
+  },
+  {
+    "key": "scholarsCopy.visibility",
+    "module": "scholarscopy",
+    "en": "Profile visibility",
+    "fa": "نمایش عمومی",
+    "ar": "Profile visibility"
+  },
+  {
+    "key": "scholarsCopy.years",
+    "module": "scholarscopy",
+    "en": "Years of experience",
+    "fa": "سال‌های تجربه",
+    "ar": "Years of experience"
+  },
+  {
+    "key": "sectionNames.activity",
+    "module": "sectionnames",
+    "en": "Activity",
+    "fa": "فعالیت‌ها"
+  },
+  {
+    "key": "sectionNames.ai",
+    "module": "sectionnames",
+    "en": "AI",
+    "fa": "هوش مصنوعی"
+  },
+  {
+    "key": "sectionNames.assignments",
+    "module": "sectionnames",
+    "en": "Assignments",
+    "fa": "ارجاع‌ها"
+  },
+  {
+    "key": "sectionNames.audit",
+    "module": "sectionnames",
+    "en": "Audit log",
+    "fa": "سابقهٔ عملیات"
+  },
+  {
+    "key": "sectionNames.availability",
+    "module": "sectionnames",
+    "en": "Availability",
+    "fa": "برنامهٔ هفتگی"
+  },
+  {
+    "key": "sectionNames.backups",
+    "module": "sectionnames",
+    "en": "Backups",
+    "fa": "پشتیبان‌گیری"
+  },
+  {
+    "key": "sectionNames.billing",
+    "module": "sectionnames",
+    "en": "Billing",
+    "fa": "صورتحساب"
+  },
+  {
+    "key": "sectionNames.book",
+    "module": "sectionnames",
+    "en": "Book a session",
+    "fa": "رزرو جلسه"
+  },
+  {
+    "key": "sectionNames.bookings",
+    "module": "sectionnames",
+    "en": "My sessions",
+    "fa": "جلسات من"
+  },
+  {
+    "key": "sectionNames.branches",
+    "module": "sectionnames",
+    "en": "Branches",
+    "fa": "شعب و مناطق"
+  },
+  {
+    "key": "sectionNames.calendar",
+    "module": "sectionnames",
+    "en": "Calendar",
+    "fa": "تقویم جلسات"
+  },
+  {
+    "key": "sectionNames.channel",
+    "module": "sectionnames",
+    "en": "My channel",
+    "fa": "کانال من"
+  },
+  {
+    "key": "sectionNames.channels",
+    "module": "sectionnames",
+    "en": "Channels",
+    "fa": "کانال‌ها"
+  },
+  {
+    "key": "sectionNames.clients",
+    "module": "sectionnames",
+    "en": "Clients",
+    "fa": "مراجعان"
+  },
+  {
+    "key": "sectionNames.complaints",
+    "module": "sectionnames",
+    "en": "Complaints",
+    "fa": "شکایت‌ها"
+  },
+  {
+    "key": "sectionNames.connections",
+    "module": "sectionnames",
+    "en": "Sign-in methods",
+    "fa": "روش‌های ورود"
+  },
+  {
+    "key": "sectionNames.consents",
+    "module": "sectionnames",
+    "en": "Consents",
+    "fa": "رضایت‌ها"
+  },
+  {
+    "key": "sectionNames.content",
+    "module": "sectionnames",
+    "en": "Content",
+    "fa": "محتوا"
+  },
+  {
+    "key": "sectionNames.costs",
+    "module": "sectionnames",
+    "en": "Costs",
+    "fa": "هزینه‌ها"
+  },
+  {
+    "key": "sectionNames.credentials",
+    "module": "sectionnames",
+    "en": "Credentials",
+    "fa": "مدارک"
+  },
+  {
+    "key": "sectionNames.data-requests",
+    "module": "sectionnames",
+    "en": "Data requests",
+    "fa": "درخواست داده"
+  },
+  {
+    "key": "sectionNames.delivery",
+    "module": "sectionnames",
+    "en": "Delivery",
+    "fa": "ارسال‌ها"
+  },
+  {
+    "key": "sectionNames.disputes",
+    "module": "sectionnames",
+    "en": "Disputes",
+    "fa": "اختلاف‌ها"
+  },
+  {
+    "key": "sectionNames.earnings",
+    "module": "sectionnames",
+    "en": "Earnings",
+    "fa": "درآمد"
+  },
+  {
+    "key": "sectionNames.escalations",
+    "module": "sectionnames",
+    "en": "Escalations",
+    "fa": "ارجاع تخصصی"
+  },
+  {
+    "key": "sectionNames.evaluation",
+    "module": "sectionnames",
+    "en": "Evaluation",
+    "fa": "ارزیابی"
+  },
+  {
+    "key": "sectionNames.events",
+    "module": "sectionnames",
+    "en": "Events",
+    "fa": "رویدادها"
+  },
+  {
+    "key": "sectionNames.experts",
+    "module": "sectionnames",
+    "en": "Experts",
+    "fa": "اساتید"
+  },
+  {
+    "key": "sectionNames.extensions",
+    "module": "sectionnames",
+    "en": "Extensions",
+    "fa": "داخلی‌ها"
+  },
+  {
+    "key": "sectionNames.favorites",
+    "module": "sectionnames",
+    "en": "Saved items",
+    "fa": "ذخیره‌شده‌ها"
+  },
+  {
+    "key": "sectionNames.fees",
+    "module": "sectionnames",
+    "en": "Fees",
+    "fa": "کارمزدها"
+  },
+  {
+    "key": "sectionNames.files",
+    "module": "sectionnames",
+    "en": "Files",
+    "fa": "فایل‌ها"
+  },
+  {
+    "key": "sectionNames.guidelines",
+    "module": "sectionnames",
+    "en": "Guidelines",
+    "fa": "راهنما و منابع"
+  },
+  {
+    "key": "sectionNames.history",
+    "module": "sectionnames",
+    "en": "History",
+    "fa": "سوابق"
+  },
+  {
+    "key": "sectionNames.holds",
+    "module": "sectionnames",
+    "en": "Held funds",
+    "fa": "وجوه در انتظار"
+  },
+  {
+    "key": "sectionNames.incidents",
+    "module": "sectionnames",
+    "en": "Incidents",
+    "fa": "رخدادها"
+  },
+  {
+    "key": "sectionNames.instant",
+    "module": "sectionnames",
+    "en": "Instant requests",
+    "fa": "درخواست فوری"
+  },
+  {
+    "key": "sectionNames.jobs",
+    "module": "sectionnames",
+    "en": "Jobs",
+    "fa": "کارهای پس‌زمینه"
+  },
+  {
+    "key": "sectionNames.ledger",
+    "module": "sectionnames",
+    "en": "Ledger",
+    "fa": "دفترکل"
+  },
+  {
+    "key": "sectionNames.library",
+    "module": "sectionnames",
+    "en": "Library",
+    "fa": "کتابخانه"
+  },
+  {
+    "key": "sectionNames.media",
+    "module": "sectionnames",
+    "en": "Media",
+    "fa": "رسانه‌ها"
+  },
+  {
+    "key": "sectionNames.members",
+    "module": "sectionnames",
+    "en": "Members",
+    "fa": "اعضا"
+  },
+  {
+    "key": "sectionNames.messages",
+    "module": "sectionnames",
+    "en": "Messages",
+    "fa": "پیام‌ها"
+  },
+  {
+    "key": "sectionNames.models",
+    "module": "sectionnames",
+    "en": "Models",
+    "fa": "مدل‌ها"
+  },
+  {
+    "key": "sectionNames.navigation",
+    "module": "sectionnames",
+    "en": "Navigation",
+    "fa": "ناوبری"
+  },
+  {
+    "key": "sectionNames.notifications",
+    "module": "sectionnames",
+    "en": "Notifications",
+    "fa": "اعلان‌ها"
+  },
+  {
+    "key": "sectionNames.offerings",
+    "module": "sectionnames",
+    "en": "Offerings",
+    "fa": "خدمات و تعرفه‌ها"
+  },
+  {
+    "key": "sectionNames.onboarding",
+    "module": "sectionnames",
+    "en": "Getting started",
+    "fa": "شروع همکاری"
+  },
+  {
+    "key": "sectionNames.organizations",
+    "module": "sectionnames",
+    "en": "Organizations",
+    "fa": "سازمان‌ها"
+  },
+  {
+    "key": "sectionNames.pages",
+    "module": "sectionnames",
+    "en": "Public pages",
+    "fa": "صفحات عمومی"
+  },
+  {
+    "key": "sectionNames.payout-account",
+    "module": "sectionnames",
+    "en": "Payout account",
+    "fa": "حساب مقصد"
+  },
+  {
+    "key": "sectionNames.payouts",
+    "module": "sectionnames",
+    "en": "Payouts",
+    "fa": "تسویه‌ها"
+  },
+  {
+    "key": "sectionNames.performance",
+    "module": "sectionnames",
+    "en": "Performance",
+    "fa": "عملکرد"
+  },
+  {
+    "key": "sectionNames.permissions",
+    "module": "sectionnames",
+    "en": "Permissions",
+    "fa": "مجوزها"
+  },
+  {
+    "key": "sectionNames.policies",
+    "module": "sectionnames",
+    "en": "Policies",
+    "fa": "سیاست‌ها"
+  },
+  {
+    "key": "sectionNames.preferences",
+    "module": "sectionnames",
+    "en": "Preferences",
+    "fa": "ترجیحات"
+  },
+  {
+    "key": "sectionNames.privacy",
+    "module": "sectionnames",
+    "en": "Privacy",
+    "fa": "حریم خصوصی"
+  },
+  {
+    "key": "sectionNames.profile",
+    "module": "sectionnames",
+    "en": "Profile",
+    "fa": "پروفایل"
+  },
+  {
+    "key": "sectionNames.prompts",
+    "module": "sectionnames",
+    "en": "Prompts",
+    "fa": "دستورها"
+  },
+  {
+    "key": "sectionNames.providers",
+    "module": "sectionnames",
+    "en": "Providers",
+    "fa": "ارائه‌دهندگان"
+  },
+  {
+    "key": "sectionNames.publication",
+    "module": "sectionnames",
+    "en": "Publication",
+    "fa": "انتشار"
+  },
+  {
+    "key": "sectionNames.quality",
+    "module": "sectionnames",
+    "en": "Quality",
+    "fa": "کیفیت"
+  },
+  {
+    "key": "sectionNames.questions",
+    "module": "sectionnames",
+    "en": "Questions",
+    "fa": "پرسش‌ها"
+  },
+  {
+    "key": "sectionNames.queue",
+    "module": "sectionnames",
+    "en": "Queue",
+    "fa": "صف درخواست‌ها"
+  },
+  {
+    "key": "sectionNames.queues",
+    "module": "sectionnames",
+    "en": "Queues",
+    "fa": "صف‌ها"
+  },
+  {
+    "key": "sectionNames.reconciliation",
+    "module": "sectionnames",
+    "en": "Reconciliation",
+    "fa": "تطبیق"
+  },
+  {
+    "key": "sectionNames.recordings",
+    "module": "sectionnames",
+    "en": "Recordings",
+    "fa": "ضبط‌ها"
+  },
+  {
+    "key": "sectionNames.refunds",
+    "module": "sectionnames",
+    "en": "Refunds",
+    "fa": "بازپرداخت‌ها"
+  },
+  {
+    "key": "sectionNames.releases",
+    "module": "sectionnames",
+    "en": "Releases",
+    "fa": "نسخه‌ها"
+  },
+  {
+    "key": "sectionNames.reports",
+    "module": "sectionnames",
+    "en": "Reports",
+    "fa": "گزارش‌ها"
+  },
+  {
+    "key": "sectionNames.reviews",
+    "module": "sectionnames",
+    "en": "Reviews",
+    "fa": "بازبینی‌ها"
+  },
+  {
+    "key": "sectionNames.roles",
+    "module": "sectionnames",
+    "en": "Roles",
+    "fa": "نقش‌ها"
+  },
+  {
+    "key": "sectionNames.routes",
+    "module": "sectionnames",
+    "en": "Routes",
+    "fa": "مسیرها"
+  },
+  {
+    "key": "sectionNames.saved",
+    "module": "sectionnames",
+    "en": "Saved items",
+    "fa": "ذخیره‌شده‌ها"
+  },
+  {
+    "key": "sectionNames.search",
+    "module": "sectionnames",
+    "en": "Search",
+    "fa": "جست‌وجو"
+  },
+  {
+    "key": "sectionNames.security",
+    "module": "sectionnames",
+    "en": "Security",
+    "fa": "امنیت"
+  },
+  {
+    "key": "sectionNames.services",
+    "module": "sectionnames",
+    "en": "Services",
+    "fa": "خدمات"
+  },
+  {
+    "key": "sectionNames.sessions",
+    "module": "sectionnames",
+    "en": "Sessions",
+    "fa": "جلسات"
+  },
+  {
+    "key": "sectionNames.settings",
+    "module": "sectionnames",
+    "en": "Settings",
+    "fa": "تنظیمات"
+  },
+  {
+    "key": "sectionNames.shifts",
+    "module": "sectionnames",
+    "en": "Shifts",
+    "fa": "شیفت‌ها"
+  },
+  {
+    "key": "sectionNames.sources",
+    "module": "sectionnames",
+    "en": "Sources",
+    "fa": "منابع"
+  },
+  {
+    "key": "sectionNames.support",
+    "module": "sectionnames",
+    "en": "Support",
+    "fa": "پشتیبانی"
+  },
+  {
+    "key": "sectionNames.taxonomy",
+    "module": "sectionnames",
+    "en": "Categories",
+    "fa": "دسته‌بندی"
+  },
+  {
+    "key": "sectionNames.tickets",
+    "module": "sectionnames",
+    "en": "Tickets",
+    "fa": "تیکت‌ها"
+  },
+  {
+    "key": "sectionNames.traces",
+    "module": "sectionnames",
+    "en": "Traces",
+    "fa": "رهگیری درخواست"
+  },
+  {
+    "key": "sectionNames.transactions",
+    "module": "sectionnames",
+    "en": "Transactions",
+    "fa": "تراکنش‌ها"
+  },
+  {
+    "key": "sectionNames.translations",
+    "module": "sectionnames",
+    "en": "Translations",
+    "fa": "ترجمه‌ها"
+  },
+  {
+    "key": "sectionNames.trunks",
+    "module": "sectionnames",
+    "en": "SIP trunks",
+    "fa": "اتصال تلفن"
+  },
+  {
+    "key": "sectionNames.usage",
+    "module": "sectionnames",
+    "en": "Usage",
+    "fa": "مصرف"
+  },
+  {
+    "key": "sectionNames.users",
+    "module": "sectionnames",
+    "en": "Users",
+    "fa": "کاربران"
+  },
+  {
+    "key": "sectionNames.wallet",
+    "module": "sectionnames",
+    "en": "Wallet",
+    "fa": "کیف پول"
+  },
+  {
+    "key": "sectionNames.wallets",
+    "module": "sectionnames",
+    "en": "Wallets",
+    "fa": "کیف پول‌ها"
+  },
+  {
+    "key": "threeCalendarCopy.allDates",
+    "module": "threecalendarcopy",
+    "en": "Show all dates",
+    "fa": "نمایش همهٔ روزها",
+    "ar": "عرض جميع الأيام"
+  },
+  {
+    "key": "threeCalendarCopy.gregory",
+    "module": "threecalendarcopy",
+    "en": "Gregorian",
+    "fa": "میلادی",
+    "ar": "الميلادي"
+  },
+  {
+    "key": "threeCalendarCopy.islamic-umalqura",
+    "module": "threecalendarcopy",
+    "en": "Hijri",
+    "fa": "قمری",
+    "ar": "الهجري"
+  },
+  {
+    "key": "threeCalendarCopy.lunarNote",
+    "module": "threecalendarcopy",
+    "en": "Hijri dates follow Umm al-Qura; local moon sighting may differ by one day.",
+    "fa": "تاریخ قمری بر پایهٔ تقویم ام‌القری است؛ رؤیت محلی هلال ممکن است یک روز تفاوت داشته باشد.",
+    "ar": "التواريخ الهجرية وفق تقويم أم القرى؛ قد تختلف رؤية الهلال المحلية بيوم واحد."
+  },
+  {
+    "key": "threeCalendarCopy.next",
+    "module": "threecalendarcopy",
+    "en": "Next month",
+    "fa": "ماه بعد",
+    "ar": "الشهر التالي"
+  },
+  {
+    "key": "threeCalendarCopy.persian",
+    "module": "threecalendarcopy",
+    "en": "Persian",
+    "fa": "شمسی",
+    "ar": "الشمسي"
+  },
+  {
+    "key": "threeCalendarCopy.previous",
+    "module": "threecalendarcopy",
+    "en": "Previous month",
+    "fa": "ماه قبل",
+    "ar": "الشهر السابق"
+  },
+  {
+    "key": "threeCalendarCopy.primary",
+    "module": "threecalendarcopy",
+    "en": "Primary calendar",
+    "fa": "تقویم اصلی",
+    "ar": "التقويم الرئيسي"
+  },
+  {
+    "key": "threeCalendarCopy.selectDay",
+    "module": "threecalendarcopy",
+    "en": "Select a day to view its bookings.",
+    "fa": "برای دیدن رزروها، یک روز را انتخاب کنید.",
+    "ar": "اختر يوماً لعرض الحجوزات."
+  },
+  {
+    "key": "threeCalendarCopy.selected",
+    "module": "threecalendarcopy",
+    "en": "Selected day",
+    "fa": "روز انتخاب‌شده",
+    "ar": "اليوم المحدد"
+  },
+  {
+    "key": "threeCalendarCopy.title",
+    "module": "threecalendarcopy",
+    "en": "Three-calendar view",
+    "fa": "تقویم سه‌گانه",
+    "ar": "التقويم الثلاثي"
+  },
+  {
+    "key": "threeCalendarCopy.today",
+    "module": "threecalendarcopy",
+    "en": "Go to today",
+    "fa": "برو به امروز",
+    "ar": "الانتقال إلى اليوم"
+  },
+  {
+    "key": "usersCopy.actions",
+    "module": "userscopy",
+    "en": "Actions",
+    "fa": "عملیات",
+    "ar": "Actions"
+  },
+  {
+    "key": "usersCopy.active",
+    "module": "userscopy",
+    "en": "Active",
+    "fa": "فعال",
+    "ar": "Active"
+  },
+  {
+    "key": "usersCopy.addOption",
+    "module": "userscopy",
+    "en": "Add option",
+    "fa": "افزودن گزینه",
+    "ar": "Add option"
+  },
+  {
+    "key": "usersCopy.addRole",
+    "module": "userscopy",
+    "en": "Add role",
+    "fa": "افزودن نقش",
+    "ar": "Add role"
+  },
+  {
+    "key": "usersCopy.always",
+    "module": "userscopy",
+    "en": "Always visible",
+    "fa": "همیشه نمایش داده شود",
+    "ar": "Always visible"
+  },
+  {
+    "key": "usersCopy.assign",
+    "module": "userscopy",
+    "en": "Assign form",
+    "fa": "تخصیص فرم",
+    "ar": "Assign form"
+  },
+  {
+    "key": "usersCopy.assignForm",
+    "module": "userscopy",
+    "en": "Assigned profile form",
+    "fa": "فرم تکمیل اطلاعات این کاربر",
+    "ar": "Assigned profile form"
+  },
+  {
+    "key": "usersCopy.audit",
+    "module": "userscopy",
+    "en": "Permission history",
+    "fa": "سوابق تغییر مجوز",
+    "ar": "Permission history"
+  },
+  {
+    "key": "usersCopy.avatar",
+    "module": "userscopy",
+    "en": "Account image",
+    "fa": "تصویر حساب",
+    "ar": "Account image"
+  },
+  {
+    "key": "usersCopy.back",
+    "module": "userscopy",
+    "en": "Back",
+    "fa": "بازگشت",
+    "ar": "Back"
+  },
+  {
+    "key": "usersCopy.brand",
+    "module": "userscopy",
+    "en": "Vianoor",
+    "fa": "ویانور",
+    "ar": "Vianoor"
+  },
+  {
+    "key": "usersCopy.cancel",
+    "module": "userscopy",
+    "en": "Cancel request",
+    "fa": "لغو درخواست",
+    "ar": "Cancel request"
+  },
+  {
+    "key": "usersCopy.cancelled",
+    "module": "userscopy",
+    "en": "Cancelled",
+    "fa": "لغو شده",
+    "ar": "Cancelled"
+  },
+  {
+    "key": "usersCopy.choose",
+    "module": "userscopy",
+    "en": "Choose an option",
+    "fa": "انتخاب کنید",
+    "ar": "Choose an option"
+  },
+  {
+    "key": "usersCopy.client",
+    "module": "userscopy",
+    "en": "Client",
+    "fa": "مراجع",
+    "ar": "Client"
+  },
+  {
+    "key": "usersCopy.complete",
+    "module": "userscopy",
+    "en": "Complete profile",
+    "fa": "تکمیل اطلاعات",
+    "ar": "Complete profile"
+  },
+  {
+    "key": "usersCopy.completeBadge",
+    "module": "userscopy",
+    "en": "Profile complete",
+    "fa": "اطلاعات تکمیل شده",
+    "ar": "Profile complete"
+  },
+  {
+    "key": "usersCopy.condition",
+    "module": "userscopy",
+    "en": "Conditional visibility",
+    "fa": "نمایش مشروط",
+    "ar": "Conditional visibility"
+  },
+  {
+    "key": "usersCopy.confirmAssign",
+    "module": "userscopy",
+    "en": "Change the assigned form? Previous answers are preserved in history and the user must complete the new form.",
+    "fa": "فرم کاربر عوض شود؟ پاسخ‌های قبلی در سابقه حفظ می‌شوند و کاربر باید فرم جدید را تکمیل کند.",
+    "ar": "Change the assigned form? Previous answers are preserved in history and the user must complete the new form."
+  },
+  {
+    "key": "usersCopy.confirmDisable",
+    "module": "userscopy",
+    "en": "Disable this account and revoke its sessions? Historical records will be preserved.",
+    "fa": "دسترسی این کاربر قطع و نشست‌های او باطل شود؟ سوابق حفظ می‌شوند.",
+    "ar": "Disable this account and revoke its sessions? Historical records will be preserved."
+  },
+  {
+    "key": "usersCopy.consent",
+    "module": "userscopy",
+    "en": "I agree to profile data storage and sharing the marked fields with site members.",
+    "fa": "با نگهداری اطلاعات پروفایل و نمایش فیلدهای مشخص‌شده به اعضای سایت موافقم.",
+    "ar": "I agree to profile data storage and sharing the marked fields with site members."
+  },
+  {
+    "key": "usersCopy.consentSaved",
+    "module": "userscopy",
+    "en": "Your choice was recorded.",
+    "fa": "انتخاب شما ثبت شد.",
+    "ar": "Your choice was recorded."
+  },
+  {
+    "key": "usersCopy.createOrganization",
+    "module": "userscopy",
+    "en": "Create organization / branch",
+    "fa": "ایجاد سازمان / شعبه",
+    "ar": "Create organization / branch"
+  },
+  {
+    "key": "usersCopy.date",
+    "module": "userscopy",
+    "en": "Date",
+    "fa": "تاریخ",
+    "ar": "Date"
+  },
+  {
+    "key": "usersCopy.defaultForm",
+    "module": "userscopy",
+    "en": "Default form for all users",
+    "fa": "فرم پیش‌فرض همهٔ کاربران",
+    "ar": "Default form for all users"
+  },
+  {
+    "key": "usersCopy.deleteField",
+    "module": "userscopy",
+    "en": "Delete field",
+    "fa": "حذف فیلد",
+    "ar": "Delete field"
+  },
+  {
+    "key": "usersCopy.deleteSection",
+    "module": "userscopy",
+    "en": "Delete section",
+    "fa": "حذف بخش",
+    "ar": "Delete section"
+  },
+  {
+    "key": "usersCopy.denied",
+    "module": "userscopy",
+    "en": "You do not have access to this workspace.",
+    "fa": "به این فضای کاری دسترسی ندارید.",
+    "ar": "You do not have access to this workspace."
+  },
+  {
+    "key": "usersCopy.disable",
+    "module": "userscopy",
+    "en": "Disable access",
+    "fa": "غیرفعال و حذف از دسترسی",
+    "ar": "Disable access"
+  },
+  {
+    "key": "usersCopy.disabled",
+    "module": "userscopy",
+    "en": "Disabled",
+    "fa": "غیرفعال",
+    "ar": "Disabled"
+  },
+  {
+    "key": "usersCopy.displayName",
+    "module": "userscopy",
+    "en": "Display name",
+    "fa": "نام نمایشی",
+    "ar": "Display name"
+  },
+  {
+    "key": "usersCopy.draft",
+    "module": "userscopy",
+    "en": "Draft",
+    "fa": "پیش‌نویس",
+    "ar": "Draft"
+  },
+  {
+    "key": "usersCopy.edit",
+    "module": "userscopy",
+    "en": "Edit",
+    "fa": "ویرایش",
+    "ar": "Edit"
+  },
+  {
+    "key": "usersCopy.editor",
+    "module": "userscopy",
+    "en": "Edit form",
+    "fa": "ویرایش فرم",
+    "ar": "Edit form"
+  },
+  {
+    "key": "usersCopy.editProfile",
+    "module": "userscopy",
+    "en": "Complete and edit profile",
+    "fa": "تکمیل و ویرایش اطلاعات",
+    "ar": "Complete and edit profile"
+  },
+  {
+    "key": "usersCopy.email",
+    "module": "userscopy",
+    "en": "Email",
+    "fa": "ایمیل",
+    "ar": "Email"
+  },
+  {
+    "key": "usersCopy.enable",
+    "module": "userscopy",
+    "en": "Enable account",
+    "fa": "فعال‌سازی",
+    "ar": "Enable account"
+  },
+  {
+    "key": "usersCopy.english",
+    "module": "userscopy",
+    "en": "English",
+    "fa": "انگلیسی",
+    "ar": "English"
+  },
+  {
+    "key": "usersCopy.equals",
+    "module": "userscopy",
+    "en": "Equals",
+    "fa": "برابر با",
+    "ar": "Equals"
+  },
+  {
+    "key": "usersCopy.errors.ACCOUNT_DISABLED",
+    "module": "userscopy",
+    "en": "This account is disabled.",
+    "fa": "حساب غیرفعال است.",
+    "ar": "This account is disabled."
+  },
+  {
+    "key": "usersCopy.errors.ACCOUNT_EXISTS",
+    "module": "userscopy",
+    "en": "This email is already registered.",
+    "fa": "این ایمیل قبلاً ثبت شده است.",
+    "ar": "This email is already registered."
+  },
+  {
+    "key": "usersCopy.errors.CONFLICT",
+    "module": "userscopy",
+    "en": "The data changed concurrently. Reload and try again.",
+    "fa": "اطلاعات هم‌زمان تغییر کرده است؛ دوباره بارگذاری کنید.",
+    "ar": "The data changed concurrently. Reload and try again."
+  },
+  {
+    "key": "usersCopy.errors.CONSENT_REQUIRED",
+    "module": "userscopy",
+    "en": "Record your profile consent first.",
+    "fa": "ابتدا رضایت مربوط به پروفایل را ثبت کنید.",
+    "ar": "Record your profile consent first."
+  },
+  {
+    "key": "usersCopy.errors.DUPLICATE_REQUEST",
+    "module": "userscopy",
+    "en": "A similar request exists or requests were submitted too quickly.",
+    "fa": "درخواست مشابه ثبت شده یا درخواست‌ها بیش از حد نزدیک‌اند.",
+    "ar": "A similar request exists or requests were submitted too quickly."
+  },
+  {
+    "key": "usersCopy.errors.EXPERT_UNAVAILABLE",
+    "module": "userscopy",
+    "en": "This expert is not currently available.",
+    "fa": "این استاد در حال حاضر در دسترس نیست.",
+    "ar": "This expert is not currently available."
+  },
+  {
+    "key": "usersCopy.errors.FORBIDDEN",
+    "module": "userscopy",
+    "en": "You do not have permission for this action.",
+    "fa": "اجازهٔ انجام این کار را ندارید.",
+    "ar": "You do not have permission for this action."
+  },
+  {
+    "key": "usersCopy.errors.FORM_CHANGED",
+    "module": "userscopy",
+    "en": "The form version changed. Reload and try again.",
+    "fa": "نسخهٔ فرم تغییر کرده است؛ دوباره بارگذاری کنید.",
+    "ar": "The form version changed. Reload and try again."
+  },
+  {
+    "key": "usersCopy.errors.FORM_NOT_PUBLISHED",
+    "module": "userscopy",
+    "en": "Publish the form first.",
+    "fa": "ابتدا فرم را منتشر کنید.",
+    "ar": "Publish the form first."
+  },
+  {
+    "key": "usersCopy.errors.IMAGE_LIMIT",
+    "module": "userscopy",
+    "en": "The image upload limit has been reached.",
+    "fa": "سهمیهٔ بارگذاری تصویر پر شده است.",
+    "ar": "The image upload limit has been reached."
+  },
+  {
+    "key": "usersCopy.errors.INVALID_ANSWERS",
+    "module": "userscopy",
+    "en": "A field answer is invalid.",
+    "fa": "پاسخ یکی از فیلدها معتبر نیست.",
+    "ar": "A field answer is invalid."
+  },
+  {
+    "key": "usersCopy.errors.INVALID_IMAGE",
+    "module": "userscopy",
+    "en": "The image is invalid or too large.",
+    "fa": "تصویر معتبر نیست یا اندازهٔ آن بیش از حد مجاز است.",
+    "ar": "The image is invalid or too large."
+  },
+  {
+    "key": "usersCopy.errors.INVALID_INPUT",
+    "module": "userscopy",
+    "en": "Please check the entered information.",
+    "fa": "اطلاعات واردشده معتبر نیست.",
+    "ar": "Please check the entered information."
+  },
+  {
+    "key": "usersCopy.errors.LAST_ADMIN",
+    "module": "userscopy",
+    "en": "The last platform administrator cannot be removed.",
+    "fa": "آخرین مدیر کل را نمی‌توان حذف کرد.",
+    "ar": "The last platform administrator cannot be removed."
+  },
+  {
+    "key": "usersCopy.errors.NOT_FOUND",
+    "module": "userscopy",
+    "en": "The requested information was not found.",
+    "fa": "اطلاعات پیدا نشد.",
+    "ar": "The requested information was not found."
+  },
+  {
+    "key": "usersCopy.errors.PROFILE_INCOMPLETE",
+    "module": "userscopy",
+    "en": "Complete the required profile fields.",
+    "fa": "فیلدهای ضروری پروفایل را تکمیل کنید.",
+    "ar": "Complete the required profile fields."
+  },
+  {
+    "key": "usersCopy.errors.REMOVE_ADMIN_FIRST",
+    "module": "userscopy",
+    "en": "Remove this account’s administrator role first.",
+    "fa": "ابتدا نقش مدیر کل این کاربر را حذف کنید.",
+    "ar": "Remove this account’s administrator role first."
+  },
+  {
+    "key": "usersCopy.errors.UNAUTHORIZED",
+    "module": "userscopy",
+    "en": "Your session has ended. Sign in again.",
+    "fa": "نشست شما پایان یافته؛ دوباره وارد شوید.",
+    "ar": "Your session has ended. Sign in again."
+  },
+  {
+    "key": "usersCopy.errors.UNAVAILABLE",
+    "module": "userscopy",
+    "en": "The service could not be reached. Please retry.",
+    "fa": "ارتباط با سرویس برقرار نشد. دوباره تلاش کنید.",
+    "ar": "The service could not be reached. Please retry."
+  },
+  {
+    "key": "usersCopy.expert",
+    "module": "userscopy",
+    "en": "Expert",
+    "fa": "استاد",
+    "ar": "Expert"
+  },
+  {
+    "key": "usersCopy.fieldLabel",
+    "module": "userscopy",
+    "en": "Field label",
+    "fa": "عنوان فیلد",
+    "ar": "Field label"
+  },
+  {
+    "key": "usersCopy.fieldPalette",
+    "module": "userscopy",
+    "en": "Add a field",
+    "fa": "افزودن فیلد",
+    "ar": "Add a field"
+  },
+  {
+    "key": "usersCopy.fieldSettings",
+    "module": "userscopy",
+    "en": "Field settings",
+    "fa": "تنظیمات فیلد",
+    "ar": "Field settings"
+  },
+  {
+    "key": "usersCopy.fieldTypes.checkbox",
+    "module": "userscopy",
+    "en": "Checkbox",
+    "fa": "تأیید / انتخاب",
+    "ar": "Checkbox"
+  },
+  {
+    "key": "usersCopy.fieldTypes.date",
+    "module": "userscopy",
+    "en": "Date",
+    "fa": "تاریخ",
+    "ar": "Date"
+  },
+  {
+    "key": "usersCopy.fieldTypes.email",
+    "module": "userscopy",
+    "en": "Email",
+    "fa": "ایمیل",
+    "ar": "Email"
+  },
+  {
+    "key": "usersCopy.fieldTypes.heading",
+    "module": "userscopy",
+    "en": "Heading",
+    "fa": "عنوان و توضیح",
+    "ar": "Heading"
+  },
+  {
+    "key": "usersCopy.fieldTypes.image",
+    "module": "userscopy",
+    "en": "Image upload",
+    "fa": "بارگذاری تصویر",
+    "ar": "Image upload"
+  },
+  {
+    "key": "usersCopy.fieldTypes.multiselect",
+    "module": "userscopy",
+    "en": "Multiple choices",
+    "fa": "چندانتخابی",
+    "ar": "Multiple choices"
+  },
+  {
+    "key": "usersCopy.fieldTypes.number",
+    "module": "userscopy",
+    "en": "Number",
+    "fa": "عدد",
+    "ar": "Number"
+  },
+  {
+    "key": "usersCopy.fieldTypes.phone",
+    "module": "userscopy",
+    "en": "Phone",
+    "fa": "تلفن",
+    "ar": "Phone"
+  },
+  {
+    "key": "usersCopy.fieldTypes.radio",
+    "module": "userscopy",
+    "en": "Radio buttons",
+    "fa": "تک‌انتخابی",
+    "ar": "Radio buttons"
+  },
+  {
+    "key": "usersCopy.fieldTypes.select",
+    "module": "userscopy",
+    "en": "Dropdown",
+    "fa": "فهرست کشویی",
+    "ar": "Dropdown"
+  },
+  {
+    "key": "usersCopy.fieldTypes.text",
+    "module": "userscopy",
+    "en": "Short text",
+    "fa": "متن کوتاه",
+    "ar": "Short text"
+  },
+  {
+    "key": "usersCopy.fieldTypes.textarea",
+    "module": "userscopy",
+    "en": "Long text",
+    "fa": "متن بلند",
+    "ar": "Long text"
+  },
+  {
+    "key": "usersCopy.fieldTypes.url",
+    "module": "userscopy",
+    "en": "Web address",
+    "fa": "نشانی وب",
+    "ar": "Web address"
+  },
+  {
+    "key": "usersCopy.forms",
+    "module": "userscopy",
+    "en": "Profile form builder",
+    "fa": "فرم‌ساز پروفایل",
+    "ar": "Profile form builder"
+  },
+  {
+    "key": "usersCopy.formTitle",
+    "module": "userscopy",
+    "en": "Form title",
+    "fa": "عنوان فرم",
+    "ar": "Form title"
+  },
+  {
+    "key": "usersCopy.home",
+    "module": "userscopy",
+    "en": "Home",
+    "fa": "صفحهٔ اصلی",
+    "ar": "Home"
+  },
+  {
+    "key": "usersCopy.imageHint",
+    "module": "userscopy",
+    "en": "JPG, PNG or WebP, up to 2 MB. Image metadata is removed.",
+    "fa": "تصویر JPG، PNG یا WebP، حداکثر ۲ مگابایت. اطلاعات اضافی تصویر حذف می‌شود.",
+    "ar": "JPG, PNG or WebP, up to 2 MB. Image metadata is removed."
+  },
+  {
+    "key": "usersCopy.incomplete",
+    "module": "userscopy",
+    "en": "Complete your profile to use services.",
+    "fa": "برای استفاده از خدمات، اطلاعات حساب خود را تکمیل کنید.",
+    "ar": "Complete your profile to use services."
+  },
+  {
+    "key": "usersCopy.independent",
+    "module": "userscopy",
+    "en": "Independent organization",
+    "fa": "سازمان مستقل",
+    "ar": "Independent organization"
+  },
+  {
+    "key": "usersCopy.invitation",
+    "module": "userscopy",
+    "en": "A password setup link will be emailed to the user.",
+    "fa": "پیوند تعیین رمز به ایمیل کاربر ارسال می‌شود.",
+    "ar": "A password setup link will be emailed to the user."
+  },
+  {
+    "key": "usersCopy.invite",
+    "module": "userscopy",
+    "en": "Add and invite user",
+    "fa": "افزودن و دعوت کاربر",
+    "ar": "Add and invite user"
+  },
+  {
+    "key": "usersCopy.inviteAgain",
+    "module": "userscopy",
+    "en": "Resend invitation",
+    "fa": "ارسال دوبارهٔ دعوت",
+    "ar": "Resend invitation"
+  },
+  {
+    "key": "usersCopy.invited",
+    "module": "userscopy",
+    "en": "Invitation queued.",
+    "fa": "درخواست ارسال دعوت ثبت شد.",
+    "ar": "Invitation queued."
+  },
+  {
+    "key": "usersCopy.language",
+    "module": "userscopy",
+    "en": "فارسی",
+    "fa": "English",
+    "ar": "فارسی"
+  },
+  {
+    "key": "usersCopy.layout",
+    "module": "userscopy",
+    "en": "Form layout",
+    "fa": "نمایش فرم",
+    "ar": "Form layout"
+  },
+  {
+    "key": "usersCopy.loading",
+    "module": "userscopy",
+    "en": "Loading…",
+    "fa": "در حال دریافت اطلاعات…",
+    "ar": "Loading…"
+  },
+  {
+    "key": "usersCopy.login",
+    "module": "userscopy",
+    "en": "Sign in",
+    "fa": "ورود به حساب",
+    "ar": "Sign in"
+  },
+  {
+    "key": "usersCopy.logout",
+    "module": "userscopy",
+    "en": "Sign out",
+    "fa": "خروج",
+    "ar": "Sign out"
+  },
+  {
+    "key": "usersCopy.max",
+    "module": "userscopy",
+    "en": "Maximum number",
+    "fa": "حداکثر عدد",
+    "ar": "Maximum number"
+  },
+  {
+    "key": "usersCopy.members",
+    "module": "userscopy",
+    "en": "Visible to signed-in members",
+    "fa": "قابل نمایش به اعضای سایت",
+    "ar": "Visible to signed-in members"
+  },
+  {
+    "key": "usersCopy.min",
+    "module": "userscopy",
+    "en": "Minimum number",
+    "fa": "حداقل عدد",
+    "ar": "Minimum number"
+  },
+  {
+    "key": "usersCopy.moveDown",
+    "module": "userscopy",
+    "en": "Move down",
+    "fa": "انتقال به پایین",
+    "ar": "Move down"
+  },
+  {
+    "key": "usersCopy.moveUp",
+    "module": "userscopy",
+    "en": "Move up",
+    "fa": "انتقال به بالا",
+    "ar": "Move up"
+  },
+  {
+    "key": "usersCopy.newForm",
+    "module": "userscopy",
+    "en": "New form",
+    "fa": "فرم جدید",
+    "ar": "New form"
+  },
+  {
+    "key": "usersCopy.newSection",
+    "module": "userscopy",
+    "en": "Add section",
+    "fa": "افزودن بخش",
+    "ar": "Add section"
+  },
+  {
+    "key": "usersCopy.next",
+    "module": "userscopy",
+    "en": "Next step",
+    "fa": "مرحلهٔ بعد",
+    "ar": "Next step"
+  },
+  {
+    "key": "usersCopy.no",
+    "module": "userscopy",
+    "en": "No",
+    "fa": "خیر",
+    "ar": "No"
+  },
+  {
+    "key": "usersCopy.noData",
+    "module": "userscopy",
+    "en": "Nothing to display.",
+    "fa": "اطلاعاتی برای نمایش وجود ندارد.",
+    "ar": "Nothing to display."
+  },
+  {
+    "key": "usersCopy.noExperts",
+    "module": "userscopy",
+    "en": "No active experts have been added yet.",
+    "fa": "هنوز استاد فعالی ثبت نشده است.",
+    "ar": "No active experts have been added yet."
+  },
+  {
+    "key": "usersCopy.noFields",
+    "module": "userscopy",
+    "en": "Add a field from the toolbox.",
+    "fa": "از فهرست ابزارها یک فیلد اضافه کنید.",
+    "ar": "Add a field from the toolbox."
+  },
+  {
+    "key": "usersCopy.noRequests",
+    "module": "userscopy",
+    "en": "No requests yet.",
+    "fa": "هنوز درخواستی ثبت نشده است.",
+    "ar": "No requests yet."
+  },
+  {
+    "key": "usersCopy.optionHint",
+    "module": "userscopy",
+    "en": "One per line: value | Persian label | English label",
+    "fa": "هر خط: مقدار | عنوان فارسی | عنوان انگلیسی",
+    "ar": "One per line: value | Persian label | English label"
+  },
+  {
+    "key": "usersCopy.options",
+    "module": "userscopy",
+    "en": "Options",
+    "fa": "گزینه‌ها",
+    "ar": "Options"
+  },
+  {
+    "key": "usersCopy.organizationName",
+    "module": "userscopy",
+    "en": "Organization or branch name",
+    "fa": "نام سازمان یا شعبه",
+    "ar": "Organization or branch name"
+  },
+  {
+    "key": "usersCopy.organizations",
+    "module": "userscopy",
+    "en": "Organizations and branches",
+    "fa": "سازمان‌ها و شعبه‌ها",
+    "ar": "Organizations and branches"
+  },
+  {
+    "key": "usersCopy.parent",
+    "module": "userscopy",
+    "en": "Parent organization",
+    "fa": "سازمان بالادست",
+    "ar": "Parent organization"
+  },
+  {
+    "key": "usersCopy.pending",
+    "module": "userscopy",
+    "en": "Awaiting email verification",
+    "fa": "منتظر تأیید ایمیل",
+    "ar": "Awaiting email verification"
+  },
+  {
+    "key": "usersCopy.persian",
+    "module": "userscopy",
+    "en": "Persian",
+    "fa": "فارسی",
+    "ar": "Persian"
+  },
+  {
+    "key": "usersCopy.platform",
+    "module": "userscopy",
+    "en": "Entire platform",
+    "fa": "کل سامانه",
+    "ar": "Entire platform"
+  },
+  {
+    "key": "usersCopy.preferredDate",
+    "module": "userscopy",
+    "en": "Preferred date",
+    "fa": "تاریخ پیشنهادی",
+    "ar": "Preferred date"
+  },
+  {
+    "key": "usersCopy.presets",
+    "module": "userscopy",
+    "en": "Choose a cartoon avatar",
+    "fa": "انتخاب تصویر کارتونی",
+    "ar": "Choose a cartoon avatar"
+  },
+  {
+    "key": "usersCopy.preview",
+    "module": "userscopy",
+    "en": "Preview form",
+    "fa": "پیش‌نمایش فرم",
+    "ar": "Preview form"
+  },
+  {
+    "key": "usersCopy.previous",
+    "module": "userscopy",
+    "en": "Previous step",
+    "fa": "مرحلهٔ قبل",
+    "ar": "Previous step"
+  },
+  {
+    "key": "usersCopy.private",
+    "module": "userscopy",
+    "en": "Only you and authorized administrators",
+    "fa": "فقط شما و مدیر مجاز",
+    "ar": "Only you and authorized administrators"
+  },
+  {
+    "key": "usersCopy.profile",
+    "module": "userscopy",
+    "en": "My profile",
+    "fa": "پروفایل من",
+    "ar": "My profile"
+  },
+  {
+    "key": "usersCopy.profileLink",
+    "module": "userscopy",
+    "en": "View profile",
+    "fa": "مشاهدهٔ پروفایل",
+    "ar": "View profile"
+  },
+  {
+    "key": "usersCopy.publicId",
+    "module": "userscopy",
+    "en": "User ID",
+    "fa": "شناسهٔ کاربری",
+    "ar": "User ID"
+  },
+  {
+    "key": "usersCopy.publish",
+    "module": "userscopy",
+    "en": "Publish form",
+    "fa": "انتشار فرم",
+    "ar": "Publish form"
+  },
+  {
+    "key": "usersCopy.publishConfirm",
+    "module": "userscopy",
+    "en": "Publish a new version? Users will need to update their profile for this version.",
+    "fa": "نسخهٔ جدید فرم منتشر شود؟ کاربران باید اطلاعات خود را با این نسخه به‌روز کنند.",
+    "ar": "Publish a new version? Users will need to update their profile for this version."
+  },
+  {
+    "key": "usersCopy.published",
+    "module": "userscopy",
+    "en": "Published",
+    "fa": "منتشرشده",
+    "ar": "Published"
+  },
+  {
+    "key": "usersCopy.removeOption",
+    "module": "userscopy",
+    "en": "Remove option",
+    "fa": "حذف گزینه",
+    "ar": "Remove option"
+  },
+  {
+    "key": "usersCopy.removeRole",
+    "module": "userscopy",
+    "en": "Remove role",
+    "fa": "حذف نقش",
+    "ar": "Remove role"
+  },
+  {
+    "key": "usersCopy.requested",
+    "module": "userscopy",
+    "en": "Awaiting review",
+    "fa": "منتظر بررسی",
+    "ar": "Awaiting review"
+  },
+  {
+    "key": "usersCopy.requestNote",
+    "module": "userscopy",
+    "en": "This request is submitted for expert review. Confirmed scheduling, payment and booking confirmation follow in a later stage.",
+    "fa": "این درخواست برای بررسی استاد ثبت می‌شود. زمان قطعی، پرداخت و تأیید رزرو در مرحلهٔ بعد انجام می‌شود.",
+    "ar": "This request is submitted for expert review. Confirmed scheduling, payment and booking confirmation follow in a later stage."
+  },
+  {
+    "key": "usersCopy.requests",
+    "module": "userscopy",
+    "en": "Session requests",
+    "fa": "درخواست‌های جلسه",
+    "ar": "Session requests"
+  },
+  {
+    "key": "usersCopy.requestSession",
+    "module": "userscopy",
+    "en": "Request a session",
+    "fa": "درخواست جلسه",
+    "ar": "Request a session"
+  },
+  {
+    "key": "usersCopy.required",
+    "module": "userscopy",
+    "en": "Required",
+    "fa": "ضروری",
+    "ar": "Required"
+  },
+  {
+    "key": "usersCopy.retry",
+    "module": "userscopy",
+    "en": "Try again",
+    "fa": "تلاش دوباره",
+    "ar": "Try again"
+  },
+  {
+    "key": "usersCopy.review",
+    "module": "userscopy",
+    "en": "Mark reviewed",
+    "fa": "ثبت بررسی",
+    "ar": "Mark reviewed"
+  },
+  {
+    "key": "usersCopy.reviewed",
+    "module": "userscopy",
+    "en": "Reviewed",
+    "fa": "بررسی شده",
+    "ar": "Reviewed"
+  },
+  {
+    "key": "usersCopy.roleNames.account",
+    "module": "userscopy",
+    "en": "Client",
+    "fa": "مراجع",
+    "ar": "Client"
+  },
+  {
+    "key": "usersCopy.roleNames.admin",
+    "module": "userscopy",
+    "en": "Administrator",
+    "fa": "مدیر کل",
+    "ar": "Administrator"
+  },
+  {
+    "key": "usersCopy.roleNames.ai",
+    "module": "userscopy",
+    "en": "AI",
+    "fa": "هوش مصنوعی",
+    "ar": "AI"
+  },
+  {
+    "key": "usersCopy.roleNames.auditor",
+    "module": "userscopy",
+    "en": "Auditor",
+    "fa": "حسابرس",
+    "ar": "Auditor"
+  },
+  {
+    "key": "usersCopy.roleNames.call",
+    "module": "userscopy",
+    "en": "Call center",
+    "fa": "مرکز تماس",
+    "ar": "Call center"
+  },
+  {
+    "key": "usersCopy.roleNames.content",
+    "module": "userscopy",
+    "en": "Content manager",
+    "fa": "مدیر محتوا",
+    "ar": "Content manager"
+  },
+  {
+    "key": "usersCopy.roleNames.expert",
+    "module": "userscopy",
+    "en": "Expert",
+    "fa": "استاد و مشاور",
+    "ar": "Expert"
+  },
+  {
+    "key": "usersCopy.roleNames.finance",
+    "module": "userscopy",
+    "en": "Finance",
+    "fa": "مالی",
+    "ar": "Finance"
+  },
+  {
+    "key": "usersCopy.roleNames.operations",
+    "module": "userscopy",
+    "en": "Operations",
+    "fa": "عملیات",
+    "ar": "Operations"
+  },
+  {
+    "key": "usersCopy.roleNames.organization",
+    "module": "userscopy",
+    "en": "Organization manager",
+    "fa": "مدیر سازمان",
+    "ar": "Organization manager"
+  },
+  {
+    "key": "usersCopy.roleNames.responder",
+    "module": "userscopy",
+    "en": "Responder",
+    "fa": "پاسخ‌گو",
+    "ar": "Responder"
+  },
+  {
+    "key": "usersCopy.roleNames.scientific",
+    "module": "userscopy",
+    "en": "Scientific manager",
+    "fa": "مدیر علمی",
+    "ar": "Scientific manager"
+  },
+  {
+    "key": "usersCopy.roleNames.secretary",
+    "module": "userscopy",
+    "en": "Secretary",
+    "fa": "منشی",
+    "ar": "Secretary"
+  },
+  {
+    "key": "usersCopy.roleNames.support",
+    "module": "userscopy",
+    "en": "Support",
+    "fa": "پشتیبانی",
+    "ar": "Support"
+  },
+  {
+    "key": "usersCopy.roleReady",
+    "module": "userscopy",
+    "en": "This workspace reflects your actual permissions. Specialized tools will be added in their corresponding stages.",
+    "fa": "این فضای کاری بر اساس مجوز واقعی شما فعال است. ابزارهای تخصصی این نقش در مراحل مربوط به خود اضافه می‌شوند.",
+    "ar": "This workspace reflects your actual permissions. Specialized tools will be added in their corresponding stages."
+  },
+  {
+    "key": "usersCopy.roles",
+    "module": "userscopy",
+    "en": "User roles",
+    "fa": "نقش‌های کاربر",
+    "ar": "User roles"
+  },
+  {
+    "key": "usersCopy.save",
+    "module": "userscopy",
+    "en": "Save",
+    "fa": "ذخیره",
+    "ar": "Save"
+  },
+  {
+    "key": "usersCopy.saved",
+    "module": "userscopy",
+    "en": "Changes saved.",
+    "fa": "تغییرات ذخیره شد.",
+    "ar": "Changes saved."
+  },
+  {
+    "key": "usersCopy.scope",
+    "module": "userscopy",
+    "en": "Access scope",
+    "fa": "محدودهٔ دسترسی",
+    "ar": "Access scope"
+  },
+  {
+    "key": "usersCopy.search",
+    "module": "userscopy",
+    "en": "Search",
+    "fa": "جست‌وجو",
+    "ar": "Search"
+  },
+  {
+    "key": "usersCopy.searchPlaceholder",
+    "module": "userscopy",
+    "en": "Email or user ID",
+    "fa": "ایمیل یا شناسهٔ کاربر",
+    "ar": "Email or user ID"
+  },
+  {
+    "key": "usersCopy.sectionTitle",
+    "module": "userscopy",
+    "en": "Section title",
+    "fa": "عنوان بخش",
+    "ar": "Section title"
+  },
+  {
+    "key": "usersCopy.security",
+    "module": "userscopy",
+    "en": "Account security",
+    "fa": "امنیت حساب",
+    "ar": "Account security"
+  },
+  {
+    "key": "usersCopy.status",
+    "module": "userscopy",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "usersCopy.steps",
+    "module": "userscopy",
+    "en": "Steps",
+    "fa": "مراحل",
+    "ar": "Steps"
+  },
+  {
+    "key": "usersCopy.submitRequest",
+    "module": "userscopy",
+    "en": "Submit request",
+    "fa": "ثبت درخواست",
+    "ar": "Submit request"
+  },
+  {
+    "key": "usersCopy.tabs",
+    "module": "userscopy",
+    "en": "Tabs",
+    "fa": "تب‌ها",
+    "ar": "Tabs"
+  },
+  {
+    "key": "usersCopy.title",
+    "module": "userscopy",
+    "en": "My account",
+    "fa": "حساب من",
+    "ar": "My account"
+  },
+  {
+    "key": "usersCopy.upload",
+    "module": "userscopy",
+    "en": "Upload image",
+    "fa": "بارگذاری تصویر",
+    "ar": "Upload image"
+  },
+  {
+    "key": "usersCopy.users",
+    "module": "userscopy",
+    "en": "User management",
+    "fa": "مدیریت کاربران",
+    "ar": "User management"
+  },
+  {
+    "key": "usersCopy.verified",
+    "module": "userscopy",
+    "en": "Email verified",
+    "fa": "ایمیل تأییدشده",
+    "ar": "Email verified"
+  },
+  {
+    "key": "usersCopy.version",
+    "module": "userscopy",
+    "en": "Version",
+    "fa": "نسخه",
+    "ar": "Version"
+  },
+  {
+    "key": "usersCopy.withdraw",
+    "module": "userscopy",
+    "en": "Withdraw profile sharing consent",
+    "fa": "پس‌گرفتن رضایت نمایش پروفایل",
+    "ar": "Withdraw profile sharing consent"
+  },
+  {
+    "key": "usersCopy.workspace",
+    "module": "userscopy",
+    "en": "Choose workspace",
+    "fa": "انتخاب فضای کاری",
+    "ar": "Choose workspace"
+  },
+  {
+    "key": "usersCopy.yes",
+    "module": "userscopy",
+    "en": "Yes",
+    "fa": "بله",
+    "ar": "Yes"
+  }
+]

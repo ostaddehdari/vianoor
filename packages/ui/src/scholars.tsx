@@ -1,4 +1,6 @@
 'use client';
+import { SourceLanguage, DynamicTranslations } from './dynamic-translations';
+import { languageValue } from './localization-runtime';
 import { useEffect, useState } from 'react';
 import { userApi, usersBase } from './users-client';
 import { scholarsCopy } from './scholars-copy';
@@ -12,7 +14,7 @@ import {
   type DocumentDetails,
   type Offering,
 } from './scholars-client';
-type Locale = 'fa' | 'en';
+type Locale = string;
 type Copy = typeof scholarsCopy.en;
 export function ExpertAssetImage({ id, alt }: { id: string | null; alt: string }) {
   const [src, setSrc] = useState('');
@@ -105,7 +107,7 @@ function AssetUpload({
   purpose: 'image' | 'document';
   onReady: (id: string) => void;
 }) {
-  const t = scholarsCopy[locale],
+  const t = scholarsCopy[locale]!,
     [id, setId] = useState(''),
     [status, setStatus] = useState(''),
     [busy, setBusy] = useState(false),
@@ -170,7 +172,7 @@ function ProfessionalForm({
   taxons: Taxon[];
   onSave: (v: Professional) => Promise<void>;
 }) {
-  const t = scholarsCopy[locale],
+  const t = scholarsCopy[locale]!,
     [value, setValue] = useState(initial),
     [busy, setBusy] = useState(false);
   const update = (key: keyof Professional, v: unknown) => setValue((p) => ({ ...p, [key]: v }));
@@ -198,6 +200,11 @@ function ProfessionalForm({
     >
       <fieldset disabled={busy}>
         <div className="scholar-grid">
+          <SourceLanguage
+            locale={locale}
+            value={value.source_language ?? 'und'}
+            onChange={(v) => update('source_language', v)}
+          />
           {(['display_name', 'title', 'slug', 'city', 'country', 'contact_phone'] as const).map(
             (k) => field(k),
           )}
@@ -233,7 +240,7 @@ function ProfessionalForm({
             .map((x) => (
               <Control
                 key={x.id}
-                label={x.label[locale]}
+                label={languageValue(x.label, locale)}
                 value={value.specialties.includes(x.id)}
                 change={(v) =>
                   update(
@@ -252,7 +259,7 @@ function ProfessionalForm({
             return (
               <div className="scholar-grid" key={x.id}>
                 <Control
-                  label={x.label[locale]}
+                  label={languageValue(x.label, locale)}
                   value={!!current}
                   change={(v) =>
                     update(
@@ -342,7 +349,7 @@ function DocumentForm({
   locale: Locale;
   onSave: (v: DocumentDetails) => Promise<void>;
 }) {
-  const t = scholarsCopy[locale],
+  const t = scholarsCopy[locale]!,
     [value, setValue] = useState<DocumentDetails>({
       kind: 'DEGREE',
       title: '',
@@ -427,7 +434,7 @@ function ServiceForm({
   initial?: Offering;
   onSave: (v: Offering) => Promise<void>;
 }) {
-  const t = scholarsCopy[locale],
+  const t = scholarsCopy[locale]!,
     [value, setValue] = useState<Offering>(
       initial ?? {
         title: '',
@@ -459,6 +466,11 @@ function ServiceForm({
     >
       <fieldset disabled={busy}>
         <div className="scholar-grid">
+          <SourceLanguage
+            locale={locale}
+            value={value.source_language ?? 'und'}
+            onChange={(v) => setValue({ ...value, source_language: v })}
+          />
           {(
             ['title', 'summary', 'description', 'duration_minutes', 'price_minor', 'terms'] as const
           ).map((k) => (
@@ -500,7 +512,7 @@ function ServiceForm({
                 { value: '', label: t.select },
                 ...taxons
                   .filter((x) => x.kind === (k === 'specialty_id' ? 'specialty' : 'category'))
-                  .map((x) => ({ value: x.id, label: x.label[locale] })),
+                  .map((x) => ({ value: x.id, label: languageValue(x.label, locale) })),
               ]}
               change={(v) => setValue({ ...value, [k]: v || null })}
             />
@@ -537,7 +549,7 @@ function ReviewForm({
   }) => Promise<void>;
   internal?: boolean;
 }) {
-  const t = scholarsCopy[locale],
+  const t = scholarsCopy[locale]!,
     [status, setStatus] = useState(statuses[0] ?? ''),
     [reason, setReason] = useState(''),
     [note, setNote] = useState(''),
@@ -609,7 +621,7 @@ export function ScholarWorkspace({
   initialTab?: string;
   initialStatus?: string;
 }) {
-  const t = scholarsCopy[locale],
+  const t = scholarsCopy[locale]!,
     [row, setRow] = useState<Scholar | null>(null),
     [taxons, setTaxons] = useState<Taxon[]>([]),
     [items, setItems] = useState<
@@ -704,7 +716,7 @@ export function ScholarWorkspace({
                   { value: '', label: t.all },
                   ...taxons
                     .filter((x) => x.kind === k)
-                    .map((x) => ({ value: x.id, label: x.label[locale] })),
+                    .map((x) => ({ value: x.id, label: languageValue(x.label, locale) })),
                 ]}
                 change={(v) => setFilters({ ...filters, [k]: String(v) })}
               />
@@ -786,6 +798,7 @@ export function ScholarWorkspace({
             </>
           ) : (
             <>
+              <DynamicTranslations key={row.id} locale={locale} row={row} admin={admin} />
               <div className="scholar-summary">
                 <h3>{row.profile.display_name}</h3>
                 <span className="user-badge">{stateLabel(t, row.status)}</span>
@@ -830,7 +843,7 @@ export function ScholarWorkspace({
                     <h4>{t.languages}</h4>
                     {row.profile.languages.map((l) => (
                       <p key={l.id}>
-                        {taxons.find((x) => x.id === l.id)?.label[locale]} ·{' '}
+                        {languageValue(taxons.find((x) => x.id === l.id)?.label, locale)} ·{' '}
                         {stateLabel(t, l.level)}
                       </p>
                     ))}
@@ -911,7 +924,9 @@ export function ScholarWorkspace({
               {tab === 'specialties' &&
                 row.specialties.map((s) => (
                   <article key={s.specialty_id} className="user-card">
-                    <h3>{taxons.find((x) => x.id === s.specialty_id)?.label[locale]}</h3>
+                    <h3>
+                      {languageValue(taxons.find((x) => x.id === s.specialty_id)?.label, locale)}
+                    </h3>
                     <p>
                       {stateLabel(t, s.status)} · {s.reason}
                     </p>
@@ -1075,7 +1090,7 @@ export function ScholarWorkspace({
   );
 }
 export function TaxonomyManager({ locale }: { locale: Locale }) {
-  const t = scholarsCopy[locale],
+  const t = scholarsCopy[locale]!,
     blank = {
       id: '',
       kind: 'specialty',
@@ -1090,7 +1105,10 @@ export function TaxonomyManager({ locale }: { locale: Locale }) {
   const [items, setItems] = useState<Taxon[]>([]),
     [value, setValue] = useState<Taxon>(blank),
     [error, setError] = useState('');
-  const load = () => userApi<Taxon[]>('taxonomy?admin=1').then(setItems);
+  const load = () =>
+    userApi<Taxon[]>('taxonomy?admin=1').then((rows) =>
+      setItems(rows.filter((row) => row.kind !== 'language')),
+    );
   useEffect(() => {
     void load().catch(() => setError(t.error));
   }, []);
@@ -1107,7 +1125,9 @@ export function TaxonomyManager({ locale }: { locale: Locale }) {
             await userApi(
               'taxonomy' + (id ? '/' + id : ''),
               id ? 'PUT' : 'POST',
-              id ? { ...data, revision } : data,
+              id
+                ? { ...data, label: { fa: data.label.fa, en: data.label.en }, revision }
+                : { ...data, label: { fa: data.label.fa, en: data.label.en } },
             );
             setValue(blank);
             await load();
@@ -1120,7 +1140,7 @@ export function TaxonomyManager({ locale }: { locale: Locale }) {
           <Control
             label={t.kind}
             value={value.kind}
-            options={['specialty', 'category', 'language'].map((v) => ({
+            options={['specialty', 'category'].map((v) => ({
               value: v,
               label: stateLabel(t, v),
             }))}
@@ -1143,7 +1163,7 @@ export function TaxonomyManager({ locale }: { locale: Locale }) {
               { value: '', label: t.select },
               ...items
                 .filter((x) => x.id !== value.id && x.kind === value.kind)
-                .map((x) => ({ value: x.id, label: x.label[locale] })),
+                .map((x) => ({ value: x.id, label: languageValue(x.label, locale) })),
             ]}
             change={(v) => setValue({ ...value, parent_id: v ? String(v) : null })}
           />
@@ -1176,14 +1196,15 @@ export function TaxonomyManager({ locale }: { locale: Locale }) {
       </form>
       {items.map((item) => (
         <button className="scholar-list-row" key={item.id} onClick={() => setValue(item)}>
-          {item.label[locale]} · {stateLabel(t, item.kind)} · {item.active ? t.active : t.disable}
+          {languageValue(item.label, locale)} · {stateLabel(t, item.kind)} ·{' '}
+          {item.active ? t.active : t.disable}
         </button>
       ))}
     </section>
   );
 }
 export function ServiceReviewQueue({ locale }: { locale: Locale }) {
-  const t = scholarsCopy[locale],
+  const t = scholarsCopy[locale]!,
     [items, setItems] = useState<
       {
         id: string;
@@ -1236,7 +1257,7 @@ export function ServiceReviewQueue({ locale }: { locale: Locale }) {
   );
 }
 export function FileManager({ locale }: { locale: Locale }) {
-  const t = scholarsCopy[locale],
+  const t = scholarsCopy[locale]!,
     [items, setItems] = useState<
       {
         id: string;

@@ -1,5 +1,6 @@
 import {
   bootstrap,
+  installChangeFeed,
   createService,
   connectInfrastructure,
   readRuntimeConfig,
@@ -18,6 +19,8 @@ if (process.env.AUTH_ENABLED !== '1') {
   const infra = await connectInfrastructure('identity-service');
   const identity = new Identity(infra.pool!, config);
   await identity.initialize();
+  if (process.env.DISCOVERY_ENABLED === '1')
+    await installChangeFeed(infra.pool!, 'identity-service', ['identity_accounts']);
   const mail = mailWorker(infra.pool!, config);
   const originalClose = infra.close;
   infra.close = async () => {

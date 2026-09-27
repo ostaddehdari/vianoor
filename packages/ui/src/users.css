@@ -6,6 +6,23 @@
   color: #233d33;
   font-size: 15px;
 }
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 210px;
+  font-size: 0.75rem;
+}
+.language-switcher select {
+  width: 135px;
+  max-width: 100%;
+  min-height: 38px;
+  border: 1px solid #c5d4c9;
+  border-radius: 8px;
+  padding: 5px;
+  background: white;
+  color: #243f32;
+}
 .users-sidebar {
   background: #153e33;
   color: #edf5ed;
@@ -1011,4 +1028,51 @@
   .scholar-list-row {
     flex-direction: column;
   }
+}
+.localization-manager {
+  min-width: 0;
+}
+.localization-manager .table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+.localization-manager table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.localization-manager th,
+.localization-manager td {
+  padding: 0.65rem;
+  border-bottom: 1px solid #ded9d2;
+  text-align: start;
+  max-width: 24rem;
+  overflow-wrap: anywhere;
+}
+.scholar-form {
+  display: grid;
+  gap: 1rem;
+}
+.scholar-form label,
+.localization-manager label {
+  display: grid;
+  gap: 0.4rem;
+}
+.scholar-form input,
+.scholar-form select,
+.scholar-form textarea,
+.localization-manager input,
+.localization-manager select {
+  max-width: 100%;
+  min-width: 0;
+  padding: 0.65rem;
+  border: 1px solid #a79c8e;
+  border-radius: 0.5rem;
+  color: #342f29;
+  background: white;
+  font: inherit;
+}
+.scholar-form small {
+  display: block;
+  font-weight: normal;
+  color: #62594f;
 }

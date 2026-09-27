@@ -1,4 +1,8 @@
 'use client';
+import { LanguageSwitcher } from './language-switcher';
+import { localizedText } from './localization-runtime';
+import { languageValue } from './localization-runtime';
+import { localizeTree } from './localization-runtime';
 import { useState, useRef, useEffect, type ReactNode } from 'react';
 import { Icon, type IconName } from './icons';
 import {
@@ -17,7 +21,7 @@ import { UserWorkspace, UserAccountMenu, MemberProfile } from './user-workspace'
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 const url = (locale: Locale, path = '') => `${base}/${locale}${path ? '/' + path : ''}`;
 const numbers = (locale: Locale, n: number) => new Intl.NumberFormat(locale).format(n);
-const experts = [
+const experts = localizeTree('demoExperts', [
   {
     id: 'mina',
     initials: { fa: 'م ر', en: 'MR' },
@@ -39,7 +43,7 @@ const experts = [
     topic: 'parenting',
     color: 'sand',
   },
-] as const;
+] as const);
 const topics = ['family', 'faith', 'parenting', 'growth'] as const;
 const topicIcons: IconName[] = ['heart', 'book', 'leaf', 'sparkles'];
 function Brand({ locale }: { locale: Locale }) {
@@ -49,8 +53,8 @@ function Brand({ locale }: { locale: Locale }) {
         ✺
       </span>
       <span>
-        {copy[locale].brand}
-        <small>{copy[locale].tagline}</small>
+        {copy[locale]!.brand}
+        <small>{copy[locale]!.tagline}</small>
       </span>
     </a>
   );
@@ -80,7 +84,7 @@ function Preview({ locale }: { locale: Locale }) {
   return (
     <div className="preview-note">
       <span className="status-dot" />
-      {copy[locale].demo}
+      {copy[locale]!.demo}
     </div>
   );
 }
@@ -131,7 +135,7 @@ function Modal({
       <div className="modal-inner">
         <button
           className="icon-button modal-close"
-          aria-label={copy[locale].close}
+          aria-label={copy[locale]!.close}
           onClick={onClose}
         >
           <Icon name="close" />
@@ -142,7 +146,7 @@ function Modal({
         <h2 id="modal-title">{title}</h2>
         {children}
         <button className="button" onClick={onClose}>
-          {copy[locale].continue}
+          {copy[locale]!.continue}
           <Icon name="check" />
         </button>
       </div>
@@ -150,7 +154,7 @@ function Modal({
   );
 }
 function Header({ locale, path }: { locale: Locale; path: string }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   const [open, setOpen] = useState(false);
   const nav = [
     ['', 'home'],
@@ -186,14 +190,7 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
           ))}
         </nav>
         <div className="header-actions">
-          <a
-            className="language"
-            href={url(locale === 'fa' ? 'en' : 'fa', path)}
-            lang={locale === 'fa' ? 'en' : 'fa'}
-          >
-            <Icon name="globe" />
-            {t.language}
-          </a>
+          <LanguageSwitcher locale={locale} />
           <UserAccountMenu locale={locale} />
           <button
             className="icon-button mobile-menu"
@@ -235,7 +232,7 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
   );
 }
 function Footer({ locale }: { locale: Locale }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   return (
     <footer className="site-footer">
       <div className="footer-grid">
@@ -310,7 +307,7 @@ function SectionTitle({
       </div>
       {path && (
         <a className="text-link" href={url(locale, path)}>
-          {copy[locale].viewAll}
+          {copy[locale]!.viewAll}
           <Arrow />
         </a>
       )}
@@ -318,16 +315,18 @@ function SectionTitle({
   );
 }
 function ExpertCard({ locale, expert }: { locale: Locale; expert: (typeof experts)[number] }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   return (
     <article className="expert-card">
       <div className={`expert-cover ${expert.color}`}>
         <span className="cover-lines" />
         <span className="sample-tag">{t.sampleExpert}</span>
-        <div className={`avatar large ${expert.color}`}>{expert.initials[locale]}</div>
+        <div className={`avatar large ${expert.color}`}>
+          {languageValue(expert.initials, locale)}
+        </div>
       </div>
       <div className="expert-body">
-        <h3>{expert.name[locale]}</h3>
+        <h3>{languageValue(expert.name, locale)}</h3>
         <p>{t[expert.topic]}</p>
         <div className="expert-meta">
           <span>
@@ -336,7 +335,7 @@ function ExpertCard({ locale, expert }: { locale: Locale; expert: (typeof expert
           </span>
           <span>
             <Icon name="globe" />
-            {locale === 'fa' ? 'فارسی' : 'Persian'}
+            {localizedText(locale, 'inline.experience.2fd08e63b45b', 'Persian', 'فارسی')}
           </span>
         </div>
         <a className="expert-link" href={url(locale, `experts/${expert.id}`)}>
@@ -348,7 +347,7 @@ function ExpertCard({ locale, expert }: { locale: Locale; expert: (typeof expert
   );
 }
 function Articles({ locale }: { locale: Locale }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   return (
     <div className="article-grid">
       {(['listening', 'better-questions', 'small-steps'] as const).map((slug, i) => (
@@ -374,7 +373,7 @@ function Articles({ locale }: { locale: Locale }) {
   );
 }
 function Home({ locale }: { locale: Locale }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   return (
     <>
       <section className="home-hero wrap">
@@ -503,7 +502,10 @@ function Home({ locale }: { locale: Locale }) {
           {([1, 2, 3] as const).map((n, i) => (
             <article key={n}>
               <span className="step-number">
-                {numbers(locale, n).padStart(2, locale === 'fa' ? '۰' : '0')}
+                {numbers(locale, n).padStart(
+                  2,
+                  localizedText(locale, 'inline.experience.8efac8bde0b4', '0', '۰'),
+                )}
               </span>
               <div>
                 <h3>{t[(['step1', 'step2', 'step3'] as const)[i]!]}</h3>
@@ -534,7 +536,7 @@ function Home({ locale }: { locale: Locale }) {
   );
 }
 function Gallery({ locale }: { locale: Locale }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   return (
     <section className="wrap section">
       <div className="page-heading">
@@ -550,11 +552,14 @@ function Gallery({ locale }: { locale: Locale }) {
                 <Icon name={role.icon} />
               </span>
               <span className="muted">
-                {numbers(locale, i + 1).padStart(2, locale === 'fa' ? '۰' : '0')}
+                {numbers(locale, i + 1).padStart(
+                  2,
+                  localizedText(locale, 'inline.experience.8efac8bde0b4', '0', '۰'),
+                )}
               </span>
             </div>
-            <h2>{role.title[locale]}</h2>
-            <p>{role.headline[locale]}</p>
+            <h2>{languageValue(role.title, locale)}</h2>
+            <p>{languageValue(role.headline, locale)}</p>
             <span className="text-link">
               {t.viewDashboard}
               <Arrow />
@@ -566,13 +571,13 @@ function Gallery({ locale }: { locale: Locale }) {
   );
 }
 function ExpertDirectory({ locale }: { locale: Locale }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   const [query, setQuery] = useState('');
   const [topic, setTopic] = useState('all');
   const filtered = experts.filter(
     (e) =>
       (topic === 'all' || e.topic === topic) &&
-      `${e.name[locale]} ${t[e.topic]}`.toLowerCase().includes(query.toLowerCase()),
+      `${languageValue(e.name, locale)} ${t[e.topic]}`.toLowerCase().includes(query.toLowerCase()),
   );
   return (
     <>
@@ -627,7 +632,7 @@ function ExpertDirectory({ locale }: { locale: Locale }) {
   );
 }
 function FAQ({ locale }: { locale: Locale }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   return (
     <div className="faq-list">
       {([1, 2, 3] as const).map((n, i) => (
@@ -643,7 +648,7 @@ function FAQ({ locale }: { locale: Locale }) {
   );
 }
 function PublicPage({ locale, path }: { locale: Locale; path: string }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   const root = path.split('/')[0]!;
   const slug = path.split('/')[1];
   const [modal, setModal] = useState<string | null>(null);
@@ -656,7 +661,7 @@ function PublicPage({ locale, path }: { locale: Locale; path: string }) {
         : t.terms
       : root === 'auth'
         ? t.login
-        : (publicPages.find((p) => p.path === root)?.title[locale] ?? t.library);
+        : (languageValue(publicPages.find((p) => p.path === root)?.title, locale) ?? t.library);
   return (
     <section className="wrap section public-page">
       <nav className="breadcrumbs" aria-label={t.navLabel}>
@@ -666,7 +671,7 @@ function PublicPage({ locale, path }: { locale: Locale; path: string }) {
       </nav>
       <div className="page-heading">
         <Preview locale={locale} />
-        <h1>{root === 'experts' && expert ? expert.name[locale] : title}</h1>
+        <h1>{root === 'experts' && expert ? languageValue(expert.name, locale) : title}</h1>
         <p>
           {root === 'experts'
             ? t.expertsIntro
@@ -686,8 +691,10 @@ function PublicPage({ locale, path }: { locale: Locale; path: string }) {
       ) : root === 'experts' && expert ? (
         <div className="profile-layout">
           <article className="panel profile-summary">
-            <div className={`avatar extra ${expert.color}`}>{expert.initials[locale]}</div>
-            <h2>{expert.name[locale]}</h2>
+            <div className={`avatar extra ${expert.color}`}>
+              {languageValue(expert.initials, locale)}
+            </div>
+            <h2>{languageValue(expert.name, locale)}</h2>
             <p>{t[expert.topic]}</p>
             <span className="badge">{t.sampleExpert}</span>
           </article>
@@ -724,17 +731,19 @@ function PublicPage({ locale, path }: { locale: Locale; path: string }) {
           </label>
           <div className="role-grid search-results">
             {publicPages
-              .filter((p) => p.title[locale].toLowerCase().includes(query.toLowerCase()))
+              .filter((p) =>
+                languageValue(p.title, locale).toLowerCase().includes(query.toLowerCase()),
+              )
               .map((p) => (
                 <a className="panel" key={p.path} href={url(locale, p.path)}>
                   <Icon name="search" />
-                  <h2>{p.title[locale]}</h2>
+                  <h2>{languageValue(p.title, locale)}</h2>
                   <Arrow />
                 </a>
               ))}
           </div>
           {!publicPages.some((p) =>
-            p.title[locale].toLowerCase().includes(query.toLowerCase()),
+            languageValue(p.title, locale).toLowerCase().includes(query.toLowerCase()),
           ) && <p role="status">{t.empty}</p>}
         </>
       ) : root === 'library' && !slug ? (
@@ -867,11 +876,18 @@ function Calendar({
   day: number;
   onSelect: (day: number) => void;
 }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   return (
     <div className="calendar">
       <div className="calendar-heading">
-        <h3>{locale === 'fa' ? 'مهر ۱۴۰۵ · نمونه' : 'October 2026 · Sample'}</h3>
+        <h3>
+          {localizedText(
+            locale,
+            'inline.experience.c34436feb353',
+            'October 2026 · Sample',
+            'مهر ۱۴۰۵ · نمونه',
+          )}
+        </h3>
         <Icon name="calendar" />
       </div>
       <div className="calendar-grid">
@@ -910,7 +926,7 @@ function Chart({
   period: string;
   roleIndex: number;
 }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   const values = period === 'month' ? [32, 58, 44, 75, 63, 91, 70] : [35, 52, 40, 68, 57, 83, 64];
   return (
     <div
@@ -949,7 +965,7 @@ function Dashboard({
   roleId: string;
   section?: string;
 }) {
-  const t = copy[locale];
+  const t = copy[locale]!;
   const role = roles.find((r) => r.id === roleId) ?? roles[0];
   const roleIndex = roles.findIndex((r) => r.id === role.id);
   const [menu, setMenu] = useState(false),
@@ -1015,7 +1031,7 @@ function Dashboard({
     })),
   ];
   const statuses = [t.scheduled, t.review, t.complete];
-  const rows = role.items[locale].map((title, i) => ({
+  const rows = languageValue(role.items, locale).map((title, i) => ({
     title,
     status: statuses[i]!,
     time: ['10:30', '14:00', '16:30'][i]!,
@@ -1093,7 +1109,7 @@ function Dashboard({
             >
               {roles.map((item) => (
                 <option key={item.id} value={item.id}>
-                  {item.title[locale]}
+                  {languageValue(item.title, locale)}
                 </option>
               ))}
             </select>
@@ -1152,16 +1168,13 @@ function Dashboard({
             </button>
             <div>
               <small>
-                {t.dashboards} / {role.title[locale]}
+                {t.dashboards} / {languageValue(role.title, locale)}
               </small>
               <strong>{section ? sectionLabel : t.dashboard}</strong>
             </div>
           </div>
           <div className="workspace-tools">
-            <a className="language" href={url(locale === 'fa' ? 'en' : 'fa', path)}>
-              {t.language}
-              <Icon name="globe" />
-            </a>
+            <LanguageSwitcher locale={locale} />
             <button
               className="icon-button notification-button"
               aria-label={t.notifications}
@@ -1189,7 +1202,7 @@ function Dashboard({
                   ? sectionLabel
                   : role.id === 'account'
                     ? `${t.greeting} ✦`
-                    : role.title[locale]}
+                    : languageValue(role.title, locale)}
               </h1>
               <p>{section ? t.sectionIntro : t.overviewText}</p>
             </div>
@@ -1204,7 +1217,7 @@ function Dashboard({
                 <Ornament />
                 <div>
                   <span className="eyebrow light">{t.tagline}</span>
-                  <h2>{role.headline[locale]}</h2>
+                  <h2>{languageValue(role.headline, locale)}</h2>
                   <p>{role.id === 'account' ? t.wellbeingText : t.overviewText}</p>
                   <button className="button cream compact" onClick={() => setModal(t.upcoming)}>
                     {t.roleAction}
@@ -1218,7 +1231,7 @@ function Dashboard({
                 </div>
               </section>
               <section className="stats-grid" aria-label={t.recent}>
-                {role.metrics[locale].map((label, i) => (
+                {languageValue(role.metrics, locale).map((label, i) => (
                   <article className="stat-card" key={label}>
                     <div>
                       <span className={`icon-tile tone-${i}`}>
@@ -1265,11 +1278,11 @@ function Dashboard({
                   <div className="chart-legend">
                     <span>
                       <i />
-                      {role.metrics[locale][0]}
+                      {languageValue(role.metrics, locale)[0]}
                     </span>
                     <span>
                       <i />
-                      {role.metrics[locale][1]}
+                      {languageValue(role.metrics, locale)[1]}
                     </span>
                   </div>
                 </section>
@@ -1473,7 +1486,7 @@ function Dashboard({
           <div className="modal-detail">
             <Icon name={role.icon} />
             <span>
-              {role.title[locale]}
+              {languageValue(role.title, locale)}
               <small>{t.noAction}</small>
             </span>
           </div>
@@ -1508,7 +1521,7 @@ export function Experience({
   return (
     <>
       <a className="skip-link" href="#main">
-        {copy[locale].skip}
+        {copy[locale]!.skip}
       </a>
       <Header locale={locale} path={path} />
       <main tabIndex={-1} id="main">

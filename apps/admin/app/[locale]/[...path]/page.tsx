@@ -1,3 +1,4 @@
+import { getCatalog } from '../../../lib/localization';
 import { notFound } from 'next/navigation';
 import { Experience, isLocale, routeInfo, pagePaths, copy, publicPages } from '@vianoor/ui';
 import type { Metadata } from 'next';
@@ -10,10 +11,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string; path: string[] }>;
 }): Promise<Metadata> {
   const { locale, path } = await params;
+  await getCatalog(locale);
   if (!isLocale(locale)) notFound();
   const title =
-    publicPages.find((p) => p.path === path[0])?.title[locale] ?? copy[locale].dashboards;
-  return { title: `${title} | ${copy[locale].brand}` };
+    publicPages.find((p) => p.path === path[0])?.title[locale] ?? copy[locale]!.dashboards;
+  return { title: `${title} | ${copy[locale]!.brand}` };
 }
 export default async function Page({
   params,
@@ -21,6 +23,7 @@ export default async function Page({
   params: Promise<{ locale: string; path: string[] }>;
 }) {
   const { locale, path } = await params;
+  await getCatalog(locale);
   if (!isLocale(locale) || !routeInfo(path.join('/'), 'admin')) notFound();
   return <Experience locale={locale} path={path.join('/')} app="admin" />;
 }

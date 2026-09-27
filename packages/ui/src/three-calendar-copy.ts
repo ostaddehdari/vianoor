@@ -1,4 +1,5 @@
-export const threeCalendarCopy = {
+import { createDictionary } from './localization-runtime';
+export const threeCalendarCopy = createDictionary('threeCalendarCopy', {
   fa: {
     title: 'تقویم سه‌گانه',
     primary: 'تقویم اصلی',
@@ -42,4 +43,4 @@ export const threeCalendarCopy = {
     allDates: 'عرض جميع الأيام',
     selectDay: 'اختر يوماً لعرض الحجوزات.',
   },
-};
+});

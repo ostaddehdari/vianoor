@@ -1,4 +1,5 @@
-export const scholarsCopy = {
+import { createDictionary } from './localization-runtime';
+export const scholarsCopy = createDictionary('scholarsCopy', {
   fa: {
     application: 'درخواست استادشدن',
     professional: 'پروفایل حرفه‌ای',
@@ -314,4 +315,4 @@ export const scholarsCopy = {
       document: 'Document',
     },
   },
-};
+});

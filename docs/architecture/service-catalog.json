@@ -19,7 +19,9 @@
       "booking-service",
       "scholar-service",
       "taxonomy-service",
-      "availability-service"
+      "availability-service",
+      "search-service",
+      "matching-service"
     ],
     "transport": "http+jetstream",
     "migrationOwner": "api-gateway",
@@ -52,7 +54,13 @@
     "databaseRole": "profile_app",
     "ownership": "مشخصات عمومی، زبان و منطقه زمانی کاربر",
     "entities": ["profile", "preference", "profile-form", "form-version", "profile-submission"],
-    "dependencies": ["identity-service", "organization-service", "file-service", "consent-service"],
+    "dependencies": [
+      "identity-service",
+      "organization-service",
+      "file-service",
+      "consent-service",
+      "taxonomy-service"
+    ],
     "transport": "http+jetstream",
     "migrationOwner": "profile-service",
     "backupPolicy": "pit-recovery-required"
@@ -82,8 +90,17 @@
     "status": "verified-in-isolated-environment",
     "database": "taxonomy_db",
     "databaseRole": "taxonomy_app",
-    "ownership": "موضوع، تخصص، زبان و دیدگاه اختیاری",
-    "entities": ["topic", "specialty", "school", "localized-label"],
+    "ownership": "موضوع، تخصص، فهرست زبان‌ها و کاتالوگ ترجمهٔ رابط؛ گردش بررسی و صف ترجمه",
+    "entities": [
+      "topic",
+      "specialty",
+      "school",
+      "localized-label",
+      "language-registry",
+      "translation-key",
+      "published-translation",
+      "translation-job"
+    ],
     "dependencies": ["identity-service", "organization-service", "file-service"],
     "transport": "http+jetstream",
     "migrationOwner": "taxonomy-service",
@@ -100,7 +117,13 @@
     "database": "scholar_db",
     "databaseRole": "scholar_app",
     "ownership": "پروفایل حرفه‌ای، مدارک، تأیید، خدمات و تعرفه",
-    "entities": ["scholar", "credential-review", "offering"],
+    "entities": [
+      "scholar",
+      "credential-review",
+      "offering",
+      "expert-translation",
+      "service-translation"
+    ],
     "dependencies": [
       "profile-service",
       "taxonomy-service",
@@ -151,15 +174,16 @@
     "stage": 10,
     "port": 4108,
     "runtime": "nestjs",
-    "status": "scaffold",
+    "status": "implemented",
     "database": "matching_db",
     "databaseRole": "matching_app",
-    "ownership": "read model نامزدها و قواعد رتبه‌بندی؛ نه مالک پروفایل",
-    "entities": ["candidate-projection", "ranking-policy"],
-    "dependencies": ["scholar-service", "availability-service", "presence-service"],
+    "ownership": "ترکیب نتایج جستجو، زبان جلسه و ظرفیت واقعی؛ بدون مالکیت پروفایل یا رزرو",
+    "entities": ["matching-request"],
+    "dependencies": ["identity-service", "search-service", "availability-service"],
     "transport": "http+jetstream",
     "migrationOwner": "matching-service",
-    "backupPolicy": "rebuildable"
+    "backupPolicy": "rebuildable",
+    "verification": "docs/stages/10-multilingual-discovery.md"
   },
   {
     "id": "booking-service",
@@ -454,15 +478,21 @@
     "stage": 10,
     "port": 4126,
     "runtime": "nestjs",
-    "status": "scaffold",
+    "status": "implemented",
     "database": "search_db",
     "databaseRole": "search_app",
     "ownership": "نمایه قابل بازسازی و checkpoint؛ نه مالک محتوای اصلی",
-    "entities": ["index-checkpoint", "search-projection"],
-    "dependencies": ["scholar-service", "qa-service", "content-service", "event-service"],
+    "entities": ["search-synonym", "index-checkpoint", "search-projection"],
+    "dependencies": [
+      "scholar-service",
+      "taxonomy-service",
+      "organization-service",
+      "identity-service"
+    ],
     "transport": "http+jetstream",
     "migrationOwner": "search-service",
-    "backupPolicy": "rebuildable"
+    "backupPolicy": "rebuildable",
+    "verification": "docs/stages/10-multilingual-discovery.md"
   },
   {
     "id": "analytics-service",

@@ -1,17 +1,22 @@
+import { ExpertDiscovery, localeDirection } from '@vianoor/ui';
+import { getCatalog } from '../../../lib/localization';
+import { isLocale } from '@vianoor/ui';
 import { expertsPublicCopy } from '@vianoor/ui';
 import { notFound } from 'next/navigation';
 import { expertData, publicBase } from './data';
 export const dynamic = 'force-dynamic';
 export default async function Experts({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  if (locale !== 'fa' && locale !== 'en') notFound();
+  await getCatalog(locale);
+  if (!isLocale(locale)) notFound();
+  if (process.env.DISCOVERY_ENABLED === '1') return <ExpertDiscovery locale={locale} />;
   const items =
     await expertData<{ slug: string; display_name: string; title: string; short_bio: string }[]>(
       'experts/public',
     );
-  const t = expertsPublicCopy[locale];
+  const t = expertsPublicCopy[locale]!;
   return (
-    <main className="public-experts" dir={locale === 'fa' ? 'rtl' : 'ltr'}>
+    <main className="public-experts" dir={localeDirection(locale)}>
       <a href={`${publicBase}/${locale}`}>{t.home}</a>
       <h1>{t.title}</h1>
       {items === null ? (

@@ -1,4 +1,5 @@
-export const schedulingCopy = {
+import { createDictionary } from './localization-runtime';
+export const schedulingCopy = createDictionary('schedulingCopy', {
   fa: {
     book: 'رزرو جلسه',
     calendar: 'تقویم کاری',
@@ -198,4 +199,4 @@ export const schedulingCopy = {
     },
     pending: 'Finalizing. Refresh shortly.',
   },
-};
+});

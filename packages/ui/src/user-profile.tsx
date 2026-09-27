@@ -1,4 +1,5 @@
 'use client';
+import { languageValue } from './localization-runtime';
 import { useEffect, useState, type FormEvent } from 'react';
 import { usersCopy } from './users-copy';
 import {
@@ -9,7 +10,7 @@ import {
   type FormDefinition,
   type Profile,
 } from './users-client';
-type Locale = 'fa' | 'en';
+type Locale = string;
 const imageCache = new Map<string, string>();
 export function UserAvatar({
   avatar,
@@ -122,8 +123,8 @@ export function UserAvatar({
 export function userError(error: unknown, locale: Locale) {
   const key = error instanceof Error ? error.message : 'UNAVAILABLE';
   return (
-    usersCopy[locale].errors[key as keyof typeof usersCopy.fa.errors] ??
-    usersCopy[locale].errors.UNAVAILABLE
+    usersCopy[locale]!.errors[key as keyof typeof usersCopy.fa.errors] ??
+    usersCopy[locale]!.errors.UNAVAILABLE
   );
 }
 function FieldInput({
@@ -139,12 +140,12 @@ function FieldInput({
   onChange: (v: unknown) => void;
   onError: (e: unknown) => void;
 }) {
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   const id = 'field-' + field.id;
-  if (field.type === 'heading') return <h3>{field.label[locale]}</h3>;
+  if (field.type === 'heading') return <h3>{languageValue(field.label, locale)}</h3>;
   const label = (
     <>
-      {field.label[locale]}
+      {languageValue(field.label, locale)}
       {field.required && <span className="required"> *</span>}
     </>
   );
@@ -173,7 +174,7 @@ function FieldInput({
                 )
               }
             />
-            {option.label[locale]}
+            {languageValue(option.label, locale)}
           </label>
         ))}
         <small>{t[field.visibility]}</small>
@@ -194,7 +195,7 @@ function FieldInput({
           <option value="">{t.choose}</option>
           {field.options.map((o) => (
             <option key={o.value} value={o.value}>
-              {o.label[locale]}
+              {languageValue(o.label, locale)}
             </option>
           ))}
         </select>
@@ -224,7 +225,7 @@ function FieldInput({
           {!!value && (
             <UserAvatar
               avatar={{ kind: 'upload', value: String(value) }}
-              name={field.label[locale]}
+              name={languageValue(field.label, locale)}
               size={80}
             />
           )}
@@ -277,11 +278,11 @@ export function DynamicProfileForm({
   onError: (e: unknown) => void;
 }) {
   const [section, setSection] = useState(0);
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   const current = Math.min(section, definition.sections.length - 1);
   return (
     <div className="dynamic-profile">
-      <nav className="form-sections" aria-label={definition.title[locale]}>
+      <nav className="form-sections" aria-label={languageValue(definition.title, locale)}>
         {definition.sections.map((s, i) => (
           <button
             type="button"
@@ -291,12 +292,12 @@ export function DynamicProfileForm({
             onClick={() => setSection(i)}
           >
             <span>{i + 1}</span>
-            {s.title[locale]}
+            {languageValue(s.title, locale)}
           </button>
         ))}
       </nav>
-      <section aria-label={definition.sections[current]!.title[locale]}>
-        <h3>{definition.sections[current]!.title[locale]}</h3>
+      <section aria-label={languageValue(definition.sections[current]!.title, locale)}>
+        <h3>{languageValue(definition.sections[current]!.title, locale)}</h3>
         {definition.sections[current]!.fields.filter(
           (f) => !f.showWhen || answers[f.showWhen.field] === f.showWhen.equals,
         ).map((field) => (
@@ -338,7 +339,7 @@ export function ProfileEditor({
   onSaved: (p: Profile) => void;
   admin?: boolean;
 }) {
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   const [name, setName] = useState(profile.display_name),
     [avatar, setAvatar] = useState(profile.avatar),
     [answers, setAnswers] = useState(profile.answers),

@@ -1,4 +1,5 @@
 'use client';
+import { localeDirection } from './localization-runtime';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import {
   addDays,
@@ -16,12 +17,12 @@ export function ThreeCalendar({
   value,
   onChange,
 }: {
-  locale: 'fa' | 'en' | 'ar';
+  locale: string;
   timezone: string;
   value: string;
   onChange: (value: string) => void;
 }) {
-  const t = threeCalendarCopy[locale],
+  const t = threeCalendarCopy[locale]!,
     id = useId(),
     grid = useRef<HTMLDivElement>(null);
   const [kind, setKind] = useState<CalendarKind>(primaryCalendar(locale));
@@ -55,7 +56,7 @@ export function ThreeCalendar({
     }
   }, [focusDay, anchor, kind]);
   if (!month) return null;
-  const rtl = locale !== 'en';
+  const rtl = localeDirection(locale) === 'rtl';
   const secondary = calendarKinds.filter((k) => k !== kind);
   const language = (k: CalendarKind) =>
     k === 'gregory' ? 'en-GB' : locale === 'en' ? 'en-GB' : locale;

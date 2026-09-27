@@ -1,4 +1,5 @@
-export const expertsPublicCopy = {
+import { createDictionary } from './localization-runtime';
+export const expertsPublicCopy = createDictionary('expertsPublicCopy', {
   fa: {
     title: 'اساتید تأییدشده',
     empty: 'هنوز پروفایل عمومی منتشر نشده است.',
@@ -33,4 +34,4 @@ export const expertsPublicCopy = {
     book: 'View times and book free',
     minutes: 'minutes',
   },
-};
+});

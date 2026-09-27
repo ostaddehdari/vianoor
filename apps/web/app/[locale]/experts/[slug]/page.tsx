@@ -1,3 +1,5 @@
+import { getCatalog } from '../../../../lib/localization';
+import { isLocale, localeDirection, languageValue } from '@vianoor/ui';
 import { expertsPublicCopy, ExpertAssetImage } from '@vianoor/ui';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -6,8 +8,11 @@ export const dynamic = 'force-dynamic';
 type Params = { params: Promise<{ locale: string; slug: string }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale, slug } = await params;
+  await getCatalog(locale);
   if (!/^[a-z0-9-]{3,80}$/.test(slug)) return {};
-  const row = await expertData<PublicExpert>('experts/public/' + slug);
+  const row = await expertData<PublicExpert>(
+    'experts/public/' + slug + '?language=' + encodeURIComponent(locale),
+  );
   if (!row) return { robots: { index: false, follow: false } };
   const title = row.profile.seo_title || row.profile.display_name,
     description = row.profile.seo_description || row.profile.short_bio;
@@ -22,7 +27,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 export default async function Expert({ params }: Params) {
   const { locale, slug } = await params;
-  if ((locale !== 'fa' && locale !== 'en') || !/^[a-z0-9-]{3,80}$/.test(slug)) notFound();
+  await getCatalog(locale);
+  if (!isLocale(locale) || !/^[a-z0-9-]{3,80}$/.test(slug)) notFound();
   const row = await expertData<PublicExpert>('experts/public/' + slug);
   if (!row) notFound();
   const taxons =
@@ -31,9 +37,9 @@ export default async function Expert({ params }: Params) {
     image = p.image_id
       ? await expertData<{ mime: string; base64: string }>('files/public/' + p.image_id)
       : null;
-  const t = expertsPublicCopy[locale];
+  const t = expertsPublicCopy[locale]!;
   return (
-    <main className="public-experts" dir={locale === 'fa' ? 'rtl' : 'ltr'}>
+    <main className="public-experts" dir={localeDirection(locale)}>
       <a href={`${publicBase}/${locale}/experts`}>{t.back}</a>
       <header className="user-card">
         {image && (
@@ -61,11 +67,11 @@ export default async function Expert({ params }: Params) {
         </p>
         <h2>{t.specialties}</h2>
         {row.specialties.map((id) => (
-          <p key={id}>{taxons.find((x) => x.id === id)?.label[locale]}</p>
+          <p key={id}>{languageValue(taxons.find((x) => x.id === id)?.label, locale)}</p>
         ))}
         <h2>{t.languages}</h2>
         {p.languages.map((l) => (
-          <p key={l.id}>{taxons.find((x) => x.id === l.id)?.label[locale]}</p>
+          <p key={l.id}>{languageValue(taxons.find((x) => x.id === l.id)?.label, locale)}</p>
         ))}
         {p.links.map((link) => (
           <p key={link}>

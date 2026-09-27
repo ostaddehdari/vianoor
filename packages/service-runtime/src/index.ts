@@ -189,3 +189,4 @@ export async function bootstrap(service: string, defaultPort: number) {
   await app.listen(config.port, config.host);
   return app;
 }
+export { installChangeFeed } from './change-feed.js';

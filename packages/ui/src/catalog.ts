@@ -1,4 +1,5 @@
-export const roles = [
+import { localizeTree } from './localization-runtime';
+export const roles = localizeTree('roles', [
   {
     id: 'account',
     title: {
@@ -251,9 +252,9 @@ export const roles = [
       en: ['Review sample alert', 'Backup report', 'Review message queue'],
     },
   },
-] as const;
+] as const);
 export type RoleId = (typeof roles)[number]['id'];
-export const publicPages = [
+export const publicPages = localizeTree('publicPages', [
   {
     path: 'about',
     title: {
@@ -366,8 +367,8 @@ export const publicPages = [
       en: 'Explore the workspaces',
     },
   },
-] as const;
-export const sectionNames: Record<string, { fa: string; en: string }> = {
+] as const);
+export const sectionNames: Record<string, Record<string, string>> = localizeTree('sectionNames', {
   book: {
     fa: 'رزرو جلسه',
     en: 'Book a session',
@@ -736,4 +737,4 @@ export const sectionNames: Record<string, { fa: string; en: string }> = {
     fa: 'صورتحساب',
     en: 'Billing',
   },
-};
+});

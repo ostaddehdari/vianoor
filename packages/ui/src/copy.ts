@@ -1,4 +1,5 @@
-export const copy = {
+import { createDictionary } from './localization-runtime';
+export const copy = createDictionary('copy', {
   fa: {
     brand: 'ویانور',
     tagline: 'همراهِ روشنِ زندگی',
@@ -316,4 +317,4 @@ export const copy = {
     aboutService: 'About this service',
     viewTopics: 'Explore topics',
   },
-} as const;
+} as const);

@@ -1,9 +1,10 @@
 'use client';
+import { languageValue } from './localization-runtime';
 import { useEffect, useState } from 'react';
 import { usersCopy } from './users-copy';
 import { userApi, type Workspace, type Profile, type FormDraft, usersBase } from './users-client';
 import { ProfileEditor, userError, UserAvatar } from './user-profile';
-type Locale = 'fa' | 'en';
+type Locale = string;
 type Account = {
   public_id: string;
   email: string;
@@ -12,9 +13,9 @@ type Account = {
 };
 type Organization = { id: string; name: string; parent_id: string | null };
 const nameOf = (role: string, locale: Locale) =>
-  usersCopy[locale].roleNames[role as keyof typeof usersCopy.fa.roleNames] ?? role;
+  usersCopy[locale]!.roleNames[role as keyof typeof usersCopy.fa.roleNames] ?? role;
 export function UserManagement({ locale }: { locale: Locale }) {
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   const [users, setUsers] = useState<Account[]>([]),
     [query, setQuery] = useState(''),
     [page, setPage] = useState(0),
@@ -306,7 +307,7 @@ export function UserManagement({ locale }: { locale: Locale }) {
                     .filter((f) => f.published > 0)
                     .map((f) => (
                       <option key={f.id} value={f.id}>
-                        {f.draft.title[locale]}
+                        {languageValue(f.draft.title, locale)}
                       </option>
                     ))}
                 </select>
@@ -352,7 +353,7 @@ export function Organizations({
   admin: boolean;
   scope?: string;
 }) {
-  const t = usersCopy[locale];
+  const t = usersCopy[locale]!;
   const [items, setItems] = useState<Organization[]>([]),
     [name, setName] = useState(''),
     [parent, setParent] = useState(''),
