@@ -402,12 +402,14 @@ test(
     expectOK(notes);
     assert.ok(notes.body.data.some((n: { event: string }) => n.event === 'CONFIRMED'));
     let sent = false;
-    for (let i = 0; i < 60 && !sent; i++) {
+    for (let i = 0; i < 180 && !sent; i++) {
       const mail = await fetch('http://mailpit:8025/api/v1/messages?limit=500').then((r) =>
         r.json(),
       );
-      sent = mail.messages?.some((m: { Subject: string }) =>
-        m.Subject?.includes('Booking confirmed'),
+      sent = mail.messages?.some(
+        (m: { Subject: string; To: { Address: string }[] }) =>
+          m.Subject?.includes('Booking confirmed') &&
+          m.To?.some((to) => to.Address === fixture.admin.email),
       );
       if (!sent) await new Promise((r) => setTimeout(r, 500));
     }

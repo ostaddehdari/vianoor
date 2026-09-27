@@ -21,12 +21,27 @@ test('real calendar editing, client hold and confirmation, reschedule and cancel
   await page.locator('.workspace-switch').selectOption('expert|platform');
   await page.getByRole('link', { name: 'Working calendar', exact: true }).first().click();
   await expect(page.getByRole('heading', { name: 'Working calendar', exact: true })).toBeVisible();
+  const calendar = page.locator('.triple-calendar');
+  await expect(calendar).toHaveAttribute('data-primary-calendar', 'gregory');
+  await calendar.getByLabel('Primary calendar', { exact: true }).selectOption('islamic-umalqura');
+  await expect(calendar).toHaveAttribute('data-primary-calendar', 'islamic-umalqura');
+  await calendar.getByRole('button', { name: 'Next month', exact: true }).click();
+  await calendar.getByRole('button', { name: 'Go to today', exact: true }).click();
   await page.getByLabel('Buffer after (minutes)', { exact: true }).fill('15');
   await page.getByRole('button', { name: 'Save', exact: true }).click();
   await expect(page.getByRole('status')).toHaveText('Saved.');
   await page.goto('/vianoor/fa/expert/calendar');
   await expect(page.getByRole('heading', { name: 'تقویم کاری', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'ذخیره', exact: true })).toBeVisible();
+  await expect(calendar).toHaveAttribute('data-primary-calendar', 'persian');
+  await expect(calendar.locator('.triple-calendar-secondary').first().locator('small')).toHaveCount(
+    2,
+  );
+  const keyboardDay = calendar.locator('.triple-calendar-days button[tabindex="0"]');
+  const beforeKeyboard = await keyboardDay.getAttribute('data-date');
+  await keyboardDay.focus();
+  await page.keyboard.press('ArrowDown');
+  expect(await page.locator(':focus').getAttribute('data-date')).not.toBe(beforeKeyboard);
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
   ).toBeTruthy();
@@ -62,6 +77,7 @@ test('real calendar editing, client hold and confirmation, reschedule and cancel
   await client
     .getByLabel('Date (Gregorian)', { exact: true })
     .fill(date.toISOString().slice(0, 10));
+  await client.locator(`.triple-calendar [data-date="${date.toISOString().slice(0, 10)}"]`).click();
   await client.getByRole('button', { name: 'Find available times', exact: true }).click();
   const response = client.waitForResponse(
     (r) => r.url().endsWith('/api/users/bookings/scheduled') && r.request().method() === 'POST',
@@ -78,6 +94,10 @@ test('real calendar editing, client hold and confirmation, reschedule and cancel
   await client.screenshot({ path: info.outputPath('confirmed-booking.png'), fullPage: true });
   await client.goto('/vianoor/en/account/bookings');
   const row = client.locator(`[data-booking-id="${id}"]`);
+  await expect(row).toContainText('Confirmed');
+  await client.locator('.triple-calendar .triple-calendar-today').click();
+  await expect(row).toHaveCount(0);
+  await client.getByRole('button', { name: 'Show all dates', exact: true }).click();
   await expect(row).toContainText('Confirmed');
   await row.getByRole('button', { name: 'Reschedule', exact: true }).click();
   date.setUTCDate(date.getUTCDate() + 1);

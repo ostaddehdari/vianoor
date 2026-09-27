@@ -91,8 +91,15 @@ async function event(
     ...(row.snapshot?.expert_id ? [row.snapshot.expert_id] : []),
   ]))
     await db.query(
-      'INSERT INTO booking_notifications(id,event_id,booking_id,account_id,event) VALUES($1,$2,$3,$4,$5)',
-      [randomUUID(), id, row.id, account, name],
+      'INSERT INTO booking_notifications(id,event_id,booking_id,account_id,event,delivered_at) VALUES($1,$2,$3,$4,$5,CASE WHEN $6 THEN now() ELSE NULL END)',
+      [
+        randomUUID(),
+        id,
+        row.id,
+        account,
+        name,
+        name === 'REQUESTED' || (name === 'EXPIRED' && !row.snapshot),
+      ],
     );
 }
 const publicRow = (r: Booking) => ({
@@ -313,15 +320,19 @@ export function schedulingRouter(pool: Pool) {
             view: z.enum(['mine', 'expert', 'admin']).default('mine'),
             offset: z.coerce.number().int().min(0).max(100000).default(0),
             period: z.enum(['all', 'future', 'past', 'cancelled']).default('all'),
+            from: utc.optional(),
+            to: utc.optional(),
           })
           .strict()
           .parse(req.query);
+      if ((q.from && !q.to) || (!q.from && q.to) || (q.from && q.to && q.from >= q.to))
+        throw new ServiceError(400, 'INVALID_INPUT');
       if (q.view === 'expert') await requirePermission(req, 'booking.attend');
       if (q.view === 'admin') await requirePermission(req, 'booking.manage');
       const rows = (
         await pool.query(
-          `SELECT *,CASE WHEN status='HELD' AND expires_at<=now() AND pending_action IS NULL THEN 'EXPIRED' ELSE status END AS status FROM scheduled_bookings WHERE (($2='mine' AND client_id=$1) OR($2='expert' AND expert_code=$3) OR $2='admin') AND ($4='all' OR($4='future' AND start_at>=now() AND status NOT IN ('CANCELLED','EXPIRED')) OR($4='past' AND start_at<now()) OR($4='cancelled' AND status IN ('CANCELLED','EXPIRED'))) ORDER BY start_at DESC,id LIMIT 100 OFFSET $5`,
-          [user.id, q.view, user.public_id, q.period, q.offset],
+          `SELECT *,CASE WHEN status='HELD' AND expires_at<=now() AND pending_action IS NULL THEN 'EXPIRED' ELSE status END AS status FROM scheduled_bookings WHERE (($2='mine' AND client_id=$1) OR($2='expert' AND expert_code=$3) OR $2='admin') AND ($4='all' OR($4='future' AND start_at>=now() AND status NOT IN ('CANCELLED','EXPIRED')) OR($4='past' AND start_at<now()) OR($4='cancelled' AND status IN ('CANCELLED','EXPIRED'))) AND ($6::timestamptz IS NULL OR start_at >= $6) AND ($7::timestamptz IS NULL OR start_at < $7) ORDER BY start_at DESC,id LIMIT 100 OFFSET $5`,
+          [user.id, q.view, user.public_id, q.period, q.offset, q.from ?? null, q.to ?? null],
         )
       ).rows as Booking[];
       res.json({ data: rows.map(publicRow) });

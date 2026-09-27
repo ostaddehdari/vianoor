@@ -2,6 +2,9 @@
 import { useEffect, useState, useRef } from 'react';
 import { userApi } from './users-client';
 import { schedulingCopy } from './scheduling-copy';
+import { ThreeCalendar } from './three-calendar';
+import { threeCalendarCopy } from './three-calendar-copy';
+import { addDays } from './calendar-dates';
 type Locale = 'fa' | 'en';
 type Copy = typeof schedulingCopy.en;
 type Rule = { day: number; start: string; end: string };
@@ -203,6 +206,14 @@ function CalendarEditor({ locale }: { locale: Locale }) {
       {message && <p role="status">{message}</p>}
       {value && (
         <>
+          <ThreeCalendar
+            locale={locale}
+            timezone={value.timezone}
+            value={exception.start.slice(0, 10)}
+            onChange={(day) =>
+              setException({ ...exception, start: day + 'T09:00', end: day + 'T10:00' })
+            }
+          />
           {holidays.length > 0 && (
             <aside>
               <h3>{t.holidays}</h3>
@@ -599,6 +610,15 @@ function BookingFlow({
                   />
                 </label>
               </div>
+              <ThreeCalendar
+                locale={locale}
+                timezone={zone}
+                value={date}
+                onChange={(day) => {
+                  setDate(day);
+                  setSlots([]);
+                }}
+              />
               <button>{t.find}</button>
             </fieldset>
           </form>
@@ -674,13 +694,30 @@ function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert'
     [zone, setZone] = useState('Asia/Tehran'),
     [period, setPeriod] = useState('all'),
     [offset, setOffset] = useState(0),
+    [selectedDay, setSelectedDay] = useState(''),
     [error, setError] = useState(''),
     [busy, setBusy] = useState(false),
     [move, setMove] = useState<Booking | null>(null);
   const load = async () => {
+    const range: Record<string, string> = {};
+    if (selectedDay) {
+      range.from = (
+        await userApi<{ utc: string }>('availability/resolve', 'POST', {
+          local: selectedDay + 'T00:00',
+          timezone: zone,
+        })
+      ).utc;
+      range.to = (
+        await userApi<{ utc: string }>('availability/resolve', 'POST', {
+          local: addDays(selectedDay, 1) + 'T00:00',
+          timezone: zone,
+        })
+      ).utc;
+    }
     setRows(
       await userApi<Booking[]>(
-        'bookings/scheduled?' + new URLSearchParams({ view, period, offset: String(offset) }),
+        'bookings/scheduled?' +
+          new URLSearchParams({ view, period, offset: String(offset), ...range }),
       ),
     );
     setNotes(await userApi<Note[]>('bookings/notifications'));
@@ -699,7 +736,7 @@ function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert'
   };
   useEffect(() => {
     void act(load);
-  }, [period, offset]);
+  }, [period, offset, selectedDay, zone]);
   useEffect(() => {
     void userApi<{ timezone: string }>('profiles/timezone')
       .then((v) => setZone(v.timezone))
@@ -727,6 +764,26 @@ function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert'
       </h2>
       {error && <p role="alert">{error}</p>}
       <Zone t={t} value={zone} onChange={setZone} />
+      <p>{threeCalendarCopy[locale].selectDay}</p>
+      <ThreeCalendar
+        locale={locale}
+        timezone={zone}
+        value={selectedDay}
+        onChange={(day) => {
+          setSelectedDay(day);
+          setOffset(0);
+        }}
+      />
+      {selectedDay && (
+        <button
+          onClick={() => {
+            setSelectedDay('');
+            setOffset(0);
+          }}
+        >
+          {threeCalendarCopy[locale].allDates}
+        </button>
+      )}
       <label>
         {t.period}
         <select
