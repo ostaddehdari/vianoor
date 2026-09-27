@@ -503,55 +503,55 @@
     "id": "R11-01",
     "stage": 11,
     "title": "Payment",
-    "status": "planned",
+    "status": "implemented",
     "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
-    "verification": "docs/testing/stage-11 (planned)",
-    "externalDependency": "درگاه و حساب تسویه"
+    "verification": "docs/testing/stage-11.md",
+    "externalDependency": "Live Stripe/PayPal/NOWPayments merchant credentials and eligibility; provider tests use an explicit isolated simulator."
   },
   {
     "id": "R11-02",
     "stage": 11,
     "title": "Wallet",
-    "status": "planned",
+    "status": "implemented",
     "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
-    "verification": "docs/testing/stage-11 (planned)",
-    "externalDependency": "درگاه و حساب تسویه"
+    "verification": "docs/testing/stage-11.md",
+    "externalDependency": "Live Stripe/PayPal/NOWPayments merchant credentials and eligibility; provider tests use an explicit isolated simulator."
   },
   {
     "id": "R11-03",
     "stage": 11,
     "title": "Ledger",
-    "status": "planned",
+    "status": "implemented",
     "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
-    "verification": "docs/testing/stage-11 (planned)",
-    "externalDependency": "درگاه و حساب تسویه"
+    "verification": "docs/testing/stage-11.md",
+    "externalDependency": "Live Stripe/PayPal/NOWPayments merchant credentials and eligibility; provider tests use an explicit isolated simulator."
   },
   {
     "id": "R11-04",
     "stage": 11,
     "title": "Payout",
-    "status": "planned",
+    "status": "implemented",
     "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
-    "verification": "docs/testing/stage-11 (planned)",
-    "externalDependency": "درگاه و حساب تسویه"
+    "verification": "docs/testing/stage-11.md",
+    "externalDependency": "Live Stripe/PayPal/NOWPayments merchant credentials and eligibility; provider tests use an explicit isolated simulator."
   },
   {
     "id": "R11-05",
     "stage": 11,
     "title": "Dispute/refund",
-    "status": "planned",
+    "status": "implemented",
     "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
-    "verification": "docs/testing/stage-11 (planned)",
-    "externalDependency": "درگاه و حساب تسویه"
+    "verification": "docs/testing/stage-11.md",
+    "externalDependency": "Live Stripe/PayPal/NOWPayments merchant credentials and eligibility; provider tests use an explicit isolated simulator."
   },
   {
     "id": "R11-06",
     "stage": 11,
     "title": "reconciliation",
-    "status": "planned",
+    "status": "implemented",
     "acceptance": "جمع بدهکار=بستانکار، callback تکراری، late capture و refund",
-    "verification": "docs/testing/stage-11 (planned)",
-    "externalDependency": "درگاه و حساب تسویه"
+    "verification": "docs/testing/stage-11.md",
+    "externalDependency": "Live Stripe/PayPal/NOWPayments merchant credentials and eligibility; provider tests use an explicit isolated simulator."
   },
   {
     "id": "R12-01",

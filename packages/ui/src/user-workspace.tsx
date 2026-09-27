@@ -1,4 +1,6 @@
 'use client';
+import { FinanceWorkspace } from './finance';
+import { financeCopy } from './finance-copy';
 import { LocalizationManager } from './localization-manager';
 import { discoveryCopy } from './discovery-copy';
 import { LanguageSwitcher } from './language-switcher';
@@ -368,6 +370,12 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
         ] as [string, string][])
       : []),
     ...(admin ? [['files', scholarsCopy[locale]!.files] as [string, string]] : []),
+    ...(['account', 'expert'].includes(role)
+      ? [['wallet', financeCopy[locale]!.wallet] as [string, string]]
+      : []),
+    ...(admin || role === 'finance'
+      ? [['finance', financeCopy[locale]!.admin] as [string, string]]
+      : []),
     ...(role === 'account' ? [['profile', t.editProfile] as [string, string]] : []),
     ...(admin
       ? ([
@@ -463,7 +471,15 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
               </a>
             </div>
           )}
-          {admin && section === 'localization' ? (
+          {((admin || role === 'finance') && (section === 'finance' || role === 'finance')) ||
+          (['account', 'expert'].includes(role) &&
+            ['wallet', 'earnings', 'payouts'].includes(section)) ? (
+            <FinanceWorkspace
+              locale={locale}
+              admin={admin || role === 'finance'}
+              expert={role === 'expert'}
+            />
+          ) : admin && section === 'localization' ? (
             <LocalizationManager locale={locale} />
           ) : role === 'account' && section === 'book' ? (
             <SchedulingWorkspace locale={locale} mode="book" />

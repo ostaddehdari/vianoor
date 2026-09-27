@@ -89,6 +89,7 @@ export const schedulingCopy = createDictionary('schedulingCopy', {
     states: {
       REQUESTED: 'درخواست‌شده',
       HELD: 'موقتاً نگه داشته‌شده',
+      BOOKING_PENDING_PAYMENT: 'در انتظار پرداخت',
       CONFIRMED: 'تأییدشده',
       COMPLETED: 'پایان‌یافته',
       CANCELLED: 'لغوشده',
@@ -188,6 +189,7 @@ export const schedulingCopy = createDictionary('schedulingCopy', {
     states: {
       REQUESTED: 'Requested',
       HELD: 'Temporarily held',
+      BOOKING_PENDING_PAYMENT: 'Awaiting payment',
       CONFIRMED: 'Confirmed',
       COMPLETED: 'Completed',
       CANCELLED: 'Cancelled',

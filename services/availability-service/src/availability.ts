@@ -480,7 +480,8 @@ export function availabilityRouter(pool: Pool) {
           cancellation_hours: current?.snapshot?.cancellation_hours ?? cal.cancellation_hours,
           expert_timezone: cal.timezone,
           penalty_minor: 0,
-          refund_mode: 'NOT_APPLICABLE_STAGE_9',
+          refund_mode:
+            process.env.FINANCE_ENABLED === '1' ? 'REVIEW_POLICY' : 'NOT_APPLICABLE_STAGE_9',
         };
         const state = data.action === 'HOLD' ? 'HELD' : 'CONFIRMED';
         const row = (
@@ -496,7 +497,9 @@ export function availabilityRouter(pool: Pool) {
               slot.busy_start,
               slot.busy_end,
               state,
-              global.hold_seconds,
+              process.env.FINANCE_ENABLED === '1' && offering.price_minor > 0
+                ? Math.max(global.hold_seconds, 1800)
+                : global.hold_seconds,
               data.operation_id,
               snapshot,
             ],

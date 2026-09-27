@@ -1,3 +1,4 @@
+import { financeCopy } from '../../packages/ui/src/finance-copy.js';
 import { discoveryCopy } from '../../packages/ui/src/discovery-copy.js';
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import ts from 'typescript';
@@ -45,6 +46,7 @@ function visit(key: string, value: unknown) {
 }
 for (const [key, value] of Object.entries({
   discoveryCopy,
+  financeCopy,
   copy,
   authCopy,
   usersCopy,

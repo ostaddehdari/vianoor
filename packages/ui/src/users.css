@@ -1076,3 +1076,53 @@
   font-weight: normal;
   color: #62594f;
 }
+
+.finance-workspace {
+  min-width: 0;
+  max-width: 100%;
+}
+.finance-workspace .table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.finance-workspace table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 1rem;
+}
+.finance-workspace th,
+.finance-workspace td {
+  padding: 0.65rem;
+  border-bottom: 1px solid #dce5dc;
+  text-align: start;
+}
+.finance-workspace td {
+  max-width: 24rem;
+  overflow-wrap: anywhere;
+}
+.finance-workspace nav {
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.finance-workspace form {
+  margin-block: 1rem;
+}
+.finance-details dd {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.finance-workspace input,
+.finance-workspace select,
+.finance-workspace textarea {
+  max-width: 100%;
+  min-width: 0;
+}
+.finance-workspace .scholar-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1rem;
+}
+.finance-workspace label {
+  display: grid;
+  gap: 0.4rem;
+}

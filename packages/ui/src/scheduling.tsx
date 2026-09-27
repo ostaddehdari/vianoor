@@ -1,4 +1,6 @@
 'use client';
+import { financeCopy } from './finance-copy';
+import { usersBase } from './users-client';
 import { useEffect, useState, useRef } from 'react';
 import { userApi } from './users-client';
 import { schedulingCopy } from './scheduling-copy';
@@ -458,7 +460,7 @@ function BookingFlow({
   return (
     <section className="user-card scholar-workspace schedule-workspace">
       <h2>{move ? t.reschedule : t.book}</h2>
-      <p>{t.free}</p>
+      <p>{financeCopy[locale]!.paymentNotice}</p>
       {move && <p>{t.moveNote}</p>}
       {error && <p role="alert">{error}</p>}
       <Zone t={t} value={zone} onChange={setZone} />
@@ -474,6 +476,11 @@ function BookingFlow({
           <h3>{label(t, held.status)}</h3>
           <p>{format(held.start_at, zone, locale)}</p>
           <p>{held.service?.title}</p>
+          {held.status === 'BOOKING_PENDING_PAYMENT' && (
+            <a className="button" href={`${usersBase}/${locale}/account/wallet?booking=${held.id}`}>
+              {financeCopy[locale]!.pay}
+            </a>
+          )}
           {held.status === 'HELD' && (
             <>
               <p>
@@ -817,6 +824,14 @@ function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert'
           </p>
           {view !== 'admin' && (
             <div className="user-actions">
+              {r.status === 'BOOKING_PENDING_PAYMENT' && view === 'mine' && (
+                <a
+                  className="button"
+                  href={`${usersBase}/${locale}/account/wallet?booking=${r.id}`}
+                >
+                  {financeCopy[locale]!.pay}
+                </a>
+              )}
               {r.status === 'HELD' && view === 'mine' && (
                 <button
                   disabled={busy || r.pending}
@@ -832,7 +847,9 @@ function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert'
                   {t.confirm}
                 </button>
               )}
-              {['HELD', 'CONFIRMED', 'RESCHEDULED'].includes(r.status) && (
+              {['HELD', 'BOOKING_PENDING_PAYMENT', 'CONFIRMED', 'RESCHEDULED'].includes(
+                r.status,
+              ) && (
                 <button
                   disabled={busy || r.pending}
                   onClick={() =>

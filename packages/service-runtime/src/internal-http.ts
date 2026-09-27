@@ -54,6 +54,7 @@ export async function internalCall<T = Record<string, unknown>>(
   authorization = '',
   body?: unknown,
   method?: string,
+  contextHeaders: Record<string, string> = {},
 ): Promise<T> {
   const key = process.env.AUTH_INTERNAL_KEY ?? '';
   const target = process.env[service.toUpperCase().replaceAll('-', '_') + '_URL'];
@@ -61,8 +62,17 @@ export async function internalCall<T = Record<string, unknown>>(
   const response = await fetch(new URL(path, target), {
     method: method ?? (body === undefined ? 'GET' : 'POST'),
     redirect: 'error',
-    signal: AbortSignal.timeout(path.startsWith('/api/v2/matching/') ? 60000 : 10000),
-    headers: { 'content-type': 'application/json', 'x-internal-key': key, authorization },
+    signal: AbortSignal.timeout(
+      /^\/(api\/v2\/(matching|payments|finance|payouts|disputes)|internal\/payment)/.test(path)
+        ? 60000
+        : 15000,
+    ),
+    headers: {
+      ...contextHeaders,
+      'content-type': 'application/json',
+      'x-internal-key': key,
+      authorization,
+    },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });
   const data = await response.json();

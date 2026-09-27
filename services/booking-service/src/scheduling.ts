@@ -29,6 +29,9 @@ type Snapshot = {
   expert_id: string;
   expert_code: string;
   expert_name: string;
+  specialty_id?: string;
+  country?: string;
+  kind?: string;
   title: string;
   duration_minutes: number;
   price_minor: number;
@@ -72,7 +75,8 @@ export async function initializeScheduling(pool: Pool) {
  CREATE TABLE IF NOT EXISTS booking_events(id uuid PRIMARY KEY,booking_id uuid NOT NULL,actor_id uuid NOT NULL,event text NOT NULL,details jsonb NOT NULL DEFAULT '{}',created_at timestamptz NOT NULL DEFAULT now());
  CREATE TABLE IF NOT EXISTS booking_notifications(id uuid PRIMARY KEY,event_id uuid NOT NULL,booking_id uuid NOT NULL,account_id uuid NOT NULL,event text NOT NULL,delivered_at timestamptz,read_at timestamptz,created_at timestamptz NOT NULL DEFAULT now(),UNIQUE(event_id,account_id));
  CREATE TABLE IF NOT EXISTS booking_reminders(booking_id uuid NOT NULL,start_at timestamptz NOT NULL,PRIMARY KEY(booking_id,start_at));
- ALTER TABLE scheduled_bookings ADD COLUMN IF NOT EXISTS operation_actor uuid;`);
+ ALTER TABLE scheduled_bookings ADD COLUMN IF NOT EXISTS operation_actor uuid;
+ ALTER TABLE scheduled_bookings ADD COLUMN IF NOT EXISTS payment_id uuid;`);
 }
 async function event(
   db: PoolClient,
@@ -163,7 +167,14 @@ async function processOperation(pool: Pool, id: string): Promise<Booking> {
       );
       return failed;
     }
-    const status = row.pending_action === 'MOVE' ? 'RESCHEDULED' : claim.state;
+    const status =
+      row.pending_action === 'MOVE'
+        ? 'RESCHEDULED'
+        : process.env.FINANCE_ENABLED === '1' &&
+            claim.state === 'HELD' &&
+            claim.snapshot.price_minor > 0
+          ? 'BOOKING_PENDING_PAYMENT'
+          : claim.state;
     const next = (
       await db.query(
         "UPDATE scheduled_bookings SET status=$2,start_at=COALESCE($3,start_at),end_at=COALESCE($4,end_at),expires_at=COALESCE($5,expires_at),snapshot=CASE WHEN pending_action='MOVE' THEN $6 ELSE COALESCE(snapshot,$6) END,pending_action=NULL,error_code=NULL,revision=revision+1,updated_at=now() WHERE id=$1 RETURNING *",
@@ -199,7 +210,7 @@ export async function reconcileBookings(pool: Pool) {
   await transaction(pool, async (db) => {
     const expired = (
       await db.query(
-        "SELECT * FROM scheduled_bookings WHERE status='HELD' AND pending_action IS NULL AND expires_at<=now() FOR UPDATE SKIP LOCKED",
+        "SELECT * FROM scheduled_bookings WHERE status IN ('HELD','BOOKING_PENDING_PAYMENT') AND pending_action IS NULL AND expires_at<=now() FOR UPDATE SKIP LOCKED",
       )
     ).rows as Booking[];
     for (const row of expired) {
@@ -258,6 +269,134 @@ export function schedulingWorker(pool: Pool) {
 }
 export function schedulingRouter(pool: Pool) {
   const router = internalRouter();
+  if (process.env.FINANCE_ENABLED === '1') {
+    router.post(
+      '/internal/bookings/financial-cancel',
+      endpoint(async (req, res) => {
+        const d = z
+          .object({ booking_id: z.string().uuid(), payment_id: z.string().uuid() })
+          .strict()
+          .parse(req.body);
+        await transaction(pool, async (db) => {
+          const row = (
+            await db.query('SELECT * FROM scheduled_bookings WHERE id=$1 FOR UPDATE', [
+              d.booking_id,
+            ])
+          ).rows[0];
+          if (!row) throw new ServiceError(404, 'NOT_FOUND');
+          if (row.payment_id && row.payment_id !== d.payment_id)
+            throw new ServiceError(409, 'PAYMENT_BOOKING_MISMATCH');
+          if (['CANCELLED', 'EXPIRED', 'COMPLETED'].includes(row.status)) return;
+          if (row.pending_action) throw new ServiceError(409, 'CONFLICT');
+          await db.query(
+            "UPDATE scheduled_bookings SET pending_action='CANCEL',operation_id=$2,operation_actor=client_id,action_data=$3 WHERE id=$1",
+            [d.booking_id, d.payment_id, { intent: 'financial-cancel' }],
+          );
+        });
+        res.json({ data: { status: (await processOperation(pool, d.booking_id)).status } });
+      }),
+    );
+    router.get(
+      '/internal/bookings/payment-quote/:id',
+      endpoint(async (req, res) => {
+        const user = await principal(req),
+          id = z.string().uuid().parse(req.params.id);
+        const row = (await pool.query('SELECT * FROM scheduled_bookings WHERE id=$1', [id]))
+          .rows[0] as Booking | undefined;
+        if (!row) throw new ServiceError(404, 'NOT_FOUND');
+        if (row.client_id !== user.id) throw new ServiceError(403, 'FORBIDDEN');
+        res.json({
+          data: {
+            id: row.id,
+            client_id: row.client_id,
+            expert_id: row.snapshot?.expert_id,
+            status: row.status,
+            expires_at: row.expires_at,
+            amount: String(row.snapshot?.price_minor ?? 0),
+            currency: row.snapshot?.currency,
+            service_id: row.service_id,
+            specialty_id: row.snapshot?.specialty_id,
+            country: row.snapshot?.country,
+            kind: row.snapshot?.kind,
+            end_at: row.end_at,
+          },
+        });
+      }),
+    );
+    router.get(
+      '/internal/bookings/financial-state/:id',
+      endpoint(async (req, res) => {
+        const row = (
+          await pool.query(
+            'SELECT id,client_id,snapshot,status,end_at,payment_id FROM scheduled_bookings WHERE id=$1',
+            [z.string().uuid().parse(req.params.id)],
+          )
+        ).rows[0];
+        if (!row) throw new ServiceError(404, 'NOT_FOUND');
+        res.json({
+          data: {
+            id: row.id,
+            client_id: row.client_id,
+            expert_id: row.snapshot?.expert_id,
+            status: row.status,
+            end_at: row.end_at,
+            payment_id: row.payment_id,
+          },
+        });
+      }),
+    );
+    router.post(
+      '/internal/bookings/payment-confirm',
+      endpoint(async (req, res) => {
+        const d = z
+          .object({
+            booking_id: z.string().uuid(),
+            payment_id: z.string().uuid(),
+            account_id: z.string().uuid(),
+            amount: z.string().regex(/^[1-9][0-9]*$/),
+            currency: z.string(),
+          })
+          .strict()
+          .parse(req.body);
+        await transaction(pool, async (db) => {
+          const row = (
+            await db.query('SELECT * FROM scheduled_bookings WHERE id=$1 FOR UPDATE', [
+              d.booking_id,
+            ])
+          ).rows[0];
+          if (
+            !row ||
+            row.client_id !== d.account_id ||
+            String(row.snapshot?.price_minor) !== d.amount ||
+            row.snapshot?.currency !== d.currency
+          )
+            throw new ServiceError(409, 'PAYMENT_BOOKING_MISMATCH');
+          if (row.payment_id && row.payment_id !== d.payment_id)
+            throw new ServiceError(409, 'BOOKING_ALREADY_PAID');
+          if (
+            ['CONFIRMED', 'RESCHEDULED', 'COMPLETED'].includes(row.status) &&
+            row.payment_id === d.payment_id
+          )
+            return;
+          if (!['HELD', 'BOOKING_PENDING_PAYMENT'].includes(row.status) || row.pending_action)
+            return;
+          if (new Date(row.expires_at).getTime() <= Date.now()) {
+            await db.query("UPDATE scheduled_bookings SET status='EXPIRED' WHERE id=$1", [
+              d.booking_id,
+            ]);
+            return;
+          }
+          await db.query(
+            "UPDATE scheduled_bookings SET payment_id=$2,pending_action='CONFIRM',operation_id=$2,operation_actor=client_id,action_data=$3 WHERE id=$1",
+            [d.booking_id, d.payment_id, { intent: 'paid-confirm' }],
+          );
+        });
+        const row = await processOperation(pool, d.booking_id);
+        res.json({ data: { status: row.status } });
+      }),
+    );
+  }
+
   router.post(
     '/api/v2/bookings/scheduled',
     endpoint(async (req, res) => {
@@ -331,7 +470,7 @@ export function schedulingRouter(pool: Pool) {
       if (q.view === 'admin') await requirePermission(req, 'booking.manage');
       const rows = (
         await pool.query(
-          `SELECT *,CASE WHEN status='HELD' AND expires_at<=now() AND pending_action IS NULL THEN 'EXPIRED' ELSE status END AS status FROM scheduled_bookings WHERE (($2='mine' AND client_id=$1) OR($2='expert' AND expert_code=$3) OR $2='admin') AND ($4='all' OR($4='future' AND start_at>=now() AND status NOT IN ('CANCELLED','EXPIRED')) OR($4='past' AND start_at<now()) OR($4='cancelled' AND status IN ('CANCELLED','EXPIRED'))) AND ($6::timestamptz IS NULL OR start_at >= $6) AND ($7::timestamptz IS NULL OR start_at < $7) ORDER BY start_at DESC,id LIMIT 100 OFFSET $5`,
+          `SELECT *,CASE WHEN status IN ('HELD','BOOKING_PENDING_PAYMENT') AND expires_at<=now() AND pending_action IS NULL THEN 'EXPIRED' ELSE status END AS status FROM scheduled_bookings WHERE (($2='mine' AND client_id=$1) OR($2='expert' AND expert_code=$3) OR $2='admin') AND ($4='all' OR($4='future' AND start_at>=now() AND status NOT IN ('CANCELLED','EXPIRED')) OR($4='past' AND start_at<now()) OR($4='cancelled' AND status IN ('CANCELLED','EXPIRED'))) AND ($6::timestamptz IS NULL OR start_at >= $6) AND ($7::timestamptz IS NULL OR start_at < $7) ORDER BY start_at DESC,id LIMIT 100 OFFSET $5`,
           [user.id, q.view, user.public_id, q.period, q.offset, q.from ?? null, q.to ?? null],
         )
       ).rows as Booking[];
@@ -369,9 +508,14 @@ export function schedulingRouter(pool: Pool) {
         }
         if (row.revision !== input.revision || row.pending_action)
           throw new ServiceError(409, 'CONFLICT');
+        if (action === 'confirm' && (row.snapshot?.price_minor ?? 0) > 0)
+          throw new ServiceError(409, 'PAYMENT_REQUIRED');
         if (action === 'confirm' && row.status !== 'HELD')
           throw new ServiceError(409, 'HOLD_EXPIRED');
-        if (action === 'cancel' && !['HELD', 'CONFIRMED', 'RESCHEDULED'].includes(row.status))
+        if (
+          action === 'cancel' &&
+          !['HELD', 'BOOKING_PENDING_PAYMENT', 'CONFIRMED', 'RESCHEDULED'].includes(row.status)
+        )
           throw new ServiceError(409, 'CONFLICT');
         if (
           ['reschedule', 'complete'].includes(action) &&
@@ -381,7 +525,7 @@ export function schedulingRouter(pool: Pool) {
         if (
           ['cancel', 'reschedule'].includes(action) &&
           owner &&
-          row.status !== 'HELD' &&
+          !['HELD', 'BOOKING_PENDING_PAYMENT'].includes(row.status) &&
           Date.parse(row.start_at) - Date.now() < (row.snapshot?.cancellation_hours ?? 24) * 3600000
         )
           throw new ServiceError(409, 'CANCELLATION_CUTOFF');

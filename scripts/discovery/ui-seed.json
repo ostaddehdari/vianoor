@@ -2080,6 +2080,1364 @@
     "ar": "Verified expert"
   },
   {
+    "key": "financeCopy.account",
+    "module": "financecopy",
+    "en": "Account / IBAN",
+    "fa": "شماره حساب / شبا",
+    "ar": "Account / IBAN"
+  },
+  {
+    "key": "financeCopy.account_id",
+    "module": "financecopy",
+    "en": "Account",
+    "fa": "حساب",
+    "ar": "Account"
+  },
+  {
+    "key": "financeCopy.active",
+    "module": "financecopy",
+    "en": "Active",
+    "fa": "فعال",
+    "ar": "Active"
+  },
+  {
+    "key": "financeCopy.addDestination",
+    "module": "financecopy",
+    "en": "Add destination",
+    "fa": "افزودن مقصد",
+    "ar": "Add destination"
+  },
+  {
+    "key": "financeCopy.address",
+    "module": "financecopy",
+    "en": "Payment address",
+    "fa": "آدرس پرداخت",
+    "ar": "Payment address"
+  },
+  {
+    "key": "financeCopy.admin",
+    "module": "financecopy",
+    "en": "Finance management",
+    "fa": "مدیریت مالی",
+    "ar": "Finance management"
+  },
+  {
+    "key": "financeCopy.amount",
+    "module": "financecopy",
+    "en": "Amount",
+    "fa": "مبلغ",
+    "ar": "Amount"
+  },
+  {
+    "key": "financeCopy.api_key",
+    "module": "financecopy",
+    "en": "NOWPayments API key",
+    "fa": "کلید API رمزارز NOWPayments",
+    "ar": "NOWPayments API key"
+  },
+  {
+    "key": "financeCopy.APPLIED",
+    "module": "financecopy",
+    "en": "Applied",
+    "fa": "اعمال‌شده",
+    "ar": "Applied"
+  },
+  {
+    "key": "financeCopy.approve",
+    "module": "financecopy",
+    "en": "Approve",
+    "fa": "تأیید",
+    "ar": "Approve"
+  },
+  {
+    "key": "financeCopy.APPROVED",
+    "module": "financecopy",
+    "en": "Approved",
+    "fa": "تأییدشده",
+    "ar": "Approved"
+  },
+  {
+    "key": "financeCopy.approveRisk",
+    "module": "financecopy",
+    "en": "Approve after risk review",
+    "fa": "تأیید پس از بررسی ریسک",
+    "ar": "Approve after risk review"
+  },
+  {
+    "key": "financeCopy.attachments",
+    "module": "financecopy",
+    "en": "Evidence file IDs (optional)",
+    "fa": "شناسهٔ فایل مدارک (اختیاری)",
+    "ar": "Evidence file IDs (optional)"
+  },
+  {
+    "key": "financeCopy.AUTHORIZED",
+    "module": "financecopy",
+    "en": "Authorized",
+    "fa": "مجوز برداشت صادر شده",
+    "ar": "Authorized"
+  },
+  {
+    "key": "financeCopy.available",
+    "module": "financecopy",
+    "en": "Available",
+    "fa": "قابل مصرف",
+    "ar": "Available"
+  },
+  {
+    "key": "financeCopy.AVAILABLE",
+    "module": "financecopy",
+    "en": "Available",
+    "fa": "قابل مصرف",
+    "ar": "Available"
+  },
+  {
+    "key": "financeCopy.balance",
+    "module": "financecopy",
+    "en": "Balance",
+    "fa": "مانده",
+    "ar": "Balance"
+  },
+  {
+    "key": "financeCopy.bank",
+    "module": "financecopy",
+    "en": "Bank",
+    "fa": "بانک",
+    "ar": "Bank"
+  },
+  {
+    "key": "financeCopy.base",
+    "module": "financecopy",
+    "en": "From currency",
+    "fa": "از ارز",
+    "ar": "From currency"
+  },
+  {
+    "key": "financeCopy.basis_points",
+    "module": "financecopy",
+    "en": "Commission (basis points)",
+    "fa": "کارمزد (واحد پایه)",
+    "ar": "Commission (basis points)"
+  },
+  {
+    "key": "financeCopy.booking",
+    "module": "financecopy",
+    "en": "Booking",
+    "fa": "رزرو",
+    "ar": "Booking"
+  },
+  {
+    "key": "financeCopy.BOOKING_ALREADY_PAID",
+    "module": "financecopy",
+    "en": "A payment already exists for this booking.",
+    "fa": "برای این رزرو پرداخت ثبت شده است.",
+    "ar": "A payment already exists for this booking."
+  },
+  {
+    "key": "financeCopy.booking_id",
+    "module": "financecopy",
+    "en": "Booking",
+    "fa": "رزرو",
+    "ar": "Booking"
+  },
+  {
+    "key": "financeCopy.BOOKING_PENDING_PAYMENT",
+    "module": "financecopy",
+    "en": "Awaiting payment",
+    "fa": "در انتظار پرداخت",
+    "ar": "Awaiting payment"
+  },
+  {
+    "key": "financeCopy.bookings",
+    "module": "financecopy",
+    "en": "My bookings",
+    "fa": "رزروهای من",
+    "ar": "My bookings"
+  },
+  {
+    "key": "financeCopy.CANCELLED",
+    "module": "financecopy",
+    "en": "Cancelled",
+    "fa": "لغوشده",
+    "ar": "Cancelled"
+  },
+  {
+    "key": "financeCopy.checkout",
+    "module": "financecopy",
+    "en": "Open secure checkout",
+    "fa": "ورود به صفحهٔ امن پرداخت",
+    "ar": "Open secure checkout"
+  },
+  {
+    "key": "financeCopy.client_id",
+    "module": "financecopy",
+    "en": "PayPal client ID",
+    "fa": "شناسهٔ کلاینت PayPal",
+    "ar": "PayPal client ID"
+  },
+  {
+    "key": "financeCopy.client_secret",
+    "module": "financecopy",
+    "en": "PayPal client secret",
+    "fa": "کلید محرمانه PayPal",
+    "ar": "PayPal client secret"
+  },
+  {
+    "key": "financeCopy.close",
+    "module": "financecopy",
+    "en": "Close",
+    "fa": "بستن",
+    "ar": "Close"
+  },
+  {
+    "key": "financeCopy.commission",
+    "module": "financecopy",
+    "en": "Commission",
+    "fa": "کارمزد",
+    "ar": "Commission"
+  },
+  {
+    "key": "financeCopy.commission_bps",
+    "module": "financecopy",
+    "en": "Default commission (basis points: 2000 = 20%)",
+    "fa": "کارمزد پیش‌فرض (۲۰۰۰ یعنی ۲۰٪)",
+    "ar": "Default commission (basis points: 2000 = 20%)"
+  },
+  {
+    "key": "financeCopy.complete",
+    "module": "financecopy",
+    "en": "Record completed bank transfer",
+    "fa": "ثبت انتقال بانکی انجام‌شده",
+    "ar": "Record completed bank transfer"
+  },
+  {
+    "key": "financeCopy.COMPLETED",
+    "module": "financecopy",
+    "en": "Completed",
+    "fa": "تکمیل‌شده",
+    "ar": "Completed"
+  },
+  {
+    "key": "financeCopy.configured",
+    "module": "financecopy",
+    "en": "Configured",
+    "fa": "تنظیم‌شده",
+    "ar": "Configured"
+  },
+  {
+    "key": "financeCopy.CONNECTED",
+    "module": "financecopy",
+    "en": "Connected",
+    "fa": "متصل",
+    "ar": "Connected"
+  },
+  {
+    "key": "financeCopy.connection_status",
+    "module": "financecopy",
+    "en": "Connection",
+    "fa": "اتصال",
+    "ar": "Connection"
+  },
+  {
+    "key": "financeCopy.count",
+    "module": "financecopy",
+    "en": "Count",
+    "fa": "تعداد",
+    "ar": "Count"
+  },
+  {
+    "key": "financeCopy.countries",
+    "module": "financecopy",
+    "en": "Countries (ISO codes, optional)",
+    "fa": "کشورها (کد ISO، اختیاری)",
+    "ar": "Countries (ISO codes, optional)"
+  },
+  {
+    "key": "financeCopy.country",
+    "module": "financecopy",
+    "en": "Country (ISO)",
+    "fa": "کشور (کد ISO)",
+    "ar": "Country (ISO)"
+  },
+  {
+    "key": "financeCopy.CREATE_UNCERTAIN",
+    "module": "financecopy",
+    "en": "Creation requires reconciliation",
+    "fa": "ایجاد پرداخت نیازمند تطبیق است",
+    "ar": "Creation requires reconciliation"
+  },
+  {
+    "key": "financeCopy.created",
+    "module": "financecopy",
+    "en": "Date",
+    "fa": "تاریخ",
+    "ar": "Date"
+  },
+  {
+    "key": "financeCopy.CREATED",
+    "module": "financecopy",
+    "en": "Created",
+    "fa": "ایجادشده",
+    "ar": "Created"
+  },
+  {
+    "key": "financeCopy.created_at",
+    "module": "financecopy",
+    "en": "Date",
+    "fa": "تاریخ",
+    "ar": "Date"
+  },
+  {
+    "key": "financeCopy.credit",
+    "module": "financecopy",
+    "en": "Credit",
+    "fa": "بستانکار",
+    "ar": "Credit"
+  },
+  {
+    "key": "financeCopy.CREDITED_LATE",
+    "module": "financecopy",
+    "en": "Hold expired; amount credited to wallet",
+    "fa": "مهلت رزرو تمام شده؛ مبلغ به کیف پول برگشت",
+    "ar": "Hold expired; amount credited to wallet"
+  },
+  {
+    "key": "financeCopy.CRYPTO_REFUND_REQUIRES_PAYOUT",
+    "module": "financecopy",
+    "en": "Choose wallet refund, then request a crypto withdrawal.",
+    "fa": "بازپرداخت به کیف پول را انتخاب و سپس برداشت رمزارز درخواست کنید.",
+    "ar": "Choose wallet refund, then request a crypto withdrawal."
+  },
+  {
+    "key": "financeCopy.cryptoAmount",
+    "module": "financecopy",
+    "en": "Exact crypto amount",
+    "fa": "مقدار دقیق رمزارز",
+    "ar": "Exact crypto amount"
+  },
+  {
+    "key": "financeCopy.cryptoHint",
+    "module": "financecopy",
+    "en": "Send only the displayed currency on the selected network. An underpayment does not confirm the booking.",
+    "fa": "فقط ارز نمایش‌داده‌شده را در شبکهٔ انتخاب‌شده ارسال کنید. پرداخت ناقص، رزرو را تأیید نمی‌کند.",
+    "ar": "Send only the displayed currency on the selected network. An underpayment does not confirm the booking."
+  },
+  {
+    "key": "financeCopy.currencies",
+    "module": "financecopy",
+    "en": "Currencies (comma separated)",
+    "fa": "ارزها (با کامای انگلیسی)",
+    "ar": "Currencies (comma separated)"
+  },
+  {
+    "key": "financeCopy.currency",
+    "module": "financecopy",
+    "en": "Currency",
+    "fa": "ارز",
+    "ar": "Currency"
+  },
+  {
+    "key": "financeCopy.day",
+    "module": "financecopy",
+    "en": "Daily",
+    "fa": "روزانه",
+    "ar": "Daily"
+  },
+  {
+    "key": "financeCopy.debit",
+    "module": "financecopy",
+    "en": "Debit",
+    "fa": "بدهکار",
+    "ar": "Debit"
+  },
+  {
+    "key": "financeCopy.denominator",
+    "module": "financecopy",
+    "en": "Rate denominator",
+    "fa": "مخرج نرخ",
+    "ar": "Rate denominator"
+  },
+  {
+    "key": "financeCopy.description",
+    "module": "financecopy",
+    "en": "Operation",
+    "fa": "عملیات",
+    "ar": "Operation"
+  },
+  {
+    "key": "financeCopy.destination",
+    "module": "financecopy",
+    "en": "Payout destination",
+    "fa": "مقصد برداشت",
+    "ar": "Payout destination"
+  },
+  {
+    "key": "financeCopy.details",
+    "module": "financecopy",
+    "en": "View protected details",
+    "fa": "مشاهدهٔ اطلاعات محافظت‌شده",
+    "ar": "View protected details"
+  },
+  {
+    "key": "financeCopy.disable",
+    "module": "financecopy",
+    "en": "Disable",
+    "fa": "غیرفعال‌سازی",
+    "ar": "Disable"
+  },
+  {
+    "key": "financeCopy.disabled",
+    "module": "financecopy",
+    "en": "Unavailable until the administrator completes setup",
+    "fa": "پس از تکمیل تنظیمات توسط مدیر فعال می‌شود",
+    "ar": "Unavailable until the administrator completes setup"
+  },
+  {
+    "key": "financeCopy.disputes",
+    "module": "financecopy",
+    "en": "Disputes",
+    "fa": "اختلافات",
+    "ar": "Disputes"
+  },
+  {
+    "key": "financeCopy.email",
+    "module": "financecopy",
+    "en": "PayPal email",
+    "fa": "ایمیل PayPal",
+    "ar": "PayPal email"
+  },
+  {
+    "key": "financeCopy.empty",
+    "module": "financecopy",
+    "en": "No records yet.",
+    "fa": "هنوز رکوردی ثبت نشده است.",
+    "ar": "No records yet."
+  },
+  {
+    "key": "financeCopy.enable",
+    "module": "financecopy",
+    "en": "Enable",
+    "fa": "فعال‌سازی",
+    "ar": "Enable"
+  },
+  {
+    "key": "financeCopy.enabled",
+    "module": "financecopy",
+    "en": "Enabled",
+    "fa": "فعال",
+    "ar": "Enabled"
+  },
+  {
+    "key": "financeCopy.error",
+    "module": "financecopy",
+    "en": "The operation could not be completed",
+    "fa": "عملیات انجام نشد",
+    "ar": "The operation could not be completed"
+  },
+  {
+    "key": "financeCopy.exchange",
+    "module": "financecopy",
+    "en": "Confirm conversion",
+    "fa": "تأیید تبدیل",
+    "ar": "Confirm conversion"
+  },
+  {
+    "key": "financeCopy.EXPERT_CANCELLED",
+    "module": "financecopy",
+    "en": "Expert cancelled",
+    "fa": "لغو توسط استاد",
+    "ar": "Expert cancelled"
+  },
+  {
+    "key": "financeCopy.expert_id",
+    "module": "financecopy",
+    "en": "Expert account ID (optional)",
+    "fa": "شناسهٔ حساب استاد (اختیاری)",
+    "ar": "Expert account ID (optional)"
+  },
+  {
+    "key": "financeCopy.EXPIRED",
+    "module": "financecopy",
+    "en": "Expired",
+    "fa": "منقضی‌شده",
+    "ar": "Expired"
+  },
+  {
+    "key": "financeCopy.FAILED",
+    "module": "financecopy",
+    "en": "Failed",
+    "fa": "ناموفق",
+    "ar": "Failed"
+  },
+  {
+    "key": "financeCopy.fee",
+    "module": "financecopy",
+    "en": "Platform fee",
+    "fa": "سهم پلتفرم",
+    "ar": "Platform fee"
+  },
+  {
+    "key": "financeCopy.GATEWAY_NOT_CONFIGURED",
+    "module": "financecopy",
+    "en": "This payment method is not configured yet.",
+    "fa": "این روش پرداخت هنوز تنظیم نشده است.",
+    "ar": "This payment method is not configured yet."
+  },
+  {
+    "key": "financeCopy.gateways",
+    "module": "financecopy",
+    "en": "Payment gateways",
+    "fa": "درگاه‌های پرداخت",
+    "ar": "Payment gateways"
+  },
+  {
+    "key": "financeCopy.gross",
+    "module": "financecopy",
+    "en": "Gross payments",
+    "fa": "جمع پرداخت‌ها",
+    "ar": "Gross payments"
+  },
+  {
+    "key": "financeCopy.history",
+    "module": "financecopy",
+    "en": "Transactions",
+    "fa": "گردش حساب",
+    "ar": "Transactions"
+  },
+  {
+    "key": "financeCopy.HOLD_EXPIRED",
+    "module": "financecopy",
+    "en": "The booking hold has expired.",
+    "fa": "مهلت نگهداری رزرو تمام شده است.",
+    "ar": "The booking hold has expired."
+  },
+  {
+    "key": "financeCopy.holder",
+    "module": "financecopy",
+    "en": "Account holder",
+    "fa": "صاحب حساب",
+    "ar": "Account holder"
+  },
+  {
+    "key": "financeCopy.id",
+    "module": "financecopy",
+    "en": "ID",
+    "fa": "شناسه",
+    "ar": "ID"
+  },
+  {
+    "key": "financeCopy.INSUFFICIENT_BALANCE",
+    "module": "financecopy",
+    "en": "Insufficient available balance.",
+    "fa": "موجودی قابل مصرف کافی نیست.",
+    "ar": "Insufficient available balance."
+  },
+  {
+    "key": "financeCopy.ipinfo_configured",
+    "module": "financecopy",
+    "en": "IP country lookup configured",
+    "fa": "تشخیص کشور IP تنظیم شده",
+    "ar": "IP country lookup configured"
+  },
+  {
+    "key": "financeCopy.ipinfo_token",
+    "module": "financecopy",
+    "en": "IPinfo access token (optional)",
+    "fa": "توکن IPinfo (اختیاری)",
+    "ar": "IPinfo access token (optional)"
+  },
+  {
+    "key": "financeCopy.ipn_secret",
+    "module": "financecopy",
+    "en": "NOWPayments IPN secret",
+    "fa": "کلید امضای IPN رمزارز",
+    "ar": "NOWPayments IPN secret"
+  },
+  {
+    "key": "financeCopy.keysHint",
+    "module": "financecopy",
+    "en": "Saved keys are encrypted and never displayed. Leave a field empty to keep its saved value. Saving creates a new configuration; check the connection and enable it.",
+    "fa": "کلیدها رمزنگاری می‌شوند و دوباره نمایش داده نمی‌شوند. فیلد خالی، مقدار ذخیره‌شده را حفظ می‌کند. پس از ذخیره، اتصال را بررسی و درگاه را فعال کنید.",
+    "ar": "Saved keys are encrypted and never displayed. Leave a field empty to keep its saved value. Saving creates a new configuration; check the connection and enable it."
+  },
+  {
+    "key": "financeCopy.kind",
+    "module": "financecopy",
+    "en": "Balance type",
+    "fa": "نوع موجودی",
+    "ar": "Balance type"
+  },
+  {
+    "key": "financeCopy.ledger",
+    "module": "financecopy",
+    "en": "Accounting ledger",
+    "fa": "دفترکل حسابداری",
+    "ar": "Accounting ledger"
+  },
+  {
+    "key": "financeCopy.lines",
+    "module": "financecopy",
+    "en": "Journal entries",
+    "fa": "ردیف‌های سند",
+    "ar": "Journal entries"
+  },
+  {
+    "key": "financeCopy.liveMode",
+    "module": "financecopy",
+    "en": "Live",
+    "fa": "واقعی",
+    "ar": "Live"
+  },
+  {
+    "key": "financeCopy.locked",
+    "module": "financecopy",
+    "en": "Locked",
+    "fa": "قفل‌شده",
+    "ar": "Locked"
+  },
+  {
+    "key": "financeCopy.LOCKED",
+    "module": "financecopy",
+    "en": "Locked",
+    "fa": "قفل‌شده",
+    "ar": "Locked"
+  },
+  {
+    "key": "financeCopy.max_hourly_attempts",
+    "module": "financecopy",
+    "en": "Maximum payment attempts per hour",
+    "fa": "حداکثر تلاش پرداخت در ساعت",
+    "ar": "Maximum payment attempts per hour"
+  },
+  {
+    "key": "financeCopy.max_topup_minor",
+    "module": "financecopy",
+    "en": "Maximum top-up in minor units",
+    "fa": "حداکثر شارژ برحسب کوچک‌ترین واحد ارز",
+    "ar": "Maximum top-up in minor units"
+  },
+  {
+    "key": "financeCopy.message",
+    "module": "financecopy",
+    "en": "Message",
+    "fa": "پیام",
+    "ar": "Message"
+  },
+  {
+    "key": "financeCopy.method",
+    "module": "financecopy",
+    "en": "Method",
+    "fa": "روش",
+    "ar": "Method"
+  },
+  {
+    "key": "financeCopy.mode",
+    "module": "financecopy",
+    "en": "Mode",
+    "fa": "حالت",
+    "ar": "Mode"
+  },
+  {
+    "key": "financeCopy.month",
+    "module": "financecopy",
+    "en": "Monthly",
+    "fa": "ماهانه",
+    "ar": "Monthly"
+  },
+  {
+    "key": "financeCopy.net_revenue",
+    "module": "financecopy",
+    "en": "Released revenue",
+    "fa": "درآمد آزادشده",
+    "ar": "Released revenue"
+  },
+  {
+    "key": "financeCopy.network",
+    "module": "financecopy",
+    "en": "Crypto network",
+    "fa": "شبکهٔ رمزارز",
+    "ar": "Crypto network"
+  },
+  {
+    "key": "financeCopy.newDispute",
+    "module": "financecopy",
+    "en": "Open a dispute",
+    "fa": "ثبت اختلاف",
+    "ar": "Open a dispute"
+  },
+  {
+    "key": "financeCopy.newRule",
+    "module": "financecopy",
+    "en": "Add commission rule",
+    "fa": "افزودن قانون کارمزد",
+    "ar": "Add commission rule"
+  },
+  {
+    "key": "financeCopy.NO_SHOW",
+    "module": "financecopy",
+    "en": "Expert did not attend",
+    "fa": "عدم حضور استاد",
+    "ar": "Expert did not attend"
+  },
+  {
+    "key": "financeCopy.NOT_TESTED",
+    "module": "financecopy",
+    "en": "Not checked",
+    "fa": "بررسی نشده",
+    "ar": "Not checked"
+  },
+  {
+    "key": "financeCopy.notConfigured",
+    "module": "financecopy",
+    "en": "Not configured",
+    "fa": "تنظیم نشده",
+    "ar": "Not configured"
+  },
+  {
+    "key": "financeCopy.NOWPAYMENTS",
+    "module": "financecopy",
+    "en": "Crypto",
+    "fa": "رمزارز",
+    "ar": "Crypto"
+  },
+  {
+    "key": "financeCopy.numerator",
+    "module": "financecopy",
+    "en": "Rate numerator",
+    "fa": "صورت نرخ",
+    "ar": "Rate numerator"
+  },
+  {
+    "key": "financeCopy.OPEN",
+    "module": "financecopy",
+    "en": "Open",
+    "fa": "باز",
+    "ar": "Open"
+  },
+  {
+    "key": "financeCopy.OTHER",
+    "module": "financecopy",
+    "en": "Other",
+    "fa": "سایر",
+    "ar": "Other"
+  },
+  {
+    "key": "financeCopy.PARTIAL",
+    "module": "financecopy",
+    "en": "Partially paid",
+    "fa": "پرداخت ناقص",
+    "ar": "Partially paid"
+  },
+  {
+    "key": "financeCopy.pay",
+    "module": "financecopy",
+    "en": "Continue to payment",
+    "fa": "ادامهٔ پرداخت",
+    "ar": "Continue to payment"
+  },
+  {
+    "key": "financeCopy.PAYMENT_ERROR",
+    "module": "financecopy",
+    "en": "Payment error",
+    "fa": "خطای پرداخت",
+    "ar": "Payment error"
+  },
+  {
+    "key": "financeCopy.payment_id",
+    "module": "financecopy",
+    "en": "Payment",
+    "fa": "پرداخت",
+    "ar": "Payment"
+  },
+  {
+    "key": "financeCopy.PAYMENT_REQUIRED",
+    "module": "financecopy",
+    "en": "Payment is required to confirm this booking.",
+    "fa": "برای تأیید این رزرو پرداخت لازم است.",
+    "ar": "Payment is required to confirm this booking."
+  },
+  {
+    "key": "financeCopy.paymentNotice",
+    "module": "financecopy",
+    "en": "Free sessions confirm immediately. Paid sessions require a verified payment.",
+    "fa": "جلسات رایگان مستقیم تأیید می‌شوند؛ جلسات پولی به پرداخت معتبر نیاز دارند.",
+    "ar": "Free sessions confirm immediately. Paid sessions require a verified payment."
+  },
+  {
+    "key": "financeCopy.payments",
+    "module": "financecopy",
+    "en": "Payments",
+    "fa": "پرداخت‌ها",
+    "ar": "Payments"
+  },
+  {
+    "key": "financeCopy.payout_email",
+    "module": "financecopy",
+    "en": "NOWPayments payout login email (optional)",
+    "fa": "ایمیل ورود برداشت NOWPayments (اختیاری)",
+    "ar": "NOWPayments payout login email (optional)"
+  },
+  {
+    "key": "financeCopy.payout_password",
+    "module": "financecopy",
+    "en": "NOWPayments payout login password (optional)",
+    "fa": "رمز ورود برداشت NOWPayments (اختیاری)",
+    "ar": "NOWPayments payout login password (optional)"
+  },
+  {
+    "key": "financeCopy.payouts",
+    "module": "financecopy",
+    "en": "Withdrawals",
+    "fa": "برداشت‌ها",
+    "ar": "Withdrawals"
+  },
+  {
+    "key": "financeCopy.PAYPAL",
+    "module": "financecopy",
+    "en": "PayPal",
+    "fa": "پی‌پال",
+    "ar": "PayPal"
+  },
+  {
+    "key": "financeCopy.pending",
+    "module": "financecopy",
+    "en": "Pending",
+    "fa": "در انتظار",
+    "ar": "Pending"
+  },
+  {
+    "key": "financeCopy.PENDING",
+    "module": "financecopy",
+    "en": "Pending",
+    "fa": "در انتظار",
+    "ar": "Pending"
+  },
+  {
+    "key": "financeCopy.period",
+    "module": "financecopy",
+    "en": "Report period",
+    "fa": "دورهٔ گزارش",
+    "ar": "Report period"
+  },
+  {
+    "key": "financeCopy.priority",
+    "module": "financecopy",
+    "en": "Priority",
+    "fa": "اولویت",
+    "ar": "Priority"
+  },
+  {
+    "key": "financeCopy.process",
+    "module": "financecopy",
+    "en": "Process",
+    "fa": "پردازش",
+    "ar": "Process"
+  },
+  {
+    "key": "financeCopy.PROCESSING",
+    "module": "financecopy",
+    "en": "Processing",
+    "fa": "در حال پردازش",
+    "ar": "Processing"
+  },
+  {
+    "key": "financeCopy.provider",
+    "module": "financecopy",
+    "en": "Payment method",
+    "fa": "روش پرداخت",
+    "ar": "Payment method"
+  },
+  {
+    "key": "financeCopy.PROVIDER_CREDENTIALS_REJECTED",
+    "module": "financecopy",
+    "en": "The provider rejected these credentials.",
+    "fa": "ارائه‌دهنده کلیدهای اتصال را نپذیرفت.",
+    "ar": "The provider rejected these credentials."
+  },
+  {
+    "key": "financeCopy.provider_reference",
+    "module": "financecopy",
+    "en": "Provider reference",
+    "fa": "پیگیری ارائه‌دهنده",
+    "ar": "Provider reference"
+  },
+  {
+    "key": "financeCopy.PROVIDER_UNCERTAIN",
+    "module": "financecopy",
+    "en": "The provider response is uncertain. Check this payment again; do not create another.",
+    "fa": "پاسخ درگاه قطعی نیست. همین پرداخت را دوباره بررسی کنید؛ پرداخت دیگری نسازید.",
+    "ar": "The provider response is uncertain. Check this payment again; do not create another."
+  },
+  {
+    "key": "financeCopy.QUALITY",
+    "module": "financecopy",
+    "en": "Service quality",
+    "fa": "کیفیت خدمت",
+    "ar": "Service quality"
+  },
+  {
+    "key": "financeCopy.quote",
+    "module": "financecopy",
+    "en": "To currency",
+    "fa": "به ارز",
+    "ar": "To currency"
+  },
+  {
+    "key": "financeCopy.QUOTE_EXPIRED",
+    "module": "financecopy",
+    "en": "The conversion quote expired; request a new quote.",
+    "fa": "اعتبار نرخ تمام شده؛ دوباره نرخ بگیرید.",
+    "ar": "The conversion quote expired; request a new quote."
+  },
+  {
+    "key": "financeCopy.quoteRate",
+    "module": "financecopy",
+    "en": "Get conversion quote",
+    "fa": "دریافت نرخ تبدیل",
+    "ar": "Get conversion quote"
+  },
+  {
+    "key": "financeCopy.RATE_UNAVAILABLE",
+    "module": "financecopy",
+    "en": "No active exchange rate is configured.",
+    "fa": "نرخ تبدیل فعالی تنظیم نشده است.",
+    "ar": "No active exchange rate is configured."
+  },
+  {
+    "key": "financeCopy.rates",
+    "module": "financecopy",
+    "en": "Exchange rates",
+    "fa": "نرخ تبدیل ارز",
+    "ar": "Exchange rates"
+  },
+  {
+    "key": "financeCopy.reason",
+    "module": "financecopy",
+    "en": "Reason",
+    "fa": "دلیل",
+    "ar": "Reason"
+  },
+  {
+    "key": "financeCopy.reconciliation",
+    "module": "financecopy",
+    "en": "Reconciliation",
+    "fa": "تطبیق تراکنش‌ها",
+    "ar": "Reconciliation"
+  },
+  {
+    "key": "financeCopy.reference",
+    "module": "financecopy",
+    "en": "Reference",
+    "fa": "شمارهٔ پیگیری",
+    "ar": "Reference"
+  },
+  {
+    "key": "financeCopy.refresh",
+    "module": "financecopy",
+    "en": "Refresh",
+    "fa": "به‌روزرسانی",
+    "ar": "Refresh"
+  },
+  {
+    "key": "financeCopy.refund",
+    "module": "financecopy",
+    "en": "Request refund",
+    "fa": "درخواست بازپرداخت",
+    "ar": "Request refund"
+  },
+  {
+    "key": "financeCopy.REFUND",
+    "module": "financecopy",
+    "en": "Refund request",
+    "fa": "درخواست بازگشت وجه",
+    "ar": "Refund request"
+  },
+  {
+    "key": "financeCopy.REFUNDED",
+    "module": "financecopy",
+    "en": "Refunded",
+    "fa": "بازپرداخت‌شده",
+    "ar": "Refunded"
+  },
+  {
+    "key": "financeCopy.refundHint",
+    "module": "financecopy",
+    "en": "Crypto refunds are credited to the wallet; conversion and withdrawal use the selected network and an approved payout.",
+    "fa": "بازپرداخت رمزارز به کیف پول واریز می‌شود؛ تبدیل و برداشت با شبکهٔ انتخابی و تأیید درخواست انجام می‌شود.",
+    "ar": "Crypto refunds are credited to the wallet; conversion and withdrawal use the selected network and an approved payout."
+  },
+  {
+    "key": "financeCopy.refundOriginal",
+    "module": "financecopy",
+    "en": "Refund to original method",
+    "fa": "بازپرداخت به روش اصلی",
+    "ar": "Refund to original method"
+  },
+  {
+    "key": "financeCopy.refunds",
+    "module": "financecopy",
+    "en": "Refund requests",
+    "fa": "درخواست‌های بازپرداخت",
+    "ar": "Refund requests"
+  },
+  {
+    "key": "financeCopy.refundWallet",
+    "module": "financecopy",
+    "en": "Refund to wallet",
+    "fa": "بازپرداخت به کیف پول",
+    "ar": "Refund to wallet"
+  },
+  {
+    "key": "financeCopy.reject",
+    "module": "financecopy",
+    "en": "Reject",
+    "fa": "رد درخواست",
+    "ar": "Reject"
+  },
+  {
+    "key": "financeCopy.REJECTED",
+    "module": "financecopy",
+    "en": "Rejected",
+    "fa": "ردشده",
+    "ar": "Rejected"
+  },
+  {
+    "key": "financeCopy.release_hours",
+    "module": "financecopy",
+    "en": "Hours after session before funds become available",
+    "fa": "ساعت انتظار پس از جلسه برای آزادسازی",
+    "ar": "Hours after session before funds become available"
+  },
+  {
+    "key": "financeCopy.remaining",
+    "module": "financecopy",
+    "en": "Payment status",
+    "fa": "وضعیت پرداخت",
+    "ar": "Payment status"
+  },
+  {
+    "key": "financeCopy.reports",
+    "module": "financecopy",
+    "en": "Financial reports",
+    "fa": "گزارش مالی",
+    "ar": "Financial reports"
+  },
+  {
+    "key": "financeCopy.REQUESTED",
+    "module": "financecopy",
+    "en": "Requested",
+    "fa": "درخواست‌شده",
+    "ar": "Requested"
+  },
+  {
+    "key": "financeCopy.RESOLVED",
+    "module": "financecopy",
+    "en": "Resolved",
+    "fa": "حل‌شده",
+    "ar": "Resolved"
+  },
+  {
+    "key": "financeCopy.resolveRefund",
+    "module": "financecopy",
+    "en": "Resolve with wallet refund",
+    "fa": "حل اختلاف با بازپرداخت",
+    "ar": "Resolve with wallet refund"
+  },
+  {
+    "key": "financeCopy.resolveRelease",
+    "module": "financecopy",
+    "en": "Resolve and release",
+    "fa": "حل اختلاف و آزادسازی",
+    "ar": "Resolve and release"
+  },
+  {
+    "key": "financeCopy.RESTRICTED",
+    "module": "financecopy",
+    "en": "Restricted",
+    "fa": "محدودشده",
+    "ar": "Restricted"
+  },
+  {
+    "key": "financeCopy.review",
+    "module": "financecopy",
+    "en": "Check payment status",
+    "fa": "بررسی وضعیت پرداخت",
+    "ar": "Check payment status"
+  },
+  {
+    "key": "financeCopy.review_spikes",
+    "module": "financecopy",
+    "en": "Review unusual amount increases",
+    "fa": "بررسی افزایش غیرمعمول مبلغ",
+    "ar": "Review unusual amount increases"
+  },
+  {
+    "key": "financeCopy.risk",
+    "module": "financecopy",
+    "en": "Risk signals",
+    "fa": "نشانه‌های ریسک",
+    "ar": "Risk signals"
+  },
+  {
+    "key": "financeCopy.RISK_LIMIT",
+    "module": "financecopy",
+    "en": "The payment limit has been reached.",
+    "fa": "محدودیت پرداخت اعمال شده است.",
+    "ar": "The payment limit has been reached."
+  },
+  {
+    "key": "financeCopy.RISK_REVIEW",
+    "module": "financecopy",
+    "en": "Awaiting financial review",
+    "fa": "در انتظار بررسی مالی",
+    "ar": "Awaiting financial review"
+  },
+  {
+    "key": "financeCopy.riskHint",
+    "module": "financecopy",
+    "en": "Optional IPinfo country lookup sends the payer IP to IPinfo. Without a token, the country is recorded as unknown. Credentials remain encrypted.",
+    "fa": "تشخیص اختیاری کشور با IPinfo، IP پرداخت‌کننده را برای این سرویس می‌فرستد. بدون توکن، کشور نامشخص ثبت می‌شود. کلید رمزنگاری خواهد شد.",
+    "ar": "Optional IPinfo country lookup sends the payer IP to IPinfo. Without a token, the country is recorded as unknown. Credentials remain encrypted."
+  },
+  {
+    "key": "financeCopy.riskSettings",
+    "module": "financecopy",
+    "en": "Fraud controls",
+    "fa": "کنترل تقلب",
+    "ar": "Fraud controls"
+  },
+  {
+    "key": "financeCopy.save",
+    "module": "financecopy",
+    "en": "Save",
+    "fa": "ذخیره",
+    "ar": "Save"
+  },
+  {
+    "key": "financeCopy.secret_key",
+    "module": "financecopy",
+    "en": "Stripe secret key",
+    "fa": "کلید محرمانه Stripe",
+    "ar": "Stripe secret key"
+  },
+  {
+    "key": "financeCopy.send",
+    "module": "financecopy",
+    "en": "Send message",
+    "fa": "ارسال پیام",
+    "ar": "Send message"
+  },
+  {
+    "key": "financeCopy.service_kind",
+    "module": "financecopy",
+    "en": "Service type (optional)",
+    "fa": "نوع خدمت (اختیاری)",
+    "ar": "Service type (optional)"
+  },
+  {
+    "key": "financeCopy.settings",
+    "module": "financecopy",
+    "en": "Fees and limits",
+    "fa": "کارمزد و محدودیت‌ها",
+    "ar": "Fees and limits"
+  },
+  {
+    "key": "financeCopy.source",
+    "module": "financecopy",
+    "en": "Rate source",
+    "fa": "منبع نرخ",
+    "ar": "Rate source"
+  },
+  {
+    "key": "financeCopy.specialty_id",
+    "module": "financecopy",
+    "en": "Specialty ID (optional)",
+    "fa": "شناسهٔ تخصص (اختیاری)",
+    "ar": "Specialty ID (optional)"
+  },
+  {
+    "key": "financeCopy.status",
+    "module": "financecopy",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "financeCopy.STRIPE",
+    "module": "financecopy",
+    "en": "Visa / Mastercard · Apple Pay / Google Pay",
+    "fa": "ویزا / مسترکارت · Apple Pay / Google Pay",
+    "ar": "Visa / Mastercard · Apple Pay / Google Pay"
+  },
+  {
+    "key": "financeCopy.SUBMITTED",
+    "module": "financecopy",
+    "en": "Awaiting provider confirmation",
+    "fa": "در انتظار پاسخ ارائه‌دهنده",
+    "ar": "Awaiting provider confirmation"
+  },
+  {
+    "key": "financeCopy.success",
+    "module": "financecopy",
+    "en": "Saved successfully.",
+    "fa": "با موفقیت ذخیره شد.",
+    "ar": "Saved successfully."
+  },
+  {
+    "key": "financeCopy.SUCCESS",
+    "module": "financecopy",
+    "en": "Paid",
+    "fa": "پرداخت‌شده",
+    "ar": "Paid"
+  },
+  {
+    "key": "financeCopy.target",
+    "module": "financecopy",
+    "en": "Destination",
+    "fa": "مقصد",
+    "ar": "Destination"
+  },
+  {
+    "key": "financeCopy.tax",
+    "module": "financecopy",
+    "en": "Tax",
+    "fa": "مالیات",
+    "ar": "Tax"
+  },
+  {
+    "key": "financeCopy.tax_bps",
+    "module": "financecopy",
+    "en": "Included tax (basis points; 0 disables tax)",
+    "fa": "مالیاتِ داخل مبلغ (واحد پایه؛ صفر یعنی بدون مالیات)",
+    "ar": "Included tax (basis points; 0 disables tax)"
+  },
+  {
+    "key": "financeCopy.test",
+    "module": "financecopy",
+    "en": "Check connection",
+    "fa": "بررسی اتصال",
+    "ar": "Check connection"
+  },
+  {
+    "key": "financeCopy.testMode",
+    "module": "financecopy",
+    "en": "Test",
+    "fa": "آزمایشی",
+    "ar": "Test"
+  },
+  {
+    "key": "financeCopy.title",
+    "module": "financecopy",
+    "en": "Payments and wallet",
+    "fa": "پرداخت و کیف پول",
+    "ar": "Payments and wallet"
+  },
+  {
+    "key": "financeCopy.topup",
+    "module": "financecopy",
+    "en": "Add balance",
+    "fa": "شارژ کیف پول",
+    "ar": "Add balance"
+  },
+  {
+    "key": "financeCopy.trial_balance",
+    "module": "financecopy",
+    "en": "Trial balance",
+    "fa": "تراز آزمایشی",
+    "ar": "Trial balance"
+  },
+  {
+    "key": "financeCopy.valid_until",
+    "module": "financecopy",
+    "en": "Valid until",
+    "fa": "اعتبار تا",
+    "ar": "Valid until"
+  },
+  {
+    "key": "financeCopy.validUntil",
+    "module": "financecopy",
+    "en": "Valid until (UTC)",
+    "fa": "اعتبار تا (UTC)",
+    "ar": "Valid until (UTC)"
+  },
+  {
+    "key": "financeCopy.verificationCode",
+    "module": "financecopy",
+    "en": "One-time provider verification code",
+    "fa": "کد یک‌بارمصرف ارائه‌دهنده",
+    "ar": "One-time provider verification code"
+  },
+  {
+    "key": "financeCopy.verify",
+    "module": "financecopy",
+    "en": "Verify crypto withdrawal",
+    "fa": "تأیید برداشت رمزارز",
+    "ar": "Verify crypto withdrawal"
+  },
+  {
+    "key": "financeCopy.wallet",
+    "module": "financecopy",
+    "en": "Wallet",
+    "fa": "کیف پول",
+    "ar": "Wallet"
+  },
+  {
+    "key": "financeCopy.WALLET",
+    "module": "financecopy",
+    "en": "Wallet",
+    "fa": "کیف پول",
+    "ar": "Wallet"
+  },
+  {
+    "key": "financeCopy.webhook",
+    "module": "financecopy",
+    "en": "Webhook address",
+    "fa": "نشانی وب‌هوک",
+    "ar": "Webhook address"
+  },
+  {
+    "key": "financeCopy.webhook_id",
+    "module": "financecopy",
+    "en": "PayPal webhook ID",
+    "fa": "شناسهٔ وب‌هوک PayPal",
+    "ar": "PayPal webhook ID"
+  },
+  {
+    "key": "financeCopy.webhook_secret",
+    "module": "financecopy",
+    "en": "Stripe webhook signing secret",
+    "fa": "کلید امضای وب‌هوک Stripe",
+    "ar": "Stripe webhook signing secret"
+  },
+  {
+    "key": "financeCopy.webhookHint",
+    "module": "financecopy",
+    "en": "Copy this address into the provider dashboard. Card, Apple Pay and Google Pay are handled by Stripe’s secure checkout; wallet buttons appear on supported devices and merchant accounts.",
+    "fa": "این نشانی را در پنل ارائه‌دهنده قرار دهید. کارت، Apple Pay و Google Pay در صفحهٔ امن Stripe پردازش می‌شوند؛ دکمه‌های کیف پول بر اساس دستگاه و حساب پذیرنده نمایش داده می‌شوند.",
+    "ar": "Copy this address into the provider dashboard. Card, Apple Pay and Google Pay are handled by Stripe’s secure checkout; wallet buttons appear on supported devices and merchant accounts."
+  },
+  {
+    "key": "financeCopy.withdraw",
+    "module": "financecopy",
+    "en": "Request withdrawal",
+    "fa": "درخواست برداشت",
+    "ar": "Request withdrawal"
+  },
+  {
+    "key": "financeCopy.withdrawHint",
+    "module": "financecopy",
+    "en": "Funds remain locked until payment succeeds or is definitively rejected. A bank transfer is completed by an administrator using the bank receipt.",
+    "fa": "مبلغ تا موفقیت پرداخت یا رد قطعی قفل می‌ماند. انتقال بانکی با رسید بانک توسط مدیر تکمیل می‌شود.",
+    "ar": "Funds remain locked until payment succeeds or is definitively rejected. A bank transfer is completed by an administrator using the bank receipt."
+  },
+  {
+    "key": "financeCopy.year",
+    "module": "financecopy",
+    "en": "Yearly",
+    "fa": "سالانه",
+    "ar": "Yearly"
+  },
+  {
     "key": "inline.auth.1e9cca2d3cfb",
     "module": "inline",
     "en": "Available after provider configuration",
@@ -3740,6 +5098,13 @@
     "en": "Start date (YYYY-MM-DD)",
     "fa": "تاریخ شروع (YYYY-MM-DD)",
     "ar": "Start date (YYYY-MM-DD)"
+  },
+  {
+    "key": "schedulingCopy.states.BOOKING_PENDING_PAYMENT",
+    "module": "schedulingcopy",
+    "en": "Awaiting payment",
+    "fa": "در انتظار پرداخت",
+    "ar": "Awaiting payment"
   },
   {
     "key": "schedulingCopy.states.CANCELLED",

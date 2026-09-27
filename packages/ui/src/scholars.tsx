@@ -500,7 +500,10 @@ function ServiceForm({
           <Control
             label={t.currency}
             value={value.currency}
-            options={['IRR', 'IRT', 'USD', 'EUR'].map((v) => ({ value: v, label: v }))}
+            options={['IRR', 'IRT', 'USD', 'EUR', 'GBP', 'AED'].map((v) => ({
+              value: v,
+              label: v,
+            }))}
             change={(v) => setValue({ ...value, currency: String(v) })}
           />
           {(['specialty_id', 'category_id'] as const).map((k) => (
@@ -957,7 +960,7 @@ export function ScholarWorkspace({
                       <p>
                         {(
                           s.details.price_minor /
-                          (['USD', 'EUR'].includes(s.details.currency) ? 100 : 1)
+                          (['USD', 'EUR', 'GBP', 'AED'].includes(s.details.currency) ? 100 : 1)
                         ).toLocaleString(locale)}{' '}
                         {s.details.currency} · {s.details.duration_minutes}
                       </p>

@@ -19,6 +19,12 @@ const owners: Record<string, string> = {
   localization: 'taxonomy-service',
   search: 'search-service',
   matching: 'matching-service',
+  payments: 'payment-service',
+  finance: 'payment-service',
+  wallet: 'wallet-service',
+  accounting: 'accounting-service',
+  payouts: 'payout-service',
+  disputes: 'dispute-service',
 };
 export function usersProxy() {
   const router = internalRouter('28mb', true);
@@ -50,6 +56,7 @@ export function usersProxy() {
         req.get('authorization') ?? '',
         req.method === 'GET' ? undefined : req.body,
         req.method,
+        group === 'payments' ? { 'x-finance-client-ip': req.get('x-finance-client-ip') ?? '' } : {},
       );
       res.json({ data });
     }),

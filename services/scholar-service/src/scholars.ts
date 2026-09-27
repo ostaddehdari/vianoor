@@ -161,8 +161,8 @@ export function scholarsRouter(pool: Pool) {
         .parse(req.query);
       const rows = (
         await pool.query(
-          `SELECT o.id AS service_id,o.revision AS service_revision,o.details,s.id AS scholar_id,s.account_id AS expert_id,s.public_id AS expert_code,s.profile->>'display_name' AS expert_name,s.valid_until::text FROM scholar_offerings o JOIN scholars s ON s.id=o.scholar_id WHERE o.status='PUBLISHED' AND s.status='APPROVED' AND (s.valid_until IS NULL OR s.valid_until>now()) AND s.profile->>'visibility'='PUBLIC' AND (o.details->>'booking_required')::boolean AND (o.details->>'duration_minutes')::int>0 AND (o.details->>'price_minor')::bigint=0 AND ($1::text IS NULL OR s.public_id=$1) AND ($2::uuid IS NULL OR o.id=$2) AND EXISTS(SELECT 1 FROM scholar_specialties sp WHERE sp.scholar_id=s.id AND sp.specialty_id=(o.details->>'specialty_id')::uuid AND sp.status='APPROVED') ORDER BY s.id,o.id LIMIT 100`,
-          [query.expert ?? null, query.service ?? null],
+          `SELECT o.id AS service_id,o.revision AS service_revision,o.details,s.id AS scholar_id,s.account_id AS expert_id,s.public_id AS expert_code,s.profile->>'display_name' AS expert_name,s.profile->>'country' AS expert_country,s.valid_until::text FROM scholar_offerings o JOIN scholars s ON s.id=o.scholar_id WHERE o.status='PUBLISHED' AND s.status='APPROVED' AND (s.valid_until IS NULL OR s.valid_until>now()) AND s.profile->>'visibility'='PUBLIC' AND (o.details->>'booking_required')::boolean AND (o.details->>'duration_minutes')::int>0 AND ((o.details->>'price_minor')::bigint=0 OR $3::boolean) AND ($1::text IS NULL OR s.public_id=$1) AND ($2::uuid IS NULL OR o.id=$2) AND EXISTS(SELECT 1 FROM scholar_specialties sp WHERE sp.scholar_id=s.id AND sp.specialty_id=(o.details->>'specialty_id')::uuid AND sp.status='APPROVED') ORDER BY s.id,o.id LIMIT 100`,
+          [query.expert ?? null, query.service ?? null, process.env.FINANCE_ENABLED === '1'],
         )
       ).rows;
       const active = await internalCall<string[]>(
@@ -192,6 +192,9 @@ export function scholarsRouter(pool: Pool) {
           title: row.details.title,
           duration_minutes: row.details.duration_minutes,
           price_minor: row.details.price_minor,
+          specialty_id: row.details.specialty_id,
+          country: row.expert_country,
+          kind: row.details.kind,
           currency: row.details.currency,
         });
       }

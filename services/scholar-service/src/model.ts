@@ -110,7 +110,7 @@ export const offeringSchema = z
     category_id: z.string().uuid().nullable(),
     duration_minutes: z.number().int().min(1).max(1440).nullable(),
     price_minor: z.number().int().min(0).max(1000000000000),
-    currency: z.enum(['IRR', 'IRT', 'USD', 'EUR']),
+    currency: z.enum(['IRR', 'IRT', 'USD', 'EUR', 'GBP', 'AED']),
     booking_required: z.boolean(),
     image_id: z.string().uuid().nullable(),
     terms: z.string().trim().max(5000),

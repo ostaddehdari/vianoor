@@ -43,6 +43,10 @@ export function routeInfo(path: string, app: 'web' | 'admin' = 'web') {
     [
       '',
       'localization',
+      'finance',
+      'wallet',
+      'earnings',
+      'payouts',
       'professional',
       'book',
       'bookings',

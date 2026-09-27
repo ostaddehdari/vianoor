@@ -22,6 +22,12 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       'localization',
       'search',
       'matching',
+      'payments',
+      'finance',
+      'wallet',
+      'accounting',
+      'payouts',
+      'disputes',
     ].includes(path[0]!)
   )
     return fail('NOT_FOUND', 404);
@@ -89,11 +95,18 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
         method: req.method,
         redirect: 'error',
         cache: 'no-store',
-        signal: AbortSignal.timeout(path[0] === 'matching' ? 65000 : 20000),
+        signal: AbortSignal.timeout(
+          ['matching', 'payments', 'finance', 'payouts', 'disputes'].includes(path[0]!)
+            ? 65000
+            : 20000,
+        ),
         headers: {
           'content-type': 'application/json',
           'x-internal-key': key,
           authorization: `Bearer ${access}`,
+          ...(path[0] === 'payments' && process.env.FINANCE_TRUST_PROXY_IP === '1'
+            ? { 'x-finance-client-ip': req.headers.get('x-real-ip') ?? '' }
+            : {}),
         },
         ...(body === undefined ? {} : { body }),
       },
