@@ -846,7 +846,11 @@
   color: #a73c00;
   font-size: 1.2rem;
 }
+.triple-calendar button {
+  margin: 0;
+}
 .triple-calendar-heading small {
+  color: #435249;
   display: block;
   font-size: 0.7rem;
   margin-top: 5px;
@@ -895,6 +899,9 @@
   color: #354653;
 }
 .triple-calendar-days strong {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-variant-numeric: tabular-nums;
   font-size: 1.15rem;
   font-weight: 750;
   line-height: 1.5;
@@ -922,7 +929,7 @@
   color: #b3233c;
 }
 .triple-calendar .triple-calendar-days .is-outside {
-  color: #71777b;
+  color: #535b60;
   background: #f6f6f5;
 }
 .triple-calendar .triple-calendar-days .is-today {
@@ -958,6 +965,7 @@
   font-size: 0.7rem;
 }
 .triple-calendar-note {
+  color: #435249;
   display: block;
   font-size: 0.65rem;
   line-height: 1.7;

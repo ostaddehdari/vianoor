@@ -23,7 +23,9 @@ test('real calendar editing, client hold and confirmation, reschedule and cancel
   await expect(page.getByRole('heading', { name: 'Working calendar', exact: true })).toBeVisible();
   const calendar = page.locator('.triple-calendar');
   await expect(calendar).toHaveAttribute('data-primary-calendar', 'gregory');
-  await calendar.getByLabel('Primary calendar', { exact: true }).selectOption('islamic-umalqura');
+  await calendar
+    .getByRole('combobox', { name: 'Primary calendar', exact: true })
+    .selectOption('islamic-umalqura');
   await expect(calendar).toHaveAttribute('data-primary-calendar', 'islamic-umalqura');
   await calendar.getByRole('button', { name: 'Next month', exact: true }).click();
   await calendar.getByRole('button', { name: 'Go to today', exact: true }).click();
@@ -53,6 +55,7 @@ test('real calendar editing, client hold and confirmation, reschedule and cancel
     [],
   );
   await page.screenshot({ path: info.outputPath('calendar-fa.png'), fullPage: true });
+  await calendar.screenshot({ path: info.outputPath('three-calendar-fa.png') });
   const context = await browser.newContext({
     baseURL: 'http://127.0.0.1:18886',
     viewport: info.project.use.viewport,
