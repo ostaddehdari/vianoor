@@ -40,7 +40,11 @@ test('real expert and reviewer interfaces publish a service; Persian RTL and pub
       .fill('Browser qualification review');
     await finalReview.getByRole('button', { name: 'Save review' }).click();
     await expect(finalReview.getByRole('option', { name: 'Approved', exact: true })).toHaveCount(1);
-    await finalReview.getByLabel('Status', { exact: true }).selectOption('APPROVED');
+  }
+  if (await finalReview.getByRole('option', { name: 'Approved', exact: true }).count()) {
+    await finalReview
+      .getByRole('combobox', { name: 'Status', exact: true })
+      .selectOption('APPROVED');
     await finalReview
       .getByLabel('Reason visible to the expert')
       .fill('Browser verification complete');

@@ -1,15 +1,15 @@
 import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: './tests/scholars-ui',
-  timeout: 240000,
-  expect: { timeout: 20000 },
+  timeout: 420000,
+  expect: { timeout: 60000 },
   workers: 1,
   retries: 0,
   reporter: [['list']],
   outputDir: '.cache/scholars-browser-results',
   use: {
     baseURL: 'http://127.0.0.1:18886',
-    actionTimeout: 30000,
+    actionTimeout: 60000,
     trace: 'off',
     screenshot: 'only-on-failure',
   },

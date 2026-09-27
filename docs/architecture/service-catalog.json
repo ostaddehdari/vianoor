@@ -78,7 +78,7 @@
     "stage": 8,
     "port": 4104,
     "runtime": "nestjs",
-    "status": "scaffold",
+    "status": "verified-in-isolated-environment",
     "database": "taxonomy_db",
     "databaseRole": "taxonomy_app",
     "ownership": "موضوع، تخصص، زبان و دیدگاه اختیاری",
@@ -86,7 +86,8 @@
     "dependencies": ["identity-service", "organization-service", "file-service"],
     "transport": "http+jetstream",
     "migrationOwner": "taxonomy-service",
-    "backupPolicy": "pit-recovery-required"
+    "backupPolicy": "pit-recovery-required",
+    "verification": "docs/stages/08-scholars-services-files.md"
   },
   {
     "id": "scholar-service",
@@ -94,7 +95,7 @@
     "stage": 8,
     "port": 4105,
     "runtime": "nestjs",
-    "status": "scaffold",
+    "status": "verified-in-isolated-environment",
     "database": "scholar_db",
     "databaseRole": "scholar_app",
     "ownership": "پروفایل حرفه‌ای، مدارک، تأیید، خدمات و تعرفه",
@@ -108,7 +109,8 @@
     ],
     "transport": "http+jetstream",
     "migrationOwner": "scholar-service",
-    "backupPolicy": "pit-recovery-required"
+    "backupPolicy": "pit-recovery-required",
+    "verification": "docs/stages/08-scholars-services-files.md"
   },
   {
     "id": "availability-service",
@@ -235,7 +237,7 @@
     "stage": 8,
     "port": 4113,
     "runtime": "nestjs",
-    "status": "scaffold",
+    "status": "verified-in-isolated-environment",
     "database": "file_db",
     "databaseRole": "file_app",
     "ownership": "metadata، مالکیت، دسترسی و وضعیت اسکن؛ bytes در object storage",
@@ -249,7 +251,8 @@
     ],
     "transport": "http+jetstream",
     "migrationOwner": "file-service",
-    "backupPolicy": "pit-recovery-required"
+    "backupPolicy": "pit-recovery-required",
+    "verification": "docs/stages/08-scholars-services-files.md"
   },
   {
     "id": "payment-service",
