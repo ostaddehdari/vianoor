@@ -1,3 +1,4 @@
+import { expertsPublicCopy } from '@vianoor/ui';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { expertData, publicBase, type PublicExpert } from '../data';
@@ -30,32 +31,7 @@ export default async function Expert({ params }: Params) {
     image = p.image_id
       ? await expertData<{ mime: string; base64: string }>('files/public/' + p.image_id)
       : null;
-  const t =
-    locale === 'fa'
-      ? {
-          back: 'فهرست اساتید',
-          verified: 'استاد تأییدشده',
-          education: 'تحصیلات',
-          experience: 'سوابق',
-          specialties: 'تخصص‌ها',
-          languages: 'زبان‌ها',
-          documents: 'مدارک تأییدشده',
-          services: 'خدمات و تعرفه‌ها',
-          note: 'رزرو و پرداخت در مراحل بعد فعال می‌شوند.',
-          minutes: 'دقیقه',
-        }
-      : {
-          back: 'Expert directory',
-          verified: 'Verified expert',
-          education: 'Education',
-          experience: 'Experience',
-          specialties: 'Specialties',
-          languages: 'Languages',
-          documents: 'Verified credentials',
-          services: 'Services and pricing',
-          note: 'Booking and payment will be added in a later stage.',
-          minutes: 'minutes',
-        };
+  const t = expertsPublicCopy[locale];
   return (
     <main className="public-experts" dir={locale === 'fa' ? 'rtl' : 'ltr'}>
       <a href={`${publicBase}/${locale}/experts`}>{t.back}</a>

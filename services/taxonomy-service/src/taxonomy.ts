@@ -54,7 +54,7 @@ export function taxonomyRouter(pool: Pool) {
       res.json({
         data: (
           await pool.query(
-            'SELECT * FROM taxonomy_entries WHERE $1 OR active ORDER BY position,id',
+            'WITH RECURSIVE hidden AS (SELECT id FROM taxonomy_entries WHERE NOT active UNION SELECT t.id FROM taxonomy_entries t JOIN hidden h ON t.parent_id=h.id) SELECT * FROM taxonomy_entries WHERE $1 OR id NOT IN (SELECT id FROM hidden) ORDER BY position,id',
             [admin],
           )
         ).rows,

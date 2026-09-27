@@ -1,3 +1,4 @@
+import { expertsPublicCopy } from '@vianoor/ui';
 import { notFound } from 'next/navigation';
 import { expertData, publicBase } from './data';
 export const dynamic = 'force-dynamic';
@@ -8,20 +9,7 @@ export default async function Experts({ params }: { params: Promise<{ locale: st
     await expertData<{ slug: string; display_name: string; title: string; short_bio: string }[]>(
       'experts/public',
     );
-  const t =
-    locale === 'fa'
-      ? {
-          title: 'اساتید تأییدشده',
-          empty: 'هنوز پروفایل عمومی منتشر نشده است.',
-          unavailable: 'فهرست اساتید در دسترس نیست.',
-          home: 'خانه',
-        }
-      : {
-          title: 'Verified experts',
-          empty: 'No public profiles have been published yet.',
-          unavailable: 'Expert directory is unavailable.',
-          home: 'Home',
-        };
+  const t = expertsPublicCopy[locale];
   return (
     <main className="public-experts" dir={locale === 'fa' ? 'rtl' : 'ltr'}>
       <a href={`${publicBase}/${locale}`}>{t.home}</a>

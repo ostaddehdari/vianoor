@@ -89,6 +89,13 @@ function AssetUpload({
   const t = scholarsCopy[locale],
     [id, setId] = useState(''),
     [status, setStatus] = useState(''),
+    [filters, setFilters] = useState({
+      specialty: '',
+      language: '',
+      from: '',
+      to: '',
+      documents: '',
+    }),
     [busy, setBusy] = useState(false),
     [error, setError] = useState('');
   async function refresh() {
@@ -179,7 +186,9 @@ function ProfessionalForm({
     >
       <fieldset disabled={busy}>
         <div className="scholar-grid">
-          {(['display_name', 'title', 'slug', 'city', 'country'] as const).map((k) => field(k))}
+          {(['display_name', 'title', 'slug', 'city', 'country', 'contact_phone'] as const).map(
+            (k) => field(k),
+          )}
           {field('years', 'number')}
           {(['short_bio', 'biography', 'experience', 'education'] as const).map((k) =>
             field(k, 'text', true),
@@ -597,7 +606,11 @@ export function ScholarWorkspace({ locale, admin = false }: { locale: Locale; ad
       setItems(
         await userApi<typeof items>(
           'experts/admin?' +
-            new URLSearchParams({ ...(query ? { q: query } : {}), ...(status ? { status } : {}) }),
+            new URLSearchParams({
+              ...(query ? { q: query } : {}),
+              ...(status ? { status } : {}),
+              ...Object.fromEntries(Object.entries(filters).filter(([, value]) => value)),
+            }),
         ),
       );
       if (selected) setRow(await userApi<Scholar>('experts/admin/' + selected));
@@ -651,6 +664,39 @@ export function ScholarWorkspace({ locale, admin = false }: { locale: Locale; ad
             }}
           >
             <Control label={t.search} value={query} change={(v) => setQuery(String(v))} />
+            {(['specialty', 'language'] as const).map((k) => (
+              <Control
+                key={k}
+                label={k === 'specialty' ? t.specialties : t.languages}
+                value={filters[k]}
+                options={[
+                  { value: '', label: t.all },
+                  ...taxons
+                    .filter((x) => x.kind === k)
+                    .map((x) => ({ value: x.id, label: x.label[locale] })),
+                ]}
+                change={(v) => setFilters({ ...filters, [k]: String(v) })}
+              />
+            ))}
+            {(['from', 'to'] as const).map((k) => (
+              <Control
+                key={k}
+                label={t[k]}
+                value={filters[k]}
+                type="date"
+                change={(v) => setFilters({ ...filters, [k]: String(v) })}
+              />
+            ))}
+            <Control
+              label={t.documents}
+              value={filters.documents}
+              options={[
+                { value: '', label: t.all },
+                { value: 'missing', label: t.missing },
+                { value: 'expired', label: t.states.EXPIRED },
+              ]}
+              change={(v) => setFilters({ ...filters, documents: String(v) })}
+            />
             <Control
               label={t.status}
               value={status}

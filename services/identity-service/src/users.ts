@@ -10,10 +10,66 @@ import {
 } from '@vianoor/service-runtime';
 import type { Identity } from './identity.js';
 import { publicId } from './public-id.js';
-import { passwordHash, token } from './security.js';
+import { passwordHash, token, encrypt } from './security.js';
 const code = z.string().regex(/^[A-Za-z0-9]{13}$/);
 export function usersRouter(identity: Identity) {
   const router = internalRouter();
+  router.post(
+    '/internal/active-accounts',
+    endpoint(async (req, res) => {
+      const data = z
+        .object({ codes: z.array(code).max(100) })
+        .strict()
+        .parse(req.body);
+      res.json({
+        data: (
+          await identity.pool.query(
+            'SELECT public_id FROM identity_accounts WHERE public_id=ANY($1::text[]) AND disabled_at IS NULL AND verified_at IS NOT NULL',
+            [data.codes],
+          )
+        ).rows.map((r) => r.public_id),
+      });
+    }),
+  );
+  router.post(
+    '/internal/expert-notification',
+    endpoint(async (req, res) => {
+      const input = z
+        .object({
+          id: z.string().uuid(),
+          account_id: z.string().uuid(),
+          event: z.string().regex(/^[A-Z_]{1,60}$/),
+        })
+        .strict()
+        .parse(req.body);
+      await transaction(identity.pool, async (db) => {
+        const inserted = await db.query(
+          "INSERT INTO infra_inbox(consumer,event_id) VALUES('expert-email-v1',$1) ON CONFLICT DO NOTHING RETURNING event_id",
+          [input.id],
+        );
+        if (!inserted.rowCount) return;
+        const account = (
+          await db.query(
+            'SELECT email FROM identity_accounts WHERE id=$1 AND disabled_at IS NULL AND verified_at IS NOT NULL',
+            [input.account_id],
+          )
+        ).rows[0];
+        if (!account) return;
+        const text = `وضعیت پروندهٔ حرفه‌ای شما در ویانور به‌روز شد. نتیجه و جزئیات را در داشبورد مشاهده کنید.\nYour professional application has an update. View the decision in your dashboard.\n${identity.config.publicUrl}/fa/account/professional`;
+        await db.query(
+          "INSERT INTO identity_mail(id,encrypted,expires_at) VALUES($1,$2,now()+interval '2 days')",
+          [
+            input.id,
+            encrypt(
+              { email: account.email, subject: 'ویانور | Professional application update', text },
+              identity.config.mailKey,
+            ),
+          ],
+        );
+      });
+      res.json({ data: { ok: true } });
+    }),
+  );
   router.post(
     '/internal/expert-contact-search',
     endpoint(async (req, res) => {

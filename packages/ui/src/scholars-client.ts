@@ -12,6 +12,7 @@ export type Taxon = {
 };
 export type Professional = {
   display_name: string;
+  contact_phone: string;
   title: string;
   slug: string;
   short_bio: string;
@@ -79,6 +80,7 @@ export type Scholar = {
 };
 export const emptyProfessional: Professional = {
   display_name: '',
+  contact_phone: '',
   title: '',
   slug: '',
   short_bio: '',

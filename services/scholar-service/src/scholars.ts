@@ -39,6 +39,59 @@ export async function initializeScholars(pool: Pool) {
   CREATE TABLE IF NOT EXISTS scholar_notifications(id uuid PRIMARY KEY,account_id uuid NOT NULL,scholar_id uuid NOT NULL,event text NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),read_at timestamptz);
   CREATE INDEX IF NOT EXISTS scholar_status_idx ON scholars(status,submitted_at);
   CREATE INDEX IF NOT EXISTS scholar_documents_owner_idx ON scholar_documents(scholar_id);`);
+  await pool.query(`ALTER TABLE scholar_notifications ADD COLUMN IF NOT EXISTS delivered_at timestamptz;
+    CREATE TABLE IF NOT EXISTS scholar_reminders(document_id uuid NOT NULL,expires_at date NOT NULL,PRIMARY KEY(document_id,expires_at));`);
+}
+
+export async function deliverScholarNotifications(pool: Pool) {
+  await transaction(pool, async (db) => {
+    const due = (
+      await db.query(
+        "SELECT d.id,d.scholar_id,d.details->>'expires_at' AS expiry,s.account_id FROM scholar_documents d JOIN scholars s ON s.id=d.scholar_id WHERE d.deleted_at IS NULL AND d.status='APPROVED' AND (d.details->>'expires_at')::date BETWEEN current_date AND current_date+30",
+      )
+    ).rows;
+    for (const doc of due) {
+      if (
+        (
+          await db.query(
+            'INSERT INTO scholar_reminders(document_id,expires_at) VALUES($1,$2) ON CONFLICT DO NOTHING RETURNING document_id',
+            [doc.id, doc.expiry],
+          )
+        ).rowCount
+      )
+        await db.query(
+          "INSERT INTO scholar_notifications(id,account_id,scholar_id,event) VALUES($1,$2,$3,'DOCUMENT_EXPIRING')",
+          [randomUUID(), doc.account_id, doc.scholar_id],
+        );
+    }
+  });
+  const pending = (
+    await pool.query(
+      "SELECT id,account_id,event FROM scholar_notifications WHERE delivered_at IS NULL AND event IN ('SUBMITTED','UNDER_REVIEW','NEEDS_CHANGES','APPROVED','SUSPENDED','REJECTED','DOCUMENTS_REJECTED','SPECIALTIES_APPROVED','SERVICE_PUBLISHED','DOCUMENT_EXPIRING') ORDER BY created_at LIMIT 10",
+    )
+  ).rows;
+  for (const job of pending) {
+    await internalCall('identity-service', '/internal/expert-notification', '', job);
+    await pool.query('UPDATE scholar_notifications SET delivered_at=now() WHERE id=$1', [job.id]);
+  }
+}
+export function notificationWorker(pool: Pool) {
+  let timer: ReturnType<typeof setTimeout> | undefined,
+    stopped = false;
+  let running: Promise<unknown> = Promise.resolve();
+  const tick = () => {
+    running = deliverScholarNotifications(pool)
+      .catch(() => {})
+      .finally(() => {
+        if (!stopped) timer = setTimeout(tick, 5000);
+      });
+  };
+  tick();
+  return async () => {
+    stopped = true;
+    clearTimeout(timer);
+    await running;
+  };
 }
 type Scholar = {
   id: string;
@@ -76,8 +129,37 @@ async function taxonomy(req: Request, profile: Professional) {
 async function fileReady(req: Request, id: string, kind: 'document' | 'image', owner: string) {
   return internalCall('file-service', '/internal/files/validate', auth(req), { id, kind, owner });
 }
+async function pinImage(req: Request, id: string | null, owner: string, reference: string) {
+  if (!id) return;
+  await fileReady(req, id, 'image', owner);
+  await internalCall('file-service', '/internal/files/reference', auth(req), {
+    id,
+    owner,
+    reference,
+  });
+}
 export function scholarsRouter(pool: Pool) {
   const router = internalRouter('128kb');
+  router.post(
+    '/internal/files/released-document',
+    endpoint(async (req, res) => {
+      const user = await principal(req);
+      const input = z
+        .object({ id: z.string().uuid(), document_id: z.string().uuid() })
+        .strict()
+        .parse(req.body);
+      if (
+        !(
+          await pool.query(
+            "SELECT 1 FROM scholar_documents d JOIN scholars s ON s.id=d.scholar_id WHERE d.id=$1 AND d.details->>'file_id'=$2 AND d.deleted_at IS NOT NULL AND s.account_id=$3",
+            [input.document_id, input.id, user.id],
+          )
+        ).rowCount
+      )
+        throw new ServiceError(403, 'FORBIDDEN');
+      res.json({ data: { ok: true } });
+    }),
+  );
   router.post(
     '/internal/files/review-access',
     endpoint(async (req, res) => {
@@ -178,8 +260,8 @@ export function scholarsRouter(pool: Pool) {
       if (row) throw new ServiceError(409, 'ALREADY_EXISTS');
       const input = professionalSchema.parse(req.body);
       await taxonomy(req, input);
-      if (input.image_id) await fileReady(req, input.image_id, 'image', user.public_id);
       const id = randomUUID();
+      await pinImage(req, input.image_id, user.public_id, 'scholar-image:' + id);
       await transaction(pool, async (db) => {
         await db.query('SELECT pg_advisory_xact_lock(8002)');
         if (
@@ -215,8 +297,7 @@ export function scholarsRouter(pool: Pool) {
         .strict()
         .parse(req.body);
       await taxonomy(req, data.profile);
-      if (data.profile.image_id)
-        await fileReady(req, data.profile.image_id, 'image', user.public_id);
+      await pinImage(req, data.profile.image_id, user.public_id, 'scholar-image:' + row.id);
       await transaction(pool, async (db) => {
         await db.query('SELECT pg_advisory_xact_lock(8002)');
         const current = await load(db, row.id, true);
@@ -326,6 +407,13 @@ export function scholarsRouter(pool: Pool) {
       const { user, row } = await mine(req);
       if (!row) throw new ServiceError(404, 'NOT_FOUND');
       const id = z.string().uuid().parse(req.params.id);
+      const document = (
+        await pool.query('SELECT details FROM scholar_documents WHERE id=$1 AND scholar_id=$2', [
+          id,
+          row.id,
+        ])
+      ).rows[0];
+      if (!document) throw new ServiceError(404, 'NOT_FOUND');
       await transaction(pool, async (db) => {
         const current = await load(db, row.id, true);
         if (['SUBMITTED', 'UNDER_REVIEW', 'SUSPENDED', 'APPROVED'].includes(current.status))
@@ -333,7 +421,7 @@ export function scholarsRouter(pool: Pool) {
         if (
           !(
             await db.query(
-              'UPDATE scholar_documents SET deleted_at=now() WHERE id=$1 AND scholar_id=$2 AND deleted_at IS NULL RETURNING id',
+              'UPDATE scholar_documents SET deleted_at=coalesce(deleted_at,now()) WHERE id=$1 AND scholar_id=$2 RETURNING id',
               [id, row.id],
             )
           ).rowCount
@@ -341,6 +429,10 @@ export function scholarsRouter(pool: Pool) {
           throw new ServiceError(404, 'NOT_FOUND');
         await db.query('UPDATE scholars SET revision=revision+1 WHERE id=$1', [row.id]);
         await record(db, user.id, current, 'DOCUMENT_REMOVED', id);
+      });
+      await internalCall('file-service', '/internal/files/release-document', auth(req), {
+        id: document.details.file_id,
+        document_id: id,
       });
       res.json({ data: { ok: true } });
     }),
@@ -374,7 +466,7 @@ export function scholarsRouter(pool: Pool) {
       }
       const rows = await pool.query(
         `SELECT id,public_id,slug,status,revision,profile->>'display_name' AS display_name,submitted_at FROM scholars s
-      WHERE ($1::text IS NULL OR status=$1) AND ($2::text IS NULL OR profile->>'display_name' ILIKE '%'||$2||'%' OR public_id=ANY($3::text[]))
+      WHERE ($1::text IS NULL OR status=$1) AND ($2::text IS NULL OR profile->>'display_name' ILIKE '%'||$2||'%' OR profile->>'contact_phone' ILIKE '%'||$2||'%' OR public_id=ANY($3::text[]))
       AND ($4::uuid IS NULL OR EXISTS(SELECT 1 FROM scholar_specialties WHERE scholar_id=s.id AND specialty_id=$4))
       AND ($5::text IS NULL OR profile->'languages' @> jsonb_build_array(jsonb_build_object('id',$5::text)))
       AND ($6::date IS NULL OR submitted_at >= $6::date) AND ($7::date IS NULL OR submitted_at < $7::date+1)
@@ -537,8 +629,8 @@ export function scholarsRouter(pool: Pool) {
         languages: [],
         categories: input.category_id ? [input.category_id] : [],
       });
-      if (input.image_id) await fileReady(req, input.image_id, 'image', user.public_id);
       const id = randomUUID();
+      await pinImage(req, input.image_id, user.public_id, 'scholar-service:' + id);
       await transaction(pool, async (db) => {
         const current = await load(db, row.id, true);
         if (!isVerified(current.status, current.valid_until))
@@ -577,8 +669,7 @@ export function scholarsRouter(pool: Pool) {
         languages: [],
         categories: input.details.category_id ? [input.details.category_id] : [],
       });
-      if (input.details.image_id)
-        await fileReady(req, input.details.image_id, 'image', user.public_id);
+      await pinImage(req, input.details.image_id, user.public_id, 'scholar-service:' + id);
       await transaction(pool, async (db) => {
         const current = await load(db, row.id, true);
         if (!isVerified(current.status, current.valid_until))
@@ -719,13 +810,18 @@ export function scholarsRouter(pool: Pool) {
   router.get(
     '/api/v2/experts/public',
     endpoint(async (_req, res) => {
-      res.json({
-        data: (
-          await pool.query(
-            "SELECT slug,public_id,profile->>'display_name' AS display_name,profile->>'title' AS title,profile->>'short_bio' AS short_bio FROM scholars WHERE status='APPROVED' AND (valid_until IS NULL OR valid_until>now()) AND profile->>'visibility'='PUBLIC' ORDER BY slug LIMIT 100",
-          )
-        ).rows,
-      });
+      const rows = (
+        await pool.query(
+          "SELECT slug,public_id,profile->>'display_name' AS display_name,profile->>'title' AS title,profile->>'short_bio' AS short_bio FROM scholars WHERE status='APPROVED' AND (valid_until IS NULL OR valid_until>now()) AND profile->>'visibility'='PUBLIC' ORDER BY slug LIMIT 100",
+        )
+      ).rows;
+      const active = await internalCall<string[]>(
+        'identity-service',
+        '/internal/active-accounts',
+        '',
+        { codes: rows.map((r) => r.public_id) },
+      );
+      res.json({ data: rows.filter((r) => active.includes(r.public_id)) });
     }),
   );
   router.get(
@@ -742,12 +838,25 @@ export function scholarsRouter(pool: Pool) {
         )
       ).rows[0] as Scholar | undefined;
       if (!row) throw new ServiceError(404, 'NOT_FOUND');
+      const active = await internalCall<string[]>(
+        'identity-service',
+        '/internal/active-accounts',
+        '',
+        { codes: [row.public_id] },
+      );
+      if (!active.length) throw new ServiceError(404, 'NOT_FOUND');
+      const currentTaxons = await internalCall<{ id: string }[]>(
+        'taxonomy-service',
+        '/api/v2/taxonomy',
+      );
       const specialties = (
         await pool.query(
           "SELECT specialty_id FROM scholar_specialties WHERE scholar_id=$1 AND status='APPROVED'",
           [row.id],
         )
-      ).rows.map((r) => r.specialty_id);
+      ).rows
+        .map((r) => r.specialty_id)
+        .filter((id) => currentTaxons.some((t) => t.id === id));
       const {
         image_id,
         display_name,

@@ -93,6 +93,27 @@ async function checkAccess(req: Request, file: Asset) {
 }
 export function assetsRouter(pool: Pool) {
   const router = internalRouter('28mb');
+  router.post(
+    '/internal/files/release-document',
+    endpoint(async (req, res) => {
+      const user = await principal(req);
+      const input = z
+        .object({ id: z.string().uuid(), document_id: z.string().uuid() })
+        .strict()
+        .parse(req.body);
+      await internalCall(
+        'scholar-service',
+        '/internal/files/released-document',
+        req.get('authorization') ?? '',
+        input,
+      );
+      await pool.query(
+        'DELETE FROM file_references r USING stored_files f WHERE r.file_id=f.id AND f.owner_id=$1 AND r.file_id=$2 AND r.reference=$3',
+        [user.id, input.id, 'scholar-document:' + input.document_id],
+      );
+      res.json({ data: { ok: true } });
+    }),
+  );
   const load = async (id: string): Promise<Asset> => {
     const row = (await pool.query('SELECT * FROM stored_files WHERE id=$1', [id])).rows[0];
     if (!row) throw new ServiceError(404, 'NOT_FOUND');
@@ -433,23 +454,27 @@ export async function scanOnce(pool: Pool) {
     let normalized = bytes,
       mime = file.mime;
     if (file.mime.startsWith('image/')) {
-      const source = sharp(bytes, { limitInputPixels: 16777216, failOn: 'warning' });
-      const meta = await source.metadata();
-      if ((meta.pages ?? 1) > 1) throw new ServiceError(400, 'INVALID_IMAGE');
-      normalized = await source
-        .rotate()
-        .resize(file.purpose === 'avatar' ? 512 : 2048, file.purpose === 'avatar' ? 512 : 2048, {
-          fit: 'inside',
-          withoutEnlargement: true,
-        })
-        .webp({ quality: 85 })
-        .toBuffer();
-      mime = 'image/webp';
+      try {
+        const source = sharp(bytes, { limitInputPixels: 16777216, failOn: 'warning' });
+        const meta = await source.metadata();
+        if ((meta.pages ?? 1) > 1) throw new ServiceError(400, 'INVALID_IMAGE');
+        normalized = await source
+          .rotate()
+          .resize(file.purpose === 'avatar' ? 512 : 2048, file.purpose === 'avatar' ? 512 : 2048, {
+            fit: 'inside',
+            withoutEnlargement: true,
+          })
+          .webp({ quality: 85 })
+          .toBuffer();
+        mime = 'image/webp';
+      } catch {
+        throw new ServiceError(400, 'INVALID_IMAGE');
+      }
     }
     await putObject('ready/' + file.id, normalized, mime);
     await pool.query(
-      "UPDATE stored_files SET state='READY',scan_status='CLEAN',mime=$3,lease_until=NULL WHERE id=$1 AND revision=$2 AND state='SCANNING'",
-      [file.id, file.revision, mime],
+      "UPDATE stored_files SET state='READY',scan_status='CLEAN',mime=$3,bytes=$4,lease_until=NULL WHERE id=$1 AND revision=$2 AND state='SCANNING'",
+      [file.id, file.revision, mime, normalized.length],
     );
   } catch (error) {
     const invalid = error instanceof ServiceError && error.status === 400;

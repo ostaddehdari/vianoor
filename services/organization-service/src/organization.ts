@@ -108,8 +108,19 @@ export function organizationRouter(pool: Pool) {
   const grants = async (id: string) =>
     (await pool.query('SELECT role,scope FROM role_grants WHERE account_id=$1', [id])).rows;
   const authorize = async (user: Principal, permission: string, scope: string) => {
-    if (!grantsPermission(await grants(user.id), permission, scope))
-      throw new ServiceError(403, 'FORBIDDEN');
+    if (grantsPermission(await grants(user.id), permission, scope)) return;
+    if (
+      process.env.SCHOLARS_ENABLED === '1' &&
+      permission === 'booking.attend' &&
+      scope === 'platform'
+    ) {
+      const qualification = await internalCall<{ verified: boolean }>(
+        'scholar-service',
+        '/internal/experts/qualification/' + user.public_id,
+      );
+      if (qualification.verified) return;
+    }
+    throw new ServiceError(403, 'FORBIDDEN');
   };
   router.post(
     '/internal/authorize',

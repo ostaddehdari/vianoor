@@ -21,6 +21,10 @@ const webUrl = z
 export const professionalSchema = z
   .object({
     display_name: text,
+    contact_phone: z
+      .string()
+      .regex(/^(?:\+?[0-9]{7,15})?$/)
+      .default(''),
     title: text,
     slug: z
       .string()

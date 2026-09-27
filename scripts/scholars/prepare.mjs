@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, chownSync } from 'node:fs';
 import { randomBytes } from 'node:crypto';
 const path = 'infra/identity.compose.json';
 const compose = JSON.parse(readFileSync(path, 'utf8'));
@@ -29,6 +29,8 @@ if (!existsSync('infra/local/storage.env')) {
     { mode: 0o600 },
   );
 }
+if (process.platform === 'linux' && process.getuid?.() === 0)
+  chownSync('infra/local/s3.json', 1000, 1000);
 for (const name of [
   'api-gateway',
   'identity-service',
@@ -62,15 +64,16 @@ compose.services['object-storage'] = {
     '-s3.config=/etc/seaweedfs/s3.json',
     '-ip=object-storage',
     '-ip.bind=0.0.0.0',
-    '-volume.max=2',
+    '-volume.max=16',
     '-master.volumeSizeLimitMB=256',
+    '-master.telemetry=false',
   ],
   networks: ['backend'],
   volumes: ['objects:/data', './local/s3.json:/etc/seaweedfs/s3.json:ro'],
   restart: 'unless-stopped',
   mem_limit: '384m',
   healthcheck: {
-    test: ['CMD', 'wget', '-q', '-O', '/dev/null', 'http://localhost:9333/cluster/status'],
+    test: ['CMD', 'nc', '-z', '127.0.0.1', '8333'],
     interval: '10s',
     timeout: '5s',
     retries: 15,
