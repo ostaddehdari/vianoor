@@ -15,3 +15,5 @@ export {
 export { LanguageSwitcher } from './language-switcher';
 
 export { ExpertDiscovery } from './discovery';
+
+export { communicationCopy } from './communication-copy';

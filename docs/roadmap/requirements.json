@@ -557,45 +557,45 @@
     "id": "R12-01",
     "stage": 12,
     "title": "persistent chat",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "Refresh، عضویت، تکرار، ترتیب و خطای ارسال",
-    "verification": "docs/testing/stage-12 (planned)",
+    "verification": "docs/testing/stage-12.md",
     "externalDependency": "SMTP/پیامک/ذخیره‌سازی"
   },
   {
     "id": "R12-02",
     "stage": 12,
     "title": "reply",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "Refresh، عضویت، تکرار، ترتیب و خطای ارسال",
-    "verification": "docs/testing/stage-12 (planned)",
+    "verification": "docs/testing/stage-12.md",
     "externalDependency": "SMTP/پیامک/ذخیره‌سازی"
   },
   {
     "id": "R12-03",
     "stage": 12,
     "title": "voice/file",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "Refresh، عضویت، تکرار، ترتیب و خطای ارسال",
-    "verification": "docs/testing/stage-12 (planned)",
+    "verification": "docs/testing/stage-12.md",
     "externalDependency": "SMTP/پیامک/ذخیره‌سازی"
   },
   {
     "id": "R12-04",
     "stage": 12,
     "title": "receipts",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "Refresh، عضویت، تکرار، ترتیب و خطای ارسال",
-    "verification": "docs/testing/stage-12 (planned)",
+    "verification": "docs/testing/stage-12.md",
     "externalDependency": "SMTP/پیامک/ذخیره‌سازی"
   },
   {
     "id": "R12-05",
     "stage": 12,
     "title": "notification و reminder",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "Refresh، عضویت، تکرار، ترتیب و خطای ارسال",
-    "verification": "docs/testing/stage-12 (planned)",
+    "verification": "docs/testing/stage-12.md",
     "externalDependency": "SMTP/پیامک/ذخیره‌سازی"
   },
   {
@@ -1107,5 +1107,32 @@
     "acceptance": "مطابق docs/stages/10-scope.md؛ AI در این مرحله فراخوانی نمی‌شود",
     "verification": "docs/stages/10-data-model.md; docs/stages/10-multilingual-discovery.md",
     "externalDependency": "PostgreSQL؛ بدون ارائه‌دهندهٔ AI فعال"
+  },
+  {
+    "id": "R12-06",
+    "stage": 12,
+    "title": "کانال استاد و صندوق مدیریت",
+    "status": "in-progress",
+    "acceptance": "مخاطب بدون ارجاع به استاد دسترسی خصوصی ندارد؛ دنبال‌کردن، نظر تأییدشده و پاسخ",
+    "verification": "docs/testing/stage-12.md",
+    "externalDependency": "PostgreSQL/Redis/SMTP/ذخیره‌سازی/پیامک"
+  },
+  {
+    "id": "R12-07",
+    "stage": 12,
+    "title": "پرسش خصوصی و انتشار کنترل‌شده",
+    "status": "in-progress",
+    "acceptance": "انتشار نسخه مستقل عمومی یا ناشناس فقط با رضایت مالک و بازبینی",
+    "verification": "docs/testing/stage-12.md",
+    "externalDependency": "PostgreSQL/Redis/SMTP/ذخیره‌سازی/پیامک"
+  },
+  {
+    "id": "R12-08",
+    "stage": 12,
+    "title": "WebSocket و حضور",
+    "status": "in-progress",
+    "acceptance": "بلیط یک‌بارمصرف، Origin معتبر، عضویت، تایپ موقت و بازیابی تاریخچه",
+    "verification": "docs/testing/stage-12.md",
+    "externalDependency": "PostgreSQL/Redis/SMTP/ذخیره‌سازی/پیامک"
   }
 ]

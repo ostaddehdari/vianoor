@@ -1,4 +1,7 @@
 'use client';
+import { CommunicationWorkspace } from './communication';
+import { CommunicationCenter } from './communication-center';
+import { communicationCopy } from './communication-copy';
 import { FinanceWorkspace } from './finance';
 import { financeCopy } from './finance-copy';
 import { LocalizationManager } from './localization-manager';
@@ -338,6 +341,12 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     (scope === 'platform' ? '' : '?scope=' + encodeURIComponent(scope));
   const links: [string, string][] = [
     ['', roleName(locale, role)],
+    ...(['messages', 'channels', 'questions', 'notifications'] as const).map(
+      (k) => [k, communicationCopy[locale]![k]] as [string, string],
+    ),
+    ...(admin || role === 'support'
+      ? [['inbox', communicationCopy[locale]!.inbox] as [string, string]]
+      : []),
     ...(role === 'account'
       ? ([
           ['book', schedulingCopy[locale]!.book],
@@ -457,6 +466,7 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
             </h1>
           </div>
           <div className="user-actions">
+            <CommunicationCenter locale={locale} />
             <ReleaseBadge locale={locale} />
             <LanguageSwitcher locale={locale} />
             <UserAccountMenu locale={locale} profile={profile} />
@@ -471,9 +481,16 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
               </a>
             </div>
           )}
-          {((admin || role === 'finance') && (section === 'finance' || role === 'finance')) ||
-          (['account', 'expert'].includes(role) &&
-            ['wallet', 'earnings', 'payouts'].includes(section)) ? (
+          {['messages', 'channels', 'questions', 'notifications', 'inbox'].includes(section) ? (
+            <CommunicationWorkspace
+              locale={locale}
+              section={section}
+              admin={admin || (role === 'support' && section === 'inbox')}
+              expert={role === 'expert'}
+            />
+          ) : ((admin || role === 'finance') && (section === 'finance' || role === 'finance')) ||
+            (['account', 'expert'].includes(role) &&
+              ['wallet', 'earnings', 'payouts'].includes(section)) ? (
             <FinanceWorkspace
               locale={locale}
               admin={admin || role === 'finance'}

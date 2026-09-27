@@ -1,4 +1,5 @@
 'use client';
+import { communicationCopy } from './communication-copy';
 import { financeCopy } from './finance-copy';
 import { usersBase } from './users-client';
 import { useEffect, useState, useRef } from 'react';
@@ -824,6 +825,16 @@ function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert'
           </p>
           {view !== 'admin' && (
             <div className="user-actions">
+              {['CONFIRMED', 'COMPLETED', 'RESCHEDULED', 'RESCHEDULE_REQUESTED'].includes(
+                r.status,
+              ) && (
+                <a
+                  className="button"
+                  href={usersBase + '/' + locale + '/account/messages?booking=' + r.id}
+                >
+                  {communicationCopy[locale]!.conversation}
+                </a>
+              )}
               {r.status === 'BOOKING_PENDING_PAYMENT' && view === 'mine' && (
                 <a
                   className="button"

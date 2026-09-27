@@ -68,6 +68,8 @@ type BookingQuote = {
 };
 export async function initializePayments(pool: Pool) {
   await pool.query(`
+ CREATE TABLE IF NOT EXISTS payment_notification_start(id boolean PRIMARY KEY DEFAULT true CHECK(id),since timestamptz NOT NULL DEFAULT now()); INSERT INTO payment_notification_start(id) VALUES(true) ON CONFLICT DO NOTHING;
+ CREATE TABLE IF NOT EXISTS payment_notification_delivery(payment_id uuid PRIMARY KEY,delivered_at timestamptz NOT NULL DEFAULT now());
  CREATE TABLE IF NOT EXISTS payment_gateways(id uuid PRIMARY KEY,provider text NOT NULL,mode text NOT NULL,enabled boolean NOT NULL DEFAULT false,current boolean NOT NULL DEFAULT true,version int NOT NULL,credentials text NOT NULL,currencies jsonb NOT NULL,countries jsonb NOT NULL DEFAULT '[]',connection_status text NOT NULL DEFAULT 'NOT_TESTED',created_at timestamptz NOT NULL DEFAULT now(),UNIQUE(provider,version));
  CREATE UNIQUE INDEX IF NOT EXISTS current_gateway ON payment_gateways(provider) WHERE current;
  CREATE TABLE IF NOT EXISTS payments(id uuid PRIMARY KEY,account_id uuid NOT NULL,booking_id uuid,expert_id uuid,gateway_id uuid REFERENCES payment_gateways(id),provider text NOT NULL,amount numeric(30,0) NOT NULL CHECK(amount>0),fee numeric(30,0) NOT NULL CHECK(fee>=0 AND fee<=amount),currency text NOT NULL,decimals int NOT NULL,status text NOT NULL DEFAULT 'CREATED',reference text,capture_reference text,checkout jsonb NOT NULL DEFAULT '{}',network text,snapshot jsonb NOT NULL DEFAULT '{}',request_key uuid NOT NULL,request_data jsonb NOT NULL,fulfillment text NOT NULL DEFAULT 'PENDING',released_at timestamptz,disputed boolean NOT NULL DEFAULT false,last_checked timestamptz,created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now(),UNIQUE(account_id,request_key));
@@ -1065,6 +1067,30 @@ export function paymentsRouter(pool: Pool) {
   return r;
 }
 export async function financeTick(pool: Pool) {
+  if (process.env.COMMUNICATIONS_ENABLED === '1') {
+    for (const p of (
+      await pool.query(
+        "SELECT id,account_id FROM payments WHERE status='SUCCESS' AND created_at>=(SELECT since FROM payment_notification_start WHERE id) AND fulfillment IN ('APPLIED','CREDITED_LATE') AND NOT EXISTS(SELECT 1 FROM payment_notification_delivery d WHERE d.payment_id=payments.id) LIMIT 50",
+      )
+    ).rows) {
+      try {
+        await internalCall('notification-service', '/internal/notifications', '', {
+          id: p.id,
+          account_id: p.account_id,
+          context_id: p.id,
+          category: 'PAYMENTS',
+          event: 'PAYMENT_COMPLETED',
+        });
+        await pool.query(
+          'INSERT INTO payment_notification_delivery(payment_id) VALUES($1) ON CONFLICT DO NOTHING',
+          [p.id],
+        );
+      } catch {
+        /* Durable notification is retried after recovery. */
+      }
+    }
+  }
+
   let checked = 0;
   for (const p of (
     await pool.query(

@@ -1126,3 +1126,133 @@
   display: grid;
   gap: 0.4rem;
 }
+.communication-center {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.communication-center summary {
+  cursor: pointer;
+  padding: 0.6rem;
+  border: 1px solid #b5c9be;
+  border-radius: 0.6rem;
+}
+.communication-layout {
+  display: grid;
+  grid-template-columns: minmax(190px, 260px) minmax(0, 1fr);
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+.communication-layout > nav {
+  border-inline-end: 1px solid #d5e0d8;
+  padding-inline-end: 1rem;
+}
+.communication-layout > nav article > button {
+  width: 100%;
+  text-align: start;
+  margin-bottom: 0.5rem;
+}
+.communication-layout small {
+  display: block;
+}
+.communication-history {
+  list-style: none;
+  padding: 0;
+  max-height: 60vh;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.communication-history > li {
+  margin: 0.8rem 0;
+  padding: 1rem;
+  border: 1px solid #d5e0d8;
+  border-radius: 1rem;
+  background: #f7faf7;
+}
+.communication-history header,
+.communication-history footer {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.communication-history time {
+  font-size: 0.78rem;
+}
+.communication-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.communication-compose {
+  display: grid;
+  gap: 0.7rem;
+}
+.communication-workspace textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 0.7rem;
+  border: 1px solid #b7c7be;
+  border-radius: 0.6rem;
+}
+.communication-workspace label {
+  display: grid;
+  gap: 0.35rem;
+  margin-block: 0.5rem;
+}
+.communication-workspace input,
+.communication-workspace select {
+  max-width: 100%;
+  min-width: 0;
+  padding: 0.6rem;
+}
+.communication-workspace audio,
+.communication-workspace video,
+.communication-image {
+  max-width: 100%;
+  max-height: 400px;
+}
+.communication-post {
+  border: 1px solid #d5e0d8;
+  border-radius: 1rem;
+  margin-block: 1rem;
+  padding: 1rem;
+  overflow-wrap: anywhere;
+}
+.communication-comment {
+  margin-inline-start: 1rem;
+  border-inline-start: 3px solid #d5e0d8;
+  padding: 0.6rem;
+}
+.communication-workspace button {
+  max-width: 100%;
+  white-space: normal;
+}
+.communication-workspace fieldset {
+  border: 1px solid #d5e0d8;
+  border-radius: 0.5rem;
+  margin-block: 0.7rem;
+}
+.communication-workspace fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+@media (max-width: 760px) {
+  .communication-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .communication-layout > nav {
+    border-inline-end: 0;
+    border-bottom: 1px solid #d5e0d8;
+    max-height: 260px;
+    overflow: auto;
+  }
+  .communication-center {
+    font-size: 0.8rem;
+  }
+  .communication-history {
+    max-height: 55vh;
+  }
+}

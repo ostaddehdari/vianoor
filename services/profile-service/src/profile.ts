@@ -56,6 +56,26 @@ export async function initializeProfile(pool: Pool) {
 }
 export function profileRouter(pool: Pool) {
   const router = internalRouter();
+  router.post(
+    '/internal/communication-actors',
+    endpoint(async (req, res) => {
+      await principal(req);
+      const d = z.object({ conversation_id: z.string().uuid() }).strict().parse(req.body),
+        members = await internalCall<{ account_id: string }[]>(
+          'messaging-service',
+          '/internal/communications/members/' + d.conversation_id,
+          req.get('authorization') ?? '',
+        );
+      res.json({
+        data: (
+          await pool.query(
+            'SELECT account_id,public_id,display_name,avatar FROM profiles WHERE account_id=ANY($1::uuid[])',
+            [members.map((m) => m.account_id)],
+          )
+        ).rows,
+      });
+    }),
+  );
   if (process.env.DISCOVERY_ENABLED === '1') {
     router.get(
       '/api/v2/profiles/language',

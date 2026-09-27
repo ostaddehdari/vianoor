@@ -45,6 +45,26 @@ export function validateSignature(bytes: Buffer, name: string, mime: string) {
     bytes.subarray(8, 12).toString() === 'WEBP'
   )
     return 'image';
+  if (
+    ['audio/webm', 'video/webm'].includes(mime) &&
+    ext === 'webm' &&
+    bytes.subarray(0, 4).equals(Buffer.from([0x1a, 0x45, 0xdf, 0xa3]))
+  )
+    return 'media';
+  if (mime === 'audio/ogg' && ext === 'ogg' && bytes.subarray(0, 4).toString() === 'OggS')
+    return 'media';
+  if (
+    ['audio/mp4', 'video/mp4'].includes(mime) &&
+    ['m4a', 'mp4'].includes(ext ?? '') &&
+    bytes.subarray(4, 8).toString() === 'ftyp'
+  )
+    return 'media';
+  if (
+    mime === 'audio/mpeg' &&
+    ext === 'mp3' &&
+    (bytes.subarray(0, 3).toString() === 'ID3' || (bytes[0] === 255 && (bytes[1]! & 0xe0) === 0xe0))
+  )
+    return 'media';
   throw new ServiceError(400, 'INVALID_FILE_TYPE');
 }
 export async function initializeAssets(pool: Pool) {
@@ -52,7 +72,7 @@ export async function initializeAssets(pool: Pool) {
   CREATE TABLE IF NOT EXISTS file_references(file_id uuid REFERENCES stored_files(id),reference text NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(file_id,reference));
   CREATE TABLE IF NOT EXISTS file_audit(id bigserial PRIMARY KEY,actor_id uuid,file_id uuid,action text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
   CREATE TABLE IF NOT EXISTS file_limits(purpose text PRIMARY KEY,max_bytes int NOT NULL);
-  INSERT INTO file_limits VALUES('avatar',5242880),('image',10485760),('document',20971520) ON CONFLICT DO NOTHING;`);
+  INSERT INTO file_limits VALUES('avatar',5242880),('image',10485760),('document',20971520),('communication',20971520),('channel',20971520) ON CONFLICT DO NOTHING;`);
 }
 type Asset = {
   id: string;
@@ -76,6 +96,17 @@ async function checkAccess(req: Request, file: Asset) {
     (file.access === 'AUTHORIZED_USERS' && file.authorized_users.includes(user.public_id))
   )
     return user;
+  if (['communication', 'channel'].includes(file.purpose)) {
+    await internalCall(
+      'messaging-service',
+      file.purpose === 'communication'
+        ? '/internal/communications/file-access'
+        : '/internal/channels/file-access',
+      req.get('authorization') ?? '',
+      { id: file.id },
+    );
+    return user;
+  }
   // Reviewers have a separate document permission; other files require file administration.
   try {
     await requirePermission(req, 'file.admin');
@@ -114,6 +145,57 @@ export function assetsRouter(pool: Pool) {
       res.json({ data: { ok: true } });
     }),
   );
+  for (const kind of ['communication', 'channel'] as const)
+    router.post(
+      '/internal/files/' + kind + '-claim',
+      endpoint(async (req, res) => {
+        const u = await principal(req),
+          d = z
+            .object({
+              id: z.string().uuid(),
+              conversation_id: z.string().uuid().optional(),
+              channel_id: z.string().uuid().optional(),
+              type: z.enum(['TEXT', 'IMAGE', 'FILE', 'VOICE', 'VIDEO']).optional(),
+            })
+            .strict()
+            .parse(req.body);
+        const context = kind === 'communication' ? d.conversation_id : d.channel_id;
+        if (!context) throw new ServiceError(400, 'CONTEXT_REQUIRED');
+        await internalCall(
+          'messaging-service',
+          kind === 'communication'
+            ? '/internal/communications/authorize'
+            : '/internal/channels/file-owner',
+          req.get('authorization') ?? '',
+          kind === 'communication'
+            ? { conversation_id: context, write: true }
+            : { channel_id: context },
+        );
+        await transaction(pool, async (db) => {
+          const f = (await db.query('SELECT * FROM stored_files WHERE id=$1 FOR UPDATE', [d.id]))
+            .rows[0];
+          if (
+            !f ||
+            f.owner_id !== u.id ||
+            f.state !== 'READY' ||
+            f.purpose !== kind ||
+            f.access !== 'OWNER_ONLY'
+          )
+            throw new ServiceError(409, 'FILE_NOT_READY');
+          if (
+            (d.type === 'VOICE' && !f.mime.startsWith('audio/')) ||
+            (d.type === 'VIDEO' && !f.mime.startsWith('video/')) ||
+            (d.type === 'IMAGE' && !f.mime.startsWith('image/'))
+          )
+            throw new ServiceError(400, 'INVALID_FILE_TYPE');
+          await db.query(
+            'INSERT INTO file_references(file_id,reference) VALUES($1,$2) ON CONFLICT DO NOTHING',
+            [d.id, kind + ':' + context],
+          );
+        });
+        res.json({ data: { ok: true } });
+      }),
+    );
   const load = async (id: string): Promise<Asset> => {
     const row = (await pool.query('SELECT * FROM stored_files WHERE id=$1', [id])).rows[0];
     if (!row) throw new ServiceError(404, 'NOT_FOUND');
@@ -132,7 +214,7 @@ export function assetsRouter(pool: Pool) {
       const user = await requirePermission(req, 'file.admin');
       const input = z
         .object({
-          purpose: z.enum(['avatar', 'image', 'document']),
+          purpose: z.enum(['avatar', 'image', 'document', 'communication', 'channel']),
           max_bytes: z
             .number()
             .int()
@@ -164,8 +246,19 @@ export function assetsRouter(pool: Pool) {
             .min(1)
             .max(150)
             .refine((v) => ![...v].some((c) => c.charCodeAt(0) < 32 || c === '/' || c === '\\')),
-          mime: z.enum(['application/pdf', 'image/jpeg', 'image/png', 'image/webp']),
-          purpose: z.enum(['avatar', 'image', 'document']),
+          mime: z.enum([
+            'application/pdf',
+            'image/jpeg',
+            'image/png',
+            'image/webp',
+            'audio/webm',
+            'video/webm',
+            'audio/ogg',
+            'audio/mp4',
+            'video/mp4',
+            'audio/mpeg',
+          ]),
+          purpose: z.enum(['avatar', 'image', 'document', 'communication', 'channel']),
           access: z.enum(['OWNER_ONLY', 'ADMIN_ONLY', 'AUTHORIZED_USERS', 'PUBLIC']),
           authorized_users: z
             .array(z.string().regex(/^[A-Za-z0-9]{13}$/))
@@ -186,10 +279,17 @@ export function assetsRouter(pool: Pool) {
       ).rows[0].max_bytes;
       if (!bytes.length || bytes.length > limit) throw new ServiceError(413, 'FILE_TOO_LARGE');
       const detected = validateSignature(bytes, input.name, input.mime);
-      if (input.purpose !== 'document' && detected !== 'image')
+      if (['avatar', 'image'].includes(input.purpose) && detected !== 'image')
         throw new ServiceError(400, 'INVALID_FILE_TYPE');
       if (input.purpose === 'document' && input.access === 'PUBLIC')
         throw new ServiceError(400, 'PRIVATE_DOCUMENT_REQUIRED');
+      if (
+        ['communication', 'channel'].includes(input.purpose) &&
+        (input.access !== 'OWNER_ONLY' || input.authorized_users.length)
+      )
+        throw new ServiceError(400, 'PRIVATE_FILE_REQUIRED');
+      if (input.purpose === 'document' && detected === 'media')
+        throw new ServiceError(400, 'INVALID_FILE_TYPE');
       const id = randomUUID();
       await transaction(pool, async (db) => {
         await db.query('SELECT pg_advisory_xact_lock(hashtextextended($1,0))', [user.id]);
@@ -242,7 +342,7 @@ export function assetsRouter(pool: Pool) {
       res.json({
         data: (
           await pool.query(
-            'SELECT f.id,f.owner_code,f.name,f.mime,f.bytes,f.purpose,f.access,f.state,f.scan_status,f.created_at,f.revision,(SELECT count(*)::int FROM file_references WHERE file_id=f.id) AS references FROM stored_files f WHERE $1 OR owner_id=$2 ORDER BY created_at DESC LIMIT 50 OFFSET $3',
+            "SELECT f.id,f.owner_code,f.name,f.mime,f.bytes,f.purpose,f.access,f.state,f.scan_status,f.created_at,f.revision,(SELECT count(*)::int FROM file_references WHERE file_id=f.id) AS references FROM stored_files f WHERE ($1 AND f.purpose NOT IN ('communication','channel')) OR owner_id=$2 ORDER BY created_at DESC LIMIT 50 OFFSET $3",
             [admin, user.id, offset],
           )
         ).rows,
