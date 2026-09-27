@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync, existsSync, chownSync } from 'node:fs';
-import { randomBytes } from 'node:crypto';
+import { randomBytes, createHash } from 'node:crypto';
 const path = 'infra/identity.compose.json';
 const compose = JSON.parse(readFileSync(path, 'utf8'));
 const base = readFileSync('infra/local/users.env', 'utf8').trim();
@@ -103,6 +103,16 @@ compose.services['scholars-test'] = {
   command: ['node', '--import', 'tsx', '--test', 'tests/integration/scholars.test.ts'],
 };
 if (process.env.SCHOLARS_TEST === '1') {
+  // Isolated-test signature for a harmless PDF. Stock EICAR is tested separately as its exact 68-byte format.
+  const fixture = Buffer.from('%PDF-1.4\nVIANOOR-ANTIVIRUS-INTEGRATION-TEST\n%%EOF');
+  writeFileSync(
+    'infra/local/stage08-test.hdb',
+    `${createHash('md5').update(fixture).digest('hex')}:${fixture.length}:Vianoor.Stage08.HarmlessTest\n`,
+    { mode: 0o644 },
+  );
+  compose.services.scanner.volumes.push(
+    './local/stage08-test.hdb:/var/lib/clamav/stage08-test.hdb:ro',
+  );
   const identity = readFileSync('infra/local/identity-auth.env', 'utf8');
   if (
     !identity.includes('AUTH_DEVELOPMENT=1') ||

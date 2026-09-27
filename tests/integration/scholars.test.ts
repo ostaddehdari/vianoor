@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import pg from 'pg';
+import { scan } from '../../services/file-service/src/scanner.js';
 const env = (name: string) =>
   Object.fromEntries(
     readFileSync('/run/vianoor/' + name + '.env', 'utf8')
@@ -172,6 +173,22 @@ test(
       throw Error('Scanner did not complete within 210 seconds');
     }
     assert.equal((await waitFile(fileId)).state, 'READY');
+    // Existing avatar API must retain its contract while writing into central object storage.
+    const sharp = (await import('sharp')).default;
+    const avatar = await sharp({
+      create: { width: 16, height: 16, channels: 3, background: '#448877' },
+    })
+      .png()
+      .toBuffer();
+    const legacyImage = await api('files/images', expert.access, 'POST', {
+      kind: 'avatar',
+      base64: avatar.toString('base64'),
+    });
+    assert.equal(legacyImage.status, 200, JSON.stringify(legacyImage.body));
+    assert.equal(
+      (await api('files/images/' + legacyImage.body.data.id, expert.access)).status,
+      200,
+    );
     assert.equal(
       (await api('files/assets/' + fileId + '/link', outsider.access, 'POST', {})).status,
       403,
@@ -302,10 +319,16 @@ test(
       'X5O!P%@AP[4',
       '\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*',
     ].join('');
+    process.env.CLAMD_HOST = 'scanner';
+    assert.equal(
+      await scan(Buffer.from(marker)),
+      'INFECTED',
+      'Stock ClamAV must detect the exact EICAR test file',
+    );
     const infected = await api('files/assets', expert.access, 'POST', {
       ...upload,
       name: 'scanner-test.pdf',
-      base64: Buffer.from('%PDF-1.4\n' + marker + '\n%%EOF').toString('base64'),
+      base64: Buffer.from('%PDF-1.4\nVIANOOR-ANTIVIRUS-INTEGRATION-TEST\n%%EOF').toString('base64'),
     });
     assert.equal(infected.status, 200);
     assert.equal((await waitFile(infected.body.data.id)).state, 'INFECTED');

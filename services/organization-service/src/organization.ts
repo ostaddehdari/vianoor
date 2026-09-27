@@ -210,7 +210,7 @@ export function organizationRouter(pool: Pool) {
         const qualification = await internalCall<{ verified: boolean }>(
           'scholar-service',
           '/internal/experts/qualification/' + user.public_id,
-        );
+        ).catch(() => ({ verified: false }));
         if (qualification.verified)
           list.rows.push({ role: 'expert', scope: 'platform', organization_name: null });
       }

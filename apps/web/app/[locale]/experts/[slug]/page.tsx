@@ -98,7 +98,10 @@ export default async function Expert({ params }: Params) {
             <p>{s.details.summary}</p>
             <p>{s.details.description}</p>
             <strong>
-              {s.details.price_minor.toLocaleString(locale)} {s.details.currency}
+              {(
+                s.details.price_minor / (['USD', 'EUR'].includes(s.details.currency) ? 100 : 1)
+              ).toLocaleString(locale)}{' '}
+              {s.details.currency}
             </strong>
             {s.details.duration_minutes && (
               <p>

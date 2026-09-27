@@ -89,13 +89,6 @@ function AssetUpload({
   const t = scholarsCopy[locale],
     [id, setId] = useState(''),
     [status, setStatus] = useState(''),
-    [filters, setFilters] = useState({
-      specialty: '',
-      language: '',
-      from: '',
-      to: '',
-      documents: '',
-    }),
     [busy, setBusy] = useState(false),
     [error, setError] = useState('');
   async function refresh() {
@@ -380,7 +373,9 @@ function DocumentForm({
                 value={value[k]}
                 type={k.endsWith('_at') ? 'date' : 'text'}
                 multiline={k === 'description'}
-                change={(v) => setValue({ ...value, [k]: v || null })}
+                change={(v) =>
+                  setValue({ ...value, [k]: k.endsWith('_at') ? v || null : String(v ?? '') })
+                }
               />
             ),
           )}
@@ -598,6 +593,13 @@ export function ScholarWorkspace({ locale, admin = false }: { locale: Locale; ad
     [message, setMessage] = useState(''),
     [query, setQuery] = useState(''),
     [status, setStatus] = useState(''),
+    [filters, setFilters] = useState({
+      specialty: '',
+      language: '',
+      from: '',
+      to: '',
+      documents: '',
+    }),
     [editService, setEditService] = useState(''),
     [reviewServices, setReviewServices] = useState(true);
   const load = async () => {
@@ -905,8 +907,11 @@ export function ScholarWorkspace({ locale, admin = false }: { locale: Locale; ad
                       <p>{s.details.summary}</p>
                       <p>{s.details.description}</p>
                       <p>
-                        {s.details.price_minor.toLocaleString(locale)} {s.details.currency} ·{' '}
-                        {s.details.duration_minutes}
+                        {(
+                          s.details.price_minor /
+                          (['USD', 'EUR'].includes(s.details.currency) ? 100 : 1)
+                        ).toLocaleString(locale)}{' '}
+                        {s.details.currency} · {s.details.duration_minutes}
                       </p>
                       <p>{s.details.terms}</p>
                       <span>{stateLabel(t, s.status)}</span>

@@ -4,6 +4,8 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 import { z } from 'zod';
 import type { Pool } from 'pg';
+import { putObject, getObject } from './object-store.js';
+import { scan } from './scanner.js';
 import {
   internalRouter,
   endpoint,
@@ -14,6 +16,33 @@ import {
   transaction,
 } from '@vianoor/service-runtime';
 const storage = process.env.FILE_STORAGE_PATH ?? '/var/lib/vianoor/avatars';
+const objectStorageEnabled = () => process.env.SCHOLARS_ENABLED === '1';
+async function storeLegacyImage(
+  pool: Pool,
+  image: { id: string; account_id: string; public_id: string; kind: string },
+  bytes: Buffer,
+) {
+  if ((await scan(bytes)) !== 'CLEAN') throw new ServiceError(400, 'INVALID_IMAGE');
+  await putObject('quarantine/' + image.id, bytes, 'image/webp');
+  await putObject('ready/' + image.id, bytes, 'image/webp');
+  await transaction(pool, async (db) => {
+    await db.query(
+      "INSERT INTO stored_files(id,owner_id,owner_code,name,mime,bytes,purpose,access,state,scan_status) VALUES($1,$2,$3,$4,'image/webp',$5,$6,'OWNER_ONLY','READY','CLEAN') ON CONFLICT DO NOTHING",
+      [
+        image.id,
+        image.account_id,
+        image.public_id,
+        image.id + '.webp',
+        bytes.length,
+        image.kind === 'avatar' ? 'avatar' : 'image',
+      ],
+    );
+    await db.query(
+      'INSERT INTO file_references(file_id,reference) VALUES($1,$2) ON CONFLICT DO NOTHING',
+      [image.id, 'legacy-image:' + image.id],
+    );
+  });
+}
 export async function normalizeImage(bytes: Buffer) {
   if (bytes.length > 2 * 1024 * 1024 || !bytes.length) throw new ServiceError(400, 'INVALID_IMAGE');
   try {
@@ -62,14 +91,21 @@ export function filesRouter(pool: Pool) {
           ])
         ).rows[0].total;
         if (count >= 50) throw new ServiceError(429, 'IMAGE_LIMIT');
-        await writeFile(join(storage, id + '.webp'), bytes, { flag: 'wx', mode: 0o600 });
+        if (objectStorageEnabled())
+          await storeLegacyImage(
+            pool,
+            { id, account_id: user.id, public_id: user.public_id, kind: data.kind },
+            bytes,
+          );
+        if (!objectStorageEnabled())
+          await writeFile(join(storage, id + '.webp'), bytes, { flag: 'wx', mode: 0o600 });
         try {
           await db.query(
             'INSERT INTO user_images(id,account_id,public_id,kind,bytes) VALUES($1,$2,$3,$4,$5)',
             [id, user.id, user.public_id, data.kind, bytes.length],
           );
         } catch (e) {
-          await unlink(join(storage, id + '.webp'));
+          if (!objectStorageEnabled()) await unlink(join(storage, id + '.webp'));
           throw e;
         }
       });
@@ -103,7 +139,16 @@ export function filesRouter(pool: Pool) {
         );
         if (!sharing.accepted) await requirePermission(req, 'users.manage');
       }
-      const bytes = await readFile(join(storage, id + '.webp'));
+      let bytes: Buffer;
+      if (objectStorageEnabled()) {
+        let stored = (await pool.query('SELECT state FROM stored_files WHERE id=$1', [id])).rows[0];
+        if (!stored) {
+          await storeLegacyImage(pool, image, await readFile(join(storage, id + '.webp')));
+          stored = { state: 'READY' };
+        }
+        if (stored.state !== 'READY') throw new ServiceError(409, 'FILE_NOT_READY');
+        bytes = await getObject('ready/' + id);
+      } else bytes = await readFile(join(storage, id + '.webp'));
       res.json({ data: { id, data_url: 'data:image/webp;base64,' + bytes.toString('base64') } });
     }),
   );
