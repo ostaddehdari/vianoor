@@ -42,6 +42,10 @@ export function routeInfo(path: string, app: 'web' | 'admin' = 'web') {
     path.split('/').length <= 2 &&
     [
       '',
+      'professional',
+      'experts',
+      'taxonomy',
+      'files',
       'profile',
       'users',
       'forms',

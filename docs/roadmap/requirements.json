@@ -309,99 +309,104 @@
     "id": "R07-01",
     "stage": 7,
     "title": "آدرس API",
-    "status": "planned",
+    "status": "deferred",
     "acceptance": "کلید نامعتبر، مدل ناموجود، timeout، SSRF و منع خروج داده",
     "verification": "docs/testing/stage-07 (planned)",
-    "externalDependency": "کلید GapGPT برای تست واقعی"
+    "externalDependency": "کلید GapGPT برای تست واقعی",
+    "scheduling": "پس از تمام قابلیت‌های غیرهوش‌مصنوعی؛ تصمیم مالک ۲۰۲۶-۰۹-۲۷"
   },
   {
     "id": "R07-02",
     "stage": 7,
     "title": "secret",
-    "status": "planned",
+    "status": "deferred",
     "acceptance": "کلید نامعتبر، مدل ناموجود، timeout، SSRF و منع خروج داده",
     "verification": "docs/testing/stage-07 (planned)",
-    "externalDependency": "کلید GapGPT برای تست واقعی"
+    "externalDependency": "کلید GapGPT برای تست واقعی",
+    "scheduling": "پس از تمام قابلیت‌های غیرهوش‌مصنوعی؛ تصمیم مالک ۲۰۲۶-۰۹-۲۷"
   },
   {
     "id": "R07-03",
     "stage": 7,
     "title": "فهرست/ثبت مدل",
-    "status": "planned",
+    "status": "deferred",
     "acceptance": "کلید نامعتبر، مدل ناموجود، timeout، SSRF و منع خروج داده",
     "verification": "docs/testing/stage-07 (planned)",
-    "externalDependency": "کلید GapGPT برای تست واقعی"
+    "externalDependency": "کلید GapGPT برای تست واقعی",
+    "scheduling": "پس از تمام قابلیت‌های غیرهوش‌مصنوعی؛ تصمیم مالک ۲۰۲۶-۰۹-۲۷"
   },
   {
     "id": "R07-04",
     "stage": 7,
     "title": "مدل هر capability",
-    "status": "planned",
+    "status": "deferred",
     "acceptance": "کلید نامعتبر، مدل ناموجود، timeout، SSRF و منع خروج داده",
     "verification": "docs/testing/stage-07 (planned)",
-    "externalDependency": "کلید GapGPT برای تست واقعی"
+    "externalDependency": "کلید GapGPT برای تست واقعی",
+    "scheduling": "پس از تمام قابلیت‌های غیرهوش‌مصنوعی؛ تصمیم مالک ۲۰۲۶-۰۹-۲۷"
   },
   {
     "id": "R07-05",
     "stage": 7,
     "title": "budget و fallback",
-    "status": "planned",
+    "status": "deferred",
     "acceptance": "کلید نامعتبر، مدل ناموجود، timeout، SSRF و منع خروج داده",
     "verification": "docs/testing/stage-07 (planned)",
-    "externalDependency": "کلید GapGPT برای تست واقعی"
+    "externalDependency": "کلید GapGPT برای تست واقعی",
+    "scheduling": "پس از تمام قابلیت‌های غیرهوش‌مصنوعی؛ تصمیم مالک ۲۰۲۶-۰۹-۲۷"
   },
   {
     "id": "R08-01",
     "stage": 8,
     "title": "تخصص",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
-    "verification": "docs/testing/stage-08 (planned)",
+    "verification": "docs/stages/08-scope.md; tests/scholars.test.ts; tests/integration/scholars.test.ts",
     "externalDependency": "Object Storage و scanner"
   },
   {
     "id": "R08-02",
     "stage": 8,
     "title": "مدارک",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
-    "verification": "docs/testing/stage-08 (planned)",
+    "verification": "docs/stages/08-scope.md; tests/scholars.test.ts; tests/integration/scholars.test.ts",
     "externalDependency": "Object Storage و scanner"
   },
   {
     "id": "R08-03",
     "stage": 8,
     "title": "تأیید",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
-    "verification": "docs/testing/stage-08 (planned)",
+    "verification": "docs/stages/08-scope.md; tests/scholars.test.ts; tests/integration/scholars.test.ts",
     "externalDependency": "Object Storage و scanner"
   },
   {
     "id": "R08-04",
     "stage": 8,
     "title": "تعرفه",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
-    "verification": "docs/testing/stage-08 (planned)",
+    "verification": "docs/stages/08-scope.md; tests/scholars.test.ts; tests/integration/scholars.test.ts",
     "externalDependency": "Object Storage و scanner"
   },
   {
     "id": "R08-05",
     "stage": 8,
     "title": "private upload",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
-    "verification": "docs/testing/stage-08 (planned)",
+    "verification": "docs/stages/08-scope.md; tests/scholars.test.ts; tests/integration/scholars.test.ts",
     "externalDependency": "Object Storage و scanner"
   },
   {
     "id": "R08-06",
     "stage": 8,
     "title": "malware scan",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "مالکیت فایل، MIME spoof، مدرک ردشده و signed URL",
-    "verification": "docs/testing/stage-08 (planned)",
+    "verification": "docs/stages/08-scope.md; tests/scholars.test.ts; tests/integration/scholars.test.ts",
     "externalDependency": "Object Storage و scanner"
   },
   {
@@ -858,55 +863,61 @@
     "id": "R18-01",
     "stage": 18,
     "title": "classification",
-    "status": "planned",
+    "status": "deferred",
     "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
     "verification": "docs/testing/stage-18 (planned)",
-    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی",
+    "scheduling": "پس از تمام قابلیت‌های غیرهوش‌مصنوعی؛ تصمیم مالک ۲۰۲۶-۰۹-۲۷"
   },
   {
     "id": "R18-02",
     "stage": 18,
     "title": "translation",
-    "status": "planned",
+    "status": "deferred",
     "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
     "verification": "docs/testing/stage-18 (planned)",
-    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی",
+    "scheduling": "پس از تمام قابلیت‌های غیرهوش‌مصنوعی؛ تصمیم مالک ۲۰۲۶-۰۹-۲۷"
   },
   {
     "id": "R18-03",
     "stage": 18,
     "title": "STT",
-    "status": "planned",
+    "status": "deferred",
     "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
     "verification": "docs/testing/stage-18 (planned)",
-    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی",
+    "scheduling": "پس از تمام قابلیت‌های غیرهوش‌مصنوعی؛ تصمیم مالک ۲۰۲۶-۰۹-۲۷"
   },
   {
     "id": "R18-04",
     "stage": 18,
     "title": "summary",
-    "status": "planned",
+    "status": "deferred",
     "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
     "verification": "docs/testing/stage-18 (planned)",
-    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی",
+    "scheduling": "پس از تمام قابلیت‌های غیرهوش‌مصنوعی؛ تصمیم مالک ۲۰۲۶-۰۹-۲۷"
   },
   {
     "id": "R18-05",
     "stage": 18,
     "title": "embeddings",
-    "status": "planned",
+    "status": "deferred",
     "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
     "verification": "docs/testing/stage-18 (planned)",
-    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی",
+    "scheduling": "پس از تمام قابلیت‌های غیرهوش‌مصنوعی؛ تصمیم مالک ۲۰۲۶-۰۹-۲۷"
   },
   {
     "id": "R18-06",
     "stage": 18,
     "title": "semantic search",
-    "status": "planned",
+    "status": "deferred",
     "acceptance": "مدل فاقد capability، منع external و کیفیت خروجی انسانی",
     "verification": "docs/testing/stage-18 (planned)",
-    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی"
+    "externalDependency": "مدل‌های سازگار و نمونه ارزیابی",
+    "scheduling": "پس از تمام قابلیت‌های غیرهوش‌مصنوعی؛ تصمیم مالک ۲۰۲۶-۰۹-۲۷"
   },
   {
     "id": "R19-01",

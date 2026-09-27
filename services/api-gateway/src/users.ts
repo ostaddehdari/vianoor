@@ -12,9 +12,11 @@ const owners: Record<string, string> = {
   files: 'file-service',
   consents: 'consent-service',
   bookings: 'booking-service',
+  experts: 'scholar-service',
+  taxonomy: 'taxonomy-service',
 };
 export function usersProxy() {
-  const router = internalRouter('3mb', true);
+  const router = internalRouter('28mb', true);
   router.use(
     endpoint(async (req, res) => {
       const group = req.path.split('/')[1] ?? '';
@@ -25,7 +27,13 @@ export function usersProxy() {
         !/^\/[a-zA-Z0-9/-]+$/.test(req.path)
       )
         throw new ServiceError(404, 'NOT_FOUND');
-      await principal(req);
+      const publicRead =
+        req.method === 'GET' &&
+        (req.path === '/experts/public' ||
+          /^\/experts\/public\/[a-z0-9-]+$/.test(req.path) ||
+          /^\/files\/public\/[a-f0-9-]+$/.test(req.path) ||
+          (req.path === '/taxonomy' && req.query.admin !== '1'));
+      if (!publicRead) await principal(req);
       const data = await internalCall(
         owner,
         '/api/v2' + req.url,

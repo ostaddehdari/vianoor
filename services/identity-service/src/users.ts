@@ -14,6 +14,24 @@ import { passwordHash, token } from './security.js';
 const code = z.string().regex(/^[A-Za-z0-9]{13}$/);
 export function usersRouter(identity: Identity) {
   const router = internalRouter();
+  router.post(
+    '/internal/expert-contact-search',
+    endpoint(async (req, res) => {
+      await requirePermission(req, 'expert.read');
+      const data = z
+        .object({ query: z.string().trim().min(1).max(254) })
+        .strict()
+        .parse(req.body);
+      res.json({
+        data: (
+          await identity.pool.query(
+            'SELECT public_id FROM identity_accounts WHERE position(lower($1) in lower(email))>0 LIMIT 200',
+            [data.query],
+          )
+        ).rows,
+      });
+    }),
+  );
   router.get(
     '/internal/principal',
     endpoint(async (req, res) => {

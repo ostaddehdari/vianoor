@@ -14,6 +14,8 @@ import {
 import { UserAvatar, ProfileEditor, userError } from './user-profile';
 import { UserManagement, Organizations } from './user-admin';
 import { FormBuilder } from './form-builder';
+import { ScholarWorkspace, TaxonomyManager, FileManager } from './scholars';
+import { scholarsCopy } from './scholars-copy';
 type Locale = 'fa' | 'en';
 const href = (locale: Locale, path: string) => `${usersBase}/${locale}/${path}`;
 const roleName = (locale: Locale, role: string) =>
@@ -327,6 +329,16 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     href(locale, role + (part ? '/' + part : '')) +
     (scope === 'platform' ? '' : '?scope=' + encodeURIComponent(scope));
   const links: [string, string][] = [
+    ...(['account', 'expert'].includes(role)
+      ? [['professional', scholarsCopy[locale].professional] as [string, string]]
+      : []),
+    ...(admin || role === 'scientific'
+      ? ([
+          ['experts', scholarsCopy[locale].experts],
+          ['taxonomy', scholarsCopy[locale].taxonomy],
+        ] as [string, string][])
+      : []),
+    ...(admin ? [['files', scholarsCopy[locale].files] as [string, string]] : []),
     ['', roleName(locale, role)],
     ...(role === 'account' ? [['profile', t.editProfile] as [string, string]] : []),
     ...(admin
@@ -429,7 +441,15 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
               </a>
             </div>
           )}
-          {section === 'profile' && role === 'account' ? (
+          {section === 'professional' && ['account', 'expert'].includes(role) ? (
+            <ScholarWorkspace locale={locale} />
+          ) : section === 'experts' && (admin || role === 'scientific') ? (
+            <ScholarWorkspace locale={locale} admin />
+          ) : section === 'taxonomy' && (admin || role === 'scientific') ? (
+            <TaxonomyManager locale={locale} />
+          ) : section === 'files' && admin ? (
+            <FileManager locale={locale} />
+          ) : section === 'profile' && role === 'account' ? (
             <ProfileEditor
               key={profile.public_id + ':' + profile.form.id + ':' + profile.form.version}
               locale={locale}

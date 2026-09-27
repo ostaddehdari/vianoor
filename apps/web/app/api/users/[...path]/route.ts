@@ -8,7 +8,16 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
   if (
     !path.length ||
     path.some((p) => !/^[A-Za-z0-9-]+$/.test(p)) ||
-    !['users', 'access', 'profiles', 'files', 'consents', 'bookings'].includes(path[0]!)
+    ![
+      'users',
+      'access',
+      'profiles',
+      'files',
+      'consents',
+      'bookings',
+      'experts',
+      'taxonomy',
+    ].includes(path[0]!)
   )
     return fail('NOT_FOUND', 404);
   const base = process.env.AUTH_PUBLIC_URL,
@@ -33,7 +42,14 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
   )
     return fail('FORBIDDEN', 403);
   const access = req.cookies.get((secure ? '__Secure-vianoor-' : 'vianoor-') + 'access')?.value;
-  if (!access) return fail('UNAUTHORIZED', 401);
+  const publicRead =
+    req.method === 'GET' &&
+    ((path[0] === 'experts' && path[1] === 'public') ||
+      (path[0] === 'files' && path[1] === 'public') ||
+      (path.length === 1 &&
+        path[0] === 'taxonomy' &&
+        req.nextUrl.searchParams.get('admin') !== '1'));
+  if (!access && !publicRead) return fail('UNAUTHORIZED', 401);
   let body: string | undefined;
   if (req.method !== 'GET') {
     const chunks: Uint8Array[] = [];
@@ -44,7 +60,7 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
         const part = await reader.read();
         if (part.done) break;
         size += part.value.length;
-        if (size > 3 * 1024 * 1024) {
+        if (size > (path[0] === 'files' && path[1] === 'assets' ? 28 : 3) * 1024 * 1024) {
           await reader.cancel();
           return fail('INVALID_INPUT', 413);
         }

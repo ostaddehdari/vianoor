@@ -16,7 +16,9 @@
       "profile-service",
       "file-service",
       "consent-service",
-      "booking-service"
+      "booking-service",
+      "scholar-service",
+      "taxonomy-service"
     ],
     "transport": "http+jetstream",
     "migrationOwner": "api-gateway",
@@ -65,7 +67,7 @@
     "databaseRole": "organization_app",
     "ownership": "سازمان، شعبه، عضویت و مجوزهای محدوده‌ای",
     "entities": ["organization", "branch", "membership", "permission-grant"],
-    "dependencies": ["identity-service"],
+    "dependencies": ["identity-service", "scholar-service"],
     "transport": "http+jetstream",
     "migrationOwner": "organization-service",
     "backupPolicy": "pit-recovery-required"
@@ -81,7 +83,7 @@
     "databaseRole": "taxonomy_app",
     "ownership": "موضوع، تخصص، زبان و دیدگاه اختیاری",
     "entities": ["topic", "specialty", "school", "localized-label"],
-    "dependencies": [],
+    "dependencies": ["identity-service", "organization-service", "file-service"],
     "transport": "http+jetstream",
     "migrationOwner": "taxonomy-service",
     "backupPolicy": "pit-recovery-required"
@@ -97,7 +99,13 @@
     "databaseRole": "scholar_app",
     "ownership": "پروفایل حرفه‌ای، مدارک، تأیید، خدمات و تعرفه",
     "entities": ["scholar", "credential-review", "offering"],
-    "dependencies": ["profile-service", "taxonomy-service", "file-service"],
+    "dependencies": [
+      "profile-service",
+      "taxonomy-service",
+      "file-service",
+      "identity-service",
+      "organization-service"
+    ],
     "transport": "http+jetstream",
     "migrationOwner": "scholar-service",
     "backupPolicy": "pit-recovery-required"
@@ -236,7 +244,8 @@
       "consent-service",
       "identity-service",
       "organization-service",
-      "profile-service"
+      "profile-service",
+      "scholar-service"
     ],
     "transport": "http+jetstream",
     "migrationOwner": "file-service",

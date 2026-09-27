@@ -16,12 +16,29 @@ export const roles = {
   expert: ['booking.attend'],
   secretary: ['booking.support'],
   responder: ['question.answer'],
-  scientific: ['scholar.verify'],
+  scientific: [
+    'scholar.verify',
+    'expert.read',
+    'expert.review',
+    'expert.approve',
+    'expert.suspend',
+    'expert.document.review',
+    'specialty.manage',
+    'service.manage',
+  ],
   support: ['ticket.assign'],
   finance: ['ledger.read'],
   content: ['content.review'],
   organization: ['membership.manage'],
   admin: [
+    'expert.read',
+    'expert.review',
+    'expert.approve',
+    'expert.suspend',
+    'expert.document.review',
+    'specialty.manage',
+    'service.manage',
+    'file.admin',
     'users.manage',
     'permission.grant',
     'forms.manage',
@@ -175,6 +192,17 @@ export function organizationRouter(pool: Pool) {
       LEFT JOIN organizations o ON o.id::text=g.scope WHERE g.account_id=$1 ORDER BY g.created_at`,
         [user.id],
       );
+      if (
+        process.env.SCHOLARS_ENABLED === '1' &&
+        !list.rows.some((r) => r.role === 'expert' && r.scope === 'platform')
+      ) {
+        const qualification = await internalCall<{ verified: boolean }>(
+          'scholar-service',
+          '/internal/experts/qualification/' + user.public_id,
+        );
+        if (qualification.verified)
+          list.rows.push({ role: 'expert', scope: 'platform', organization_name: null });
+      }
       res.json({
         data: {
           public_id: user.public_id,
