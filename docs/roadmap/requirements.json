@@ -413,46 +413,46 @@
     "id": "R09-01",
     "stage": 9,
     "title": "schedule",
-    "status": "planned",
+    "status": "verified-isolated",
     "acceptance": "رزرو همزمان یک slot، DST، انقضای hold و جبران",
-    "verification": "docs/testing/stage-09 (planned)",
-    "externalDependency": "PostgreSQL/Redis/NATS"
+    "verification": "docs/stages/09-scheduling-booking.md; tests/scheduling.test.ts; tests/integration/scheduling.test.ts",
+    "externalDependency": "PostgreSQL مستقل هر سرویس، SMTP؛ بدون پرداخت"
   },
   {
     "id": "R09-02",
     "stage": 9,
     "title": "timezone",
-    "status": "planned",
+    "status": "verified-isolated",
     "acceptance": "رزرو همزمان یک slot، DST، انقضای hold و جبران",
-    "verification": "docs/testing/stage-09 (planned)",
-    "externalDependency": "PostgreSQL/Redis/NATS"
+    "verification": "docs/stages/09-scheduling-booking.md; tests/scheduling.test.ts; tests/integration/scheduling.test.ts",
+    "externalDependency": "PostgreSQL مستقل هر سرویس، SMTP؛ بدون پرداخت"
   },
   {
     "id": "R09-03",
     "stage": 9,
     "title": "hold اتمیک",
-    "status": "planned",
+    "status": "verified-isolated",
     "acceptance": "رزرو همزمان یک slot، DST، انقضای hold و جبران",
-    "verification": "docs/testing/stage-09 (planned)",
-    "externalDependency": "PostgreSQL/Redis/NATS"
+    "verification": "docs/stages/09-scheduling-booking.md; tests/scheduling.test.ts; tests/integration/scheduling.test.ts",
+    "externalDependency": "PostgreSQL مستقل هر سرویس، SMTP؛ بدون پرداخت"
   },
   {
     "id": "R09-04",
     "stage": 9,
     "title": "saga",
-    "status": "planned",
+    "status": "verified-isolated",
     "acceptance": "رزرو همزمان یک slot، DST، انقضای hold و جبران",
-    "verification": "docs/testing/stage-09 (planned)",
-    "externalDependency": "PostgreSQL/Redis/NATS"
+    "verification": "docs/stages/09-scheduling-booking.md; tests/scheduling.test.ts; tests/integration/scheduling.test.ts",
+    "externalDependency": "PostgreSQL مستقل هر سرویس، SMTP؛ بدون پرداخت"
   },
   {
     "id": "R09-05",
     "stage": 9,
     "title": "لغو و reschedule",
-    "status": "planned",
+    "status": "verified-isolated",
     "acceptance": "رزرو همزمان یک slot، DST، انقضای hold و جبران",
-    "verification": "docs/testing/stage-09 (planned)",
-    "externalDependency": "PostgreSQL/Redis/NATS"
+    "verification": "docs/stages/09-scheduling-booking.md; tests/scheduling.test.ts; tests/integration/scheduling.test.ts",
+    "externalDependency": "PostgreSQL مستقل هر سرویس، SMTP؛ بدون پرداخت"
   },
   {
     "id": "R10-01",

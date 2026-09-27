@@ -51,11 +51,11 @@
 | R08-04 | تعرفه                   | 8     | مالکیت فایل، MIME spoof، مدرک ردشده و signed URL            | planned                        |
 | R08-05 | private upload          | 8     | مالکیت فایل، MIME spoof، مدرک ردشده و signed URL            | planned                        |
 | R08-06 | malware scan            | 8     | مالکیت فایل، MIME spoof، مدرک ردشده و signed URL            | planned                        |
-| R09-01 | schedule                | 9     | رزرو همزمان یک slot، DST، انقضای hold و جبران               | planned                        |
-| R09-02 | timezone                | 9     | رزرو همزمان یک slot، DST، انقضای hold و جبران               | planned                        |
-| R09-03 | hold اتمیک              | 9     | رزرو همزمان یک slot، DST، انقضای hold و جبران               | planned                        |
-| R09-04 | saga                    | 9     | رزرو همزمان یک slot، DST، انقضای hold و جبران               | planned                        |
-| R09-05 | لغو و reschedule        | 9     | رزرو همزمان یک slot، DST، انقضای hold و جبران               | planned                        |
+| R09-01 | schedule                | 9     | رزرو همزمان یک slot، DST، انقضای hold و جبران               | verified-isolated              |
+| R09-02 | timezone                | 9     | رزرو همزمان یک slot، DST، انقضای hold و جبران               | verified-isolated              |
+| R09-03 | hold اتمیک              | 9     | رزرو همزمان یک slot، DST، انقضای hold و جبران               | verified-isolated              |
+| R09-04 | saga                    | 9     | رزرو همزمان یک slot، DST، انقضای hold و جبران               | verified-isolated              |
+| R09-05 | لغو و reschedule        | 9     | رزرو همزمان یک slot، DST، انقضای hold و جبران               | verified-isolated              |
 | R10-01 | OpenSearch              | 10    | بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence        | planned                        |
 | R10-02 | normalize فارسی         | 10    | بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence        | planned                        |
 | R10-03 | projection              | 10    | بازسازی نمایه، ACL نتیجه، داده کهنه و stale presence        | planned                        |
