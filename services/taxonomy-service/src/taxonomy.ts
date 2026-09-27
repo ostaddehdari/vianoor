@@ -1,12 +1,14 @@
 import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import type { Pool } from 'pg';
+import type { Request } from 'express';
 import {
   internalRouter,
   endpoint,
   requirePermission,
   transaction,
   ServiceError,
+  internalCall,
 } from '@vianoor/service-runtime';
 const entrySchema = z
   .object({
@@ -24,6 +26,20 @@ const entrySchema = z
     image_id: z.string().uuid().nullable(),
   })
   .strict();
+async function pinImage(req: Request, image: string | null, owner: string, id: string) {
+  if (!image) return;
+  const auth = req.header('authorization') ?? '';
+  await internalCall('file-service', '/internal/files/validate', auth, {
+    id: image,
+    kind: 'image',
+    owner,
+  });
+  await internalCall('file-service', '/internal/files/reference', auth, {
+    id: image,
+    owner,
+    reference: 'taxonomy-image:' + id,
+  });
+}
 export async function initializeTaxonomy(pool: Pool) {
   await pool.query(`CREATE TABLE IF NOT EXISTS taxonomy_entries(id uuid PRIMARY KEY,kind text NOT NULL,label jsonb NOT NULL,parent_id uuid REFERENCES taxonomy_entries(id),active boolean NOT NULL,position int NOT NULL,icon text NOT NULL,image_id uuid,revision int NOT NULL DEFAULT 0);
   CREATE TABLE IF NOT EXISTS taxonomy_audit(id bigserial PRIMARY KEY,actor_id uuid NOT NULL,target_id uuid NOT NULL,action text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());`);
@@ -95,6 +111,7 @@ export function taxonomyRouter(pool: Pool) {
       const user = await requirePermission(req, 'specialty.manage');
       const input = entrySchema.parse(req.body);
       const id = randomUUID();
+      await pinImage(req, input.image_id, user.public_id, id);
       await transaction(pool, async (db) => {
         await db.query('SELECT pg_advisory_xact_lock(8001)');
         if (
@@ -138,6 +155,11 @@ export function taxonomyRouter(pool: Pool) {
       const input = entrySchema
         .extend({ revision: z.number().int().nonnegative() })
         .parse(req.body);
+      const previous = (await pool.query('SELECT image_id FROM taxonomy_entries WHERE id=$1', [id]))
+        .rows[0];
+      if (!previous) throw new ServiceError(404, 'NOT_FOUND');
+      if (previous.image_id !== input.image_id)
+        await pinImage(req, input.image_id, user.public_id, id);
       await transaction(pool, async (db) => {
         await db.query('SELECT pg_advisory_xact_lock(8001)');
         const old = (await db.query('SELECT * FROM taxonomy_entries WHERE id=$1', [id])).rows[0];

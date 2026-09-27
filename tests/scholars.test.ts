@@ -11,9 +11,26 @@ import {
 } from '../services/scholar-service/src/model.js';
 import { validateSignature } from '../services/file-service/src/assets.js';
 import { grantsPermission } from '../services/organization-service/src/organization.js';
+import { scholarsCopy } from '../packages/ui/src/scholars-copy.js';
+import { expertsPublicCopy } from '../packages/ui/src/experts-public-copy.js';
+test('expert workspace and public profile translations have matching nonempty keys', () => {
+  const keys = (value: Record<string, unknown>, prefix = ''): string[] =>
+    Object.entries(value)
+      .flatMap(([key, item]) => {
+        if (typeof item === 'object' && item !== null)
+          return keys(item as Record<string, unknown>, prefix + key + '.');
+        assert.equal(typeof item, 'string');
+        assert.ok(String(item).trim());
+        return [prefix + key];
+      })
+      .sort();
+  for (const copy of [scholarsCopy, expertsPublicCopy])
+    assert.deepEqual(keys(copy.fa), keys(copy.en));
+});
 const profile = {
   display_name: 'Test expert',
   title: 'Teacher',
+  contact_phone: '',
   slug: 'test-expert',
   short_bio: 'Introduction',
   biography: 'Biography',

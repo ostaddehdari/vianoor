@@ -27,11 +27,13 @@ test('real expert and reviewer interfaces publish a service; Persian RTL and pub
   page.on('pageerror', (e) => errors.push(e.name));
   await login(page, fixture.admin);
   await page.locator('.workspace-switch').selectOption('admin|platform');
-  await page.getByRole('link', { name: 'Experts and applications', exact: true }).click();
+  await page.getByRole('link', { name: 'Experts and applications', exact: true }).first().click();
   await page.getByLabel('Search name, email or public ID').fill(fixture.expert.email);
   await page.locator('form.user-toolbar').getByRole('button').click();
+  await expect(page.locator('.scholar-list-row')).toHaveCount(1);
   await page.getByRole('button', { name: /Stage 8 Test Expert/ }).click();
   const finalReview = page.locator('.scholar-workspace > .scholar-review');
+  await expect(page.locator('.scholar-summary')).toBeVisible();
   if (await finalReview.getByRole('option', { name: 'Under review', exact: true }).count()) {
     await finalReview
       .getByLabel('Reason visible to the expert')

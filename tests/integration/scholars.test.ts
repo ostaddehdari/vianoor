@@ -221,6 +221,42 @@ test(
     });
     assert.equal(legacyImage.status, 200, JSON.stringify(legacyImage.body));
     assert.equal(
+      (await api('taxonomy', admin.access, 'POST', { ...taxon, image_id: fileId })).status,
+      409,
+    );
+    const taxonomyImage = await api('files/assets', admin.access, 'POST', {
+      name: 'category.png',
+      mime: 'image/png',
+      purpose: 'image',
+      access: 'PUBLIC',
+      base64: avatar.toString('base64'),
+    });
+    assert.equal(taxonomyImage.status, 200);
+    for (let i = 0; i < 210; i++) {
+      const state = (await api('files/assets/' + taxonomyImage.body.data.id, admin.access)).body
+        .data.state;
+      if (state === 'READY') break;
+      assert.equal(state, 'SCANNING');
+      await new Promise((r) => setTimeout(r, 1000));
+    }
+    assert.equal(
+      (
+        await api('taxonomy', admin.access, 'POST', {
+          ...taxon,
+          image_id: taxonomyImage.body.data.id,
+        })
+      ).status,
+      200,
+    );
+    assert.equal(
+      (
+        await api('files/assets/' + taxonomyImage.body.data.id + '/action', admin.access, 'POST', {
+          action: 'DELETE',
+        })
+      ).status,
+      409,
+    );
+    assert.equal(
       (await api('files/images/' + legacyImage.body.data.id, expert.access)).status,
       200,
     );
@@ -365,6 +401,10 @@ test(
       200,
     );
     const published = await api('experts/public/' + profile.slug);
+    assert.equal((await api('experts/admin-services', expert.access)).status, 403);
+    const queue = await api('experts/admin-services', scientific.access);
+    assert.equal(queue.status, 200);
+    assert.ok(queue.body.data.some((item: { id: string }) => item.id === serviceId));
     assert.equal(published.status, 200);
     assert.equal(published.body.data.services.length, 1);
     assert.ok(!JSON.stringify(published.body).includes('PRIVATE-TEST-NUMBER'));

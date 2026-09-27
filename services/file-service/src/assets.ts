@@ -408,7 +408,9 @@ export function assetsRouter(pool: Pool) {
         .object({
           id: z.string().uuid(),
           owner: z.string().regex(/^[A-Za-z0-9]{13}$/),
-          reference: z.string().regex(/^scholar-(document|image|service):[a-f0-9-]{36}$/),
+          reference: z
+            .string()
+            .regex(/^(scholar-(document|image|service)|taxonomy-image):[a-f0-9-]{36}$/),
         })
         .strict()
         .parse(req.body);
