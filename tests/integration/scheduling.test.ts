@@ -375,6 +375,22 @@ test(
         request_key: randomUUID(),
       }),
     );
+    const auditDb = new pg.Pool({ connectionString: env('booking-service').DATABASE_URL });
+    try {
+      const actor = (
+        await auditDb.query(
+          "SELECT actor_id FROM booking_events WHERE booking_id=$1 AND event='CANCELLED' ORDER BY created_at DESC LIMIT 1",
+          [protectedBooking.id],
+        )
+      ).rows[0];
+      assert.equal(
+        actor.actor_id,
+        scholar.account_id,
+        'Expert initiated cancellation retains the expert actor',
+      );
+    } finally {
+      await auditDb.end();
+    }
     calendar = (await api('availability/calendar', expert)).body.data;
     expectOK(
       await api('availability/calendar', expert, 'PUT', {

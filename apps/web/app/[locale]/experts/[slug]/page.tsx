@@ -110,6 +110,16 @@ export default async function Expert({ params }: Params) {
               </p>
             )}
             <p>{s.details.terms}</p>
+            {s.details.booking_required &&
+              s.details.duration_minutes &&
+              s.details.price_minor === 0 && (
+                <a
+                  className="button"
+                  href={`${publicBase}/${locale}/account/book?expert=${row.public_id}&service=${s.id}`}
+                >
+                  {t.book}
+                </a>
+              )}
           </article>
         ))}
       </section>

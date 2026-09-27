@@ -12,7 +12,8 @@ export const expertsPublicCopy = {
     languages: 'زبان‌ها',
     documents: 'مدارک تأییدشده',
     services: 'خدمات و تعرفه‌ها',
-    note: 'رزرو و پرداخت در مراحل بعد فعال می‌شوند.',
+    note: 'رزرو خدمات رایگان از پنل مراجع انجام می‌شود. پرداخت خدمات پولی در مرحلهٔ بعد فعال خواهد شد.',
+    book: 'مشاهده زمان‌ها و رزرو رایگان',
     minutes: 'دقیقه',
   },
   en: {
@@ -28,7 +29,8 @@ export const expertsPublicCopy = {
     languages: 'Languages',
     documents: 'Verified credentials',
     services: 'Services and pricing',
-    note: 'Booking and payment will be added in a later stage.',
+    note: 'Free sessions can be booked from your client workspace. Payment for paid services will be added later.',
+    book: 'View times and book free',
     minutes: 'minutes',
   },
 };

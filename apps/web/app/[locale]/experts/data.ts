@@ -48,6 +48,7 @@ export type PublicExpert = {
       price_minor: number;
       currency: string;
       duration_minutes: number | null;
+      booking_required: boolean;
       terms: string;
       image_id: string | null;
     };

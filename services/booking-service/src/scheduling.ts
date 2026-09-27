@@ -51,7 +51,8 @@ type Booking = {
   timezone: string;
   pending_action: string | null;
   operation_id: string;
-  action_data: { start_at?: string; previous_status?: string };
+  operation_actor?: string;
+  action_data: { start_at?: string; previous_status?: string; intent?: string };
   snapshot: Snapshot | null;
   revision: number;
   error_code: string | null;
@@ -70,7 +71,8 @@ export async function initializeScheduling(pool: Pool) {
  CREATE INDEX IF NOT EXISTS scheduled_bookings_pending ON scheduled_bookings(updated_at) WHERE pending_action IS NOT NULL;
  CREATE TABLE IF NOT EXISTS booking_events(id uuid PRIMARY KEY,booking_id uuid NOT NULL,actor_id uuid NOT NULL,event text NOT NULL,details jsonb NOT NULL DEFAULT '{}',created_at timestamptz NOT NULL DEFAULT now());
  CREATE TABLE IF NOT EXISTS booking_notifications(id uuid PRIMARY KEY,event_id uuid NOT NULL,booking_id uuid NOT NULL,account_id uuid NOT NULL,event text NOT NULL,delivered_at timestamptz,read_at timestamptz,created_at timestamptz NOT NULL DEFAULT now(),UNIQUE(event_id,account_id));
- CREATE TABLE IF NOT EXISTS booking_reminders(booking_id uuid NOT NULL,start_at timestamptz NOT NULL,PRIMARY KEY(booking_id,start_at));`);
+ CREATE TABLE IF NOT EXISTS booking_reminders(booking_id uuid NOT NULL,start_at timestamptz NOT NULL,PRIMARY KEY(booking_id,start_at));
+ ALTER TABLE scheduled_bookings ADD COLUMN IF NOT EXISTS operation_actor uuid;`);
 }
 async function event(
   db: PoolClient,
@@ -148,7 +150,7 @@ async function processOperation(pool: Pool, id: string): Promise<Booking> {
       await event(
         db,
         failed,
-        row.client_id,
+        row.operation_actor ?? row.client_id,
         row.pending_action === 'MOVE' ? 'RESCHEDULE_REJECTED' : status,
         { code: error.code },
       );
@@ -157,7 +159,7 @@ async function processOperation(pool: Pool, id: string): Promise<Booking> {
     const status = row.pending_action === 'MOVE' ? 'RESCHEDULED' : claim.state;
     const next = (
       await db.query(
-        'UPDATE scheduled_bookings SET status=$2,start_at=COALESCE($3,start_at),end_at=COALESCE($4,end_at),expires_at=COALESCE($5,expires_at),snapshot=COALESCE(snapshot,$6),pending_action=NULL,error_code=NULL,revision=revision+1,updated_at=now() WHERE id=$1 RETURNING *',
+        "UPDATE scheduled_bookings SET status=$2,start_at=COALESCE($3,start_at),end_at=COALESCE($4,end_at),expires_at=COALESCE($5,expires_at),snapshot=CASE WHEN pending_action='MOVE' THEN $6 ELSE COALESCE(snapshot,$6) END,pending_action=NULL,error_code=NULL,revision=revision+1,updated_at=now() WHERE id=$1 RETURNING *",
         [
           id,
           status,
@@ -168,7 +170,7 @@ async function processOperation(pool: Pool, id: string): Promise<Booking> {
         ],
       )
     ).rows[0] as Booking;
-    await event(db, next, row.client_id, status, {
+    await event(db, next, row.operation_actor ?? row.client_id, status, {
       previous_start: new Date(row.start_at).toISOString(),
     });
     return next;
@@ -318,7 +320,7 @@ export function schedulingRouter(pool: Pool) {
       if (q.view === 'admin') await requirePermission(req, 'booking.manage');
       const rows = (
         await pool.query(
-          `SELECT *,CASE WHEN status='HELD' AND expires_at<=now() AND pending_action IS NULL THEN 'EXPIRED' ELSE status END AS status FROM scheduled_bookings WHERE (($2='mine' AND client_id=$1) OR($2='expert' AND expert_code=$3) OR $2='admin') AND ($4='all' OR($4='future' AND start_at>=now() AND status NOT IN ('CANCELLED','EXPIRED')) OR($4='past' AND start_at<now()) OR($4='cancelled' AND status IN ('CANCELLED','EXPIRED'))) ORDER BY start_at DESC LIMIT 100 OFFSET $5`,
+          `SELECT *,CASE WHEN status='HELD' AND expires_at<=now() AND pending_action IS NULL THEN 'EXPIRED' ELSE status END AS status FROM scheduled_bookings WHERE (($2='mine' AND client_id=$1) OR($2='expert' AND expert_code=$3) OR $2='admin') AND ($4='all' OR($4='future' AND start_at>=now() AND status NOT IN ('CANCELLED','EXPIRED')) OR($4='past' AND start_at<now()) OR($4='cancelled' AND status IN ('CANCELLED','EXPIRED'))) ORDER BY start_at DESC,id LIMIT 100 OFFSET $5`,
           [user.id, q.view, user.public_id, q.period, q.offset],
         )
       ).rows as Booking[];
@@ -349,7 +351,11 @@ export function schedulingRouter(pool: Pool) {
         if (!owner && !expert) throw new ServiceError(403, 'FORBIDDEN');
         if ((action === 'confirm' && !owner) || (action === 'complete' && !expert))
           throw new ServiceError(403, 'FORBIDDEN');
-        if (row.operation_id === input.request_key) return;
+        if (row.operation_id === input.request_key) {
+          if (row.action_data.intent !== action || row.action_data.start_at !== input.start_at)
+            throw new ServiceError(409, 'IDEMPOTENCY_CONFLICT');
+          return;
+        }
         if (row.revision !== input.revision || row.pending_action)
           throw new ServiceError(409, 'CONFLICT');
         if (action === 'confirm' && row.status !== 'HELD')
@@ -379,14 +385,14 @@ export function schedulingRouter(pool: Pool) {
           if (!row.end_at || Date.parse(row.end_at) > Date.now())
             throw new ServiceError(409, 'SESSION_NOT_ENDED');
           await db.query(
-            "UPDATE scheduled_bookings SET status='COMPLETED',operation_id=$2,revision=revision+1,updated_at=now() WHERE id=$1",
-            [id, input.request_key],
+            "UPDATE scheduled_bookings SET status='COMPLETED',operation_id=$2,operation_actor=$3,action_data=$4,revision=revision+1,updated_at=now() WHERE id=$1",
+            [id, input.request_key, user.id, { intent: action }],
           );
           await event(db, row, user.id, 'COMPLETED');
           return;
         }
         await db.query(
-          "UPDATE scheduled_bookings SET pending_action=$2,operation_id=$3,action_data=$4,error_code=NULL,status=CASE WHEN $2='MOVE' THEN 'RESCHEDULE_REQUESTED' ELSE status END,updated_at=now() WHERE id=$1",
+          "UPDATE scheduled_bookings SET pending_action=$2,operation_id=$3,action_data=$4,operation_actor=$5,error_code=NULL,status=CASE WHEN $2='MOVE' THEN 'RESCHEDULE_REQUESTED' ELSE status END,updated_at=now() WHERE id=$1",
           [
             id,
             action === 'confirm' ? 'CONFIRM' : action === 'cancel' ? 'CANCEL' : 'MOVE',
@@ -394,7 +400,9 @@ export function schedulingRouter(pool: Pool) {
             {
               ...(input.start_at ? { start_at: input.start_at } : {}),
               previous_status: row.status,
+              intent: action,
             },
+            user.id,
           ],
         );
         if (action === 'reschedule') await event(db, row, user.id, 'RESCHEDULE_REQUESTED');

@@ -53,12 +53,12 @@ export async function initializeAvailability(pool: Pool) {
   CREATE TABLE IF NOT EXISTS system_holidays(id uuid PRIMARY KEY,details jsonb NOT NULL);
   CREATE TABLE IF NOT EXISTS calendar_settings(id int PRIMARY KEY CHECK(id=1),revision int NOT NULL DEFAULT 0,hold_seconds int NOT NULL DEFAULT 300 CHECK(hold_seconds BETWEEN 30 AND 900));
   INSERT INTO calendar_settings(id) VALUES(1) ON CONFLICT DO NOTHING;
-  CREATE TABLE IF NOT EXISTS availability_slot_sets(expert_code varchar(13),service_id uuid,utc_day date,version text NOT NULL,generated_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(expert_code,service_id,utc_day));
+  CREATE TABLE IF NOT EXISTS availability_slot_sets(expert_code varchar(13),service_id uuid,utc_day date,version text NOT NULL,generated_at timestamptz NOT NULL DEFAULT clock_timestamp(),PRIMARY KEY(expert_code,service_id,utc_day));
   CREATE TABLE IF NOT EXISTS availability_slots(expert_code varchar(13),service_id uuid,start_at timestamptz,end_at timestamptz NOT NULL,busy_start timestamptz NOT NULL,busy_end timestamptz NOT NULL,PRIMARY KEY(expert_code,service_id,start_at));
   CREATE INDEX IF NOT EXISTS availability_search_time ON availability_slots(start_at,expert_code);
   CREATE TABLE IF NOT EXISTS slot_claims(booking_id uuid PRIMARY KEY,client_id uuid NOT NULL,expert_code varchar(13) NOT NULL,service_id uuid NOT NULL,start_at timestamptz NOT NULL,end_at timestamptz NOT NULL,busy_start timestamptz NOT NULL,busy_end timestamptz NOT NULL,state text NOT NULL CHECK(state IN ('HELD','CONFIRMED','CANCELLED','EXPIRED')),expires_at timestamptz NOT NULL,operation_id uuid NOT NULL,snapshot jsonb NOT NULL,CHECK(end_at>start_at),CHECK(busy_end>busy_start));
   CREATE INDEX IF NOT EXISTS slot_claim_overlap ON slot_claims(expert_code,busy_start,busy_end) WHERE state IN ('HELD','CONFIRMED');
-  CREATE TABLE IF NOT EXISTS calendar_audit(id bigserial PRIMARY KEY,actor text NOT NULL,target text NOT NULL,action text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());`);
+  CREATE TABLE IF NOT EXISTS calendar_audit(id bigserial PRIMARY KEY,actor text NOT NULL,target text NOT NULL,action text NOT NULL,created_at timestamptz NOT NULL DEFAULT clock_timestamp());`);
 }
 async function lock(db: PoolClient, expert: string) {
   await db.query('SELECT pg_advisory_xact_lock(hashtextextended($1,901))', [expert]);
@@ -109,7 +109,7 @@ async function materialize(
     const date = new Date(day).toISOString().slice(0, 10);
     const cached = (
       await db.query(
-        "SELECT 1 FROM availability_slot_sets WHERE expert_code=$1 AND service_id=$2 AND utc_day=$3 AND version=$4 AND generated_at>now()-interval '10 minutes'",
+        "SELECT 1 FROM availability_slot_sets WHERE expert_code=$1 AND service_id=$2 AND utc_day=$3 AND version=$4 AND generated_at>clock_timestamp()-interval '10 minutes'",
         [expert, offering.service_id, date, version],
       )
     ).rowCount;
@@ -132,7 +132,7 @@ async function materialize(
         [expert, offering.service_id, JSON.stringify(slots)],
       );
     await db.query(
-      'INSERT INTO availability_slot_sets(expert_code,service_id,utc_day,version) VALUES($1,$2,$3,$4) ON CONFLICT(expert_code,service_id,utc_day) DO UPDATE SET version=$4,generated_at=now()',
+      'INSERT INTO availability_slot_sets(expert_code,service_id,utc_day,version) VALUES($1,$2,$3,$4) ON CONFLICT(expert_code,service_id,utc_day) DO UPDATE SET version=$4,generated_at=clock_timestamp()',
       [expert, offering.service_id, date, version],
     );
   }
@@ -191,7 +191,7 @@ export function availabilityRouter(pool: Pool) {
         );
         const rows = (
           await db.query(
-            `SELECT s.start_at,s.end_at FROM availability_slots s WHERE s.expert_code=$1 AND s.service_id=$2 AND s.start_at>=$3 AND s.start_at<$4 AND s.start_at>=now()+($5*interval '1 minute') AND s.start_at<=now()+($6*interval '1 day') AND NOT EXISTS(SELECT 1 FROM slot_claims c WHERE c.expert_code=s.expert_code AND (c.state='CONFIRMED' OR(c.state='HELD' AND c.expires_at>now())) AND c.busy_start<s.busy_end AND c.busy_end>s.busy_start) ORDER BY s.start_at LIMIT 1500`,
+            `SELECT s.start_at,s.end_at FROM availability_slots s WHERE s.expert_code=$1 AND s.service_id=$2 AND s.start_at>=$3 AND s.start_at<$4 AND s.start_at>=clock_timestamp()+($5*interval '1 minute') AND s.start_at<=clock_timestamp()+($6*interval '1 day') AND NOT EXISTS(SELECT 1 FROM slot_claims c WHERE c.expert_code=s.expert_code AND (c.state='CONFIRMED' OR(c.state='HELD' AND c.expires_at>clock_timestamp())) AND c.busy_start<s.busy_end AND c.busy_end>s.busy_start) ORDER BY s.start_at LIMIT 1500`,
             [q.expert, q.service, q.from, q.to, cal.min_notice_minutes, cal.horizon_days],
           )
         ).rows;
@@ -227,7 +227,7 @@ export function availabilityRouter(pool: Pool) {
           );
           return (
             await db.query(
-              `SELECT s.start_at,s.end_at FROM availability_slots s WHERE s.expert_code=$1 AND s.service_id=$2 AND s.start_at=$3 AND s.start_at>=now()+($4*interval '1 minute') AND s.start_at<=now()+($5*interval '1 day') AND NOT EXISTS(SELECT 1 FROM slot_claims c WHERE c.expert_code=s.expert_code AND (c.state='CONFIRMED' OR(c.state='HELD' AND c.expires_at>now())) AND c.busy_start<s.busy_end AND c.busy_end>s.busy_start)`,
+              `SELECT s.start_at,s.end_at FROM availability_slots s WHERE s.expert_code=$1 AND s.service_id=$2 AND s.start_at=$3 AND s.start_at>=clock_timestamp()+($4*interval '1 minute') AND s.start_at<=clock_timestamp()+($5*interval '1 day') AND NOT EXISTS(SELECT 1 FROM slot_claims c WHERE c.expert_code=s.expert_code AND (c.state='CONFIRMED' OR(c.state='HELD' AND c.expires_at>clock_timestamp())) AND c.busy_start<s.busy_end AND c.busy_end>s.busy_start)`,
               [
                 offering.expert_code,
                 offering.service_id,
@@ -412,7 +412,7 @@ export function availabilityRouter(pool: Pool) {
       const result = await transaction(pool, async (db) => {
         await lock(db, data.expert);
         await db.query(
-          "UPDATE slot_claims SET state='EXPIRED' WHERE expert_code=$1 AND state='HELD' AND expires_at<=now()",
+          "UPDATE slot_claims SET state='EXPIRED' WHERE expert_code=$1 AND state='HELD' AND expires_at<=clock_timestamp()",
           [data.expert],
         );
         const current = (
@@ -451,7 +451,7 @@ export function availabilityRouter(pool: Pool) {
           if (current.operation_id === data.operation_id) return current;
         }
         const conflict = await db.query(
-          "SELECT 1 FROM slot_claims WHERE expert_code=$1 AND booking_id<>$2 AND (state='CONFIRMED' OR(state='HELD' AND expires_at>now())) AND busy_start<=$3 AND busy_end>$3 LIMIT 1",
+          "SELECT 1 FROM slot_claims WHERE expert_code=$1 AND booking_id<>$2 AND (state='CONFIRMED' OR(state='HELD' AND expires_at>clock_timestamp())) AND busy_start<=$3 AND busy_end>$3 LIMIT 1",
           [data.expert, data.booking_id, data.start_at],
         );
         if (conflict.rowCount) throw new ServiceError(409, 'SLOT_ALREADY_RESERVED');
@@ -461,7 +461,7 @@ export function availabilityRouter(pool: Pool) {
           { cal, global } = await materialize(db, data.expert, offering, at, at + 1);
         const slot = (
           await db.query(
-            "SELECT start_at::text,end_at::text,busy_start::text,busy_end::text FROM availability_slots WHERE expert_code=$1 AND service_id=$2 AND start_at=$3 AND start_at>=now()+($4*interval '1 minute') AND start_at<=now()+($5*interval '1 day')",
+            "SELECT start_at::text,end_at::text,busy_start::text,busy_end::text FROM availability_slots WHERE expert_code=$1 AND service_id=$2 AND start_at=$3 AND start_at>=clock_timestamp()+($4*interval '1 minute') AND start_at<=clock_timestamp()+($5*interval '1 day')",
             [data.expert, data.service, data.start_at, cal.min_notice_minutes, cal.horizon_days],
           )
         ).rows[0] as Slot | undefined;
@@ -469,7 +469,7 @@ export function availabilityRouter(pool: Pool) {
         if (
           (
             await db.query(
-              "SELECT 1 FROM slot_claims WHERE expert_code=$1 AND booking_id<>$2 AND (state='CONFIRMED' OR(state='HELD' AND expires_at>now())) AND busy_start<$3 AND busy_end>$4 LIMIT 1",
+              "SELECT 1 FROM slot_claims WHERE expert_code=$1 AND booking_id<>$2 AND (state='CONFIRMED' OR(state='HELD' AND expires_at>clock_timestamp())) AND busy_start<$3 AND busy_end>$4 LIMIT 1",
               [data.expert, data.booking_id, slot.busy_end, slot.busy_start],
             )
           ).rowCount
@@ -477,7 +477,7 @@ export function availabilityRouter(pool: Pool) {
           throw new ServiceError(409, 'SLOT_ALREADY_RESERVED');
         const snapshot = {
           ...offering,
-          cancellation_hours: cal.cancellation_hours,
+          cancellation_hours: current?.snapshot?.cancellation_hours ?? cal.cancellation_hours,
           expert_timezone: cal.timezone,
           penalty_minor: 0,
           refund_mode: 'NOT_APPLICABLE_STAGE_9',
@@ -485,7 +485,7 @@ export function availabilityRouter(pool: Pool) {
         const state = data.action === 'HOLD' ? 'HELD' : 'CONFIRMED';
         const row = (
           await db.query(
-            `INSERT INTO slot_claims(booking_id,client_id,expert_code,service_id,start_at,end_at,busy_start,busy_end,state,expires_at,operation_id,snapshot) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,now()+($10*interval '1 second'),$11,$12) ON CONFLICT(booking_id) DO UPDATE SET start_at=$5,end_at=$6,busy_start=$7,busy_end=$8,state=$9,operation_id=$11 RETURNING *`,
+            `INSERT INTO slot_claims(booking_id,client_id,expert_code,service_id,start_at,end_at,busy_start,busy_end,state,expires_at,operation_id,snapshot) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,clock_timestamp()+($10*interval '1 second'),$11,$12) ON CONFLICT(booking_id) DO UPDATE SET start_at=$5,end_at=$6,busy_start=$7,busy_end=$8,state=$9,operation_id=$11,snapshot=$12 RETURNING *`,
             [
               data.booking_id,
               data.client_id,

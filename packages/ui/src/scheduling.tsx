@@ -171,7 +171,13 @@ function CalendarEditor({ locale }: { locale: Locale }) {
     end: '',
     disambiguation: 'reject',
   });
-  const load = () => userApi<Calendar>('availability/calendar').then(setValue);
+  const [holidays, setHolidays] = useState<
+    { id: string; details: { title: string; start_date: string; end_date: string } }[]
+  >([]);
+  const load = async () => {
+    setValue(await userApi<Calendar>('availability/calendar'));
+    setHolidays(await userApi<typeof holidays>('availability/holidays'));
+  };
   const act = async (fn: () => Promise<unknown>) => {
     setBusy(true);
     setError('');
@@ -197,6 +203,19 @@ function CalendarEditor({ locale }: { locale: Locale }) {
       {message && <p role="status">{message}</p>}
       {value && (
         <>
+          {holidays.length > 0 && (
+            <aside>
+              <h3>{t.holidays}</h3>
+              {holidays.map((h) => (
+                <p key={h.id}>
+                  {h.details.title} ·{' '}
+                  <bdi>
+                    {h.details.start_date} — {h.details.end_date}
+                  </bdi>
+                </p>
+              ))}
+            </aside>
+          )}
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -380,6 +399,11 @@ function BookingFlow({
     void action(async () => {
       setServices(await userApi<Service[]>('availability/services'));
       setZone((await userApi<{ timezone: string }>('profiles/timezone')).timezone);
+      if (!move) {
+        const query = new URLSearchParams(window.location.search);
+        if (query.get('expert')) setExpert(query.get('expert')!);
+        if (query.get('service')) setService(query.get('service')!);
+      }
     });
     const timer = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(timer);
@@ -724,7 +748,7 @@ function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert'
       </button>
       {!rows.length && <p>{t.empty}</p>}
       {rows.map((r) => (
-        <article className="user-card" key={r.id}>
+        <article className="user-card" key={r.id} data-booking-id={r.id}>
           <h3>{r.service?.title ?? t.book}</h3>
           <p>{r.service?.expert_name ?? r.expert_code}</p>
           <time dateTime={r.start_at}>{format(r.start_at, zone, locale)}</time>
