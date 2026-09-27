@@ -141,6 +141,58 @@ async function pinImage(req: Request, id: string | null, owner: string, referenc
 export function scholarsRouter(pool: Pool) {
   const router = internalRouter('128kb');
   router.get(
+    '/internal/scheduling/services',
+    endpoint(async (req, res) => {
+      const query = z
+        .object({
+          expert: z
+            .string()
+            .regex(/^[A-Za-z0-9]{13}$/)
+            .optional(),
+          service: z.string().uuid().optional(),
+        })
+        .strict()
+        .parse(req.query);
+      const rows = (
+        await pool.query(
+          `SELECT o.id AS service_id,o.revision AS service_revision,o.details,s.id AS scholar_id,s.account_id AS expert_id,s.public_id AS expert_code,s.profile->>'display_name' AS expert_name,s.valid_until::text FROM scholar_offerings o JOIN scholars s ON s.id=o.scholar_id WHERE o.status='PUBLISHED' AND s.status='APPROVED' AND (s.valid_until IS NULL OR s.valid_until>now()) AND s.profile->>'visibility'='PUBLIC' AND (o.details->>'booking_required')::boolean AND (o.details->>'duration_minutes')::int>0 AND (o.details->>'price_minor')::bigint=0 AND ($1::text IS NULL OR s.public_id=$1) AND ($2::uuid IS NULL OR o.id=$2) AND EXISTS(SELECT 1 FROM scholar_specialties sp WHERE sp.scholar_id=s.id AND sp.specialty_id=(o.details->>'specialty_id')::uuid AND sp.status='APPROVED') ORDER BY s.id,o.id LIMIT 100`,
+          [query.expert ?? null, query.service ?? null],
+        )
+      ).rows;
+      const active = await internalCall<string[]>(
+        'identity-service',
+        '/internal/active-accounts',
+        '',
+        { codes: [...new Set(rows.map((r) => r.expert_code))] },
+      );
+      const result = [];
+      for (const row of rows.filter((r) => active.includes(r.expert_code))) {
+        try {
+          await internalCall('taxonomy-service', '/internal/taxonomy/validate', '', {
+            specialties: [row.details.specialty_id],
+            languages: [],
+            categories: row.details.category_id ? [row.details.category_id] : [],
+          });
+        } catch (error) {
+          if (error instanceof ServiceError && error.status === 400) continue;
+          throw error;
+        }
+        result.push({
+          service_id: row.service_id,
+          service_revision: row.service_revision,
+          expert_id: row.expert_id,
+          expert_code: row.expert_code,
+          expert_name: row.expert_name,
+          title: row.details.title,
+          duration_minutes: row.details.duration_minutes,
+          price_minor: row.details.price_minor,
+          currency: row.details.currency,
+        });
+      }
+      res.json({ data: result });
+    }),
+  );
+  router.get(
     '/api/v2/experts/admin-services',
     endpoint(async (req, res) => {
       await requirePermission(req, 'service.manage');

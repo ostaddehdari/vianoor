@@ -15,6 +15,82 @@ const code = z.string().regex(/^[A-Za-z0-9]{13}$/);
 export function usersRouter(identity: Identity) {
   const router = internalRouter();
   router.post(
+    '/internal/booking-notification',
+    endpoint(async (req, res) => {
+      const input = z
+        .object({
+          id: z.string().uuid(),
+          account_id: z.string().uuid(),
+          event: z.enum([
+            'REQUESTED',
+            'HELD',
+            'CONFIRMED',
+            'CANCELLED',
+            'EXPIRED',
+            'RESCHEDULE_REQUESTED',
+            'RESCHEDULED',
+            'RESCHEDULE_REJECTED',
+            'COMPLETED',
+            'REMINDER',
+          ]),
+        })
+        .strict()
+        .parse(req.body);
+      const labels: Record<string, [string, string]> = {
+        REQUESTED: ['درخواست رزرو', 'Booking requested'],
+        HELD: ['زمان موقتاً نگه داشته شد', 'Time temporarily held'],
+        CONFIRMED: ['رزرو تأیید شد', 'Booking confirmed'],
+        CANCELLED: ['رزرو لغو شد', 'Booking cancelled'],
+        EXPIRED: ['مهلت رزرو پایان یافت', 'Booking expired'],
+        RESCHEDULE_REQUESTED: ['درخواست تغییر زمان', 'Time change requested'],
+        RESCHEDULED: ['زمان جلسه تغییر کرد', 'Booking rescheduled'],
+        RESCHEDULE_REJECTED: ['تغییر زمان انجام نشد', 'Time change unavailable'],
+        COMPLETED: ['جلسه پایان یافت', 'Session completed'],
+        REMINDER: ['یادآوری جلسه پیش رو', 'Upcoming session reminder'],
+      };
+      await transaction(identity.pool, async (db) => {
+        if (
+          !(
+            await db.query(
+              "INSERT INTO infra_inbox(consumer,event_id) VALUES('booking-email-v1',$1) ON CONFLICT DO NOTHING RETURNING event_id",
+              [input.id],
+            )
+          ).rowCount
+        )
+          return;
+        const account = (
+          await db.query(
+            'SELECT email FROM identity_accounts WHERE id=$1 AND disabled_at IS NULL AND verified_at IS NOT NULL',
+            [input.account_id],
+          )
+        ).rows[0];
+        if (!account) return;
+        const label = labels[input.event]!;
+        await db.query(
+          "INSERT INTO identity_mail(id,encrypted,expires_at) VALUES($1,$2,now()+interval '2 days')",
+          [
+            input.id,
+            encrypt(
+              {
+                email: account.email,
+                subject: 'ویانور | ' + label[1],
+                text:
+                  label[0] +
+                  '\n' +
+                  label[1] +
+                  '\n' +
+                  identity.config.publicUrl +
+                  '/fa/account/bookings',
+              },
+              identity.config.mailKey,
+            ),
+          ],
+        );
+      });
+      res.json({ data: { ok: true } });
+    }),
+  );
+  router.post(
     '/internal/active-accounts',
     endpoint(async (req, res) => {
       const data = z

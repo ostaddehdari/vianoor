@@ -14,6 +14,7 @@ const owners: Record<string, string> = {
   bookings: 'booking-service',
   experts: 'scholar-service',
   taxonomy: 'taxonomy-service',
+  availability: 'availability-service',
 };
 export function usersProxy() {
   const router = internalRouter('28mb', true);

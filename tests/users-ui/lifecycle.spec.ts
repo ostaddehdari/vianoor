@@ -25,7 +25,7 @@ test('real invitation, profile wizard, avatar upload, form builder, role switchi
   await login(page, admin.email, admin.password);
   await page.locator('.workspace-switch').selectOption('admin|platform');
   await expect(page).toHaveURL(/\/en\/admin$/);
-  await expect(page.locator('.release-badge')).toHaveText('V8.0.0');
+  await expect(page.locator('.release-badge')).toHaveText('V9.0.0');
   await expect(page.locator('.users-sidebar nav a[href$="/admin/users"]')).toBeVisible();
   await expect(page.locator('.users-sidebar nav a[href$="/account/wallet"]')).toHaveCount(0);
   await page.goto('/vianoor/en/admin/users');

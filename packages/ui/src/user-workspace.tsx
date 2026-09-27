@@ -16,6 +16,8 @@ import { UserManagement, Organizations } from './user-admin';
 import { FormBuilder } from './form-builder';
 import { ScholarWorkspace, TaxonomyManager, FileManager, ServiceReviewQueue } from './scholars';
 import { scholarsCopy } from './scholars-copy';
+import { schedulingCopy } from './scheduling-copy';
+import { SchedulingWorkspace } from './scheduling';
 type Locale = 'fa' | 'en';
 const href = (locale: Locale, path: string) => `${usersBase}/${locale}/${path}`;
 const roleName = (locale: Locale, role: string) =>
@@ -330,6 +332,24 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     (scope === 'platform' ? '' : '?scope=' + encodeURIComponent(scope));
   const links: [string, string][] = [
     ['', roleName(locale, role)],
+    ...(role === 'account'
+      ? ([
+          ['book', schedulingCopy[locale].book],
+          ['bookings', schedulingCopy[locale].bookings],
+        ] as [string, string][])
+      : []),
+    ...(role === 'expert'
+      ? ([
+          ['calendar', schedulingCopy[locale].calendar],
+          ['bookings', schedulingCopy[locale].expertBookings],
+        ] as [string, string][])
+      : []),
+    ...(admin
+      ? ([
+          ['bookings', schedulingCopy[locale].adminBookings],
+          ['calendar-settings', schedulingCopy[locale].holidays],
+        ] as [string, string][])
+      : []),
     ...(['account', 'expert'].includes(role)
       ? [['professional', scholarsCopy[locale].professional] as [string, string]]
       : []),
@@ -445,9 +465,21 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
               </a>
             </div>
           )}
-          {(section === 'professional' && ['account', 'expert'].includes(role)) ||
-          (role === 'expert' &&
-            ['profile', 'credentials', 'offerings', 'files'].includes(section)) ? (
+          {role === 'account' && section === 'book' ? (
+            <SchedulingWorkspace locale={locale} mode="book" />
+          ) : role === 'account' && ['bookings', 'calendar'].includes(section) ? (
+            <SchedulingWorkspace locale={locale} mode="mine" />
+          ) : role === 'expert' && section === 'calendar' ? (
+            <SchedulingWorkspace locale={locale} mode="calendar" />
+          ) : role === 'expert' && section === 'bookings' ? (
+            <SchedulingWorkspace locale={locale} mode="expert" />
+          ) : admin && section === 'bookings' ? (
+            <SchedulingWorkspace locale={locale} mode="admin" />
+          ) : admin && ['calendar-settings', 'holidays'].includes(section) ? (
+            <SchedulingWorkspace locale={locale} mode="holidays" />
+          ) : (section === 'professional' && ['account', 'expert'].includes(role)) ||
+            (role === 'expert' &&
+              ['profile', 'credentials', 'offerings', 'files'].includes(section)) ? (
             <ScholarWorkspace
               key={section}
               locale={locale}

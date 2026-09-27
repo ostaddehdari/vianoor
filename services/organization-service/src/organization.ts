@@ -31,6 +31,8 @@ export const roles = {
   content: ['content.review'],
   organization: ['membership.manage'],
   admin: [
+    'calendar.manage',
+    'booking.manage',
     'expert.read',
     'expert.review',
     'expert.approve',

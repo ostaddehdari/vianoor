@@ -18,6 +18,9 @@ const avatarSchema = z.union([
   z.object({ kind: z.literal('upload'), value: z.string().uuid() }).strict(),
 ]);
 export async function initializeProfile(pool: Pool) {
+  await pool.query(
+    "CREATE TABLE IF NOT EXISTS profile_timezones(account_id uuid PRIMARY KEY,timezone text NOT NULL DEFAULT 'Asia/Tehran')",
+  );
   await transaction(pool, async (db) => {
     await db.query('SELECT pg_advisory_xact_lock(20260602)');
     await db.query(`CREATE TABLE IF NOT EXISTS profile_forms (
@@ -49,6 +52,50 @@ export async function initializeProfile(pool: Pool) {
 }
 export function profileRouter(pool: Pool) {
   const router = internalRouter();
+  router.get(
+    '/api/v2/profiles/timezone',
+    endpoint(async (req, res) => {
+      const user = await principal(req);
+      await ensure(user);
+      const row = (await pool.query('SELECT answers FROM profiles WHERE account_id=$1', [user.id]))
+        .rows[0];
+      // Preferences are stored separately from form answers and their visibility rules.
+      const preference = (
+        await pool.query('SELECT timezone FROM profile_timezones WHERE account_id=$1', [user.id])
+      ).rows[0];
+      if (!row) throw new ServiceError(404, 'NOT_FOUND');
+      res.json({ data: { timezone: preference?.timezone ?? 'Asia/Tehran' } });
+    }),
+  );
+  router.put(
+    '/api/v2/profiles/timezone',
+    endpoint(async (req, res) => {
+      const user = await principal(req),
+        input = z
+          .object({
+            timezone: z
+              .string()
+              .max(80)
+              .refine((s) => {
+                try {
+                  return (
+                    (s === 'UTC' || s.includes('/')) &&
+                    !!new Intl.DateTimeFormat('en', { timeZone: s })
+                  );
+                } catch {
+                  return false;
+                }
+              }),
+          })
+          .strict()
+          .parse(req.body);
+      await pool.query(
+        'INSERT INTO profile_timezones(account_id,timezone) VALUES($1,$2) ON CONFLICT(account_id) DO UPDATE SET timezone=$2',
+        [user.id, input.timezone],
+      );
+      res.json({ data: input });
+    }),
+  );
   async function ensure(user: { id: string; public_id: string }) {
     await pool.query(
       'INSERT INTO profiles(account_id,public_id) VALUES($1,$2) ON CONFLICT(account_id) DO NOTHING',

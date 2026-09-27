@@ -18,7 +18,8 @@
       "consent-service",
       "booking-service",
       "scholar-service",
-      "taxonomy-service"
+      "taxonomy-service",
+      "availability-service"
     ],
     "transport": "http+jetstream",
     "migrationOwner": "api-gateway",
@@ -123,7 +124,7 @@
     "databaseRole": "availability_app",
     "ownership": "برنامه کاری، استثنا، slot و نگهداری اتمیک ظرفیت",
     "entities": ["schedule", "exception", "slot-hold"],
-    "dependencies": ["scholar-service"],
+    "dependencies": ["scholar-service", "identity-service", "organization-service"],
     "transport": "http+jetstream",
     "migrationOwner": "availability-service",
     "backupPolicy": "pit-recovery-required"
@@ -177,7 +178,8 @@
       "media-service",
       "identity-service",
       "organization-service",
-      "profile-service"
+      "profile-service",
+      "scholar-service"
     ],
     "transport": "http+jetstream",
     "migrationOwner": "booking-service",

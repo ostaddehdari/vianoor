@@ -17,6 +17,7 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       'bookings',
       'experts',
       'taxonomy',
+      'availability',
     ].includes(path[0]!)
   )
     return fail('NOT_FOUND', 404);
