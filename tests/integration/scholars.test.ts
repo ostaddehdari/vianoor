@@ -71,7 +71,8 @@ test(
     }
     const admin = await account('reviewer'),
       expert = await account('expert'),
-      outsider = await account('outsider');
+      outsider = await account('outsider'),
+      scientific = await account('scientific');
     const org = new pg.Pool({ connectionString: env('organization-service').DATABASE_URL });
     try {
       await org.query(
@@ -81,6 +82,17 @@ test(
     } finally {
       await org.end();
     }
+    assert.equal(
+      (
+        await api('access/grants', admin.access, 'POST', {
+          public_id: scientific.public_id,
+          role: 'scientific',
+          scope: 'platform',
+          enabled: true,
+        })
+      ).status,
+      200,
+    );
     const taxonomy = await api('taxonomy', expert.access);
     assert.equal(taxonomy.status, 200);
     const language = taxonomy.body.data.find((x: { kind: string }) => x.kind === 'language').id;
@@ -109,6 +121,7 @@ test(
     );
     const profile = {
       display_name: 'Stage 8 Test Expert',
+      contact_phone: '12345678901',
       title: 'Teacher',
       slug: 'test-' + suffix,
       short_bio: 'Test introduction',
@@ -130,6 +143,23 @@ test(
     const create = await api('experts/me', expert.access, 'POST', profile);
     assert.equal(create.status, 200, JSON.stringify(create.body));
     const scholarId = create.body.data.id;
+    const self = await api('experts/me', admin.access, 'POST', {
+      ...profile,
+      slug: profile.slug + '-self',
+    });
+    assert.equal(self.status, 200);
+    assert.equal(
+      (
+        await api('experts/admin/' + self.body.data.id + '/review', admin.access, 'POST', {
+          status: 'UNDER_REVIEW',
+          reason: 'Self review must be denied',
+          internal_note: '',
+          valid_until: null,
+          revision: self.body.data.revision,
+        })
+      ).status,
+      403,
+    );
     assert.equal((await api('experts/public/' + profile.slug)).status, 404);
     assert.equal((await api('experts/me/submit', expert.access, 'POST', {})).status, 409);
     assert.equal((await api('experts/admin/' + scholarId, outsider.access)).status, 403);
@@ -173,6 +203,11 @@ test(
       throw Error('Scanner did not complete within 210 seconds');
     }
     assert.equal((await waitFile(fileId)).state, 'READY');
+    assert.equal(
+      (await api('files/assets/' + fileId + '/link', scientific.access, 'POST', {})).status,
+      403,
+      'A scientific reviewer cannot view unsubmitted files',
+    );
     // Existing avatar API must retain its contract while writing into central object storage.
     const sharp = (await import('sharp')).default;
     const avatar = await sharp({
@@ -213,12 +248,33 @@ test(
     const savedDoc = await api('experts/me/documents', expert.access, 'POST', doc);
     assert.equal(savedDoc.status, 200, JSON.stringify(savedDoc.body));
     const documentId = savedDoc.body.data.id;
+    const duplicateDoc = await api('experts/me/documents', expert.access, 'POST', {
+      ...doc,
+      title: 'Temporary duplicate reference',
+    });
+    assert.equal(duplicateDoc.status, 200);
+    assert.equal(
+      (
+        await api(
+          'experts/me/documents/' + duplicateDoc.body.data.id + '/remove',
+          expert.access,
+          'POST',
+          {},
+        )
+      ).status,
+      200,
+    );
     assert.equal(
       (await api('files/assets/' + fileId + '/action', expert.access, 'POST', { action: 'DELETE' }))
         .status,
       409,
     );
     assert.equal((await api('experts/me/submit', expert.access, 'POST', {})).status, 200);
+    assert.equal(
+      (await api('files/assets/' + fileId + '/link', scientific.access, 'POST', {})).status,
+      200,
+      'A reviewer may view a submitted credential',
+    );
     const review = async (status: string) => {
       const current = await api('experts/admin/' + scholarId, admin.access);
       const result = await api('experts/admin/' + scholarId + '/review', admin.access, 'POST', {
@@ -314,6 +370,18 @@ test(
     assert.ok(!JSON.stringify(published.body).includes('PRIVATE-TEST-NUMBER'));
     assert.ok(!JSON.stringify(published.body).includes(fileId));
     assert.ok(!JSON.stringify(published.body).includes('INTERNAL-ONLY-TEST'));
+    assert.ok(!JSON.stringify(published.body).includes(profile.contact_phone));
+    let notified = false;
+    for (let i = 0; i < 40 && !notified; i++) {
+      const list = await fetch('http://mailpit:8025/api/v1/messages').then((r) => r.json());
+      notified = (list.messages ?? []).some(
+        (m: { Subject: string; To: { Address: string }[] }) =>
+          m.Subject.includes('Professional application update') &&
+          m.To.some((x) => x.Address === expert.email),
+      );
+      if (!notified) await new Promise((r) => setTimeout(r, 500));
+    }
+    assert.ok(notified, 'Application notification must be delivered over SMTP');
     // Standard harmless antivirus test marker embedded in a document; never executable malware.
     const marker = [
       'X5O!P%@AP[4',

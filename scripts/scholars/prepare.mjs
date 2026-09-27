@@ -111,7 +111,7 @@ if (process.env.SCHOLARS_TEST === '1') {
     { mode: 0o644 },
   );
   compose.services.scanner.volumes.push(
-    './local/stage08-test.hdb:/var/lib/clamav/stage08-test.hdb:ro',
+    './local/stage08-test.hdb:/var/lib/clamav/stage08-test.hdb',
   );
   const identity = readFileSync('infra/local/identity-auth.env', 'utf8');
   if (
