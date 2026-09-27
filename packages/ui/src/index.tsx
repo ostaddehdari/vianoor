@@ -4,3 +4,4 @@ export { routeInfo, pagePaths, copy, roles, publicPages } from './routing';
 export { AuthForm, AccountSecurity, type AuthAction } from './auth';
 export { releaseVersion } from './release';
 export { expertsPublicCopy } from './experts-public-copy';
+export { ExpertAssetImage } from './scholars';

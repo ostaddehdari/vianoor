@@ -1,4 +1,4 @@
-import { expertsPublicCopy } from '@vianoor/ui';
+import { expertsPublicCopy, ExpertAssetImage } from '@vianoor/ui';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { expertData, publicBase, type PublicExpert } from '../data';
@@ -95,6 +95,7 @@ export default async function Expert({ params }: Params) {
         {row.services.map((s) => (
           <article className="user-card" key={s.id}>
             <h3>{s.details.title}</h3>
+            <ExpertAssetImage id={s.details.image_id} alt={s.details.title} />
             <p>{s.details.summary}</p>
             <p>{s.details.description}</p>
             <strong>

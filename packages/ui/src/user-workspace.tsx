@@ -14,7 +14,7 @@ import {
 import { UserAvatar, ProfileEditor, userError } from './user-profile';
 import { UserManagement, Organizations } from './user-admin';
 import { FormBuilder } from './form-builder';
-import { ScholarWorkspace, TaxonomyManager, FileManager } from './scholars';
+import { ScholarWorkspace, TaxonomyManager, FileManager, ServiceReviewQueue } from './scholars';
 import { scholarsCopy } from './scholars-copy';
 type Locale = 'fa' | 'en';
 const href = (locale: Locale, path: string) => `${usersBase}/${locale}/${path}`;
@@ -329,17 +329,21 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     href(locale, role + (part ? '/' + part : '')) +
     (scope === 'platform' ? '' : '?scope=' + encodeURIComponent(scope));
   const links: [string, string][] = [
+    ['', roleName(locale, role)],
     ...(['account', 'expert'].includes(role)
       ? [['professional', scholarsCopy[locale].professional] as [string, string]]
       : []),
     ...(admin || role === 'scientific'
       ? ([
           ['experts', scholarsCopy[locale].experts],
+          ['expert-applications', scholarsCopy[locale].applications],
+          ['verification', scholarsCopy[locale].verification],
+          ['expert-documents', scholarsCopy[locale].documents],
+          ['services', scholarsCopy[locale].services],
           ['taxonomy', scholarsCopy[locale].taxonomy],
         ] as [string, string][])
       : []),
     ...(admin ? [['files', scholarsCopy[locale].files] as [string, string]] : []),
-    ['', roleName(locale, role)],
     ...(role === 'account' ? [['profile', t.editProfile] as [string, string]] : []),
     ...(admin
       ? ([
@@ -441,10 +445,39 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
               </a>
             </div>
           )}
-          {section === 'professional' && ['account', 'expert'].includes(role) ? (
-            <ScholarWorkspace locale={locale} />
-          ) : section === 'experts' && (admin || role === 'scientific') ? (
-            <ScholarWorkspace locale={locale} admin />
+          {(section === 'professional' && ['account', 'expert'].includes(role)) ||
+          (role === 'expert' &&
+            ['profile', 'credentials', 'offerings', 'files'].includes(section)) ? (
+            <ScholarWorkspace
+              key={section}
+              locale={locale}
+              initialTab={
+                section === 'credentials' || section === 'files'
+                  ? 'documents'
+                  : section === 'offerings'
+                    ? 'services'
+                    : 'profile'
+              }
+            />
+          ) : ['experts', 'expert-applications', 'verification', 'expert-documents'].includes(
+              section,
+            ) &&
+            (admin || role === 'scientific') ? (
+            <ScholarWorkspace
+              key={section}
+              locale={locale}
+              admin
+              initialTab={section === 'expert-documents' ? 'documents' : 'profile'}
+              initialStatus={
+                section === 'expert-applications'
+                  ? 'SUBMITTED'
+                  : section === 'verification'
+                    ? 'UNDER_REVIEW'
+                    : ''
+              }
+            />
+          ) : section === 'services' && (admin || role === 'scientific') ? (
+            <ServiceReviewQueue locale={locale} />
           ) : section === 'taxonomy' && (admin || role === 'scientific') ? (
             <TaxonomyManager locale={locale} />
           ) : section === 'files' && admin ? (

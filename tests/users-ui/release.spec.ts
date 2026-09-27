@@ -7,11 +7,11 @@ test('installed release, cache policy, role dropdown and protected workspace', a
   test.skip(!base, 'Set USERS_RELEASE_URL to the installed site including its base path.');
   const version = await page.request.get(`${base}/api/version`);
   expect(version.status()).toBe(200);
-  expect(await version.json()).toEqual({ version: 'V6.0.1', stage: 6 });
+  expect(await version.json()).toEqual({ version: 'V8.0.0', stage: 8 });
   expect(version.headers()['cache-control']).toContain('no-store');
   const home = await page.goto(`${base}/fa`);
   expect(home?.headers()['cache-control']).toContain('no-store');
-  await expect(page.locator('.release-badge')).toHaveText('V6.0.1');
+  await expect(page.locator('.release-badge')).toHaveText('V8.0.0');
   await page.goto(`${base}/fa/preview/admin`);
   if (info.project.name === 'mobile') await page.locator('.workspace-heading button').click();
   await expect(page.locator('.sidebar nav a[href$="/preview/admin/users"]')).toBeVisible();

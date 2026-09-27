@@ -14,6 +14,25 @@ import {
 } from './scholars-client';
 type Locale = 'fa' | 'en';
 type Copy = typeof scholarsCopy.en;
+export function ExpertAssetImage({ id, alt }: { id: string | null; alt: string }) {
+  const [src, setSrc] = useState('');
+  useEffect(() => {
+    let active = true;
+    setSrc('');
+    if (id)
+      void userApi<{ mime: string; base64: string }>('files/public/' + id)
+        .then((f) => {
+          if (active) setSrc('data:' + f.mime + ';base64,' + f.base64);
+        })
+        .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [id]);
+  return src ? (
+    <img className="scholar-portrait" src={src} alt={alt} width={120} height={120} />
+  ) : null;
+}
 const stateLabel = (t: Copy, s: string) => t.states[s as keyof Copy['states']] ?? s;
 type Value = string | number | boolean | null;
 function Control({
@@ -206,7 +225,7 @@ function ProfessionalForm({
         </div>
         <h3>{t.image_id}</h3>
         <AssetUpload locale={locale} purpose="image" onReady={(id) => update('image_id', id)} />
-        {value.image_id && <p>{t.saved}</p>}
+        {value.image_id && <ExpertAssetImage id={value.image_id} alt={value.display_name} />}
         <h3>{t.specialties}</h3>
         <div className="scholar-options">
           {taxons
@@ -579,7 +598,17 @@ function ReviewForm({
     </form>
   );
 }
-export function ScholarWorkspace({ locale, admin = false }: { locale: Locale; admin?: boolean }) {
+export function ScholarWorkspace({
+  locale,
+  admin = false,
+  initialTab = 'profile',
+  initialStatus = '',
+}: {
+  locale: Locale;
+  admin?: boolean;
+  initialTab?: string;
+  initialStatus?: string;
+}) {
   const t = scholarsCopy[locale],
     [row, setRow] = useState<Scholar | null>(null),
     [taxons, setTaxons] = useState<Taxon[]>([]),
@@ -587,12 +616,12 @@ export function ScholarWorkspace({ locale, admin = false }: { locale: Locale; ad
       { id: string; display_name: string; status: string; public_id: string }[]
     >([]),
     [selected, setSelected] = useState(''),
-    [tab, setTab] = useState('profile'),
+    [tab, setTab] = useState(initialTab),
     [loading, setLoading] = useState(true),
     [error, setError] = useState(''),
     [message, setMessage] = useState(''),
     [query, setQuery] = useState(''),
-    [status, setStatus] = useState(''),
+    [status, setStatus] = useState(initialStatus),
     [filters, setFilters] = useState({
       specialty: '',
       language: '',
@@ -784,6 +813,10 @@ export function ScholarWorkspace({ locale, admin = false }: { locale: Locale; ad
               {tab === 'profile' &&
                 (admin ? (
                   <div className="scholar-readonly">
+                    <ExpertAssetImage id={row.profile.image_id} alt={row.profile.display_name} />
+                    <p>
+                      {t.contact_phone}: {row.profile.contact_phone}
+                    </p>
                     <h3>{row.profile.title}</h3>
                     <p>{row.profile.short_bio}</p>
                     <p>{row.profile.biography}</p>
@@ -1145,6 +1178,59 @@ export function TaxonomyManager({ locale }: { locale: Locale }) {
         <button className="scholar-list-row" key={item.id} onClick={() => setValue(item)}>
           {item.label[locale]} · {stateLabel(t, item.kind)} · {item.active ? t.active : t.disable}
         </button>
+      ))}
+    </section>
+  );
+}
+export function ServiceReviewQueue({ locale }: { locale: Locale }) {
+  const t = scholarsCopy[locale],
+    [items, setItems] = useState<
+      {
+        id: string;
+        scholar_id: string;
+        display_name: string;
+        details: Offering;
+        status: string;
+        revision: number;
+      }[]
+    >([]),
+    [error, setError] = useState('');
+  const load = () => userApi<typeof items>('experts/admin-services').then(setItems);
+  useEffect(() => {
+    void load().catch(() => setError(t.error));
+  }, []);
+  return (
+    <section className="user-card scholar-workspace">
+      <h2>{t.services}</h2>
+      {error && <p role="alert">{error}</p>}
+      {items.length === 0 && <p>{t.empty}</p>}
+      {items.map((s) => (
+        <article className="user-card" key={s.id}>
+          <h3>{s.details.title}</h3>
+          <p>{s.display_name}</p>
+          <ExpertAssetImage id={s.details.image_id} alt={s.details.title} />
+          <p>{s.details.description}</p>
+          <p>{stateLabel(t, s.status)}</p>
+          <ReviewForm
+            locale={locale}
+            statuses={
+              s.status === 'PENDING_REVIEW' ? ['PUBLISHED', 'REJECTED', 'DISABLED'] : ['DISABLED']
+            }
+            onSave={async (v) => {
+              setError('');
+              try {
+                await userApi(`experts/admin/${s.scholar_id}/services/${s.id}/review`, 'POST', {
+                  status: v.status,
+                  reason: v.reason,
+                  revision: s.revision,
+                });
+                await load();
+              } catch {
+                setError(t.error);
+              }
+            }}
+          />
+        </article>
       ))}
     </section>
   );

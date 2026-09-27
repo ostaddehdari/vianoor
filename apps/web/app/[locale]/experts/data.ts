@@ -49,6 +49,7 @@ export type PublicExpert = {
       currency: string;
       duration_minutes: number | null;
       terms: string;
+      image_id: string | null;
     };
   }[];
 };

@@ -140,6 +140,19 @@ async function pinImage(req: Request, id: string | null, owner: string, referenc
 }
 export function scholarsRouter(pool: Pool) {
   const router = internalRouter('128kb');
+  router.get(
+    '/api/v2/experts/admin-services',
+    endpoint(async (req, res) => {
+      await requirePermission(req, 'service.manage');
+      res.json({
+        data: (
+          await pool.query(
+            "SELECT o.*,s.profile->>'display_name' AS display_name FROM scholar_offerings o JOIN scholars s ON s.id=o.scholar_id ORDER BY (o.status='PENDING_REVIEW') DESC,o.created_at DESC LIMIT 100",
+          )
+        ).rows,
+      });
+    }),
+  );
   router.post(
     '/internal/files/released-document',
     endpoint(async (req, res) => {
