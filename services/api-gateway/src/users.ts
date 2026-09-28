@@ -1,3 +1,4 @@
+import { Readable } from 'node:stream';
 import {
   internalRouter,
   endpoint,
@@ -30,6 +31,8 @@ const owners: Record<string, string> = {
   questions: 'qa-service',
   notifications: 'notification-service',
   presence: 'presence-service',
+  sessions: 'media-service',
+  ratings: 'rating-service',
 };
 export function usersProxy() {
   const router = internalRouter('28mb', true);
@@ -57,6 +60,43 @@ export function usersProxy() {
           /^\/files\/public\/[a-f0-9-]+$/.test(req.path) ||
           (req.path === '/taxonomy' && req.query.admin !== '1'));
       if (!publicRead) await principal(req);
+      if (req.method === 'GET' && /^\/files\/recordings\/[a-f0-9-]{36}\/stream$/.test(req.path)) {
+        const target = process.env.FILE_SERVICE_URL,
+          key = process.env.AUTH_INTERNAL_KEY;
+        if (!target || !key || key.length < 48) throw new ServiceError(503, 'UNAVAILABLE');
+        const controller = new AbortController();
+        res.on('close', () => controller.abort());
+        const upstream = await fetch(new URL('/api/v2' + req.url, target), {
+          redirect: 'error',
+          signal: AbortSignal.any([controller.signal, AbortSignal.timeout(600000)]),
+          headers: {
+            'x-internal-key': key,
+            authorization: req.get('authorization') ?? '',
+            ...(req.get('range') ? { range: req.get('range')! } : {}),
+          },
+        });
+        res.status(upstream.status);
+        for (const name of [
+          'content-type',
+          'content-length',
+          'content-range',
+          'accept-ranges',
+          'content-disposition',
+          'cache-control',
+          'x-content-type-options',
+        ]) {
+          const value = upstream.headers.get(name);
+          if (value) res.set(name, value);
+        }
+        if (!upstream.body) {
+          res.end();
+          return;
+        }
+        const body = Readable.fromWeb(upstream.body as import('node:stream/web').ReadableStream);
+        body.on('error', () => res.destroy());
+        body.pipe(res);
+        return;
+      }
       const data = await internalCall(
         owner,
         '/api/v2' + req.url,

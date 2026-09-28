@@ -112,6 +112,24 @@ export const offeringSchema = z
     price_minor: z.number().int().min(0).max(1000000000000),
     currency: z.enum(['IRR', 'IRT', 'USD', 'EUR', 'GBP', 'AED']),
     booking_required: z.boolean(),
+    call_policy: z
+      .object({
+        client_screen_share: z.boolean().default(false),
+        observer: z
+          .enum([
+            'NEVER',
+            'WITH_USER_CONSENT',
+            'WITH_BOTH_CONSENT',
+            'ADMIN_EMERGENCY_ONLY',
+            'ALLOWED_BY_SERVICE_POLICY',
+          ])
+          .default('NEVER'),
+        recording: z.enum(['OFF', 'BOTH_CONSENT']).default('OFF'),
+        retention_days: z.number().int().min(1).max(90).default(30),
+        recording_download: z.boolean().default(false),
+      })
+      .strict()
+      .default({}),
     image_id: z.string().uuid().nullable(),
     terms: z.string().trim().max(5000),
   })

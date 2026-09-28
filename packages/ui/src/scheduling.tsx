@@ -1,4 +1,5 @@
 'use client';
+import { sessionsCopy } from './sessions-copy';
 import { communicationCopy } from './communication-copy';
 import { financeCopy } from './finance-copy';
 import { usersBase } from './users-client';
@@ -833,6 +834,14 @@ function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert'
                   href={usersBase + '/' + locale + '/account/messages?booking=' + r.id}
                 >
                   {communicationCopy[locale]!.conversation}
+                </a>
+              )}
+              {['CONFIRMED', 'RESCHEDULED'].includes(r.status) && (
+                <a
+                  className="button compact"
+                  href={usersBase + '/' + locale + '/account/sessions?booking=' + r.id}
+                >
+                  {sessionsCopy[locale]!.sessions}
                 </a>
               )}
               {r.status === 'BOOKING_PENDING_PAYMENT' && view === 'mine' && (

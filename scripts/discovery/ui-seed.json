@@ -392,6 +392,832 @@
     "ar": "Press the button below to verify your email address."
   },
   {
+    "key": "communicationCopy.account_sid",
+    "module": "communicationcopy",
+    "en": "Twilio account SID",
+    "fa": "شناسه حساب Twilio",
+    "ar": "Twilio account SID"
+  },
+  {
+    "key": "communicationCopy.addComment",
+    "module": "communicationcopy",
+    "en": "Submit comment for review",
+    "fa": "ارسال نظر برای بررسی",
+    "ar": "Submit comment for review"
+  },
+  {
+    "key": "communicationCopy.ANONYMOUS",
+    "module": "communicationcopy",
+    "en": "Anonymous public copy",
+    "fa": "نسخه عمومی ناشناس",
+    "ar": "Anonymous public copy"
+  },
+  {
+    "key": "communicationCopy.answer",
+    "module": "communicationcopy",
+    "en": "Answer",
+    "fa": "پاسخ",
+    "ar": "Answer"
+  },
+  {
+    "key": "communicationCopy.approve",
+    "module": "communicationcopy",
+    "en": "Approve",
+    "fa": "تأیید",
+    "ar": "Approve"
+  },
+  {
+    "key": "communicationCopy.APPROVED",
+    "module": "communicationcopy",
+    "en": "Approved",
+    "fa": "تأیید شده",
+    "ar": "Approved"
+  },
+  {
+    "key": "communicationCopy.archive",
+    "module": "communicationcopy",
+    "en": "Archive",
+    "fa": "بایگانی",
+    "ar": "Archive"
+  },
+  {
+    "key": "communicationCopy.ARCHIVED",
+    "module": "communicationcopy",
+    "en": "Archived",
+    "fa": "بایگانی",
+    "ar": "Archived"
+  },
+  {
+    "key": "communicationCopy.ask",
+    "module": "communicationcopy",
+    "en": "Submit a private question",
+    "fa": "ثبت پرسش خصوصی",
+    "ar": "Submit a private question"
+  },
+  {
+    "key": "communicationCopy.assign",
+    "module": "communicationcopy",
+    "en": "Assign expert",
+    "fa": "تخصیص استاد",
+    "ar": "Assign expert"
+  },
+  {
+    "key": "communicationCopy.attachment",
+    "module": "communicationcopy",
+    "en": "Attach a file",
+    "fa": "پیوست فایل",
+    "ar": "Attach a file"
+  },
+  {
+    "key": "communicationCopy.auth_token",
+    "module": "communicationcopy",
+    "en": "Twilio auth token",
+    "fa": "کلید اتصال Twilio",
+    "ar": "Twilio auth token"
+  },
+  {
+    "key": "communicationCopy.AWAY",
+    "module": "communicationcopy",
+    "en": "Away",
+    "fa": "دور از دسترس",
+    "ar": "Away"
+  },
+  {
+    "key": "communicationCopy.body",
+    "module": "communicationcopy",
+    "en": "Message",
+    "fa": "متن پیام",
+    "ar": "Message"
+  },
+  {
+    "key": "communicationCopy.BOOKING",
+    "module": "communicationcopy",
+    "en": "Session chat",
+    "fa": "گفت‌وگوی جلسه",
+    "ar": "Session chat"
+  },
+  {
+    "key": "communicationCopy.BOOKINGS",
+    "module": "communicationcopy",
+    "en": "Bookings",
+    "fa": "رزروها",
+    "ar": "Bookings"
+  },
+  {
+    "key": "communicationCopy.cancel",
+    "module": "communicationcopy",
+    "en": "Cancel",
+    "fa": "انصراف",
+    "ar": "Cancel"
+  },
+  {
+    "key": "communicationCopy.CANCELLED",
+    "module": "communicationcopy",
+    "en": "Booking cancelled",
+    "fa": "رزرو لغو شد",
+    "ar": "Booking cancelled"
+  },
+  {
+    "key": "communicationCopy.category",
+    "module": "communicationcopy",
+    "en": "Category",
+    "fa": "دسته‌بندی",
+    "ar": "Category"
+  },
+  {
+    "key": "communicationCopy.CHANNEL_INBOX",
+    "module": "communicationcopy",
+    "en": "Channel inbox",
+    "fa": "صندوق کانال",
+    "ar": "Channel inbox"
+  },
+  {
+    "key": "communicationCopy.CHANNEL_POST",
+    "module": "communicationcopy",
+    "en": "New channel post",
+    "fa": "پست جدید کانال",
+    "ar": "New channel post"
+  },
+  {
+    "key": "communicationCopy.channelHint",
+    "module": "communicationcopy",
+    "en": "Following does not grant private chat access. Inbox messages reach the expert only after administrative review.",
+    "fa": "دنبال کردن کانال مجوز چت خصوصی نمی‌دهد. پیام صندوق پس از بررسی مدیر به استاد می‌رسد.",
+    "ar": "Following does not grant private chat access. Inbox messages reach the expert only after administrative review."
+  },
+  {
+    "key": "communicationCopy.channels",
+    "module": "communicationcopy",
+    "en": "Expert channels",
+    "fa": "کانال استادان",
+    "ar": "Expert channels"
+  },
+  {
+    "key": "communicationCopy.channelTitle",
+    "module": "communicationcopy",
+    "en": "Channel title",
+    "fa": "عنوان کانال",
+    "ar": "Channel title"
+  },
+  {
+    "key": "communicationCopy.choose",
+    "module": "communicationcopy",
+    "en": "Choose a conversation",
+    "fa": "یک مکالمه انتخاب کنید",
+    "ar": "Choose a conversation"
+  },
+  {
+    "key": "communicationCopy.claim",
+    "module": "communicationcopy",
+    "en": "Open for review",
+    "fa": "باز کردن برای بررسی",
+    "ar": "Open for review"
+  },
+  {
+    "key": "communicationCopy.clearFile",
+    "module": "communicationcopy",
+    "en": "Remove attachment",
+    "fa": "حذف پیوست",
+    "ar": "Remove attachment"
+  },
+  {
+    "key": "communicationCopy.closed",
+    "module": "communicationcopy",
+    "en": "This conversation is archived.",
+    "fa": "این مکالمه بایگانی شده است.",
+    "ar": "This conversation is archived."
+  },
+  {
+    "key": "communicationCopy.code",
+    "module": "communicationcopy",
+    "en": "Verification code",
+    "fa": "کد تأیید",
+    "ar": "Verification code"
+  },
+  {
+    "key": "communicationCopy.comments",
+    "module": "communicationcopy",
+    "en": "Comments",
+    "fa": "نظرها",
+    "ar": "Comments"
+  },
+  {
+    "key": "communicationCopy.commentsEnabled",
+    "module": "communicationcopy",
+    "en": "Allow moderated comments",
+    "fa": "پذیرش نظر با بررسی",
+    "ar": "Allow moderated comments"
+  },
+  {
+    "key": "communicationCopy.COMPLETED",
+    "module": "communicationcopy",
+    "en": "Session completed",
+    "fa": "جلسه پایان یافت",
+    "ar": "Session completed"
+  },
+  {
+    "key": "communicationCopy.CONFIRMED",
+    "module": "communicationcopy",
+    "en": "Booking confirmed",
+    "fa": "رزرو تأیید شد",
+    "ar": "Booking confirmed"
+  },
+  {
+    "key": "communicationCopy.CONSULTATION",
+    "module": "communicationcopy",
+    "en": "Text consultation",
+    "fa": "مشاوره متنی",
+    "ar": "Text consultation"
+  },
+  {
+    "key": "communicationCopy.contextHint",
+    "module": "communicationcopy",
+    "en": "Private conversations are opened from an eligible booking or an assigned question.",
+    "fa": "گفت‌وگوی خصوصی از رزرو مجاز یا پرسش تخصیص‌یافته باز می‌شود.",
+    "ar": "Private conversations are opened from an eligible booking or an assigned question."
+  },
+  {
+    "key": "communicationCopy.conversation",
+    "module": "communicationcopy",
+    "en": "Open conversation",
+    "fa": "باز کردن مکالمه",
+    "ar": "Open conversation"
+  },
+  {
+    "key": "communicationCopy.createChannel",
+    "module": "communicationcopy",
+    "en": "Save my channel",
+    "fa": "ذخیره کانال من",
+    "ar": "Save my channel"
+  },
+  {
+    "key": "communicationCopy.credentialsHint",
+    "module": "communicationcopy",
+    "en": "Credentials are encrypted and never returned. Save without credentials to change only availability.",
+    "fa": "اطلاعات اتصال رمز می‌شود و دوباره نمایش داده نمی‌شود. برای تغییر وضعیت، فیلدهای اتصال را خالی بگذارید.",
+    "ar": "Credentials are encrypted and never returned. Save without credentials to change only availability."
+  },
+  {
+    "key": "communicationCopy.DELIVERED",
+    "module": "communicationcopy",
+    "en": "Delivered",
+    "fa": "تحویل شد",
+    "ar": "Delivered"
+  },
+  {
+    "key": "communicationCopy.description",
+    "module": "communicationcopy",
+    "en": "Description",
+    "fa": "توضیحات",
+    "ar": "Description"
+  },
+  {
+    "key": "communicationCopy.download",
+    "module": "communicationcopy",
+    "en": "Open attachment",
+    "fa": "باز کردن پیوست",
+    "ar": "Open attachment"
+  },
+  {
+    "key": "communicationCopy.email",
+    "module": "communicationcopy",
+    "en": "Email",
+    "fa": "ایمیل",
+    "ar": "Email"
+  },
+  {
+    "key": "communicationCopy.empty",
+    "module": "communicationcopy",
+    "en": "No records yet.",
+    "fa": "هنوز موردی ثبت نشده است.",
+    "ar": "No records yet."
+  },
+  {
+    "key": "communicationCopy.enabled",
+    "module": "communicationcopy",
+    "en": "Enabled",
+    "fa": "فعال",
+    "ar": "Enabled"
+  },
+  {
+    "key": "communicationCopy.error",
+    "module": "communicationcopy",
+    "en": "The action could not be completed. Try again.",
+    "fa": "انجام این کار ممکن نشد؛ دوباره تلاش کنید.",
+    "ar": "The action could not be completed. Try again."
+  },
+  {
+    "key": "communicationCopy.expertCode",
+    "module": "communicationcopy",
+    "en": "Expert public ID",
+    "fa": "شناسه عمومی استاد",
+    "ar": "Expert public ID"
+  },
+  {
+    "key": "communicationCopy.filePending",
+    "module": "communicationcopy",
+    "en": "The file is being scanned. Please wait.",
+    "fa": "فایل در حال بررسی امنیتی است؛ کمی صبر کنید.",
+    "ar": "The file is being scanned. Please wait."
+  },
+  {
+    "key": "communicationCopy.fileReady",
+    "module": "communicationcopy",
+    "en": "Attachment ready",
+    "fa": "پیوست آماده است",
+    "ar": "Attachment ready"
+  },
+  {
+    "key": "communicationCopy.follow",
+    "module": "communicationcopy",
+    "en": "Follow",
+    "fa": "دنبال کردن",
+    "ar": "Follow"
+  },
+  {
+    "key": "communicationCopy.forward",
+    "module": "communicationcopy",
+    "en": "Forward to expert",
+    "fa": "ارجاع به استاد",
+    "ar": "Forward to expert"
+  },
+  {
+    "key": "communicationCopy.inbox",
+    "module": "communicationcopy",
+    "en": "Managed inbox",
+    "fa": "صندوق مدیریت",
+    "ar": "Managed inbox"
+  },
+  {
+    "key": "communicationCopy.INBOX_FORWARDED",
+    "module": "communicationcopy",
+    "en": "Channel message forwarded",
+    "fa": "پیام کانال به شما ارجاع شد",
+    "ar": "Channel message forwarded"
+  },
+  {
+    "key": "communicationCopy.link",
+    "module": "communicationcopy",
+    "en": "Open link",
+    "fa": "باز کردن پیوند",
+    "ar": "Open link"
+  },
+  {
+    "key": "communicationCopy.loadMore",
+    "module": "communicationcopy",
+    "en": "Load more",
+    "fa": "نمایش بیشتر",
+    "ar": "Load more"
+  },
+  {
+    "key": "communicationCopy.MARKETING",
+    "module": "communicationcopy",
+    "en": "Promotions",
+    "fa": "تبلیغات",
+    "ar": "Promotions"
+  },
+  {
+    "key": "communicationCopy.markRead",
+    "module": "communicationcopy",
+    "en": "Mark read",
+    "fa": "خوانده شد",
+    "ar": "Mark read"
+  },
+  {
+    "key": "communicationCopy.messages",
+    "module": "communicationcopy",
+    "en": "Messages",
+    "fa": "پیام‌ها",
+    "ar": "Messages"
+  },
+  {
+    "key": "communicationCopy.MESSAGES",
+    "module": "communicationcopy",
+    "en": "Messages",
+    "fa": "پیام‌ها",
+    "ar": "Messages"
+  },
+  {
+    "key": "communicationCopy.messaging_service_sid",
+    "module": "communicationcopy",
+    "en": "Messaging service SID",
+    "fa": "شناسه سرویس پیامک",
+    "ar": "Messaging service SID"
+  },
+  {
+    "key": "communicationCopy.moderation",
+    "module": "communicationcopy",
+    "en": "Moderation",
+    "fa": "بررسی پیام‌ها",
+    "ar": "Moderation"
+  },
+  {
+    "key": "communicationCopy.more",
+    "module": "communicationcopy",
+    "en": "More",
+    "fa": "بیشتر",
+    "ar": "More"
+  },
+  {
+    "key": "communicationCopy.NEW_MESSAGE",
+    "module": "communicationcopy",
+    "en": "New message",
+    "fa": "پیام جدید",
+    "ar": "New message"
+  },
+  {
+    "key": "communicationCopy.newMessage",
+    "module": "communicationcopy",
+    "en": "New message",
+    "fa": "پیام جدید",
+    "ar": "New message"
+  },
+  {
+    "key": "communicationCopy.noAccess",
+    "module": "communicationcopy",
+    "en": "You do not have access to this conversation.",
+    "fa": "به این مکالمه دسترسی ندارید.",
+    "ar": "You do not have access to this conversation."
+  },
+  {
+    "key": "communicationCopy.notifications",
+    "module": "communicationcopy",
+    "en": "Notifications",
+    "fa": "اعلان‌ها",
+    "ar": "Notifications"
+  },
+  {
+    "key": "communicationCopy.OFFLINE",
+    "module": "communicationcopy",
+    "en": "Offline",
+    "fa": "آفلاین",
+    "ar": "Offline"
+  },
+  {
+    "key": "communicationCopy.ONLINE",
+    "module": "communicationcopy",
+    "en": "Online",
+    "fa": "آنلاین",
+    "ar": "Online"
+  },
+  {
+    "key": "communicationCopy.OPEN",
+    "module": "communicationcopy",
+    "en": "Open",
+    "fa": "باز",
+    "ar": "Open"
+  },
+  {
+    "key": "communicationCopy.PAYMENT_COMPLETED",
+    "module": "communicationcopy",
+    "en": "Payment completed",
+    "fa": "پرداخت تکمیل شد",
+    "ar": "Payment completed"
+  },
+  {
+    "key": "communicationCopy.PAYMENTS",
+    "module": "communicationcopy",
+    "en": "Payments",
+    "fa": "پرداخت‌ها",
+    "ar": "Payments"
+  },
+  {
+    "key": "communicationCopy.PENDING",
+    "module": "communicationcopy",
+    "en": "Pending review",
+    "fa": "در انتظار بررسی",
+    "ar": "Pending review"
+  },
+  {
+    "key": "communicationCopy.phone",
+    "module": "communicationcopy",
+    "en": "Phone number with country code",
+    "fa": "شماره تلفن با پیش‌شماره کشور",
+    "ar": "Phone number with country code"
+  },
+  {
+    "key": "communicationCopy.post",
+    "module": "communicationcopy",
+    "en": "Publish post",
+    "fa": "انتشار پست",
+    "ar": "Publish post"
+  },
+  {
+    "key": "communicationCopy.preferences",
+    "module": "communicationcopy",
+    "en": "Notification preferences",
+    "fa": "تنظیمات اعلان",
+    "ar": "Notification preferences"
+  },
+  {
+    "key": "communicationCopy.PRIVATE",
+    "module": "communicationcopy",
+    "en": "Private",
+    "fa": "خصوصی",
+    "ar": "Private"
+  },
+  {
+    "key": "communicationCopy.PUBLIC",
+    "module": "communicationcopy",
+    "en": "Public with public ID",
+    "fa": "عمومی با شناسه عمومی",
+    "ar": "Public with public ID"
+  },
+  {
+    "key": "communicationCopy.publicAnswer",
+    "module": "communicationcopy",
+    "en": "Public answer text",
+    "fa": "متن عمومی پاسخ",
+    "ar": "Public answer text"
+  },
+  {
+    "key": "communicationCopy.publicationHint",
+    "module": "communicationcopy",
+    "en": "Only this separate copy is published after your consent and review. Remove names and private details for anonymous publication.",
+    "fa": "فقط این نسخه جداگانه پس از رضایت شما و بررسی منتشر می‌شود. برای انتشار ناشناس، نام‌ها و اطلاعات خصوصی را حذف کنید.",
+    "ar": "Only this separate copy is published after your consent and review. Remove names and private details for anonymous publication."
+  },
+  {
+    "key": "communicationCopy.publicList",
+    "module": "communicationcopy",
+    "en": "Published questions",
+    "fa": "پرسش‌های منتشرشده",
+    "ar": "Published questions"
+  },
+  {
+    "key": "communicationCopy.publicQuestion",
+    "module": "communicationcopy",
+    "en": "Public question text",
+    "fa": "متن عمومی پرسش",
+    "ar": "Public question text"
+  },
+  {
+    "key": "communicationCopy.publish",
+    "module": "communicationcopy",
+    "en": "Approve publication",
+    "fa": "تأیید انتشار",
+    "ar": "Approve publication"
+  },
+  {
+    "key": "communicationCopy.QUESTION",
+    "module": "communicationcopy",
+    "en": "Question",
+    "fa": "پرسش",
+    "ar": "Question"
+  },
+  {
+    "key": "communicationCopy.questions",
+    "module": "communicationcopy",
+    "en": "Questions and answers",
+    "fa": "پرسش و پاسخ",
+    "ar": "Questions and answers"
+  },
+  {
+    "key": "communicationCopy.READ",
+    "module": "communicationcopy",
+    "en": "Read",
+    "fa": "خوانده شد",
+    "ar": "Read"
+  },
+  {
+    "key": "communicationCopy.record",
+    "module": "communicationcopy",
+    "en": "Record voice",
+    "fa": "ضبط پیام صوتی",
+    "ar": "Record voice"
+  },
+  {
+    "key": "communicationCopy.recordHint",
+    "module": "communicationcopy",
+    "en": "Recording starts only after microphone permission. Maximum 10 minutes.",
+    "fa": "ضبط فقط با اجازهٔ میکروفن شروع می‌شود؛ حداکثر ۱۰ دقیقه.",
+    "ar": "Recording starts only after microphone permission. Maximum 10 minutes."
+  },
+  {
+    "key": "communicationCopy.recording",
+    "module": "communicationcopy",
+    "en": "Recording",
+    "fa": "در حال ضبط",
+    "ar": "Recording"
+  },
+  {
+    "key": "communicationCopy.refresh",
+    "module": "communicationcopy",
+    "en": "Refresh",
+    "fa": "تازه‌سازی",
+    "ar": "Refresh"
+  },
+  {
+    "key": "communicationCopy.reject",
+    "module": "communicationcopy",
+    "en": "Reject",
+    "fa": "رد",
+    "ar": "Reject"
+  },
+  {
+    "key": "communicationCopy.REJECTED",
+    "module": "communicationcopy",
+    "en": "Rejected",
+    "fa": "رد شده",
+    "ar": "Rejected"
+  },
+  {
+    "key": "communicationCopy.REMINDER_10",
+    "module": "communicationcopy",
+    "en": "Session reminder: 10 minutes",
+    "fa": "یادآوری جلسه: ۱۰ دقیقه",
+    "ar": "Session reminder: 10 minutes"
+  },
+  {
+    "key": "communicationCopy.REMINDER_1440",
+    "module": "communicationcopy",
+    "en": "Session reminder: 24 hours",
+    "fa": "یادآوری جلسه: ۲۴ ساعت",
+    "ar": "Session reminder: 24 hours"
+  },
+  {
+    "key": "communicationCopy.REMINDER_60",
+    "module": "communicationcopy",
+    "en": "Session reminder: 1 hour",
+    "fa": "یادآوری جلسه: یک ساعت",
+    "ar": "Session reminder: 1 hour"
+  },
+  {
+    "key": "communicationCopy.remove",
+    "module": "communicationcopy",
+    "en": "Remove",
+    "fa": "حذف",
+    "ar": "Remove"
+  },
+  {
+    "key": "communicationCopy.reopen",
+    "module": "communicationcopy",
+    "en": "Reopen",
+    "fa": "بازگشایی",
+    "ar": "Reopen"
+  },
+  {
+    "key": "communicationCopy.reply",
+    "module": "communicationcopy",
+    "en": "Reply",
+    "fa": "پاسخ به پیام",
+    "ar": "Reply"
+  },
+  {
+    "key": "communicationCopy.save",
+    "module": "communicationcopy",
+    "en": "Save",
+    "fa": "ذخیره",
+    "ar": "Save"
+  },
+  {
+    "key": "communicationCopy.send",
+    "module": "communicationcopy",
+    "en": "Send",
+    "fa": "ارسال",
+    "ar": "Send"
+  },
+  {
+    "key": "communicationCopy.sendCode",
+    "module": "communicationcopy",
+    "en": "Send verification code",
+    "fa": "ارسال کد تأیید",
+    "ar": "Send verification code"
+  },
+  {
+    "key": "communicationCopy.sendToChannel",
+    "module": "communicationcopy",
+    "en": "Message channel administrators",
+    "fa": "پیام به مدیریت کانال",
+    "ar": "Message channel administrators"
+  },
+  {
+    "key": "communicationCopy.SENT",
+    "module": "communicationcopy",
+    "en": "Sent",
+    "fa": "ارسال شد",
+    "ar": "Sent"
+  },
+  {
+    "key": "communicationCopy.settings",
+    "module": "communicationcopy",
+    "en": "Settings",
+    "fa": "تنظیمات",
+    "ar": "Settings"
+  },
+  {
+    "key": "communicationCopy.sms",
+    "module": "communicationcopy",
+    "en": "SMS",
+    "fa": "پیامک",
+    "ar": "SMS"
+  },
+  {
+    "key": "communicationCopy.smsSettings",
+    "module": "communicationcopy",
+    "en": "SMS connection",
+    "fa": "اتصال پیامک",
+    "ar": "SMS connection"
+  },
+  {
+    "key": "communicationCopy.smsUnavailable",
+    "module": "communicationcopy",
+    "en": "SMS is unavailable until the administrator configures a provider.",
+    "fa": "پیامک پس از تنظیم ارائه‌دهنده توسط مدیر فعال می‌شود.",
+    "ar": "SMS is unavailable until the administrator configures a provider."
+  },
+  {
+    "key": "communicationCopy.status",
+    "module": "communicationcopy",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "communicationCopy.stop",
+    "module": "communicationcopy",
+    "en": "Stop recording",
+    "fa": "پایان ضبط",
+    "ar": "Stop recording"
+  },
+  {
+    "key": "communicationCopy.success",
+    "module": "communicationcopy",
+    "en": "Saved.",
+    "fa": "ذخیره شد.",
+    "ar": "Saved."
+  },
+  {
+    "key": "communicationCopy.support",
+    "module": "communicationcopy",
+    "en": "Contact support",
+    "fa": "ارتباط با پشتیبانی",
+    "ar": "Contact support"
+  },
+  {
+    "key": "communicationCopy.SUPPORT",
+    "module": "communicationcopy",
+    "en": "Support",
+    "fa": "پشتیبانی",
+    "ar": "Support"
+  },
+  {
+    "key": "communicationCopy.title",
+    "module": "communicationcopy",
+    "en": "Messages and notifications",
+    "fa": "پیام‌ها و اعلان‌ها",
+    "ar": "Messages and notifications"
+  },
+  {
+    "key": "communicationCopy.typing",
+    "module": "communicationcopy",
+    "en": "Typing…",
+    "fa": "در حال نوشتن…",
+    "ar": "Typing…"
+  },
+  {
+    "key": "communicationCopy.unfollow",
+    "module": "communicationcopy",
+    "en": "Unfollow",
+    "fa": "لغو دنبال کردن",
+    "ar": "Unfollow"
+  },
+  {
+    "key": "communicationCopy.unread",
+    "module": "communicationcopy",
+    "en": "Unread",
+    "fa": "خوانده‌نشده",
+    "ar": "Unread"
+  },
+  {
+    "key": "communicationCopy.verified",
+    "module": "communicationcopy",
+    "en": "Phone verified",
+    "fa": "شماره تأیید شده",
+    "ar": "Phone verified"
+  },
+  {
+    "key": "communicationCopy.verify",
+    "module": "communicationcopy",
+    "en": "Verify phone",
+    "fa": "تأیید شماره",
+    "ar": "Verify phone"
+  },
+  {
+    "key": "communicationCopy.verify_service_sid",
+    "module": "communicationcopy",
+    "en": "Verify service SID",
+    "fa": "شناسه سرویس تأیید شماره",
+    "ar": "Verify service SID"
+  },
+  {
+    "key": "communicationCopy.visibility",
+    "module": "communicationcopy",
+    "en": "Publication choice",
+    "fa": "انتخاب انتشار",
+    "ar": "Publication choice"
+  },
+  {
     "key": "copy.about",
     "module": "copy",
     "en": "About",
@@ -5247,11 +6073,25 @@
     "ar": "Add"
   },
   {
+    "key": "scholarsCopy.ADMIN_EMERGENCY_ONLY",
+    "module": "scholarscopy",
+    "en": "Authorized emergency admin only",
+    "fa": "فقط ورود اضطراری مدیر مجاز",
+    "ar": "Authorized emergency admin only"
+  },
+  {
     "key": "scholarsCopy.all",
     "module": "scholarscopy",
     "en": "All",
     "fa": "همه",
     "ar": "All"
+  },
+  {
+    "key": "scholarsCopy.ALLOWED_BY_SERVICE_POLICY",
+    "module": "scholarscopy",
+    "en": "Allowed under this service’s terms",
+    "fa": "مجاز مطابق شرایط این خدمت",
+    "ar": "Allowed under this service’s terms"
   },
   {
     "key": "scholarsCopy.application",
@@ -5296,6 +6136,20 @@
     "ar": "Requires booking"
   },
   {
+    "key": "scholarsCopy.BOTH_CONSENT",
+    "module": "scholarscopy",
+    "en": "Both participants must consent",
+    "fa": "فقط با رضایت هر دو طرف",
+    "ar": "Both participants must consent"
+  },
+  {
+    "key": "scholarsCopy.callPolicy",
+    "module": "scholarscopy",
+    "en": "Live session policy",
+    "fa": "سیاست جلسه زنده",
+    "ar": "Live session policy"
+  },
+  {
     "key": "scholarsCopy.category_id",
     "module": "scholarscopy",
     "en": "Service category",
@@ -5308,6 +6162,13 @@
     "en": "City",
     "fa": "شهر",
     "ar": "City"
+  },
+  {
+    "key": "scholarsCopy.clientScreenShare",
+    "module": "scholarscopy",
+    "en": "Allow client screen sharing",
+    "fa": "اجازه اشتراک صفحه به کاربر",
+    "ar": "Allow client screen sharing"
   },
   {
     "key": "scholarsCopy.completion",
@@ -5576,6 +6437,13 @@
     "ar": "Name"
   },
   {
+    "key": "scholarsCopy.NEVER",
+    "module": "scholarscopy",
+    "en": "Never",
+    "fa": "ممنوع",
+    "ar": "Never"
+  },
+  {
     "key": "scholarsCopy.noBooking",
     "module": "scholarscopy",
     "en": "Published rates; booking and payment will be added in the next stage.",
@@ -5595,6 +6463,20 @@
     "en": "Document number",
     "fa": "شماره مدرک",
     "ar": "Document number"
+  },
+  {
+    "key": "scholarsCopy.observerPolicy",
+    "module": "scholarscopy",
+    "en": "Observer access",
+    "fa": "ورود ناظر",
+    "ar": "Observer access"
+  },
+  {
+    "key": "scholarsCopy.OFF",
+    "module": "scholarscopy",
+    "en": "Off",
+    "fa": "خاموش",
+    "ar": "Off"
   },
   {
     "key": "scholarsCopy.owner",
@@ -5667,6 +6549,20 @@
     "ar": "Reason visible to the expert"
   },
   {
+    "key": "scholarsCopy.recordingDownload",
+    "module": "scholarscopy",
+    "en": "Allow participants to download recordings",
+    "fa": "اجازه دانلود ضبط برای طرفین",
+    "ar": "Allow participants to download recordings"
+  },
+  {
+    "key": "scholarsCopy.recordingPolicy",
+    "module": "scholarscopy",
+    "en": "Recording",
+    "fa": "ضبط جلسه",
+    "ar": "Recording"
+  },
+  {
     "key": "scholarsCopy.references",
     "module": "scholarscopy",
     "en": "References",
@@ -5686,6 +6582,13 @@
     "en": "Remove",
     "fa": "حذف",
     "ar": "Remove"
+  },
+  {
+    "key": "scholarsCopy.retentionDays",
+    "module": "scholarscopy",
+    "en": "Recording retention (days)",
+    "fa": "مدت نگهداری ضبط (روز)",
+    "ar": "Recording retention (days)"
   },
   {
     "key": "scholarsCopy.review",
@@ -6283,6 +7186,20 @@
     "ar": "Profile visibility"
   },
   {
+    "key": "scholarsCopy.WITH_BOTH_CONSENT",
+    "module": "scholarscopy",
+    "en": "Both participants consent",
+    "fa": "با رضایت هر دو طرف",
+    "ar": "Both participants consent"
+  },
+  {
+    "key": "scholarsCopy.WITH_USER_CONSENT",
+    "module": "scholarscopy",
+    "en": "Client consent",
+    "fa": "با رضایت کاربر",
+    "ar": "Client consent"
+  },
+  {
     "key": "scholarsCopy.years",
     "module": "scholarscopy",
     "en": "Years of experience",
@@ -6840,6 +7757,727 @@
     "module": "sectionnames",
     "en": "Wallets",
     "fa": "کیف پول‌ها"
+  },
+  {
+    "key": "sessionsCopy.admit",
+    "module": "sessionscopy",
+    "en": "Join as authorized observer",
+    "fa": "ورود به‌عنوان ناظر مجاز",
+    "ar": "Join as authorized observer"
+  },
+  {
+    "key": "sessionsCopy.allow",
+    "module": "sessionscopy",
+    "en": "Consent",
+    "fa": "رضایت",
+    "ar": "Consent"
+  },
+  {
+    "key": "sessionsCopy.audio",
+    "module": "sessionscopy",
+    "en": "Audio",
+    "fa": "صوتی",
+    "ar": "Audio"
+  },
+  {
+    "key": "sessionsCopy.BOOKED",
+    "module": "sessionscopy",
+    "en": "Booked",
+    "fa": "رزروشده",
+    "ar": "Booked"
+  },
+  {
+    "key": "sessionsCopy.camera",
+    "module": "sessionscopy",
+    "en": "Camera",
+    "fa": "دوربین",
+    "ar": "Camera"
+  },
+  {
+    "key": "sessionsCopy.CANCELLED",
+    "module": "sessionscopy",
+    "en": "Cancelled",
+    "fa": "لغوشده",
+    "ar": "Cancelled"
+  },
+  {
+    "key": "sessionsCopy.chat",
+    "module": "sessionscopy",
+    "en": "Session chat",
+    "fa": "چت جلسه",
+    "ar": "Session chat"
+  },
+  {
+    "key": "sessionsCopy.choose",
+    "module": "sessionscopy",
+    "en": "Choose a booking or session.",
+    "fa": "یک رزرو یا جلسه را انتخاب کنید.",
+    "ar": "Choose a booking or session."
+  },
+  {
+    "key": "sessionsCopy.CLIENT",
+    "module": "sessionscopy",
+    "en": "Client",
+    "fa": "مراجع",
+    "ar": "Client"
+  },
+  {
+    "key": "sessionsCopy.communication",
+    "module": "sessionscopy",
+    "en": "Communication",
+    "fa": "نحوه پاسخگویی",
+    "ar": "Communication"
+  },
+  {
+    "key": "sessionsCopy.COMPLETED",
+    "module": "sessionscopy",
+    "en": "Completed",
+    "fa": "تکمیل‌شده",
+    "ar": "Completed"
+  },
+  {
+    "key": "sessionsCopy.connected",
+    "module": "sessionscopy",
+    "en": "Connected",
+    "fa": "متصل",
+    "ar": "Connected"
+  },
+  {
+    "key": "sessionsCopy.connecting",
+    "module": "sessionscopy",
+    "en": "Connecting",
+    "fa": "در حال اتصال",
+    "ar": "Connecting"
+  },
+  {
+    "key": "sessionsCopy.countdown",
+    "module": "sessionscopy",
+    "en": "Seconds until scheduled start",
+    "fa": "ثانیه تا شروع برنامه‌ریزی‌شده",
+    "ar": "Seconds until scheduled start"
+  },
+  {
+    "key": "sessionsCopy.deny",
+    "module": "sessionscopy",
+    "en": "Decline / revoke",
+    "fa": "رد / پس‌گرفتن رضایت",
+    "ar": "Decline / revoke"
+  },
+  {
+    "key": "sessionsCopy.devices",
+    "module": "sessionscopy",
+    "en": "Check devices",
+    "fa": "بررسی تجهیزات",
+    "ar": "Check devices"
+  },
+  {
+    "key": "sessionsCopy.disconnected",
+    "module": "sessionscopy",
+    "en": "Disconnected",
+    "fa": "قطع‌شده",
+    "ar": "Disconnected"
+  },
+  {
+    "key": "sessionsCopy.emergency",
+    "module": "sessionscopy",
+    "en": "Emergency access under service policy",
+    "fa": "ورود اضطراری مطابق سیاست خدمت",
+    "ar": "Emergency access under service policy"
+  },
+  {
+    "key": "sessionsCopy.end",
+    "module": "sessionscopy",
+    "en": "End session",
+    "fa": "پایان جلسه",
+    "ar": "End session"
+  },
+  {
+    "key": "sessionsCopy.ENDING",
+    "module": "sessionscopy",
+    "en": "Ending",
+    "fa": "در حال پایان",
+    "ar": "Ending"
+  },
+  {
+    "key": "sessionsCopy.error",
+    "module": "sessionscopy",
+    "en": "The action could not be completed. Check the session time, permission and connection.",
+    "fa": "عملیات انجام نشد؛ زمان جلسه، مجوز و اتصال را بررسی کنید.",
+    "ar": "The action could not be completed. Check the session time, permission and connection."
+  },
+  {
+    "key": "sessionsCopy.excellent",
+    "module": "sessionscopy",
+    "en": "Excellent",
+    "fa": "عالی",
+    "ar": "Excellent"
+  },
+  {
+    "key": "sessionsCopy.EXPERT",
+    "module": "sessionscopy",
+    "en": "Expert",
+    "fa": "استاد",
+    "ar": "Expert"
+  },
+  {
+    "key": "sessionsCopy.feedback",
+    "module": "sessionscopy",
+    "en": "Session feedback",
+    "fa": "ارزیابی جلسه",
+    "ar": "Session feedback"
+  },
+  {
+    "key": "sessionsCopy.followUp",
+    "module": "sessionscopy",
+    "en": "Follow-up required",
+    "fa": "نیازمند پیگیری",
+    "ar": "Follow-up required"
+  },
+  {
+    "key": "sessionsCopy.fullscreen",
+    "module": "sessionscopy",
+    "en": "Fullscreen",
+    "fa": "تمام‌صفحه",
+    "ar": "Fullscreen"
+  },
+  {
+    "key": "sessionsCopy.good",
+    "module": "sessionscopy",
+    "en": "Good",
+    "fa": "خوب",
+    "ar": "Good"
+  },
+  {
+    "key": "sessionsCopy.help",
+    "module": "sessionscopy",
+    "en": "Technical help",
+    "fa": "کمک فنی",
+    "ar": "Technical help"
+  },
+  {
+    "key": "sessionsCopy.IN_SESSION",
+    "module": "sessionscopy",
+    "en": "In session",
+    "fa": "در حال برگزاری",
+    "ar": "In session"
+  },
+  {
+    "key": "sessionsCopy.INTERRUPTED",
+    "module": "sessionscopy",
+    "en": "Interrupted",
+    "fa": "مختل‌شده",
+    "ar": "Interrupted"
+  },
+  {
+    "key": "sessionsCopy.issue_AUDIO",
+    "module": "sessionscopy",
+    "en": "Audio problem",
+    "fa": "مشکل صدا",
+    "ar": "Audio problem"
+  },
+  {
+    "key": "sessionsCopy.issue_DISCONNECT",
+    "module": "sessionscopy",
+    "en": "Unexpected disconnection",
+    "fa": "قطع ناخواسته تماس",
+    "ar": "Unexpected disconnection"
+  },
+  {
+    "key": "sessionsCopy.issue_JOIN",
+    "module": "sessionscopy",
+    "en": "Trouble joining",
+    "fa": "مشکل ورود به جلسه",
+    "ar": "Trouble joining"
+  },
+  {
+    "key": "sessionsCopy.issue_SCREEN_SHARE",
+    "module": "sessionscopy",
+    "en": "Screen sharing problem",
+    "fa": "مشکل اشتراک صفحه",
+    "ar": "Screen sharing problem"
+  },
+  {
+    "key": "sessionsCopy.issue_VIDEO",
+    "module": "sessionscopy",
+    "en": "Video problem",
+    "fa": "مشکل تصویر",
+    "ar": "Video problem"
+  },
+  {
+    "key": "sessionsCopy.join",
+    "module": "sessionscopy",
+    "en": "Join call",
+    "fa": "ورود به تماس",
+    "ar": "Join call"
+  },
+  {
+    "key": "sessionsCopy.JOINABLE",
+    "module": "sessionscopy",
+    "en": "Ready to join",
+    "fa": "آماده ورود",
+    "ar": "Ready to join"
+  },
+  {
+    "key": "sessionsCopy.layout",
+    "module": "sessionscopy",
+    "en": "Change video layout",
+    "fa": "تغییر چیدمان تصویر",
+    "ar": "Change video layout"
+  },
+  {
+    "key": "sessionsCopy.leave",
+    "module": "sessionscopy",
+    "en": "Leave call",
+    "fa": "ترک تماس",
+    "ar": "Leave call"
+  },
+  {
+    "key": "sessionsCopy.microphone",
+    "module": "sessionscopy",
+    "en": "Microphone",
+    "fa": "میکروفون",
+    "ar": "Microphone"
+  },
+  {
+    "key": "sessionsCopy.monitor",
+    "module": "sessionscopy",
+    "en": "Technical report",
+    "fa": "گزارش فنی",
+    "ar": "Technical report"
+  },
+  {
+    "key": "sessionsCopy.mute",
+    "module": "sessionscopy",
+    "en": "Toggle microphone",
+    "fa": "روشن/خاموش کردن میکروفون",
+    "ar": "Toggle microphone"
+  },
+  {
+    "key": "sessionsCopy.network",
+    "module": "sessionscopy",
+    "en": "WebRTC supported",
+    "fa": "پشتیبانی WebRTC",
+    "ar": "WebRTC supported"
+  },
+  {
+    "key": "sessionsCopy.NO_SHOW_EXPERT",
+    "module": "sessionscopy",
+    "en": "Expert absent",
+    "fa": "عدم حضور استاد",
+    "ar": "Expert absent"
+  },
+  {
+    "key": "sessionsCopy.NO_SHOW_USER",
+    "module": "sessionscopy",
+    "en": "Client absent",
+    "fa": "عدم حضور مراجع",
+    "ar": "Client absent"
+  },
+  {
+    "key": "sessionsCopy.note",
+    "module": "sessionscopy",
+    "en": "Session note",
+    "fa": "یادداشت جلسه",
+    "ar": "Session note"
+  },
+  {
+    "key": "sessionsCopy.notes",
+    "module": "sessionscopy",
+    "en": "Notes",
+    "fa": "یادداشت‌ها",
+    "ar": "Notes"
+  },
+  {
+    "key": "sessionsCopy.OBSERVER",
+    "module": "sessionscopy",
+    "en": "Observer",
+    "fa": "ناظر",
+    "ar": "Observer"
+  },
+  {
+    "key": "sessionsCopy.observerRequest",
+    "module": "sessionscopy",
+    "en": "Request observer access",
+    "fa": "درخواست ورود ناظر",
+    "ar": "Request observer access"
+  },
+  {
+    "key": "sessionsCopy.observerWarning",
+    "module": "sessionscopy",
+    "en": "An observer has requested access. Their presence will be visible in the call.",
+    "fa": "ناظر درخواست ورود دارد؛ حضور او در تماس آشکار خواهد بود.",
+    "ar": "An observer has requested access. Their presence will be visible in the call."
+  },
+  {
+    "key": "sessionsCopy.outcome",
+    "module": "sessionscopy",
+    "en": "Operational outcome",
+    "fa": "نتیجه عملیاتی",
+    "ar": "Operational outcome"
+  },
+  {
+    "key": "sessionsCopy.overall",
+    "module": "sessionscopy",
+    "en": "Overall rating",
+    "fa": "امتیاز کلی",
+    "ar": "Overall rating"
+  },
+  {
+    "key": "sessionsCopy.permission",
+    "module": "sessionscopy",
+    "en": "Preview requests camera/microphone permission. Nothing is published until you join.",
+    "fa": "پیش‌نمایش با اجازه دوربین و میکروفون آغاز می‌شود. تا ورود به تماس چیزی منتشر نمی‌شود.",
+    "ar": "Preview requests camera/microphone permission. Nothing is published until you join."
+  },
+  {
+    "key": "sessionsCopy.poor",
+    "module": "sessionscopy",
+    "en": "For better audio, turn off your camera.",
+    "fa": "برای صدای بهتر، دوربین را خاموش کنید.",
+    "ar": "For better audio, turn off your camera."
+  },
+  {
+    "key": "sessionsCopy.poorQuality",
+    "module": "sessionscopy",
+    "en": "Poor",
+    "fa": "ضعیف",
+    "ar": "Poor"
+  },
+  {
+    "key": "sessionsCopy.preview",
+    "module": "sessionscopy",
+    "en": "Start device preview",
+    "fa": "شروع پیش‌نمایش تجهیزات",
+    "ar": "Start device preview"
+  },
+  {
+    "key": "sessionsCopy.privateNote",
+    "module": "sessionscopy",
+    "en": "Private expert note",
+    "fa": "یادداشت خصوصی استاد",
+    "ar": "Private expert note"
+  },
+  {
+    "key": "sessionsCopy.punctuality",
+    "module": "sessionscopy",
+    "en": "Punctuality",
+    "fa": "وقت‌شناسی",
+    "ar": "Punctuality"
+  },
+  {
+    "key": "sessionsCopy.quality",
+    "module": "sessionscopy",
+    "en": "Connection quality",
+    "fa": "کیفیت اتصال",
+    "ar": "Connection quality"
+  },
+  {
+    "key": "sessionsCopy.ready",
+    "module": "sessionscopy",
+    "en": "Confirm device check",
+    "fa": "تأیید بررسی تجهیزات",
+    "ar": "Confirm device check"
+  },
+  {
+    "key": "sessionsCopy.reason",
+    "module": "sessionscopy",
+    "en": "Reason visible to participants",
+    "fa": "دلیل قابل مشاهده برای طرفین",
+    "ar": "Reason visible to participants"
+  },
+  {
+    "key": "sessionsCopy.reconnecting",
+    "module": "sessionscopy",
+    "en": "Reconnecting…",
+    "fa": "در حال اتصال مجدد…",
+    "ar": "Reconnecting…"
+  },
+  {
+    "key": "sessionsCopy.recording",
+    "module": "sessionscopy",
+    "en": "Session recording",
+    "fa": "ضبط جلسه",
+    "ar": "Session recording"
+  },
+  {
+    "key": "sessionsCopy.recordingActive",
+    "module": "sessionscopy",
+    "en": "Recording is active",
+    "fa": "جلسه در حال ضبط است",
+    "ar": "Recording is active"
+  },
+  {
+    "key": "sessionsCopy.recordingConsent",
+    "module": "sessionscopy",
+    "en": "I consent to recording this session.",
+    "fa": "به ضبط این جلسه رضایت می‌دهم.",
+    "ar": "I consent to recording this session."
+  },
+  {
+    "key": "sessionsCopy.recordingDownload",
+    "module": "sessionscopy",
+    "en": "Download recording",
+    "fa": "دانلود ضبط جلسه",
+    "ar": "Download recording"
+  },
+  {
+    "key": "sessionsCopy.recordingExpired",
+    "module": "sessionscopy",
+    "en": "Recording retention has ended",
+    "fa": "مهلت نگهداری ضبط تمام شده است",
+    "ar": "Recording retention has ended"
+  },
+  {
+    "key": "sessionsCopy.recordingFailed",
+    "module": "sessionscopy",
+    "en": "Recording failed",
+    "fa": "ضبط ناموفق بود",
+    "ar": "Recording failed"
+  },
+  {
+    "key": "sessionsCopy.recordingOff",
+    "module": "sessionscopy",
+    "en": "Recording is off.",
+    "fa": "ضبط خاموش است.",
+    "ar": "Recording is off."
+  },
+  {
+    "key": "sessionsCopy.recordingProcessing",
+    "module": "sessionscopy",
+    "en": "Preparing recording",
+    "fa": "در حال آماده‌سازی ضبط",
+    "ar": "Preparing recording"
+  },
+  {
+    "key": "sessionsCopy.recordingStart",
+    "module": "sessionscopy",
+    "en": "Start recording",
+    "fa": "شروع ضبط",
+    "ar": "Start recording"
+  },
+  {
+    "key": "sessionsCopy.recordingStop",
+    "module": "sessionscopy",
+    "en": "Stop recording",
+    "fa": "توقف ضبط",
+    "ar": "Stop recording"
+  },
+  {
+    "key": "sessionsCopy.recordingStopping",
+    "module": "sessionscopy",
+    "en": "Stopping recording — waiting for confirmation",
+    "fa": "در حال توقف ضبط — منتظر تأیید",
+    "ar": "Stopping recording — waiting for confirmation"
+  },
+  {
+    "key": "sessionsCopy.recordingUnavailable",
+    "module": "sessionscopy",
+    "en": "Recording deployment and consent validation are still pending; recording is unavailable.",
+    "fa": "Recording is currently unavailable.",
+    "ar": "Recording deployment and consent validation are still pending; recording is unavailable."
+  },
+  {
+    "key": "sessionsCopy.recordingWaiting",
+    "module": "sessionscopy",
+    "en": "Recording requires both participants’ consent.",
+    "fa": "ضبط به رضایت هر دو طرف نیاز دارد.",
+    "ar": "Recording requires both participants’ consent."
+  },
+  {
+    "key": "sessionsCopy.recordingWithdraw",
+    "module": "sessionscopy",
+    "en": "Withdraw recording consent",
+    "fa": "پس‌گرفتن رضایت ضبط",
+    "ar": "Withdraw recording consent"
+  },
+  {
+    "key": "sessionsCopy.review",
+    "module": "sessionscopy",
+    "en": "Optional review",
+    "fa": "نظر اختیاری",
+    "ar": "Optional review"
+  },
+  {
+    "key": "sessionsCopy.role",
+    "module": "sessionscopy",
+    "en": "Role",
+    "fa": "نقش",
+    "ar": "Role"
+  },
+  {
+    "key": "sessionsCopy.route_direct",
+    "module": "sessionscopy",
+    "en": "Direct media route",
+    "fa": "مسیر مستقیم رسانه",
+    "ar": "Direct media route"
+  },
+  {
+    "key": "sessionsCopy.route_relay",
+    "module": "sessionscopy",
+    "en": "Media relay verified",
+    "fa": "عبور رسانه از رله تأیید شد",
+    "ar": "Media relay verified"
+  },
+  {
+    "key": "sessionsCopy.route_unknown",
+    "module": "sessionscopy",
+    "en": "Media route not yet verified",
+    "fa": "مسیر رسانه هنوز بررسی نشده",
+    "ar": "Media route not yet verified"
+  },
+  {
+    "key": "sessionsCopy.save",
+    "module": "sessionscopy",
+    "en": "Save",
+    "fa": "ذخیره",
+    "ar": "Save"
+  },
+  {
+    "key": "sessionsCopy.seconds",
+    "module": "sessionscopy",
+    "en": "seconds",
+    "fa": "ثانیه",
+    "ar": "seconds"
+  },
+  {
+    "key": "sessionsCopy.sessions",
+    "module": "sessionscopy",
+    "en": "Live sessions",
+    "fa": "جلسات زنده",
+    "ar": "Live sessions"
+  },
+  {
+    "key": "sessionsCopy.share",
+    "module": "sessionscopy",
+    "en": "Toggle screen sharing",
+    "fa": "اشتراک صفحه",
+    "ar": "Toggle screen sharing"
+  },
+  {
+    "key": "sessionsCopy.sharedNote",
+    "module": "sessionscopy",
+    "en": "Note shared with client",
+    "fa": "یادداشت مشترک با مراجع",
+    "ar": "Note shared with client"
+  },
+  {
+    "key": "sessionsCopy.signalReconnecting",
+    "module": "sessionscopy",
+    "en": "Reconnecting…",
+    "fa": "در حال اتصال مجدد…",
+    "ar": "Reconnecting…"
+  },
+  {
+    "key": "sessionsCopy.sourceNotice",
+    "module": "sessionscopy",
+    "en": "Browser metrics are diagnostic reports; attendance is verified by LiveKit.",
+    "fa": "شاخص مرورگر گزارش تشخیصی است؛ حضور با LiveKit بررسی می‌شود.",
+    "ar": "Browser metrics are diagnostic reports; attendance is verified by LiveKit."
+  },
+  {
+    "key": "sessionsCopy.speaker",
+    "module": "sessionscopy",
+    "en": "Speaker",
+    "fa": "خروجی صدا",
+    "ar": "Speaker"
+  },
+  {
+    "key": "sessionsCopy.start",
+    "module": "sessionscopy",
+    "en": "Open session",
+    "fa": "باز کردن جلسه",
+    "ar": "Open session"
+  },
+  {
+    "key": "sessionsCopy.submit",
+    "module": "sessionscopy",
+    "en": "Submit rating",
+    "fa": "ثبت امتیاز",
+    "ar": "Submit rating"
+  },
+  {
+    "key": "sessionsCopy.technical",
+    "module": "sessionscopy",
+    "en": "Technical quality",
+    "fa": "کیفیت فنی",
+    "ar": "Technical quality"
+  },
+  {
+    "key": "sessionsCopy.TECHNICAL_FAILURE",
+    "module": "sessionscopy",
+    "en": "Technical failure",
+    "fa": "مشکل فنی",
+    "ar": "Technical failure"
+  },
+  {
+    "key": "sessionsCopy.terminate",
+    "module": "sessionscopy",
+    "en": "Terminate session",
+    "fa": "خاتمه جلسه",
+    "ar": "Terminate session"
+  },
+  {
+    "key": "sessionsCopy.TERMINATED_BY_ADMIN",
+    "module": "sessionscopy",
+    "en": "Terminated by administrator",
+    "fa": "پایان توسط مدیر",
+    "ar": "Terminated by administrator"
+  },
+  {
+    "key": "sessionsCopy.testPending",
+    "module": "sessionscopy",
+    "en": "TURN and media connectivity are verified when connecting; device check alone does not prove them.",
+    "fa": "اتصال رسانه و TURN هنگام اتصال بررسی می‌شوند؛ بررسی تجهیزات به‌تنهایی تأیید آن‌ها نیست.",
+    "ar": "TURN and media connectivity are verified when connecting; device check alone does not prove them."
+  },
+  {
+    "key": "sessionsCopy.testSound",
+    "module": "sessionscopy",
+    "en": "Test speaker",
+    "fa": "تست بلندگو",
+    "ar": "Test speaker"
+  },
+  {
+    "key": "sessionsCopy.text",
+    "module": "sessionscopy",
+    "en": "Text",
+    "fa": "متنی",
+    "ar": "Text"
+  },
+  {
+    "key": "sessionsCopy.unknown",
+    "module": "sessionscopy",
+    "en": "Unknown",
+    "fa": "نامشخص",
+    "ar": "Unknown"
+  },
+  {
+    "key": "sessionsCopy.video",
+    "module": "sessionscopy",
+    "en": "Toggle camera",
+    "fa": "روشن/خاموش کردن دوربین",
+    "ar": "Toggle camera"
+  },
+  {
+    "key": "sessionsCopy.waiting",
+    "module": "sessionscopy",
+    "en": "Waiting room",
+    "fa": "اتاق انتظار",
+    "ar": "Waiting room"
+  },
+  {
+    "key": "sessionsCopy.WAITING_FOR_START",
+    "module": "sessionscopy",
+    "en": "Waiting for start",
+    "fa": "در انتظار شروع",
+    "ar": "Waiting for start"
+  },
+  {
+    "key": "sessionsCopy.WAITING_ROOM_OPEN",
+    "module": "sessionscopy",
+    "en": "Waiting room open",
+    "fa": "اتاق انتظار باز است",
+    "ar": "Waiting room open"
   },
   {
     "key": "threeCalendarCopy.allDates",

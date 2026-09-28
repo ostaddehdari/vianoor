@@ -60,3 +60,13 @@ export async function storageReady() {
     await client.send(new CreateBucketCommand({ Bucket: bucket }));
   }
 }
+
+export async function recordingObject(key: string, range?: string) {
+  if (!/^recordings\/[a-f0-9-]{36}\.mp4$/.test(key))
+    throw new ServiceError(400, 'INVALID_RECORDING_KEY');
+  const { client, bucket } = storage();
+  return client.send(
+    new GetObjectCommand({ Bucket: bucket, Key: key, ...(range ? { Range: range } : {}) }),
+    { abortSignal: AbortSignal.timeout(600000) },
+  );
+}

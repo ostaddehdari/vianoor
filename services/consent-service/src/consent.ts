@@ -9,11 +9,60 @@ import {
 } from '@vianoor/service-runtime';
 const version = 1;
 export async function initializeConsent(pool: Pool) {
-  await pool.query(`CREATE TABLE IF NOT EXISTS profile_consents (
+  await pool.query(`CREATE TABLE IF NOT EXISTS live_session_consents(id bigserial PRIMARY KEY,session_id uuid NOT NULL,context_id uuid NOT NULL,purpose text NOT NULL,account_id uuid NOT NULL,accepted boolean NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
+CREATE INDEX IF NOT EXISTS live_session_consents_lookup ON live_session_consents(session_id,context_id,purpose,account_id,id DESC);
+CREATE TABLE IF NOT EXISTS profile_consents (
   id bigserial PRIMARY KEY,account_id uuid NOT NULL,version int NOT NULL,accepted boolean NOT NULL,created_at timestamptz NOT NULL DEFAULT now());`);
 }
 export function consentRouter(pool: Pool) {
   const router = internalRouter();
+  router.post(
+    '/internal/session-consent',
+    endpoint(async (req, res) => {
+      const u = await principal(req),
+        d = z
+          .object({
+            session_id: z.string().uuid(),
+            context_id: z.string().uuid(),
+            purpose: z.enum(['RECORDING', 'OBSERVER']),
+            accepted: z.boolean(),
+          })
+          .strict()
+          .parse(req.body);
+      await internalCall(
+        'media-service',
+        '/internal/sessions/' + d.session_id + '/consent-authorize',
+        req.get('authorization') ?? '',
+        { context_id: d.context_id, purpose: d.purpose },
+      );
+      await pool.query(
+        'INSERT INTO live_session_consents(session_id,context_id,purpose,account_id,accepted) VALUES($1,$2,$3,$4,$5)',
+        [d.session_id, d.context_id, d.purpose, u.id, d.accepted],
+      );
+      res.json({ data: { ok: true } });
+    }),
+  );
+  router.post(
+    '/internal/session-consents',
+    endpoint(async (req, res) => {
+      const d = z
+        .object({
+          session_id: z.string().uuid(),
+          context_id: z.string().uuid(),
+          purpose: z.enum(['RECORDING', 'OBSERVER']),
+        })
+        .strict()
+        .parse(req.body);
+      res.json({
+        data: (
+          await pool.query(
+            'SELECT DISTINCT ON(account_id) account_id,accepted,created_at FROM live_session_consents WHERE session_id=$1 AND context_id=$2 AND purpose=$3 ORDER BY account_id,id DESC',
+            [d.session_id, d.context_id, d.purpose],
+          )
+        ).rows,
+      });
+    }),
+  );
   const current = async (id: string) =>
     (
       await pool.query(

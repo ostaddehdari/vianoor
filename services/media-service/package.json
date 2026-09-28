@@ -10,6 +10,10 @@
     "start": "node dist/main.js"
   },
   "dependencies": {
-    "@vianoor/service-runtime": "0.1.0"
+    "@vianoor/service-runtime": "0.1.0",
+    "pg": "8.16.3",
+    "zod": "3.25.76",
+    "livekit-server-sdk": "2.19.1",
+    "express": "5.2.1"
   }
 }

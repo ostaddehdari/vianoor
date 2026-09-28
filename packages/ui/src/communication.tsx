@@ -122,11 +122,13 @@ export function CommunicationWorkspace({
   section = 'messages',
   admin = false,
   expert = false,
+  conversationId,
 }: {
   locale: string;
   section?: string;
   admin?: boolean;
   expert?: boolean;
+  conversationId?: string;
 }) {
   const t = communicationCopy[locale]! as Record<string, string>,
     [rows, setRows] = useState<Conversation[]>([]),
@@ -191,8 +193,9 @@ export function CommunicationWorkspace({
   useEffect(() => {
     void load().catch(() => setError(t.error!));
     const q = new URLSearchParams(location.search);
-    if (q.get('conversation')) setSelected(q.get('conversation')!);
-    if (q.get('booking'))
+    if (conversationId) setSelected(conversationId);
+    else if (q.get('conversation')) setSelected(q.get('conversation')!);
+    if (!conversationId && q.get('booking'))
       void act(async () => {
         const c = await userApi<Conversation>('communications/conversations', 'POST', {
           type: 'BOOKING',
@@ -210,7 +213,7 @@ export function CommunicationWorkspace({
       }
       media.current?.getTracks().forEach((x) => x.stop());
     };
-  }, [section]);
+  }, [section, conversationId]);
   useEffect(() => {
     active.current = selected;
     setHistory({ messages: [], actors: [], members: [], next: '0' });

@@ -13,6 +13,19 @@ if (process.env.AUTH_ENABLED !== '1') {
   const target = process.env.IDENTITY_URL ?? 'http://identity-service:4101';
   const app = await createService('api-gateway', {
     infrastructure,
+    ready: async () => {
+      if (!(await infrastructure.healthy())) return false;
+      try {
+        return (
+          await fetch(new URL('/health/ready', target), {
+            signal: AbortSignal.timeout(2500),
+            redirect: 'error',
+          })
+        ).ok;
+      } catch {
+        return false;
+      }
+    },
     gatewayTarget: target,
     configure: (app) => {
       app.use('/api/v1/auth', authProxy(target, process.env.AUTH_INTERNAL_KEY ?? ''));

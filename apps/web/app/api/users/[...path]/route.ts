@@ -33,6 +33,8 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       'questions',
       'notifications',
       'presence',
+      'sessions',
+      'ratings',
     ].includes(path[0]!)
   )
     return fail('NOT_FOUND', 404);
@@ -93,6 +95,13 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       return fail('INVALID_INPUT', 400);
     }
   }
+  const recordingStream =
+    req.method === 'GET' &&
+    path.length === 4 &&
+    path[0] === 'files' &&
+    path[1] === 'recordings' &&
+    /^[a-f0-9-]{36}$/.test(path[2]!) &&
+    path[3] === 'stream';
   try {
     const response = await fetch(
       new URL('/api/v2/' + path.join('/') + req.nextUrl.search, upstream),
@@ -101,11 +110,16 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
         redirect: 'error',
         cache: 'no-store',
         signal: AbortSignal.timeout(
-          ['matching', 'payments', 'finance', 'payouts', 'disputes'].includes(path[0]!)
-            ? 65000
-            : 20000,
+          recordingStream
+            ? 600000
+            : ['matching', 'payments', 'finance', 'payouts', 'disputes'].includes(path[0]!)
+              ? 65000
+              : 20000,
         ),
         headers: {
+          ...(recordingStream && req.headers.get('range')
+            ? { range: req.headers.get('range')! }
+            : {}),
           'content-type': 'application/json',
           'x-internal-key': key,
           authorization: `Bearer ${access}`,
@@ -116,6 +130,24 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
         ...(body === undefined ? {} : { body }),
       },
     );
+    if (recordingStream && response.ok) {
+      const headers = new Headers({
+        'Cache-Control': 'private, no-store',
+        'Referrer-Policy': 'no-referrer',
+      });
+      for (const name of [
+        'content-type',
+        'content-length',
+        'content-range',
+        'accept-ranges',
+        'content-disposition',
+        'x-content-type-options',
+      ]) {
+        const value = response.headers.get(name);
+        if (value) headers.set(name, value);
+      }
+      return new NextResponse(response.body, { status: response.status, headers });
+    }
     return NextResponse.json(await response.json(), {
       status: response.status,
       headers: { 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer' },

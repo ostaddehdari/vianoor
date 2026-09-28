@@ -44,6 +44,13 @@ export type DocumentDetails = {
   public_summary: boolean;
 };
 export type Offering = {
+  call_policy?: {
+    client_screen_share: boolean;
+    observer: string;
+    recording: string;
+    retention_days: number;
+    recording_download: boolean;
+  };
   source_language?: string;
   title: string;
   summary: string;
