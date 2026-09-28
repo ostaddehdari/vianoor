@@ -214,6 +214,7 @@ export function scholarsRouter(pool: Pool) {
           specialty_id: row.details.specialty_id,
           country: row.expert_country,
           kind: row.details.kind,
+          call_policy: row.details.call_policy ?? {},
           currency: row.details.currency,
         });
       }

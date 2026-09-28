@@ -1,3 +1,4 @@
+import { sessionsCopy } from '../../packages/ui/src/sessions-copy.js';
 import { communicationCopy } from '../../packages/ui/src/communication-copy.js';
 import { financeCopy } from '../../packages/ui/src/finance-copy.js';
 import { discoveryCopy } from '../../packages/ui/src/discovery-copy.js';
@@ -49,6 +50,7 @@ for (const [key, value] of Object.entries({
   discoveryCopy,
   financeCopy,
   communicationCopy,
+  sessionsCopy,
   copy,
   authCopy,
   usersCopy,

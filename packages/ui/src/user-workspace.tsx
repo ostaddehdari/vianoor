@@ -1,4 +1,6 @@
 'use client';
+import { SessionWorkspace } from './sessions';
+import { sessionsCopy } from './sessions-copy';
 import { CommunicationWorkspace } from './communication';
 import { CommunicationCenter } from './communication-center';
 import { communicationCopy } from './communication-copy';
@@ -341,6 +343,7 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     (scope === 'platform' ? '' : '?scope=' + encodeURIComponent(scope));
   const links: [string, string][] = [
     ['', roleName(locale, role)],
+    ...([['sessions', sessionsCopy[locale]!.sessions]] as [string, string][]),
     ...(['messages', 'channels', 'questions', 'notifications'] as const).map(
       (k) => [k, communicationCopy[locale]![k]] as [string, string],
     ),
@@ -481,7 +484,9 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
               </a>
             </div>
           )}
-          {['messages', 'channels', 'questions', 'notifications', 'inbox'].includes(section) ? (
+          {section === 'sessions' ? (
+            <SessionWorkspace locale={locale} admin={admin} />
+          ) : ['messages', 'channels', 'questions', 'notifications', 'inbox'].includes(section) ? (
             <CommunicationWorkspace
               locale={locale}
               section={section}

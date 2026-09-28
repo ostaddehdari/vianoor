@@ -44,6 +44,7 @@ export function routeInfo(path: string, app: 'web' | 'admin' = 'web') {
       '',
       'localization',
       'finance',
+      'sessions',
       'messages',
       'channels',
       'questions',

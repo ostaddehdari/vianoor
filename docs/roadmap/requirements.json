@@ -602,54 +602,54 @@
     "id": "R13-01",
     "stage": 13,
     "title": "waiting room",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
-    "verification": "docs/testing/stage-13 (planned)",
+    "verification": "docs/testing/stage-13.md",
     "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
   },
   {
     "id": "R13-02",
     "stage": 13,
     "title": "device check",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
-    "verification": "docs/testing/stage-13 (planned)",
+    "verification": "docs/testing/stage-13.md",
     "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
   },
   {
     "id": "R13-03",
     "stage": 13,
     "title": "LiveKit/TURN",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
-    "verification": "docs/testing/stage-13 (planned)",
+    "verification": "docs/testing/stage-13.md",
     "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
   },
   {
     "id": "R13-04",
     "stage": 13,
     "title": "reconnect",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
-    "verification": "docs/testing/stage-13 (planned)",
+    "verification": "docs/testing/stage-13.md",
     "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
   },
   {
     "id": "R13-05",
     "stage": 13,
     "title": "consent recording",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
-    "verification": "docs/testing/stage-13 (planned)",
+    "verification": "docs/testing/stage-13.md",
     "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
   },
   {
     "id": "R13-06",
     "stage": 13,
     "title": "rating",
-    "status": "planned",
+    "status": "in-progress",
     "acceptance": "دو شرکت‌کننده، قطعی شبکه، توکن اتاق دیگر و رضایت ناظر",
-    "verification": "docs/testing/stage-13 (planned)",
+    "verification": "docs/testing/stage-13.md",
     "externalDependency": "LiveKit/TURN/TLS و دو دستگاه"
   },
   {

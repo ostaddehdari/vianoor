@@ -32,6 +32,7 @@ type Snapshot = {
   specialty_id?: string;
   country?: string;
   kind?: string;
+  call_policy?: unknown;
   title: string;
   duration_minutes: number;
   price_minor: number;
@@ -76,6 +77,7 @@ export async function initializeScheduling(pool: Pool) {
  CREATE TABLE IF NOT EXISTS communication_conversations(booking_id uuid PRIMARY KEY,created_at timestamptz NOT NULL DEFAULT now());
  CREATE TABLE IF NOT EXISTS booking_notifications(id uuid PRIMARY KEY,event_id uuid NOT NULL,booking_id uuid NOT NULL,account_id uuid NOT NULL,event text NOT NULL,delivered_at timestamptz,read_at timestamptz,created_at timestamptz NOT NULL DEFAULT now(),UNIQUE(event_id,account_id));
  CREATE TABLE IF NOT EXISTS communication_reminders(booking_id uuid NOT NULL,start_at timestamptz NOT NULL,minutes int NOT NULL,PRIMARY KEY(booking_id,start_at,minutes));
+ CREATE TABLE IF NOT EXISTS live_session_provisions(booking_id uuid PRIMARY KEY,session_id uuid NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
  CREATE TABLE IF NOT EXISTS booking_reminders(booking_id uuid NOT NULL,start_at timestamptz NOT NULL,PRIMARY KEY(booking_id,start_at));
  ALTER TABLE scheduled_bookings ADD COLUMN IF NOT EXISTS operation_actor uuid;
  ALTER TABLE scheduled_bookings ADD COLUMN IF NOT EXISTS payment_id uuid;`);
@@ -254,6 +256,28 @@ export async function reconcileBookings(pool: Pool) {
         await event(db, row, row.client_id, 'REMINDER');
     }
   });
+  if (process.env.LIVE_SESSIONS_ENABLED === '1') {
+    for (const row of (
+      await pool.query(
+        "SELECT id FROM scheduled_bookings b WHERE status IN ('CONFIRMED','RESCHEDULED','RESCHEDULE_REQUESTED') AND snapshot->>'kind' IN ('AUDIO','VIDEO','TEXT') AND end_at>now() AND NOT EXISTS(SELECT 1 FROM live_session_provisions p WHERE p.booking_id=b.id) ORDER BY updated_at LIMIT 30",
+      )
+    ).rows) {
+      try {
+        const session = await internalCall<{ id: string }>(
+          'media-service',
+          '/internal/sessions/provision',
+          '',
+          { booking_id: row.id },
+        );
+        await pool.query(
+          'INSERT INTO live_session_provisions(booking_id,session_id) VALUES($1,$2) ON CONFLICT DO NOTHING',
+          [row.id, session.id],
+        );
+      } catch {
+        /* Durable selection retries after media owner recovery. */
+      }
+    }
+  }
   if (process.env.COMMUNICATIONS_ENABLED === '1') {
     for (const row of (
       await pool.query(
@@ -637,6 +661,68 @@ export function schedulingRouter(pool: Pool) {
           kind: row.snapshot.kind ?? 'VIDEO',
         },
       });
+    }),
+  );
+  router.get(
+    '/internal/bookings/session-context/:id',
+    endpoint(async (req, res) => {
+      const row = (
+        await pool.query('SELECT * FROM scheduled_bookings WHERE id=$1', [
+          z.string().uuid().parse(req.params.id),
+        ])
+      ).rows[0];
+      if (!row) throw new ServiceError(404, 'NOT_FOUND');
+      res.json({
+        data: {
+          id: row.id,
+          client_id: row.client_id,
+          expert_id: row.snapshot?.expert_id,
+          status: row.status,
+          start_at: row.start_at,
+          end_at: row.end_at,
+          kind: row.snapshot?.kind,
+          title: row.snapshot?.title,
+          expert_name: row.snapshot?.expert_name,
+          call_policy: row.snapshot?.call_policy ?? {},
+        },
+      });
+    }),
+  );
+  router.post(
+    '/internal/bookings/session-completed',
+    endpoint(async (req, res) => {
+      const d = z
+        .object({ session_id: z.string().uuid(), booking_id: z.string().uuid() })
+        .strict()
+        .parse(req.body);
+      const evidence = await internalCall<{
+        booking_id: string;
+        state: string;
+        actual_started_at: string | null;
+        actual_ended_at: string | null;
+      }>('media-service', '/internal/sessions/' + d.session_id + '/evidence');
+      if (
+        evidence.booking_id !== d.booking_id ||
+        evidence.state !== 'COMPLETED' ||
+        !evidence.actual_started_at ||
+        !evidence.actual_ended_at
+      )
+        throw new ServiceError(409, 'SESSION_NOT_COMPLETED');
+      await transaction(pool, async (db) => {
+        const row = (
+          await db.query('SELECT * FROM scheduled_bookings WHERE id=$1 FOR UPDATE', [d.booking_id])
+        ).rows[0] as Booking | undefined;
+        if (!row) throw new ServiceError(404, 'NOT_FOUND');
+        if (row.status === 'COMPLETED') return;
+        if (!['CONFIRMED', 'RESCHEDULED'].includes(row.status) || row.pending_action)
+          throw new ServiceError(409, 'CONFLICT');
+        await db.query(
+          "UPDATE scheduled_bookings SET status='COMPLETED',revision=revision+1,updated_at=now() WHERE id=$1",
+          [row.id],
+        );
+        await event(db, row, row.snapshot!.expert_id, 'COMPLETED');
+      });
+      res.json({ data: { ok: true } });
     }),
   );
   router.get(

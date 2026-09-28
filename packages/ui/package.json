@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "7.0.1",
-    "vazir-font": "30.1.0"
+    "vazir-font": "30.1.0",
+    "livekit-client": "2.22.3"
   }
 }

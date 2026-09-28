@@ -452,6 +452,15 @@ function ServiceForm({
       },
     ),
     [busy, setBusy] = useState(false);
+  const policy = value.call_policy ?? {
+    client_screen_share: false,
+    observer: 'NEVER',
+    recording: 'OFF',
+    retention_days: 30,
+    recording_download: false,
+  };
+  const setPolicy = (change: Partial<NonNullable<Offering['call_policy']>>) =>
+    setValue({ ...value, call_policy: { ...policy, ...change } });
   return (
     <form
       onSubmit={async (e) => {
@@ -526,6 +535,52 @@ function ServiceForm({
           value={value.booking_required}
           change={(v) => setValue({ ...value, booking_required: !!v })}
         />
+        {['AUDIO', 'VIDEO', 'TEXT'].includes(value.kind) && (
+          <fieldset>
+            <legend>{t.callPolicy}</legend>
+            <Control
+              label={t.observerPolicy}
+              value={policy.observer}
+              options={[
+                'NEVER',
+                'WITH_USER_CONSENT',
+                'WITH_BOTH_CONSENT',
+                'ADMIN_EMERGENCY_ONLY',
+                'ALLOWED_BY_SERVICE_POLICY',
+              ].map((v) => ({ value: v, label: stateLabel(t, v) }))}
+              change={(v) => setPolicy({ observer: String(v) })}
+            />
+            {value.kind !== 'TEXT' && (
+              <>
+                <Control
+                  label={t.recordingPolicy}
+                  value={policy.recording}
+                  options={['OFF', 'BOTH_CONSENT'].map((v) => ({
+                    value: v,
+                    label: stateLabel(t, v),
+                  }))}
+                  change={(v) => setPolicy({ recording: String(v) })}
+                />
+                <Control
+                  label={t.retentionDays}
+                  value={policy.retention_days}
+                  type="number"
+                  change={(v) => setPolicy({ retention_days: Number(v) })}
+                />
+                <Control
+                  label={t.recordingDownload}
+                  value={policy.recording_download}
+                  change={(v) => setPolicy({ recording_download: !!v })}
+                />
+                <Control
+                  label={t.clientScreenShare}
+                  value={policy.client_screen_share}
+                  change={(v) => setPolicy({ client_screen_share: !!v })}
+                />
+              </>
+            )}
+          </fieldset>
+        )}
         <AssetUpload
           locale={locale}
           purpose="image"

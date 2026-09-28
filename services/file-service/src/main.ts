@@ -6,6 +6,7 @@ import {
 } from '@vianoor/service-runtime';
 import { initializeFiles, filesRouter } from './files.js';
 import { initializeAssets, assetsRouter, scanWorker } from './assets.js';
+import { initializeRecordings, privateRecordingsRouter, expireRecordings } from './recordings.js';
 import { storageReady } from './object-store.js';
 if (process.env.USERS_ENABLED !== '1') await bootstrap('file-service', 4113);
 else {
@@ -16,10 +17,12 @@ else {
     await initializeAssets(infrastructure.pool!);
     scanWorker(infrastructure.pool!);
   }
+  if(process.env.LIVE_SESSIONS_ENABLED==='1'){await initializeRecordings(infrastructure.pool!);let busy=false;setInterval(()=>{if(busy)return;busy=true;void expireRecordings(infrastructure.pool!).finally(()=>{busy=false;}).catch(()=>{});},60000).unref();}
   const app = await createService('file-service', {
     infrastructure,
     ready: infrastructure.healthy,
     configure: (app) => {
+      if(process.env.LIVE_SESSIONS_ENABLED==='1')app.use(privateRecordingsRouter(infrastructure.pool!));
       if (process.env.SCHOLARS_ENABLED === '1') app.use(assetsRouter(infrastructure.pool!));
       app.use(filesRouter(infrastructure.pool!));
     },
