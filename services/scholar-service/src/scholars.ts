@@ -147,6 +147,25 @@ async function pinImage(req: Request, id: string | null, owner: string, referenc
 export function scholarsRouter(pool: Pool) {
   const router = internalRouter('128kb');
   router.get(
+    '/internal/communications/expert/:code',
+    endpoint(async (req, res) => {
+      await requirePermission(req, 'question.manage');
+      const row = (
+        await pool.query(
+          "SELECT account_id,public_id FROM scholars WHERE public_id=$1 AND status='APPROVED' AND (valid_until IS NULL OR valid_until>now())",
+          [
+            z
+              .string()
+              .regex(/^[A-Za-z0-9]{13}$/)
+              .parse(req.params.code),
+          ],
+        )
+      ).rows[0];
+      if (!row) throw new ServiceError(404, 'EXPERT_UNAVAILABLE');
+      res.json({ data: row });
+    }),
+  );
+  router.get(
     '/internal/scheduling/services',
     endpoint(async (req, res) => {
       const query = z

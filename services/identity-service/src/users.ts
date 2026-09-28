@@ -15,6 +15,62 @@ const code = z.string().regex(/^[A-Za-z0-9]{13}$/);
 export function usersRouter(identity: Identity) {
   const router = internalRouter();
   router.post(
+    '/internal/communication-email',
+    endpoint(async (req, res) => {
+      const d = z
+        .object({
+          id: z.string().uuid(),
+          account_id: z.string().uuid(),
+          category: z.enum(['BOOKINGS', 'MESSAGES', 'PAYMENTS', 'MARKETING']),
+          event: z.string().regex(/^[A-Z_0-9]{3,60}$/),
+          locale: z.enum(['fa', 'en']),
+        })
+        .strict()
+        .parse(req.body);
+      await transaction(identity.pool, async (db) => {
+        if (
+          !(
+            await db.query(
+              "INSERT INTO infra_inbox(consumer,event_id) VALUES('communication-email-v1',$1) ON CONFLICT DO NOTHING RETURNING event_id",
+              [d.id],
+            )
+          ).rowCount
+        )
+          return;
+        const a = (
+          await db.query(
+            'SELECT email FROM identity_accounts WHERE id=$1 AND disabled_at IS NULL AND verified_at IS NOT NULL',
+            [d.account_id],
+          )
+        ).rows[0];
+        if (!a) return;
+        const label =
+          d.locale === 'fa' ? 'اعلان جدید در حساب ویانور' : 'New Vianoor account notification';
+        await db.query(
+          "INSERT INTO identity_mail(id,encrypted,expires_at) VALUES($1,$2,now()+interval '2 days')",
+          [
+            d.id,
+            encrypt(
+              {
+                email: a.email,
+                subject: label,
+                text:
+                  label +
+                  '\n' +
+                  identity.config.publicUrl +
+                  '/' +
+                  d.locale +
+                  '/account/notifications',
+              },
+              identity.config.mailKey,
+            ),
+          ],
+        );
+      });
+      res.json({ data: { queued: true } });
+    }),
+  );
+  router.post(
     '/internal/booking-notification',
     endpoint(async (req, res) => {
       const input = z

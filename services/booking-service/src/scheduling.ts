@@ -73,7 +73,9 @@ export async function initializeScheduling(pool: Pool) {
  CREATE INDEX IF NOT EXISTS scheduled_bookings_expert ON scheduled_bookings(expert_code,start_at);
  CREATE INDEX IF NOT EXISTS scheduled_bookings_pending ON scheduled_bookings(updated_at) WHERE pending_action IS NOT NULL;
  CREATE TABLE IF NOT EXISTS booking_events(id uuid PRIMARY KEY,booking_id uuid NOT NULL,actor_id uuid NOT NULL,event text NOT NULL,details jsonb NOT NULL DEFAULT '{}',created_at timestamptz NOT NULL DEFAULT now());
+ CREATE TABLE IF NOT EXISTS communication_conversations(booking_id uuid PRIMARY KEY,created_at timestamptz NOT NULL DEFAULT now());
  CREATE TABLE IF NOT EXISTS booking_notifications(id uuid PRIMARY KEY,event_id uuid NOT NULL,booking_id uuid NOT NULL,account_id uuid NOT NULL,event text NOT NULL,delivered_at timestamptz,read_at timestamptz,created_at timestamptz NOT NULL DEFAULT now(),UNIQUE(event_id,account_id));
+ CREATE TABLE IF NOT EXISTS communication_reminders(booking_id uuid NOT NULL,start_at timestamptz NOT NULL,minutes int NOT NULL,PRIMARY KEY(booking_id,start_at,minutes));
  CREATE TABLE IF NOT EXISTS booking_reminders(booking_id uuid NOT NULL,start_at timestamptz NOT NULL,PRIMARY KEY(booking_id,start_at));
  ALTER TABLE scheduled_bookings ADD COLUMN IF NOT EXISTS operation_actor uuid;
  ALTER TABLE scheduled_bookings ADD COLUMN IF NOT EXISTS payment_id uuid;`);
@@ -225,8 +227,23 @@ export async function reconcileBookings(pool: Pool) {
         "SELECT * FROM scheduled_bookings WHERE status IN ('CONFIRMED','RESCHEDULED') AND pending_action IS NULL AND start_at>now() AND start_at<=now()+interval '24 hours' FOR UPDATE SKIP LOCKED",
       )
     ).rows as Booking[];
-    for (const row of due)
-      if (
+    for (const row of due) {
+      if (process.env.COMMUNICATIONS_ENABLED === '1') {
+        for (const minutes of [1440, 60, 10]) {
+          const remaining = Date.parse(String(row.start_at)) - Date.now();
+          if (remaining > minutes * 60000 || remaining < Math.max(0, minutes * 60000 - 120000))
+            continue;
+          if (
+            (
+              await db.query(
+                'INSERT INTO communication_reminders VALUES($1,$2,$3) ON CONFLICT DO NOTHING RETURNING booking_id',
+                [row.id, row.start_at, minutes],
+              )
+            ).rowCount
+          )
+            await event(db, row, row.client_id, 'REMINDER_' + minutes);
+        }
+      } else if (
         (
           await db.query(
             'INSERT INTO booking_reminders VALUES($1,$2) ON CONFLICT DO NOTHING RETURNING booking_id',
@@ -235,14 +252,47 @@ export async function reconcileBookings(pool: Pool) {
         ).rowCount
       )
         await event(db, row, row.client_id, 'REMINDER');
+    }
   });
+  if (process.env.COMMUNICATIONS_ENABLED === '1') {
+    for (const row of (
+      await pool.query(
+        "SELECT id FROM scheduled_bookings b WHERE status IN ('CONFIRMED','COMPLETED','RESCHEDULED','RESCHEDULE_REQUESTED') AND NOT EXISTS(SELECT 1 FROM communication_conversations c WHERE c.booking_id=b.id) ORDER BY updated_at LIMIT 30",
+      )
+    ).rows) {
+      try {
+        await internalCall('messaging-service', '/internal/communications/booking', '', {
+          booking_id: row.id,
+        });
+        await pool.query(
+          'INSERT INTO communication_conversations(booking_id) VALUES($1) ON CONFLICT DO NOTHING',
+          [row.id],
+        );
+      } catch {
+        /* Retry owner-verified provisioning independently of notification delivery. */
+      }
+    }
+  }
   for (const item of (
     await pool.query(
-      'SELECT id,account_id,event FROM booking_notifications WHERE delivered_at IS NULL ORDER BY created_at LIMIT 30',
+      'SELECT id,account_id,event,booking_id FROM booking_notifications WHERE delivered_at IS NULL ORDER BY created_at LIMIT 30',
     )
   ).rows) {
     try {
-      await internalCall('identity-service', '/internal/booking-notification', '', item);
+      if (process.env.COMMUNICATIONS_ENABLED === '1')
+        await internalCall('notification-service', '/internal/notifications', '', {
+          id: item.id,
+          account_id: item.account_id,
+          event: item.event,
+          category: 'BOOKINGS',
+          context_id: item.booking_id,
+        });
+      else
+        await internalCall('identity-service', '/internal/booking-notification', '', {
+          id: item.id,
+          account_id: item.account_id,
+          event: item.event,
+        });
       await pool.query('UPDATE booking_notifications SET delivered_at=now() WHERE id=$1', [
         item.id,
       ]);
@@ -341,6 +391,7 @@ export function schedulingRouter(pool: Pool) {
             status: row.status,
             end_at: row.end_at,
             payment_id: row.payment_id,
+            kind: row.snapshot?.kind,
           },
         });
       }),
@@ -565,6 +616,27 @@ export function schedulingRouter(pool: Pool) {
       const row = await processOperation(pool, id);
       if (row.error_code) throw new ServiceError(409, row.error_code);
       res.json({ data: publicRow(row) });
+    }),
+  );
+  router.get(
+    '/internal/bookings/communication-context/:id',
+    endpoint(async (req, res) => {
+      const u = await principal(req),
+        row = (
+          await pool.query('SELECT client_id,snapshot,status FROM scheduled_bookings WHERE id=$1', [
+            z.string().uuid().parse(req.params.id),
+          ])
+        ).rows[0];
+      if (!row || ![row.client_id, row.snapshot?.expert_id].includes(u.id))
+        throw new ServiceError(403, 'FORBIDDEN');
+      res.json({
+        data: {
+          client_id: row.client_id,
+          expert_id: row.snapshot.expert_id,
+          status: row.status,
+          kind: row.snapshot.kind ?? 'VIDEO',
+        },
+      });
     }),
   );
   router.get(

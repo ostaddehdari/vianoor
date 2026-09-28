@@ -25,6 +25,11 @@ const owners: Record<string, string> = {
   accounting: 'accounting-service',
   payouts: 'payout-service',
   disputes: 'dispute-service',
+  communications: 'messaging-service',
+  channels: 'messaging-service',
+  questions: 'qa-service',
+  notifications: 'notification-service',
+  presence: 'presence-service',
 };
 export function usersProxy() {
   const router = internalRouter('28mb', true);
@@ -40,7 +45,9 @@ export function usersProxy() {
         throw new ServiceError(404, 'NOT_FOUND');
       const publicRead =
         req.method === 'GET' &&
-        (req.path === '/experts/public' ||
+        (/^\/channels\/public\/[a-z0-9-]+$/.test(req.path) ||
+          req.path === '/questions/public' ||
+          req.path === '/experts/public' ||
           (req.path === '/languages' && req.query.admin !== '1') ||
           /^\/languages\/[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(req.path) ||
           ['/localization/bundle', '/localization/translation', '/search/experts'].includes(

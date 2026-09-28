@@ -1,6 +1,6 @@
 import { getCatalog } from '../../../../lib/localization';
 import { isLocale, localeDirection, languageValue } from '@vianoor/ui';
-import { expertsPublicCopy, ExpertAssetImage } from '@vianoor/ui';
+import { expertsPublicCopy, ExpertAssetImage, communicationCopy } from '@vianoor/ui';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { expertData, publicBase, type PublicExpert } from '../data';
@@ -52,6 +52,9 @@ export default async function Expert({ params }: Params) {
           />
         )}
         <h1>{p.display_name}</h1>
+        <a href={`${publicBase}/${locale}/experts/${slug}/channel`}>
+          {communicationCopy[locale]!.channels}
+        </a>
         <p>{p.title}</p>
         <span className="user-badge">{t.verified}</span>
         <p>{p.short_bio}</p>

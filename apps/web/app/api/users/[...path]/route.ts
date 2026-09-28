@@ -28,6 +28,11 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       'accounting',
       'payouts',
       'disputes',
+      'communications',
+      'channels',
+      'questions',
+      'notifications',
+      'presence',
     ].includes(path[0]!)
   )
     return fail('NOT_FOUND', 404);
