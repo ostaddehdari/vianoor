@@ -80,3 +80,17 @@
 - FileService فایل خصوصی را ثبت کرد.
 - Range retrieval با توکن مراجع انجام و امضای `ftyp` خود فایل MP4 بررسی شد.
 - با این آزمون، پذیرش سروری Stage 13 کامل است.
+
+## استقرار نهایی Production مرحله ۱۳ در ۳۰ سپتامبر ۲۰۲۶
+
+- Source SHA: `bdb176eb308aaf4c34d82d2565443033d83265a5`
+- Services image: `sha256:3744907eb444e44f681ef75acc687dca41f4c923d53df561adf72bddd7885be7`
+- Web image: `sha256:0998a56b1fcc27349264c4b3546ba8c14f35e2d229f534d7f50164472b790412`
+- سرویس‌های عملیاتی Stage 13 با image نهایی Stage13 اجرا شدند.
+- MediaService روی loopback پورت 18893 healthy شد.
+- LiveKit با host networking بدون تغییر باقی ماند.
+- Egress worker دائمی با restart policy `unless-stopped` فعال شد.
+- Storage خصوصی ضبط از Object Storage موجود Production استفاده می‌کند.
+- Nginx در rollout تغییر نکرد.
+- مسیرهای عمومی Vianoor بعد از rollout healthy تأیید شدند.
+- rollback در `/root/vianoor-stage13-rollout-20260930-142053/ROLLBACK.sh` محفوظ است.
