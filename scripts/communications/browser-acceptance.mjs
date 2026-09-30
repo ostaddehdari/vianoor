@@ -15,6 +15,7 @@ const output = '.cache/stage12-evidence';
 mkdirSync(output, { recursive: true });
 const browser = await chromium.launch({
   headless: true,
+  executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || undefined,
   args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'],
 });
 const context = await browser.newContext({
@@ -41,8 +42,24 @@ try {
   await panel.getByText(body, { exact: true }).waitFor();
   await page.reload();
   await panel.getByText(body, { exact: true }).waitFor();
-  await panel.getByRole('button', { name: 'Load more', exact: true }).click();
-  await panel.getByText('Synthetic concurrent message 0', { exact: true }).waitFor();
+  const oldestSynthetic = panel.getByText('Synthetic concurrent message 0', { exact: true });
+  for (let attempt = 0; attempt < 10; attempt++) {
+    if (await oldestSynthetic.isVisible().catch(() => false)) break;
+    const loadMore = panel.getByRole('button', { name: 'Load more', exact: true });
+    if (!(await loadMore.isVisible().catch(() => false))) break;
+    const count = await panel.locator('.communication-history li').count();
+    await loadMore.click();
+    await page
+      .waitForFunction(
+        (previous) =>
+          document.querySelectorAll('.communication-workspace .communication-history li').length >
+          previous,
+        count,
+        { timeout: 10000 },
+      )
+      .catch(() => {});
+  }
+  await oldestSynthetic.waitFor();
   await panel.getByRole('button', { name: 'Record voice', exact: true }).click();
   await panel.getByRole('button', { name: 'Stop recording', exact: true }).waitFor();
   await page.waitForTimeout(1200);
@@ -61,6 +78,22 @@ try {
     .include('.communication-workspace')
     .withTags(['wcag2a', 'wcag2aa'])
     .analyze();
+  console.log('===== AXE COLOR CONTRAST DETAILS =====');
+  for (const violation of axe.violations) {
+    console.log('VIOLATION:', violation.id);
+    console.log('IMPACT:', violation.impact);
+    console.log('HELP:', violation.help);
+    for (const node of violation.nodes) {
+      console.log('TARGET:', JSON.stringify(node.target));
+      console.log('HTML:', node.html);
+      console.log('SUMMARY:', node.failureSummary);
+      for (const check of [...node.any, ...node.all, ...node.none]) {
+        if (check.data) console.log('DATA:', JSON.stringify(check.data));
+        if (check.message) console.log('MESSAGE:', check.message);
+      }
+    }
+  }
+  console.log('===== END AXE DETAILS =====');
   assert.deepEqual(
     axe.violations.map((x) => x.id),
     [],
