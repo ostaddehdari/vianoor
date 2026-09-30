@@ -1,3 +1,4 @@
+import { initializeSiteSettings, siteSettingsRouter } from './site-settings.js';
 import { specialtyTranslationsRouter } from './specialty-translations.js';
 import {
   bootstrap,
@@ -12,6 +13,7 @@ if (process.env.SCHOLARS_ENABLED !== '1') await bootstrap('taxonomy-service', 41
 else {
   const infrastructure = await connectInfrastructure('taxonomy-service');
   await initializeTaxonomy(infrastructure.pool!);
+  await initializeSiteSettings(infrastructure.pool!);
   if (process.env.DISCOVERY_ENABLED === '1') {
     await initializeLocalization(infrastructure.pool!);
     await infrastructure.pool!.query(
@@ -28,6 +30,7 @@ else {
     ready: infrastructure.healthy,
     configure: (app) => {
       app.use(taxonomyRouter(infrastructure.pool!));
+      app.use(siteSettingsRouter(infrastructure.pool!));
       if (process.env.DISCOVERY_ENABLED === '1') {
         app.use(localizationRouter(infrastructure.pool!));
         app.use(specialtyTranslationsRouter(infrastructure.pool!));

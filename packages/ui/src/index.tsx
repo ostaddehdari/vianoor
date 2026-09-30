@@ -17,3 +17,6 @@ export { LanguageSwitcher } from './language-switcher';
 export { ExpertDiscovery } from './discovery';
 
 export { communicationCopy } from './communication-copy';
+
+export { ThemeToggle } from './theme-toggle';
+export { PublicSocialLinks, SocialLinksManager } from './site-settings';

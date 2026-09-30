@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import { userApi } from './users-client';
 import { discoveryCopy } from './discovery-copy';
-import { languageValue } from './localization-runtime';
+import { SocialLinksManager } from './site-settings';
+import { languageValue, localizedText } from './localization-runtime';
 type Language = {
   code: string;
   name_en: string;
@@ -115,7 +116,7 @@ export function LocalizationManager({ locale }: { locale: string }) {
     <section className="user-card localization-manager">
       <h2>{t.admin}</h2>
       <div className="user-toolbar">
-        {(['languages', 'translations', 'specialties', 'synonyms'] as const).map((name) => (
+        {(['languages', 'translations', 'specialties', 'synonyms', 'site'] as const).map((name) => (
           <button
             key={name}
             aria-pressed={tab === name}
@@ -125,7 +126,14 @@ export function LocalizationManager({ locale }: { locale: string }) {
               setNotice('');
             }}
           >
-            {t[name]}
+            {name === 'site'
+              ? localizedText(
+                  locale,
+                  'siteSettings.tab',
+                  'Site settings',
+                  'تنظیمات سایت',
+                )
+              : t[name]}
           </button>
         ))}
       </div>
@@ -456,6 +464,7 @@ export function LocalizationManager({ locale }: { locale: string }) {
           </div>
         </>
       )}
+      {tab === 'site' && <SocialLinksManager locale={locale} />}
       {tab === 'synonyms' && <Synonyms locale={locale} languages={languages} />}
       {tab === 'specialties' && <SpecialtyTranslations locale={locale} languages={languages} />}
     </section>

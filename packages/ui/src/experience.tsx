@@ -1,5 +1,7 @@
 'use client';
 import { LanguageSwitcher } from './language-switcher';
+import { ThemeToggle } from './theme-toggle';
+import { PublicSocialLinks } from './site-settings';
 import { localizedText } from './localization-runtime';
 import { languageValue } from './localization-runtime';
 import { localizeTree } from './localization-runtime';
@@ -156,42 +158,71 @@ function Modal({
 function Header({ locale, path }: { locale: Locale; path: string }) {
   const t = copy[locale]!;
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 18);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
+  }, []);
+
   const nav = [
-    ['', 'home'],
-    ['experts', 'experts'],
-    ['services', 'services'],
-    ['library', 'library'],
-    ['events', 'events'],
+    ['', t.home],
+    ['services', t.services],
+    ['experts', t.experts],
+    [
+      'questions',
+      localizedText(
+        locale,
+        'shell.nav.questions',
+        'Questions',
+        'پرسش‌ها',
+      ),
+    ],
+    ['events', t.events],
+    [
+      'library',
+      localizedText(
+        locale,
+        'shell.nav.insights',
+        'Insights',
+        'دانستنی‌ها',
+      ),
+    ],
   ] as const;
+
   return (
     <>
-      <div className="topline">
-        <span>
-          <Icon name="leaf" />
-          {t.tagline}
-        </span>
-        <a href={url(locale, 'dashboards')}>
-          {t.dashboards}
-          <Arrow />
-        </a>
-      </div>
-      <header className="site-header">
+      <header
+        className={`site-header${scrolled ? ' scrolled' : ''}`}
+        data-public-shell="true"
+      >
         <Brand locale={locale} />
-        <nav className="desktop-nav" aria-label={t.navLabel}>
-          {nav.map(([p, k]) => (
+
+        <nav
+          className="desktop-nav"
+          aria-label={t.navLabel}
+        >
+          {nav.map(([p, label]) => (
             <a
               key={p}
               className={path === p ? 'active' : ''}
               aria-current={path === p ? 'page' : undefined}
               href={url(locale, p)}
             >
-              {t[k]}
+              {label}
             </a>
           ))}
         </nav>
+
         <div className="header-actions">
+          <ThemeToggle locale={locale} />
+
           <LanguageSwitcher locale={locale} />
+
           <UserAccountMenu locale={locale} />
+
           <button
             className="icon-button mobile-menu"
             aria-expanded={open}
@@ -203,25 +234,27 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
           </button>
         </div>
       </header>
+
       {open && (
         <nav
           id="mobile-navigation"
           className="mobile-navigation"
           aria-label={t.navLabel}
-          onKeyDown={(e) => {
-            if (e.key === 'Escape') setOpen(false);
+          onKeyDown={(event) => {
+            if (event.key === 'Escape')
+              setOpen(false);
           }}
         >
-          {nav.map(([p, k]) => (
-            <a key={p} href={url(locale, p)}>
-              {t[k]}
+          {nav.map(([p, label]) => (
+            <a
+              key={p}
+              href={url(locale, p)}
+            >
+              {label}
               <Arrow />
             </a>
           ))}
-          <a href={url(locale, 'dashboards')}>
-            {t.dashboards}
-            <Icon name="grid" />
-          </a>
+
           <a href={url(locale, 'auth/login')}>
             {t.login}
             <Icon name="user" />
@@ -239,11 +272,7 @@ function Footer({ locale }: { locale: Locale }) {
         <div>
           <Brand locale={locale} />
           <p>{t.footerText}</p>
-          <div className="footer-symbols">
-            <Icon name="leaf" />
-            <Icon name="book" />
-            <Icon name="comments" />
-          </div>
+          <PublicSocialLinks locale={locale} />
         </div>
         <div>
           <h3>{t.links}</h3>

@@ -36,6 +36,10 @@ import {
   faDownload,
   faCirclePlay,
   faBookmark,
+  faSun,
+  faMoon,
+  faLink,
+  faShareNodes,
 } from '@fortawesome/free-solid-svg-icons';
 const icons = {
   arrow: faArrowLeft,
@@ -75,6 +79,10 @@ const icons = {
   download: faDownload,
   play: faCirclePlay,
   bookmark: faBookmark,
+  sun: faSun,
+  moon: faMoon,
+  link: faLink,
+  share: faShareNodes,
 };
 export type IconName = keyof typeof icons;
 export function Icon({ name, className = '' }: { name: IconName; className?: string }) {

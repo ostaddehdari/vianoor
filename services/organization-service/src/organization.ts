@@ -56,6 +56,7 @@ export const roles = {
     'file.admin',
     'users.manage',
     'permission.grant',
+    'platform.configure',
     'forms.manage',
     'organization.manage',
     'membership.manage',

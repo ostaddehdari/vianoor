@@ -18,6 +18,7 @@ const owners: Record<string, string> = {
   availability: 'availability-service',
   languages: 'taxonomy-service',
   localization: 'taxonomy-service',
+  'site-settings': 'taxonomy-service',
   search: 'search-service',
   matching: 'matching-service',
   payments: 'payment-service',
@@ -52,6 +53,7 @@ export function usersProxy() {
           req.path === '/questions/public' ||
           req.path === '/experts/public' ||
           (req.path === '/languages' && req.query.admin !== '1') ||
+          (req.path === '/site-settings/social-links' && req.query.admin !== '1') ||
           /^\/languages\/[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(req.path) ||
           ['/localization/bundle', '/localization/translation', '/search/experts'].includes(
             req.path,

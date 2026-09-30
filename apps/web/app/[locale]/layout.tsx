@@ -4,6 +4,8 @@ import { isLocale, copy, LocalizationProvider, localeDirection } from '@vianoor/
 import '@vianoor/ui/styles.css';
 import type { Metadata } from 'next';
 import { getCatalog } from '../../lib/localization';
+
+const themeBoot = `(function(){try{var k='vianoor-theme';var t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t}catch(e){}})();`;
 export function generateStaticParams() {
   return [{ locale: 'fa' }, { locale: 'en' }];
 }
@@ -33,10 +35,12 @@ export default async function Layout({
   const catalog = await getCatalog(locale);
   return (
     <html
+      suppressHydrationWarning
       lang={locale}
       dir={(catalog?.language.direction.toLowerCase() as 'rtl' | 'ltr') ?? localeDirection(locale)}
     >
       <body>
+        <script dangerouslySetInnerHTML={{ __html: themeBoot }} />
         <LocalizationProvider catalog={catalog}>{children}</LocalizationProvider>
       </body>
     </html>
