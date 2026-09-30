@@ -1,5 +1,6 @@
 @import 'vazir-font/dist/font-face.css';
 @import './tokens.css';
+@import './home.css';
 @import './users.css';
 :root {
   --green: var(--color-primary);

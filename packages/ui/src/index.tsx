@@ -20,3 +20,5 @@ export { communicationCopy } from './communication-copy';
 
 export { ThemeToggle } from './theme-toggle';
 export { PublicSocialLinks, SocialLinksManager } from './site-settings';
+
+export { HomeExperience } from './home-experience';
