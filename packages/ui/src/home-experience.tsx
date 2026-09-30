@@ -654,11 +654,21 @@ export function HomeExperience({
       spokenLanguage,
     );
 
-  if (topic)
+  if (topic) {
+    const selected =
+      taxons.find(
+        (item) =>
+          item.id === topic,
+      );
+
     searchParams.set(
-      'specialty',
+      selected?.kind ===
+        'category'
+        ? 'topic'
+        : 'specialty',
       topic,
     );
+  }
 
   searchParams.set(
     'time',

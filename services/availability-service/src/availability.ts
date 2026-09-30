@@ -148,6 +148,144 @@ const range = z
   );
 export function availabilityRouter(pool: Pool) {
   const router = internalRouter('128kb');
+  router.get(
+    '/api/v2/availability/public',
+    endpoint(async (req, res) => {
+      const input = z
+        .object({
+          experts: z.string().max(700),
+          timezone,
+          days: z.coerce.number().int().min(1).max(14).default(7),
+        })
+        .strict()
+        .parse(req.query);
+
+      const experts = z
+        .array(code)
+        .max(30)
+        .parse(input.experts.split(',').filter(Boolean));
+
+      if (!experts.length) {
+        res.json({ data: [] });
+        return;
+      }
+
+      const services = (
+        await internalCall<Service[]>(
+          'scholar-service',
+          '/internal/scheduling/services',
+        )
+      ).filter((service) => experts.includes(service.expert_code));
+
+      const now = Date.now();
+      const until = now + input.days * 86400000;
+
+      const dayKey = (value: Date) => {
+        const parts = new Intl.DateTimeFormat('en', {
+          timeZone: input.timezone,
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        }).formatToParts(value);
+
+        const map = Object.fromEntries(
+          parts.map((part) => [part.type, part.value]),
+        );
+
+        return `${map.year}-${map.month}-${map.day}`;
+      };
+
+      const today = dayKey(new Date(now));
+      const output = [];
+
+      for (const expert of experts) {
+        let earliest:
+          | {
+              service_id: string;
+              start_at: string;
+              end_at: string;
+            }
+          | null = null;
+
+        for (const offering of services.filter(
+          (service) => service.expert_code === expert,
+        )) {
+          const found = await transaction(pool, async (db) => {
+            await lock(db, expert);
+
+            const { cal } = await materialize(
+              db,
+              expert,
+              offering,
+              now,
+              until,
+            );
+
+            return (
+              await db.query(
+                `SELECT s.start_at::text,s.end_at::text
+                 FROM availability_slots s
+                 WHERE s.expert_code=$1
+                   AND s.service_id=$2
+                   AND s.start_at>=clock_timestamp()+($3*interval '1 minute')
+                   AND s.start_at<$4
+                   AND s.start_at<=clock_timestamp()+($5*interval '1 day')
+                   AND NOT EXISTS(
+                     SELECT 1
+                     FROM slot_claims c
+                     WHERE c.expert_code=s.expert_code
+                       AND (
+                         c.state='CONFIRMED'
+                         OR (
+                           c.state='HELD'
+                           AND c.expires_at>clock_timestamp()
+                         )
+                       )
+                       AND c.busy_start<s.busy_end
+                       AND c.busy_end>s.busy_start
+                   )
+                 ORDER BY s.start_at
+                 LIMIT 1`,
+                [
+                  expert,
+                  offering.service_id,
+                  cal.min_notice_minutes,
+                  new Date(until),
+                  cal.horizon_days,
+                ],
+              )
+            ).rows[0];
+          });
+
+          if (
+            found &&
+            (
+              !earliest ||
+              Date.parse(found.start_at) <
+                Date.parse(earliest.start_at)
+            )
+          ) {
+            earliest = {
+              service_id: offering.service_id,
+              start_at: found.start_at,
+              end_at: found.end_at,
+            };
+          }
+        }
+
+        output.push({
+          expert_code: expert,
+          earliest,
+          available_today:
+            !!earliest &&
+            dayKey(new Date(earliest.start_at)) === today,
+        });
+      }
+
+      res.json({ data: output });
+    }),
+  );
+
   router.post(
     '/api/v2/availability/resolve',
     endpoint(async (req, res) => {

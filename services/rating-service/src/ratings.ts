@@ -17,6 +17,65 @@ export async function initializeRatings(pool: Pool) {
 }
 export function ratingsRouter(pool: Pool) {
   const r = internalRouter();
+  r.get(
+    '/api/v2/ratings/public',
+    endpoint(async (req, res) => {
+      const raw = String(req.query.experts ?? '');
+
+      const codes = z
+        .array(z.string().regex(/^[A-Za-z0-9]{13}$/))
+        .max(50)
+        .parse(raw ? raw.split(',').filter(Boolean) : []);
+
+      if (!codes.length) {
+        res.json({ data: [] });
+        return;
+      }
+
+      const identities = await internalCall<
+        { account_id: string; expert_code: string }[]
+      >(
+        'scholar-service',
+        '/internal/discovery/identities?' +
+          new URLSearchParams({
+            codes: codes.join(','),
+          }),
+      );
+
+      if (!identities.length) {
+        res.json({ data: [] });
+        return;
+      }
+
+      const rows = (
+        await pool.query(
+          `SELECT
+             expert_id,
+             round(avg(overall)::numeric,2) AS average,
+             count(*)::int AS count
+           FROM session_ratings
+           WHERE expert_id=ANY($1::uuid[])
+           GROUP BY expert_id`,
+          [identities.map((item) => item.account_id)],
+        )
+      ).rows;
+
+      res.json({
+        data: identities.map((identity) => {
+          const row = rows.find(
+            (item) => item.expert_id === identity.account_id,
+          );
+
+          return {
+            expert_code: identity.expert_code,
+            average: row ? Number(row.average) : null,
+            count: row?.count ?? 0,
+          };
+        }),
+      });
+    }),
+  );
+
   r.post(
     '/api/v2/ratings',
     endpoint(async (req, res) => {

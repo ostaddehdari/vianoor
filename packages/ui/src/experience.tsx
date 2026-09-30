@@ -3,6 +3,7 @@ import { LanguageSwitcher } from './language-switcher';
 import { ThemeToggle } from './theme-toggle';
 import { PublicSocialLinks } from './site-settings';
 import { HomeExperience } from './home-experience';
+import { ServicesExperience } from './services-experience';
 import { localizedText } from './localization-runtime';
 import { languageValue } from './localization-runtime';
 import { localizeTree } from './localization-runtime';
@@ -1365,6 +1366,38 @@ function Dashboard({
     </div>
   );
 }
+export function PublicPageShell({
+  locale,
+  path,
+  children,
+}: {
+  locale: Locale;
+  path: string;
+  children: ReactNode;
+}) {
+  return (
+    <>
+      <a
+        className="skip-link"
+        href="#main"
+      >
+        {copy[locale]!.skip}
+      </a>
+
+      <Header
+        locale={locale}
+        path={path}
+      />
+
+      {children}
+
+      <Footer
+        locale={locale}
+      />
+    </>
+  );
+}
+
 export function Experience({
   locale,
   path = '',
@@ -1397,6 +1430,8 @@ export function Experience({
       <main tabIndex={-1} id="main">
         {info?.kind === 'home' ? (
           <Home locale={locale} />
+        ) : path === 'services' ? (
+          <ServicesExperience locale={locale} />
         ) : info?.kind === 'gallery' ? (
           <Gallery locale={locale} />
         ) : (

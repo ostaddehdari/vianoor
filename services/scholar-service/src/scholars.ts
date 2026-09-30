@@ -166,6 +166,45 @@ export function scholarsRouter(pool: Pool) {
     }),
   );
   router.get(
+    '/internal/discovery/identities',
+    endpoint(async (req, res) => {
+      const raw = String(req.query.codes ?? '');
+      const codes = z
+        .array(z.string().regex(/^[A-Za-z0-9]{13}$/))
+        .max(50)
+        .parse(raw ? raw.split(',').filter(Boolean) : []);
+
+      if (!codes.length) {
+        res.json({ data: [] });
+        return;
+      }
+
+      const rows = (
+        await pool.query(
+          `SELECT account_id,public_id AS expert_code
+           FROM scholars
+           WHERE public_id=ANY($1::text[])
+             AND status='APPROVED'
+             AND (valid_until IS NULL OR valid_until>now())
+             AND profile->>'visibility'='PUBLIC'`,
+          [codes],
+        )
+      ).rows;
+
+      const active = await internalCall<string[]>(
+        'identity-service',
+        '/internal/active-accounts',
+        '',
+        { codes: rows.map((row) => row.expert_code) },
+      );
+
+      res.json({
+        data: rows.filter((row) => active.includes(row.expert_code)),
+      });
+    }),
+  );
+
+  router.get(
     '/internal/scheduling/services',
     endpoint(async (req, res) => {
       const query = z

@@ -1,5 +1,5 @@
 import { getCatalog } from '../../../../lib/localization';
-import { isLocale, localeDirection, languageValue } from '@vianoor/ui';
+import { isLocale, localeDirection, languageValue, PublicPageShell } from '@vianoor/ui';
 import { expertsPublicCopy, ExpertAssetImage, communicationCopy } from '@vianoor/ui';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -39,7 +39,8 @@ export default async function Expert({ params }: Params) {
       : null;
   const t = expertsPublicCopy[locale]!;
   return (
-    <main className="public-experts" dir={localeDirection(locale)}>
+    <PublicPageShell locale={locale} path="experts">
+      <main id="main" className="public-experts" dir={localeDirection(locale)}>
       <a href={`${publicBase}/${locale}/experts`}>{t.back}</a>
       <header className="user-card">
         {image && (
@@ -132,6 +133,7 @@ export default async function Expert({ params }: Params) {
           </article>
         ))}
       </section>
-    </main>
+      </main>
+    </PublicPageShell>
   );
 }

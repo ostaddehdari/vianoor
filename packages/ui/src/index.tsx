@@ -1,5 +1,5 @@
 export { messages, isLocale } from './messages';
-export { Experience } from './experience';
+export { Experience, PublicPageShell } from './experience';
 export { routeInfo, pagePaths, copy, roles, publicPages } from './routing';
 export { AuthForm, AccountSecurity, type AuthAction } from './auth';
 export { releaseVersion } from './release';
@@ -22,3 +22,5 @@ export { ThemeToggle } from './theme-toggle';
 export { PublicSocialLinks, SocialLinksManager } from './site-settings';
 
 export { HomeExperience } from './home-experience';
+
+export { ServicesExperience } from './services-experience';

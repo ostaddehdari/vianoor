@@ -54,6 +54,12 @@ type Expert = {
     source: Record<string, string>;
     translations: Record<string, Record<string, string>>;
     booking_required: boolean;
+    price_minor: number;
+    currency: string;
+    duration_minutes: number | null;
+    specialty_id: string;
+    category_id: string | null;
+    kind: string;
   }[];
 };
 type Cache = {

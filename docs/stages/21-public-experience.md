@@ -4,7 +4,7 @@ Branch: `stage/21-public-experience`
 
 ## Work 21.1 — Design System & Global Shell
 
-Status: Work 21.1 and Work 21.2 accepted.
+Status: Work 21.1, Work 21.2 and Work 21.3 accepted.
 
 Implemented:
 
@@ -49,8 +49,35 @@ Important:
 
 `event-service` currently has no public event data API. Work 21.2 therefore intentionally does not fabricate event records. The event home section provides the final visual shell and a real empty state. Live event data is connected in Work 23.3.
 
+## Work 21.3 — Services & Expert Discovery
+
+Implemented:
+
+- complete `/services` storytelling page
+- four primary service journeys
+- problem / audience / flow / cost / language / CTA for every service
+- FAQ for service discovery
+- Grid-first expert discovery
+- full-text expert search
+- active-language filter
+- specialty filter
+- topic/category filter
+- maximum-price filter
+- online-now filter backed by live Redis presence
+- available-today filter backed by real scheduling data
+- earliest-appointment sorting
+- public aggregate rating and rating sorting
+- minimum-rating filter
+- price sorting
+- public expert cards with language, specialties, price and next availability
+- only approved/public experts are exposed by enrichment endpoints
+- rating endpoint exposes aggregates only; private review text is never returned
+- availability endpoint exposes earliest available public booking slot only
+- presence endpoint exposes ONLINE/AWAY/OFFLINE only
+- global sticky Header/Footer retained on expert directory and profile routes
+- Smart Start topic/category handoff fixed
+
 ## Remaining Stage 21
 
-- Work 21.3 — Services & Expert Discovery
 - Work 21.4 — Expert Profile
 - Work 21.5 — Insights, Events & Responsive Public UI

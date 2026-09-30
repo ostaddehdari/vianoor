@@ -53,6 +53,9 @@ export function usersProxy() {
           req.path === '/questions/public' ||
           req.path === '/experts/public' ||
           (req.path === '/languages' && req.query.admin !== '1') ||
+          req.path === '/availability/public' ||
+          req.path === '/ratings/public' ||
+          req.path === '/presence/public' ||
           (req.path === '/site-settings/social-links' && req.query.admin !== '1') ||
           /^\/languages\/[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/.test(req.path) ||
           ['/localization/bundle', '/localization/translation', '/search/experts'].includes(

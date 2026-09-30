@@ -64,6 +64,9 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
   const publicRead =
     req.method === 'GET' &&
     ((path[0] === 'languages' && req.nextUrl.searchParams.get('admin') !== '1') ||
+      (path[0] === 'availability' && path[1] === 'public') ||
+      (path[0] === 'ratings' && path[1] === 'public') ||
+      (path[0] === 'presence' && path[1] === 'public') ||
       (path[0] === 'site-settings' && path[1] === 'social-links' && req.nextUrl.searchParams.get('admin') !== '1') ||
       (path[0] === 'localization' && ['bundle', 'translation'].includes(path[1] ?? '')) ||
       (path[0] === 'search' && path[1] === 'experts') ||

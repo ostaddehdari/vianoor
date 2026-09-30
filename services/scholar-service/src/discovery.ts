@@ -169,6 +169,7 @@ export async function publicProjection(
         currency: offering.details.currency,
         booking_required: offering.details.booking_required,
         specialty_id: offering.details.specialty_id,
+        category_id: offering.details.category_id ?? null,
         fields: translated.translations[locale] ?? translated.translations.en ?? translated.source,
         ...translated,
       });
