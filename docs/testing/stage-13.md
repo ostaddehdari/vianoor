@@ -43,3 +43,16 @@
 7. بازبینی نهایی سیاست‌های غیبت/قطعی و شواهد اختلاف؛ اتصال خودکار تمام رزروهای واجد شرایط به جلسه و تکمیل اعلان‌ها.
 
 تمام fixtureها مصنوعی‌اند. اسرار، URL خصوصی و متن مشاوره در Git و log ثبت نمی‌شوند.
+
+## پذیرش واقعی شبکه LiveKit و TURN در ۳۰ سپتامبر ۲۰۲۶
+
+- مسیر عمومی signaling به‌صورت `wss://srun.ir/vianoor/livekit` تأیید شد و Nginx سایت‌های دیگر تغییر نکرد.
+- تماس واقعی با دو Chromium، دوربین و میکروفون مصنوعی، refresh/rejoin و reconnect موفق شد.
+- forced TURN relay واقعی با `iceTransportPolicy=relay` پس از اجرای LiveKit با host networking موفق شد.
+- اجرای LiveKit پشت Docker bridge باعث شکست مسیر relay بود؛ معماری عملیاتی LiveKit به host networking منتقل شد.
+- TURN/UDP روی 3478 و relay range روی UDP 30000–30020 فعال است.
+- ICE مستقیم روی TCP 7891 و UDP 7892 در firewall فعال است.
+- API داخلی LiveKit فقط برای شبکه‌های Docker لازم روی TCP 18894 مجاز است و عمومی نشده است.
+- webhook عملیاتی LiveKit به `127.0.0.1:18893` متصل می‌شود؛ MediaService مرحله ۱۳ این پورت loopback را منتشر می‌کند.
+- `net.core.rmem_max` و `net.core.wmem_max` برای بار WebRTC افزایش داده شد.
+- TURN/TLS گواهی معتبر IP دارد؛ استفادهٔ مرورگر از TURN/TLS روی 443 به دلیل اشتراک 443 با Nginx به معماری SNI/L4 یا IP مجزا نیاز دارد و جزء مسیر UDP پذیرفته‌شده نیست.

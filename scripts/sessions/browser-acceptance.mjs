@@ -37,11 +37,56 @@ try {
   const client = await actor(fixture.customer),
     expert = await actor(fixture.expert);
   for (const a of [client, expert]) {
-    await a.panel.getByText('Check devices', { exact: true }).click();
-    await a.panel.getByRole('button', { name: 'Start device preview', exact: true }).click();
-    await a.panel.getByRole('button', { name: 'Confirm device check', exact: true }).click();
+    const waiting = a.panel.getByRole('button', {
+      name: 'Waiting room',
+      exact: true,
+    });
+    await waiting.waitFor({ state: 'visible' });
+    await waiting.click();
+
+    const preview = a.panel.getByRole('button', {
+      name: 'Start device preview',
+      exact: true,
+    });
+    if (!(await preview.isVisible().catch(() => false))) {
+      await a.panel.getByText('Check devices', { exact: true }).click();
+      await preview.waitFor({ state: 'visible' });
+    }
+
+    await preview.click();
+
+    const confirm = a.panel.getByRole('button', {
+      name: 'Confirm device check',
+      exact: true,
+    });
+
+    await confirm.waitFor({ state: 'visible' });
+    await confirm.click();
   }
-  await expert.panel.getByRole('button', { name: 'Open session', exact: true }).click();
+
+  const openSession = expert.panel.getByRole('button', {
+    name: 'Open session',
+    exact: true,
+  });
+
+  await openSession.waitFor({ state: 'visible' });
+
+  for (let attempt = 0; attempt < 30; attempt++) {
+    if (await openSession.isEnabled().catch(() => false)) break;
+    await expert.page.waitForTimeout(500);
+  }
+
+  if (!(await openSession.isEnabled().catch(() => false))) {
+    const state = await expert.page.evaluate(async () => {
+      const id = new URLSearchParams(location.search).get('session');
+      const response = await fetch('/vianoor/api/users/sessions/' + id);
+      return response.json();
+    });
+    console.log('OPEN_SESSION_DISABLED_STATE:', JSON.stringify(state));
+    throw new Error('Open session remained disabled after both participants became ready');
+  }
+
+  await openSession.click();
   for (const a of [expert, client])
     await a.panel.getByRole('button', { name: 'Join call', exact: true }).click();
   for (const a of [client, expert]) {
