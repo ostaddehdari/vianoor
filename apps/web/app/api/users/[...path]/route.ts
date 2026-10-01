@@ -15,6 +15,7 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       'files',
       'consents',
       'bookings',
+      'instant',
       'experts',
       'taxonomy',
       'availability',
@@ -45,6 +46,7 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
     gateway = process.env.AUTH_GATEWAY_URL,
     qaPreview = process.env.QA_PREVIEW_URL,
     eventPreview = process.env.EVENT_PREVIEW_URL,
+    instantPreview = process.env.INSTANT_PREVIEW_URL,
     paymentPreview = process.env.PAYMENT_PREVIEW_URL,
     messagingPreview = process.env.MESSAGING_PREVIEW_URL,
     upstream =
@@ -52,7 +54,9 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
         ? qaPreview
         : path[0] === 'events' && eventPreview
           ? eventPreview
-          : path[0] === 'payments' && paymentPreview
+          : path[0] === 'instant' && instantPreview
+            ? instantPreview
+            : path[0] === 'payments' && paymentPreview
             ? paymentPreview
             : path[0] === 'communications' && messagingPreview
               ? messagingPreview
@@ -86,6 +90,7 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       (path[0] === 'presence' && path[1] === 'public') ||
       (path[0] === 'questions' && path[1] === 'public') ||
       (path[0] === 'events' && path[1] === 'public') ||
+      (path[0] === 'instant' && path[1] === 'public') ||
       (path[0] === 'site-settings' && path[1] === 'social-links' && req.nextUrl.searchParams.get('admin') !== '1') ||
       (path[0] === 'localization' && ['bundle', 'translation'].includes(path[1] ?? '')) ||
       (path[0] === 'search' && path[1] === 'experts') ||

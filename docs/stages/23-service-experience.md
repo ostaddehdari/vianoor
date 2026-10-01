@@ -677,3 +677,156 @@ No real payment was executed.
 Temporary authentication sessions, Webinar rows, Sponsor requests, invitations, registrations, Event conversations/messages and Webinar room metadata were removed after the run.
 
 Work23.3 is accepted and complete.
+
+## Work23.4 — Helpline / Talk Now
+
+### Checkpoint 1 — Durable queue core
+
+The original `instant-service` was only a Stage1 scaffold.
+
+Work23.4 replaces the scaffold with the real Talk Now queue domain.
+
+### No booking
+
+Talk Now deliberately does **not** create a calendar Booking.
+
+The user enters a durable queue and is matched to the first currently eligible Expert.
+
+### Expert opt-in
+
+A verified Expert controls:
+
+- Talk Now enabled/disabled
+- timezone
+- weekly Talk Now windows
+- supported languages
+- optional topic restrictions
+- AUDIO / VIDEO modes
+- instant consultation price
+- currency
+- timed offer duration
+- session duration
+
+### Online state
+
+Talk Now uses the same Redis presence key as the existing Presence service.
+
+An Expert must simultaneously be:
+
+- verified
+- opted in
+- inside a configured Talk Now window
+- ONLINE
+- not already reserved by another instant request
+
+### Client queue
+
+A client request contains:
+
+- language
+- optional topic
+- AUDIO / VIDEO mode
+- short private need/notes
+
+States:
+
+- QUEUED
+- OFFERING
+- AWAITING_PAYMENT
+- READY
+- LIVE
+- COMPLETED
+- CANCELLED
+
+Only one active Talk Now request is allowed per client.
+
+### Timed offer
+
+The queue worker sends a timed offer to one eligible Expert.
+
+Offer states:
+
+- OFFERED
+- ACCEPTED
+- REJECTED
+- EXPIRED
+- CANCELLED
+
+While an offer is active, that Expert is reserved for that request.
+
+If the Expert rejects or the offer expires:
+
+- Expert reservation is released
+- request returns to QUEUED
+- the rejected/expired Expert is not offered the same request again
+- worker can continue with another eligible Expert
+
+### Expert acceptance
+
+On acceptance:
+
+Free consultation:
+
+`OFFERING → READY`
+
+Paid consultation:
+
+`OFFERING → AWAITING_PAYMENT`
+
+The accepted request snapshots:
+
+- Expert
+- price
+- currency
+- session duration
+
+### Payment preparation
+
+Instant service exposes internal:
+
+- `payment-quote`
+- `payment-confirm`
+
+A paid accepted request has a ten-minute payment window.
+
+Expired payment releases the Expert automatically.
+
+Payment-service wiring is completed in Checkpoint 2.
+
+### Live-session preparation
+
+Instant service exposes internal session context and transitions:
+
+- READY → LIVE
+- LIVE → COMPLETED
+
+Completing the session releases the Expert for the next queue request.
+
+### Chat preparation
+
+Only the matched client and Expert may use the future Instant consultation conversation after the request reaches READY.
+
+Messaging integration is completed in Checkpoint 2.
+
+### Public availability
+
+A public status endpoint reports only aggregate availability:
+
+- available Expert count
+- whether Talk Now currently has an eligible Expert
+
+No Expert identity is exposed by this endpoint.
+
+### Next checkpoint
+
+Work23.4 Checkpoint 2 adds:
+
+- Payment-service first-class `instant_request_id`
+- LiveKit 1:1 Talk Now room
+- persistent `INSTANT` conversation
+- public Helpline UI
+- client queue screen
+- Expert timed-offer UI
+- Expert Talk Now hours/settings UI
+- operator queue panel
+- support ticket / complaint path

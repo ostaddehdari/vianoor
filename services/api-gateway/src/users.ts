@@ -13,6 +13,7 @@ const owners: Record<string, string> = {
   files: 'file-service',
   consents: 'consent-service',
   bookings: 'booking-service',
+  instant: 'instant-service',
   experts: 'scholar-service',
   taxonomy: 'taxonomy-service',
   availability: 'availability-service',
@@ -53,6 +54,7 @@ export function usersProxy() {
         (/^\/channels\/public\/[a-z0-9-]+$/.test(req.path) ||
           req.path === '/questions/public' ||
           req.path === '/events/public' ||
+          req.path === '/instant/public/status' ||
           /^\/events\/public\/[a-f0-9-]{36}$/.test(req.path) ||
           req.path === '/experts/public' ||
           (req.path === '/languages' && req.query.admin !== '1') ||
