@@ -24,3 +24,9 @@ export { PublicSocialLinks, SocialLinksManager } from './site-settings';
 export { HomeExperience } from './home-experience';
 
 export { ServicesExperience } from './services-experience';
+
+export {
+  ExpertProfileExperience,
+  type ExpertProfileData,
+  type ExpertProfileTaxon,
+} from './expert-profile';

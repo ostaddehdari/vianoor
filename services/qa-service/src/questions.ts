@@ -24,11 +24,60 @@ export function questionRouter(pool: Pool) {
   const r = internalRouter();
   r.get(
     '/api/v2/questions/public',
-    endpoint(async (_req, res) => {
+    endpoint(async (req, res) => {
+      const expertCode = z
+        .string()
+        .regex(/^[A-Za-z0-9]{13}$/)
+        .optional()
+        .parse(req.query.expert);
+
+      let expertId: string | null = null;
+
+      if (expertCode) {
+        const identities = await internalCall<
+          { account_id: string; expert_code: string }[]
+        >(
+          'scholar-service',
+          '/internal/discovery/identities?' +
+            new URLSearchParams({
+              codes: expertCode,
+            }),
+        );
+
+        expertId =
+          identities[0]?.account_id ??
+          null;
+
+        if (!expertId) {
+          res.json({
+            data: [],
+          });
+          return;
+        }
+      }
+
       res.json({
         data: (
           await pool.query(
-            "SELECT id,public_question AS question,public_answer AS answer,CASE WHEN visibility='PUBLIC' THEN owner_code ELSE NULL END AS author,updated_at FROM questions WHERE publication='PUBLISHED' AND visibility IN ('PUBLIC','ANONYMOUS') ORDER BY updated_at DESC LIMIT 100",
+            `SELECT
+               id,
+               public_question AS question,
+               public_answer AS answer,
+               CASE
+                 WHEN visibility='PUBLIC'
+                 THEN owner_code
+                 ELSE NULL
+               END AS author,
+               updated_at
+             FROM questions
+             WHERE publication='PUBLISHED'
+               AND visibility IN ('PUBLIC','ANONYMOUS')
+               AND ($1::uuid IS NULL OR expert_id=$1)
+             ORDER BY updated_at DESC
+             LIMIT 100`,
+            [
+              expertId,
+            ],
           )
         ).rows,
       });

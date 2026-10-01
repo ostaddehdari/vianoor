@@ -2,6 +2,7 @@
 @import './tokens.css';
 @import './home.css';
 @import './discovery21.css';
+@import './expert-profile.css';
 @import './users.css';
 :root {
   --green: var(--color-primary);

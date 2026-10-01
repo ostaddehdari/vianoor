@@ -472,6 +472,84 @@ export function schedulingRouter(pool: Pool) {
     );
   }
 
+  router.get(
+    '/api/v2/bookings/public-stats',
+    endpoint(async (req, res) => {
+      const raw = String(
+        req.query.experts ?? '',
+      );
+
+      const experts = z
+        .array(code)
+        .max(50)
+        .parse(
+          raw
+            ? raw.split(',').filter(Boolean)
+            : [],
+        );
+
+      if (!experts.length) {
+        res.json({
+          data: [],
+        });
+        return;
+      }
+
+      const publicExperts = await internalCall<
+        { account_id: string; expert_code: string }[]
+      >(
+        'scholar-service',
+        '/internal/discovery/identities?' +
+          new URLSearchParams({
+            codes: experts.join(','),
+          }),
+      );
+
+      const allowed = new Set(
+        publicExperts.map(
+          (item) => item.expert_code,
+        ),
+      );
+
+      const rows = (
+        await pool.query(
+          `SELECT
+             expert_code,
+             count(*)::int AS completed_sessions
+           FROM scheduled_bookings
+           WHERE expert_code=ANY($1::text[])
+             AND status='COMPLETED'
+           GROUP BY expert_code`,
+          [
+            experts.filter(
+              (expert) =>
+                allowed.has(expert),
+            ),
+          ],
+        )
+      ).rows;
+
+      res.json({
+        data: experts
+          .filter(
+            (expert) =>
+              allowed.has(expert),
+          )
+          .map(
+            (expert) => ({
+              expert_code: expert,
+
+              completed_sessions:
+                rows.find(
+                  (row) =>
+                    row.expert_code === expert,
+                )?.completed_sessions ?? 0,
+            }),
+          ),
+      });
+    }),
+  );
+
   router.post(
     '/api/v2/bookings/scheduled',
     endpoint(async (req, res) => {

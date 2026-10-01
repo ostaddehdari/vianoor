@@ -54,6 +54,8 @@ export function usersProxy() {
           req.path === '/experts/public' ||
           (req.path === '/languages' && req.query.admin !== '1') ||
           req.path === '/availability/public' ||
+          req.path === '/availability/public-slots' ||
+          req.path === '/bookings/public-stats' ||
           req.path === '/ratings/public' ||
           req.path === '/presence/public' ||
           (req.path === '/site-settings/social-links' && req.query.admin !== '1') ||

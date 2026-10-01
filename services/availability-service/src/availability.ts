@@ -286,6 +286,92 @@ export function availabilityRouter(pool: Pool) {
     }),
   );
 
+  router.get(
+    '/api/v2/availability/public-slots',
+    endpoint(async (req, res) => {
+      const input = z
+        .object({
+          expert: code,
+          service: z.string().uuid(),
+          timezone,
+          days: z.coerce.number().int().min(1).max(14).default(14),
+        })
+        .strict()
+        .parse(req.query);
+
+      const offering = await service(
+        input.expert,
+        input.service,
+      );
+
+      const from = Date.now();
+      const to = from + input.days * 86400000;
+
+      const data = await transaction(pool, async (db) => {
+        await lock(
+          db,
+          input.expert,
+        );
+
+        const { cal } = await materialize(
+          db,
+          input.expert,
+          offering,
+          from,
+          to,
+        );
+
+        const slots = (
+          await db.query(
+            `SELECT
+               s.start_at::text,
+               s.end_at::text
+             FROM availability_slots s
+             WHERE s.expert_code=$1
+               AND s.service_id=$2
+               AND s.start_at>=clock_timestamp()+($3*interval '1 minute')
+               AND s.start_at<$4
+               AND s.start_at<=clock_timestamp()+($5*interval '1 day')
+               AND NOT EXISTS(
+                 SELECT 1
+                 FROM slot_claims c
+                 WHERE c.expert_code=s.expert_code
+                   AND (
+                     c.state='CONFIRMED'
+                     OR (
+                       c.state='HELD'
+                       AND c.expires_at>clock_timestamp()
+                     )
+                   )
+                   AND c.busy_start<s.busy_end
+                   AND c.busy_end>s.busy_start
+               )
+             ORDER BY s.start_at
+             LIMIT 48`,
+            [
+              input.expert,
+              input.service,
+              cal.min_notice_minutes,
+              new Date(to),
+              cal.horizon_days,
+            ],
+          )
+        ).rows;
+
+        return {
+          service: offering,
+          timezone: input.timezone,
+          slots,
+          cancellation_hours: cal.cancellation_hours,
+        };
+      });
+
+      res.json({
+        data,
+      });
+    }),
+  );
+
   router.post(
     '/api/v2/availability/resolve',
     endpoint(async (req, res) => {

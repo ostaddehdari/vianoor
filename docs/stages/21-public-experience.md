@@ -4,7 +4,7 @@ Branch: `stage/21-public-experience`
 
 ## Work 21.1 — Design System & Global Shell
 
-Status: Work 21.1, Work 21.2 and Work 21.3 accepted.
+Status: Work 21.1 through Work 21.4 accepted.
 
 Implemented:
 
@@ -77,7 +77,42 @@ Implemented:
 - global sticky Header/Footer retained on expert directory and profile routes
 - Smart Start topic/category handoff fixed
 
+## Work 21.4 — Expert Profile Experience
+
+Implemented:
+
+- fully redesigned public expert profile
+- localized expert detail in the current site language
+- professional profile Hero
+- verified status
+- public profile image with fallback identity mark
+- live ONLINE/AWAY/OFFLINE presence
+- specialty chips
+- spoken languages
+- city/country location
+- aggregate rating
+- completed-session count
+- earliest real availability
+- direct consultation CTA
+- ask-question CTA
+- expert-channel CTA
+- About tab
+- Specialties and languages tab
+- Services and pricing tab
+- Availability tab
+- Reviews and rating summary tab
+- Articles tab with truthful empty state until article ownership is implemented
+- Published answered-questions tab filtered to the expert
+- public credentials
+- professional links
+- viewpoints
+- sticky Booking Widget
+- public service selection
+- real 14-day slot discovery
+- user-timezone slot formatting
+- direct handoff to booking with expert/service/start preselected
+- public aggregate APIs expose no client data or private review text
+
 ## Remaining Stage 21
 
-- Work 21.4 — Expert Profile
 - Work 21.5 — Insights, Events & Responsive Public UI
