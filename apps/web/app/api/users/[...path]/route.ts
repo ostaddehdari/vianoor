@@ -45,12 +45,18 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
     gateway = process.env.AUTH_GATEWAY_URL,
     qaPreview = process.env.QA_PREVIEW_URL,
     eventPreview = process.env.EVENT_PREVIEW_URL,
+    paymentPreview = process.env.PAYMENT_PREVIEW_URL,
+    messagingPreview = process.env.MESSAGING_PREVIEW_URL,
     upstream =
       path[0] === 'questions' && qaPreview
         ? qaPreview
         : path[0] === 'events' && eventPreview
           ? eventPreview
-          : gateway;
+          : path[0] === 'payments' && paymentPreview
+            ? paymentPreview
+            : path[0] === 'communications' && messagingPreview
+              ? messagingPreview
+              : gateway;
   if (!base || !key || key.length < 48 || !upstream) return fail('NOT_CONFIGURED', 503);
   const publicUrl = new URL(base);
   const secure = publicUrl.protocol === 'https:';

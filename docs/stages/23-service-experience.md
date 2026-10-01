@@ -454,3 +454,129 @@ The event background worker is also fault-isolated:
 - the next scheduled cycle retries the work
 
 Runtime acceptance verifies that event-service remains running with zero restarts after the initial worker tick.
+
+### Work23.3 Checkpoint 2 — Payment + Product UI + Live Room
+
+#### Event payment context
+
+Payment service now supports a second first-class payable context:
+
+- `booking_id`
+- `event_registration_id`
+
+Only one payable context may be supplied per payment.
+
+Event registration payment keeps all existing finance behavior:
+
+- Wallet
+- Stripe
+- PayPal
+- NOWPayments
+- idempotency
+- risk checks
+- commission
+- tax
+- reconciliation
+- refunds
+
+An Event payment is not treated as a wallet top-up.
+
+Payment fulfillment calls Event service to atomically convert:
+
+`PENDING_PAYMENT → REGISTERED`
+
+Refund cancellation calls Event service before funds are returned.
+
+#### Public Webinar Experience
+
+`/events` now provides:
+
+- Public upcoming Webinars
+- Presenter
+- Schedule
+- Capacity / remaining seats
+- Language
+- Free / paid price
+- Webinar detail
+- Registration
+- Payment
+- Secure external checkout
+- Crypto payment details
+- Live Webinar entry
+
+#### Expert dashboard
+
+Experts can:
+
+- Create Webinar
+- Set schedule
+- Set language
+- Set capacity
+- Set price
+- Enable/disable public page
+- Enable text chat
+- Enable Q&A
+- Enable Raise Hand
+- Publish Webinar
+- Start Webinar
+- End Webinar
+- Send invitations
+- Open Live control room
+
+#### Sponsor flow
+
+Authenticated users can become Webinar Sponsors and request:
+
+- topic/title
+- description/purpose
+- language
+- preferred expert
+- proposed time
+- duration
+- expected audience
+- optional budget
+
+Verified experts can:
+
+- Accept
+- Reject
+- Propose another time
+
+#### Invitations
+
+Dashboard includes:
+
+- invitations received
+- accept
+- decline
+
+Accepted invitations pass through the same registration/capacity/payment rules.
+
+#### Live Webinar UI
+
+The Live Webinar UI connects to the existing Stage23 LiveKit Webinar token.
+
+Presenter can:
+
+- publish microphone
+- publish camera
+- share screen
+- view participants
+- see Raised Hand
+- grant/revoke microphone per participant
+- grant/revoke camera per participant
+
+Audience:
+
+- subscribes to Presenter media
+- cannot publish by default
+- can Raise Hand
+- receives microphone/camera controls only when server permission is granted
+
+Participant permission state is polled from Event service so server-side revoke is reflected in UI.
+
+#### Webinar chat
+
+Live Webinar text chat uses the durable `EVENT` Messaging conversation.
+
+It supports persistent message history and does not depend on LiveKit DataChannel.

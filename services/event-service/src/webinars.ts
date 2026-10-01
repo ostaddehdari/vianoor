@@ -2693,8 +2693,216 @@ export function webinarRouter(
   );
 
   /*
+   * Refund / financial cancellation hook.
+   *
+   * Payment service calls this before locking/refunding funds.
+   * A completed/started Webinar cannot silently cancel a paid
+   * seat through the normal refund path.
+   */
+  r.post(
+    '/internal/events/financial-cancel',
+    endpoint(
+      async (
+        req,
+        res,
+      ) => {
+        const input =
+          z
+            .object({
+              registration_id:
+                uuid,
+
+              payment_id:
+                uuid,
+            })
+            .strict()
+            .parse(
+              req.body,
+            );
+
+        const result =
+          await transaction(
+            pool,
+            async (
+              db,
+            ) => {
+              const row =
+                (
+                  await db.query(
+                    `
+                    SELECT
+                      r.*,
+                      w.status AS event_status,
+                      w.starts_at
+
+                    FROM webinar_registrations r
+
+                    JOIN webinars w
+                      ON w.id=r.webinar_id
+
+                    WHERE r.id=$1
+
+                    FOR UPDATE OF r
+                    `,
+                    [
+                      input.registration_id,
+                    ],
+                  )
+                ).rows[0];
+
+              if (
+                !row ||
+                row.payment_id !==
+                  input.payment_id
+              )
+                throw new ServiceError(
+                  409,
+                  'EVENT_PAYMENT_MISMATCH',
+                );
+
+              if (
+                row.event_status ===
+                  'LIVE' ||
+                row.event_status ===
+                  'COMPLETED' ||
+                Date.parse(
+                  row.starts_at,
+                ) <=
+                  Date.now()
+              )
+                throw new ServiceError(
+                  409,
+                  'EVENT_REFUND_WINDOW_CLOSED',
+                );
+
+              if (
+                row.status ===
+                'CANCELLED'
+              )
+                return row;
+
+              return (
+                await db.query(
+                  `
+                  UPDATE webinar_registrations
+                  SET
+                    status='CANCELLED',
+                    raised_hand=false,
+                    microphone_allowed=false,
+                    camera_allowed=false,
+                    updated_at=now()
+                  WHERE id=$1
+                  RETURNING *
+                  `,
+                  [
+                    input.registration_id,
+                  ],
+                )
+              ).rows[0];
+            },
+          );
+
+        res.json({
+          data: {
+            status:
+              result.status,
+          },
+        });
+      },
+    ),
+  );
+
+  /*
    * Presenter control / live Webinar.
    */
+  /*
+   * Current participant state.
+   *
+   * Live UI polls this endpoint so server-side permission
+   * grants/revocations are reflected in the participant UI.
+   */
+  r.get(
+    '/api/v2/events/:id/me',
+    endpoint(
+      async (
+        req,
+        res,
+      ) => {
+        const user =
+            await principal(
+              req,
+            ),
+
+          row =
+            await load(
+              pool,
+              uuid.parse(
+                req.params.id,
+              ),
+            ),
+
+          reg =
+            await registration(
+              pool,
+              row.id,
+              user.id,
+            );
+
+        if (
+          !reg ||
+          reg.status !==
+            'REGISTERED'
+        )
+          throw new ServiceError(
+            403,
+            'NOT_REGISTERED',
+          );
+
+        res.json({
+          data: {
+            event_id:
+              row.id,
+
+            event_status:
+              row.status,
+
+            role:
+              reg.role,
+
+            microphone_allowed:
+              reg.role ===
+                'PRESENTER' ||
+              reg.microphone_allowed,
+
+            camera_allowed:
+              reg.role ===
+                'PRESENTER' ||
+              reg.camera_allowed,
+
+            screen_allowed:
+              reg.role ===
+                'PRESENTER',
+
+            raised_hand:
+              reg.raised_hand,
+
+            joined_at:
+              reg.joined_at,
+
+            chat_enabled:
+              row.chat_enabled,
+
+            qna_enabled:
+              row.qna_enabled,
+
+            raise_hand_enabled:
+              row.raise_hand_enabled,
+          },
+        });
+      },
+    ),
+  );
+
   r.get(
     '/api/v2/events/:id/participants',
     endpoint(

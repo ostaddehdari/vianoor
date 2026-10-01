@@ -37,6 +37,7 @@ import {
   flattenDashboard22Navigation,
 } from './dashboard22-navigation';
 import { DashboardOverview } from './dashboard22-overview';
+import { WebinarWorkspace } from './webinar23-workspace';
 type Locale = string;
 const href = (locale: Locale, path: string) => `${usersBase}/${locale}/${path}`;
 const roleName = (locale: Locale, role: string) =>
@@ -80,6 +81,7 @@ function workspaceIcon(
     taxonomy: 'grid',
     files: 'book',
 
+    events: 'calendar',
     wallet: 'wallet',
     earnings: 'wallet',
     payouts: 'wallet',
@@ -1475,6 +1477,11 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
             <Organizations locale={locale} admin={admin} scope={scope} />
           ) : (admin || role === 'auditor') && section === 'audit' ? (
             <Audit locale={locale} />
+          ) : section === 'events' && ['account', 'expert', 'organization'].includes(role) ? (
+            <WebinarWorkspace
+              locale={locale}
+              role={role}
+            />
           ) : section === 'requests' && ['account', 'expert', 'secretary'].includes(role) ? (
             <SessionRequests
               locale={locale}

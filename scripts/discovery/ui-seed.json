@@ -5104,6 +5104,888 @@
     "ar": "Your local date and time"
   },
   {
+    "key": "events23.accept",
+    "module": "events23",
+    "en": "Accept",
+    "fa": "پذیرفتن",
+    "ar": "Accept"
+  },
+  {
+    "key": "events23.acceptRequest",
+    "module": "events23",
+    "en": "Accept request",
+    "fa": "قبول درخواست",
+    "ar": "Accept request"
+  },
+  {
+    "key": "events23.attendee",
+    "module": "events23",
+    "en": "Attendee",
+    "fa": "شرکت‌کننده",
+    "ar": "Attendee"
+  },
+  {
+    "key": "events23.attendeeRole",
+    "module": "events23",
+    "en": "Attendee",
+    "fa": "شرکت‌کننده",
+    "ar": "Attendee"
+  },
+  {
+    "key": "events23.back",
+    "module": "events23",
+    "en": "Back",
+    "fa": "بازگشت",
+    "ar": "Back"
+  },
+  {
+    "key": "events23.budget",
+    "module": "events23",
+    "en": "Proposed budget",
+    "fa": "بودجه پیشنهادی",
+    "ar": "Proposed budget"
+  },
+  {
+    "key": "events23.camera",
+    "module": "events23",
+    "en": "Camera",
+    "fa": "دوربین",
+    "ar": "Camera"
+  },
+  {
+    "key": "events23.cameraOff",
+    "module": "events23",
+    "en": "Turn camera off",
+    "fa": "خاموش کردن دوربین",
+    "ar": "Turn camera off"
+  },
+  {
+    "key": "events23.cameraOn",
+    "module": "events23",
+    "en": "Turn camera on",
+    "fa": "روشن کردن دوربین",
+    "ar": "Turn camera on"
+  },
+  {
+    "key": "events23.cancelled",
+    "module": "events23",
+    "en": "Cancelled",
+    "fa": "لغوشده",
+    "ar": "Cancelled"
+  },
+  {
+    "key": "events23.capacity",
+    "module": "events23",
+    "en": "Capacity",
+    "fa": "ظرفیت",
+    "ar": "Capacity"
+  },
+  {
+    "key": "events23.chat",
+    "module": "events23",
+    "en": "Enable text chat",
+    "fa": "چت متنی فعال باشد",
+    "ar": "Enable text chat"
+  },
+  {
+    "key": "events23.checkPayment",
+    "module": "events23",
+    "en": "Check payment status",
+    "fa": "بررسی وضعیت پرداخت",
+    "ar": "Check payment status"
+  },
+  {
+    "key": "events23.choosePayment",
+    "module": "events23",
+    "en": "Payment method",
+    "fa": "روش پرداخت",
+    "ar": "Payment method"
+  },
+  {
+    "key": "events23.completed",
+    "module": "events23",
+    "en": "Completed",
+    "fa": "پایان‌یافته",
+    "ar": "Completed"
+  },
+  {
+    "key": "events23.connect",
+    "module": "events23",
+    "en": "Connect to room",
+    "fa": "اتصال به اتاق",
+    "ar": "Connect to room"
+  },
+  {
+    "key": "events23.connecting",
+    "module": "events23",
+    "en": "Connecting…",
+    "fa": "در حال اتصال…",
+    "ar": "Connecting…"
+  },
+  {
+    "key": "events23.counter",
+    "module": "events23",
+    "en": "Suggest another time",
+    "fa": "پیشنهاد زمان دیگر",
+    "ar": "Suggest another time"
+  },
+  {
+    "key": "events23.counterTime",
+    "module": "events23",
+    "en": "Alternative time",
+    "fa": "زمان جایگزین",
+    "ar": "Alternative time"
+  },
+  {
+    "key": "events23.create",
+    "module": "events23",
+    "en": "Create",
+    "fa": "ایجاد",
+    "ar": "Create"
+  },
+  {
+    "key": "events23.created",
+    "module": "events23",
+    "en": "Webinar created.",
+    "fa": "وبینار ایجاد شد.",
+    "ar": "Webinar created."
+  },
+  {
+    "key": "events23.createWebinar",
+    "module": "events23",
+    "en": "Create webinar",
+    "fa": "ساخت وبینار",
+    "ar": "Create webinar"
+  },
+  {
+    "key": "events23.createWebinarHint",
+    "module": "events23",
+    "en": "Available to verified experts.",
+    "fa": "این مسیر برای استاد تأییدشده است.",
+    "ar": "Available to verified experts."
+  },
+  {
+    "key": "events23.crypto",
+    "module": "events23",
+    "en": "Crypto",
+    "fa": "رمزارز",
+    "ar": "Crypto"
+  },
+  {
+    "key": "events23.date",
+    "module": "events23",
+    "en": "Date and time",
+    "fa": "زمان برگزاری",
+    "ar": "Date and time"
+  },
+  {
+    "key": "events23.decline",
+    "module": "events23",
+    "en": "Decline",
+    "fa": "رد کردن",
+    "ar": "Decline"
+  },
+  {
+    "key": "events23.description",
+    "module": "events23",
+    "en": "Description",
+    "fa": "توضیحات",
+    "ar": "Description"
+  },
+  {
+    "key": "events23.details",
+    "module": "events23",
+    "en": "Webinar details",
+    "fa": "جزئیات وبینار",
+    "ar": "Webinar details"
+  },
+  {
+    "key": "events23.draft",
+    "module": "events23",
+    "en": "Draft",
+    "fa": "پیش‌نویس",
+    "ar": "Draft"
+  },
+  {
+    "key": "events23.duration",
+    "module": "events23",
+    "en": "Duration in minutes",
+    "fa": "مدت به دقیقه",
+    "ar": "Duration in minutes"
+  },
+  {
+    "key": "events23.empty",
+    "module": "events23",
+    "en": "There are currently no public upcoming webinars.",
+    "fa": "فعلاً وبینار عمومی فعالی برای نمایش وجود ندارد.",
+    "ar": "There are currently no public upcoming webinars."
+  },
+  {
+    "key": "events23.end",
+    "module": "events23",
+    "en": "End",
+    "fa": "پایان",
+    "ar": "End"
+  },
+  {
+    "key": "events23.endLive",
+    "module": "events23",
+    "en": "End webinar",
+    "fa": "پایان وبینار",
+    "ar": "End webinar"
+  },
+  {
+    "key": "events23.enterLive",
+    "module": "events23",
+    "en": "Enter live webinar",
+    "fa": "ورود به وبینار زنده",
+    "ar": "Enter live webinar"
+  },
+  {
+    "key": "events23.error",
+    "module": "events23",
+    "en": "The operation could not be completed. Please try again.",
+    "fa": "انجام عملیات ممکن نشد. دوباره تلاش کنید.",
+    "ar": "The operation could not be completed. Please try again."
+  },
+  {
+    "key": "events23.eventFull",
+    "module": "events23",
+    "en": "This webinar is full.",
+    "fa": "ظرفیت این وبینار تکمیل شده است.",
+    "ar": "This webinar is full."
+  },
+  {
+    "key": "events23.expectedAudience",
+    "module": "events23",
+    "en": "Expected audience",
+    "fa": "تعداد تقریبی شرکت‌کنندگان",
+    "ar": "Expected audience"
+  },
+  {
+    "key": "events23.eyebrow",
+    "module": "events23",
+    "en": "Live webinars and events",
+    "fa": "وبینارها و رویدادهای زنده",
+    "ar": "Live webinars and events"
+  },
+  {
+    "key": "events23.free",
+    "module": "events23",
+    "en": "Free",
+    "fa": "رایگان",
+    "ar": "Free"
+  },
+  {
+    "key": "events23.grant",
+    "module": "events23",
+    "en": "Enable",
+    "fa": "فعال",
+    "ar": "Enable"
+  },
+  {
+    "key": "events23.handDown",
+    "module": "events23",
+    "en": "Lower hand",
+    "fa": "پایین آوردن دست",
+    "ar": "Lower hand"
+  },
+  {
+    "key": "events23.handUp",
+    "module": "events23",
+    "en": "Raise hand",
+    "fa": "دست بلند کردن",
+    "ar": "Raise hand"
+  },
+  {
+    "key": "events23.intro",
+    "module": "events23",
+    "en": "Browse upcoming webinars, register, or sponsor a new webinar idea.",
+    "fa": "وبینارهای پیشِ رو را ببینید، ثبت‌نام کنید یا اگر ایده‌ای دارید بانی برگزاری یک وبینار شوید.",
+    "ar": "Browse upcoming webinars, register, or sponsor a new webinar idea."
+  },
+  {
+    "key": "events23.invitations",
+    "module": "events23",
+    "en": "Invitations",
+    "fa": "دعوت‌نامه‌ها",
+    "ar": "Invitations"
+  },
+  {
+    "key": "events23.invitationSent",
+    "module": "events23",
+    "en": "Invitations sent.",
+    "fa": "دعوت‌نامه‌ها ارسال شدند.",
+    "ar": "Invitations sent."
+  },
+  {
+    "key": "events23.invitationUpdated",
+    "module": "events23",
+    "en": "Invitation updated.",
+    "fa": "دعوت‌نامه به‌روزرسانی شد.",
+    "ar": "Invitation updated."
+  },
+  {
+    "key": "events23.invite",
+    "module": "events23",
+    "en": "Send invitations",
+    "fa": "ارسال دعوت‌نامه",
+    "ar": "Send invitations"
+  },
+  {
+    "key": "events23.invitees",
+    "module": "events23",
+    "en": "User public IDs",
+    "fa": "شناسه عمومی کاربران",
+    "ar": "User public IDs"
+  },
+  {
+    "key": "events23.inviteHint",
+    "module": "events23",
+    "en": "Separate multiple IDs with commas.",
+    "fa": "چند شناسه را با ویرگول جدا کنید.",
+    "ar": "Separate multiple IDs with commas."
+  },
+  {
+    "key": "events23.language",
+    "module": "events23",
+    "en": "Language",
+    "fa": "زبان",
+    "ar": "Language"
+  },
+  {
+    "key": "events23.leave",
+    "module": "events23",
+    "en": "Leave room",
+    "fa": "خروج از اتاق",
+    "ar": "Leave room"
+  },
+  {
+    "key": "events23.live",
+    "module": "events23",
+    "en": "Live now",
+    "fa": "در حال پخش زنده",
+    "ar": "Live now"
+  },
+  {
+    "key": "events23.loginHint",
+    "module": "events23",
+    "en": "You will return to this webinar after sign-in.",
+    "fa": "پس از ورود به همین وبینار بازمی‌گردید.",
+    "ar": "You will return to this webinar after sign-in."
+  },
+  {
+    "key": "events23.loginRegister",
+    "module": "events23",
+    "en": "Sign in and register",
+    "fa": "ورود و ثبت‌نام",
+    "ar": "Sign in and register"
+  },
+  {
+    "key": "events23.manageLive",
+    "module": "events23",
+    "en": "Manage live room",
+    "fa": "مدیریت اتاق زنده",
+    "ar": "Manage live room"
+  },
+  {
+    "key": "events23.message",
+    "module": "events23",
+    "en": "Message…",
+    "fa": "پیام…",
+    "ar": "Message…"
+  },
+  {
+    "key": "events23.micOff",
+    "module": "events23",
+    "en": "Turn microphone off",
+    "fa": "خاموش کردن میکروفن",
+    "ar": "Turn microphone off"
+  },
+  {
+    "key": "events23.micOn",
+    "module": "events23",
+    "en": "Turn microphone on",
+    "fa": "روشن کردن میکروفن",
+    "ar": "Turn microphone on"
+  },
+  {
+    "key": "events23.microphone",
+    "module": "events23",
+    "en": "Microphone",
+    "fa": "میکروفن",
+    "ar": "Microphone"
+  },
+  {
+    "key": "events23.moderator",
+    "module": "events23",
+    "en": "Moderator",
+    "fa": "مدیر کمکی",
+    "ar": "Moderator"
+  },
+  {
+    "key": "events23.moderatorRole",
+    "module": "events23",
+    "en": "Moderator",
+    "fa": "مدیر کمکی",
+    "ar": "Moderator"
+  },
+  {
+    "key": "events23.myEvents",
+    "module": "events23",
+    "en": "My webinars",
+    "fa": "وبینارهای من",
+    "ar": "My webinars"
+  },
+  {
+    "key": "events23.network",
+    "module": "events23",
+    "en": "Network",
+    "fa": "شبکه",
+    "ar": "Network"
+  },
+  {
+    "key": "events23.noMessages",
+    "module": "events23",
+    "en": "No messages yet.",
+    "fa": "هنوز پیامی ارسال نشده است.",
+    "ar": "No messages yet."
+  },
+  {
+    "key": "events23.openRequests",
+    "module": "events23",
+    "en": "Open sponsor requests",
+    "fa": "درخواست‌های آزاد بانیان",
+    "ar": "Open sponsor requests"
+  },
+  {
+    "key": "events23.participants",
+    "module": "events23",
+    "en": "Participants",
+    "fa": "شرکت‌کنندگان",
+    "ar": "Participants"
+  },
+  {
+    "key": "events23.pay",
+    "module": "events23",
+    "en": "Pay and complete registration",
+    "fa": "پرداخت و تکمیل ثبت‌نام",
+    "ar": "Pay and complete registration"
+  },
+  {
+    "key": "events23.paymentPending",
+    "module": "events23",
+    "en": "Payment has not been finalized yet.",
+    "fa": "پرداخت هنوز نهایی نشده است.",
+    "ar": "Payment has not been finalized yet."
+  },
+  {
+    "key": "events23.paymentSuccess",
+    "module": "events23",
+    "en": "Payment completed and your registration is active.",
+    "fa": "پرداخت با موفقیت انجام شد و ثبت‌نام فعال شد.",
+    "ar": "Payment completed and your registration is active."
+  },
+  {
+    "key": "events23.paymentUnavailable",
+    "module": "events23",
+    "en": "No payment method is available for this currency.",
+    "fa": "روش پرداخت فعالی برای این ارز در دسترس نیست.",
+    "ar": "No payment method is available for this currency."
+  },
+  {
+    "key": "events23.paypal",
+    "module": "events23",
+    "en": "PayPal",
+    "fa": "PayPal",
+    "ar": "PayPal"
+  },
+  {
+    "key": "events23.pendingPayment",
+    "module": "events23",
+    "en": "Your seat is temporarily held while payment is pending.",
+    "fa": "جای شما موقتاً نگه داشته شده و منتظر پرداخت است.",
+    "ar": "Your seat is temporarily held while payment is pending."
+  },
+  {
+    "key": "events23.permissionHint",
+    "module": "events23",
+    "en": "Only the presenter publishes audio/video by default. The presenter can grant microphone or camera permission to individual participants.",
+    "fa": "به‌صورت پیش‌فرض فقط استاد صدا و تصویر منتشر می‌کند. استاد می‌تواند برای هر شرکت‌کننده میکروفن یا دوربین را جداگانه فعال کند.",
+    "ar": "Only the presenter publishes audio/video by default. The presenter can grant microphone or camera permission to individual participants."
+  },
+  {
+    "key": "events23.presenter",
+    "module": "events23",
+    "en": "Presenter",
+    "fa": "استاد",
+    "ar": "Presenter"
+  },
+  {
+    "key": "events23.presenterRole",
+    "module": "events23",
+    "en": "Presenter",
+    "fa": "استاد",
+    "ar": "Presenter"
+  },
+  {
+    "key": "events23.price",
+    "module": "events23",
+    "en": "Price",
+    "fa": "هزینه",
+    "ar": "Price"
+  },
+  {
+    "key": "events23.proposedDate",
+    "module": "events23",
+    "en": "Proposed date",
+    "fa": "زمان پیشنهادی",
+    "ar": "Proposed date"
+  },
+  {
+    "key": "events23.proposedExpert",
+    "module": "events23",
+    "en": "Preferred expert public ID",
+    "fa": "شناسه استاد پیشنهادی",
+    "ar": "Preferred expert public ID"
+  },
+  {
+    "key": "events23.public",
+    "module": "events23",
+    "en": "Publish a public page",
+    "fa": "صفحه عمومی داشته باشد",
+    "ar": "Publish a public page"
+  },
+  {
+    "key": "events23.publish",
+    "module": "events23",
+    "en": "Publish",
+    "fa": "انتشار",
+    "ar": "Publish"
+  },
+  {
+    "key": "events23.published",
+    "module": "events23",
+    "en": "Published",
+    "fa": "منتشرشده",
+    "ar": "Published"
+  },
+  {
+    "key": "events23.qna",
+    "module": "events23",
+    "en": "Enable Q&A",
+    "fa": "پرسش و پاسخ فعال باشد",
+    "ar": "Enable Q&A"
+  },
+  {
+    "key": "events23.raisedHand",
+    "module": "events23",
+    "en": "Raised hand",
+    "fa": "دست بلند کرده",
+    "ar": "Raised hand"
+  },
+  {
+    "key": "events23.raiseHand",
+    "module": "events23",
+    "en": "Enable Raise Hand",
+    "fa": "دست بلند کردن فعال باشد",
+    "ar": "Enable Raise Hand"
+  },
+  {
+    "key": "events23.refresh",
+    "module": "events23",
+    "en": "Refresh",
+    "fa": "تازه‌سازی",
+    "ar": "Refresh"
+  },
+  {
+    "key": "events23.register",
+    "module": "events23",
+    "en": "Register",
+    "fa": "ثبت‌نام",
+    "ar": "Register"
+  },
+  {
+    "key": "events23.registered",
+    "module": "events23",
+    "en": "Registered",
+    "fa": "ثبت‌نام‌شده",
+    "ar": "Registered"
+  },
+  {
+    "key": "events23.registering",
+    "module": "events23",
+    "en": "Registering…",
+    "fa": "در حال ثبت‌نام…",
+    "ar": "Registering…"
+  },
+  {
+    "key": "events23.registrationComplete",
+    "module": "events23",
+    "en": "Your registration is complete.",
+    "fa": "ثبت‌نام شما کامل است.",
+    "ar": "Your registration is complete."
+  },
+  {
+    "key": "events23.registrationExpired",
+    "module": "events23",
+    "en": "The payment hold for this registration expired.",
+    "fa": "مهلت پرداخت این ثبت‌نام پایان یافته است.",
+    "ar": "The payment hold for this registration expired."
+  },
+  {
+    "key": "events23.rejectRequest",
+    "module": "events23",
+    "en": "Reject request",
+    "fa": "رد درخواست",
+    "ar": "Reject request"
+  },
+  {
+    "key": "events23.remaining",
+    "module": "events23",
+    "en": "Remaining",
+    "fa": "ظرفیت باقی‌مانده",
+    "ar": "Remaining"
+  },
+  {
+    "key": "events23.requestAccepted",
+    "module": "events23",
+    "en": "Accepted",
+    "fa": "پذیرفته‌شده",
+    "ar": "Accepted"
+  },
+  {
+    "key": "events23.requestCountered",
+    "module": "events23",
+    "en": "Alternative time proposed",
+    "fa": "زمان دیگری پیشنهاد شده",
+    "ar": "Alternative time proposed"
+  },
+  {
+    "key": "events23.requestCreated",
+    "module": "events23",
+    "en": "Sponsor request submitted.",
+    "fa": "درخواست بانی ثبت شد.",
+    "ar": "Sponsor request submitted."
+  },
+  {
+    "key": "events23.requestHint",
+    "module": "events23",
+    "en": "Sponsor a webinar and optionally nominate a preferred expert.",
+    "fa": "می‌توانید بانی یک وبینار شوید و در صورت تمایل استاد پیشنهادی خود را مشخص کنید.",
+    "ar": "Sponsor a webinar and optionally nominate a preferred expert."
+  },
+  {
+    "key": "events23.requestPending",
+    "module": "events23",
+    "en": "Pending",
+    "fa": "در انتظار پاسخ",
+    "ar": "Pending"
+  },
+  {
+    "key": "events23.requestRejected",
+    "module": "events23",
+    "en": "Rejected",
+    "fa": "ردشده",
+    "ar": "Rejected"
+  },
+  {
+    "key": "events23.requests",
+    "module": "events23",
+    "en": "Sponsor requests",
+    "fa": "درخواست‌های بانی",
+    "ar": "Sponsor requests"
+  },
+  {
+    "key": "events23.requestUpdated",
+    "module": "events23",
+    "en": "Request updated.",
+    "fa": "وضعیت درخواست به‌روزرسانی شد.",
+    "ar": "Request updated."
+  },
+  {
+    "key": "events23.requestWebinar",
+    "module": "events23",
+    "en": "Request a webinar",
+    "fa": "درخواست برگزاری وبینار",
+    "ar": "Request a webinar"
+  },
+  {
+    "key": "events23.revoke",
+    "module": "events23",
+    "en": "Disable",
+    "fa": "غیرفعال",
+    "ar": "Disable"
+  },
+  {
+    "key": "events23.role",
+    "module": "events23",
+    "en": "Role",
+    "fa": "نقش",
+    "ar": "Role"
+  },
+  {
+    "key": "events23.roleAttendee",
+    "module": "events23",
+    "en": "ATTENDEE",
+    "fa": "ATTENDEE",
+    "ar": "ATTENDEE"
+  },
+  {
+    "key": "events23.roleModerator",
+    "module": "events23",
+    "en": "MODERATOR",
+    "fa": "MODERATOR",
+    "ar": "MODERATOR"
+  },
+  {
+    "key": "events23.rolePresenter",
+    "module": "events23",
+    "en": "PRESENTER",
+    "fa": "PRESENTER",
+    "ar": "PRESENTER"
+  },
+  {
+    "key": "events23.roleSponsor",
+    "module": "events23",
+    "en": "SPONSOR",
+    "fa": "SPONSOR",
+    "ar": "SPONSOR"
+  },
+  {
+    "key": "events23.secureCheckout",
+    "module": "events23",
+    "en": "Open secure checkout",
+    "fa": "ورود به صفحه امن پرداخت",
+    "ar": "Open secure checkout"
+  },
+  {
+    "key": "events23.send",
+    "module": "events23",
+    "en": "Send",
+    "fa": "ارسال",
+    "ar": "Send"
+  },
+  {
+    "key": "events23.sendRequest",
+    "module": "events23",
+    "en": "Submit request",
+    "fa": "ارسال درخواست",
+    "ar": "Submit request"
+  },
+  {
+    "key": "events23.shareScreen",
+    "module": "events23",
+    "en": "Share screen",
+    "fa": "اشتراک صفحه",
+    "ar": "Share screen"
+  },
+  {
+    "key": "events23.sponsor",
+    "module": "events23",
+    "en": "Sponsor",
+    "fa": "بانی",
+    "ar": "Sponsor"
+  },
+  {
+    "key": "events23.sponsorRole",
+    "module": "events23",
+    "en": "Sponsor",
+    "fa": "بانی",
+    "ar": "Sponsor"
+  },
+  {
+    "key": "events23.start",
+    "module": "events23",
+    "en": "Start",
+    "fa": "شروع",
+    "ar": "Start"
+  },
+  {
+    "key": "events23.startLive",
+    "module": "events23",
+    "en": "Start live webinar",
+    "fa": "شروع پخش زنده",
+    "ar": "Start live webinar"
+  },
+  {
+    "key": "events23.status",
+    "module": "events23",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "events23.stopScreen",
+    "module": "events23",
+    "en": "Stop sharing",
+    "fa": "توقف اشتراک صفحه",
+    "ar": "Stop sharing"
+  },
+  {
+    "key": "events23.stripe",
+    "module": "events23",
+    "en": "Card / Apple Pay / Google Pay",
+    "fa": "کارت / Apple Pay / Google Pay",
+    "ar": "Card / Apple Pay / Google Pay"
+  },
+  {
+    "key": "events23.timezone",
+    "module": "events23",
+    "en": "Timezone",
+    "fa": "منطقه زمانی",
+    "ar": "Timezone"
+  },
+  {
+    "key": "events23.title",
+    "module": "events23",
+    "en": "Learn together with an expert",
+    "fa": "یادگیری جمعی با حضور استاد",
+    "ar": "Learn together with an expert"
+  },
+  {
+    "key": "events23.upcoming",
+    "module": "events23",
+    "en": "Upcoming webinars",
+    "fa": "وبینارهای پیشِ رو",
+    "ar": "Upcoming webinars"
+  },
+  {
+    "key": "events23.waitingPresenter",
+    "module": "events23",
+    "en": "The presenter has not started the webinar yet.",
+    "fa": "استاد هنوز وبینار را شروع نکرده است.",
+    "ar": "The presenter has not started the webinar yet."
+  },
+  {
+    "key": "events23.wallet",
+    "module": "events23",
+    "en": "Wallet",
+    "fa": "کیف پول",
+    "ar": "Wallet"
+  },
+  {
+    "key": "events23.webinarChat",
+    "module": "events23",
+    "en": "Webinar chat",
+    "fa": "چت وبینار",
+    "ar": "Webinar chat"
+  },
+  {
+    "key": "events23.webinarRoom",
+    "module": "events23",
+    "en": "Webinar room",
+    "fa": "اتاق وبینار",
+    "ar": "Webinar room"
+  },
+  {
+    "key": "events23.webinarTitle",
+    "module": "events23",
+    "en": "Webinar title",
+    "fa": "عنوان وبینار",
+    "ar": "Webinar title"
+  },
+  {
     "key": "expertProfile21.about",
     "module": "expertprofile21",
     "en": "About",

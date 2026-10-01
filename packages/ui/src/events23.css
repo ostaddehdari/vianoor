@@ -1,0 +1,1580 @@
+/* ==========================================================
+   Stage23 / Work23.3
+   Webinar Public + Dashboard + Live
+   ========================================================== */
+
+.events23,
+.webinar23-live,
+.webinar23-workspace {
+  --events23-text:
+    #000000;
+
+  color:
+    var(--events23-text);
+}
+
+html[data-theme='dark']
+:is(
+  .events23,
+  .webinar23-live,
+  .webinar23-workspace
+) {
+  --events23-text:
+    #ffffff;
+}
+
+:is(
+  .events23,
+  .webinar23-live,
+  .webinar23-workspace
+)
+:is(
+  h1,h2,h3,h4,
+  p,small,strong,
+  span,label,time,
+  dt,dd
+) {
+  color:
+    var(--events23-text);
+}
+
+.events23 {
+  min-height:
+    100vh;
+
+  background:
+    var(--color-canvas);
+}
+
+.events23-wrap {
+  width:
+    min(
+      1220px,
+      calc(
+        100% - 32px
+      )
+    );
+
+  margin-inline:
+    auto;
+}
+
+.events23-hero {
+  padding:
+    70px 0
+    44px;
+
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      color-mix(
+        in srgb,
+        var(--color-primary)
+        16%,
+        transparent
+      ),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 85% 20%,
+      color-mix(
+        in srgb,
+        var(--color-secondary)
+        14%,
+        transparent
+      ),
+      transparent 35%
+    ),
+    var(--color-canvas);
+}
+
+.events23-hero
+.events23-wrap {
+  max-width:
+    850px;
+
+  text-align:
+    center;
+}
+
+.events23-eyebrow {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    8px;
+
+  padding:
+    7px 11px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    var(--radius-pill);
+
+  background:
+    var(--color-surface);
+
+  font-size:
+    9px;
+
+  font-weight:
+    800;
+}
+
+.events23-eyebrow
+.icon {
+  width:
+    13px;
+
+  color:
+    var(--color-primary);
+}
+
+.events23-hero
+h1 {
+  margin:
+    16px 0 8px;
+
+  font-size:
+    clamp(
+      28px,
+      4vw,
+      48px
+    );
+}
+
+.events23-hero
+p {
+  margin:
+    0;
+
+  font-size:
+    11px;
+
+  line-height:
+    2;
+}
+
+.events23-list-section {
+  padding:
+    26px 0
+    70px;
+}
+
+.events23-section-title {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    12px;
+
+  margin-bottom:
+    14px;
+}
+
+.events23-section-title
+h2 {
+  margin:
+    0;
+}
+
+.events23-section-title
+a {
+  color:
+    var(--color-primary);
+
+  font-size:
+    9px;
+}
+
+.events23-grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    13px;
+}
+
+.events23-card {
+  position:
+    relative;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    11px;
+
+  padding:
+    18px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    17px;
+
+  background:
+    var(--color-surface);
+
+  box-shadow:
+    var(--shadow-xs);
+}
+
+.events23-card
+h2 {
+  margin:
+    0;
+
+  font-size:
+    15px;
+}
+
+.events23-card
+p {
+  margin:
+    0;
+
+  font-size:
+    9px;
+
+  line-height:
+    1.9;
+}
+
+.events23-card-meta {
+  display:
+    grid;
+
+  gap:
+    7px;
+
+  margin-top:
+    auto;
+}
+
+.events23-card-meta
+span {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    7px;
+
+  font-size:
+    8px;
+}
+
+.events23-card-meta
+.icon {
+  width:
+    11px;
+
+  color:
+    var(--color-primary);
+}
+
+.events23-live-pill,
+.events23-live-badge {
+  width:
+    max-content;
+
+  padding:
+    5px 8px;
+
+  border-radius:
+    var(--radius-pill);
+
+  color:
+    white !important;
+
+  background:
+    var(--color-danger);
+
+  font-size:
+    7px;
+
+  font-weight:
+    800;
+}
+
+.events23-detail {
+  padding:
+    35px 0
+    75px;
+}
+
+.events23-back {
+  margin-bottom:
+    13px;
+
+  border:
+    0;
+
+  color:
+    var(--events23-text);
+
+  background:
+    transparent;
+
+  font:
+    inherit;
+
+  cursor:
+    pointer;
+}
+
+.events23-detail-card {
+  padding:
+    clamp(
+      20px,
+      4vw,
+      38px
+    );
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    22px;
+
+  background:
+    var(--color-surface);
+
+  box-shadow:
+    var(--shadow-sm);
+}
+
+.events23-detail-card
+h1 {
+  margin:
+    14px 0 8px;
+
+  font-size:
+    clamp(
+      26px,
+      4vw,
+      44px
+    );
+}
+
+.events23-description {
+  max-width:
+    850px;
+
+  line-height:
+    2;
+}
+
+.events23-detail-card
+dl {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      5,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    8px;
+
+  margin:
+    22px 0;
+}
+
+.events23-detail-card
+dl
+> div {
+  padding:
+    11px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    10px;
+
+  background:
+    var(--color-canvas-soft);
+}
+
+.events23-detail-card
+dt {
+  font-size:
+    7px;
+}
+
+.events23-detail-card
+dd {
+  margin:
+    5px 0 0;
+
+  font-size:
+    9px;
+
+  font-weight:
+    750;
+}
+
+.events23-payment {
+  display:
+    grid;
+
+  gap:
+    12px;
+
+  margin-top:
+    19px;
+
+  padding:
+    17px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    14px;
+
+  background:
+    var(--color-canvas-soft);
+}
+
+.events23-payment-methods {
+  display:
+    flex;
+
+  gap:
+    7px;
+
+  flex-wrap:
+    wrap;
+}
+
+.events23-payment-methods
+button {
+  min-height:
+    38px;
+
+  padding:
+    7px 10px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    9px;
+
+  color:
+    var(--events23-text);
+
+  background:
+    var(--color-surface);
+
+  cursor:
+    pointer;
+}
+
+.events23-payment-methods
+button.selected {
+  border-color:
+    var(--color-primary);
+
+  background:
+    var(--color-primary-soft);
+}
+
+.events23-payment
+select {
+  min-height:
+    40px;
+
+  padding:
+    7px;
+
+  color:
+    var(--events23-text);
+
+  background:
+    var(--color-surface);
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    8px;
+}
+
+.events23-payment-result {
+  display:
+    grid;
+
+  gap:
+    9px;
+}
+
+.events23-registration-success {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    8px;
+
+  margin-top:
+    18px;
+
+  padding:
+    11px;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--color-success)
+      35%,
+      var(--color-border)
+    );
+
+  border-radius:
+    10px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-success)
+      7%,
+      var(--color-surface)
+    );
+}
+
+.events23-registration-success
+.icon {
+  width:
+    12px;
+
+  color:
+    var(--color-success);
+}
+
+.events23-live-enter {
+  margin-top:
+    12px;
+}
+
+.events23-empty {
+  min-height:
+    190px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  flex-direction:
+    column;
+
+  gap:
+    10px;
+
+  border:
+    1px dashed
+    var(--color-border-strong);
+
+  border-radius:
+    16px;
+
+  background:
+    var(--color-surface);
+}
+
+.events23-empty
+.icon {
+  width:
+    24px;
+
+  color:
+    var(--color-primary);
+}
+
+.events23-error,
+.webinar23-error {
+  padding:
+    10px 12px;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--color-danger)
+      28%,
+      var(--color-border)
+    );
+
+  border-radius:
+    10px;
+
+  color:
+    var(--color-danger) !important;
+
+  background:
+    var(--color-surface);
+}
+
+/* Dashboard */
+
+.webinar23-workspace {
+  display:
+    grid;
+
+  gap:
+    14px;
+}
+
+.webinar23-dashboard-card {
+  padding:
+    15px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    14px;
+
+  background:
+    var(--color-surface);
+}
+
+.webinar23-dashboard-card
+> summary {
+  cursor:
+    pointer;
+
+  font-weight:
+    800;
+}
+
+.webinar23-form {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    10px;
+
+  margin-top:
+    14px;
+}
+
+.webinar23-form
+label {
+  display:
+    grid;
+
+  gap:
+    5px;
+
+  font-size:
+    8px;
+}
+
+.webinar23-form
+:is(
+  input,
+  select,
+  textarea
+) {
+  min-height:
+    40px;
+
+  padding:
+    7px 9px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    8px;
+
+  color:
+    var(--events23-text);
+
+  background:
+    var(--color-surface);
+
+  font:
+    inherit;
+}
+
+.webinar23-form
+textarea {
+  min-height:
+    110px;
+
+  resize:
+    vertical;
+}
+
+.webinar23-check {
+  display:
+    flex !important;
+
+  grid-template-columns:
+    none !important;
+
+  align-items:
+    center;
+
+  gap:
+    7px;
+}
+
+.webinar23-check
+input {
+  min-height:
+    auto !important;
+
+  width:
+    16px;
+}
+
+.webinar23-event-list,
+.webinar23-invitation-list,
+.webinar23-request-list {
+  display:
+    grid;
+
+  gap:
+    8px;
+}
+
+.webinar23-event-list
+article,
+.webinar23-invitation-list
+article,
+.webinar23-request-list
+article {
+  display:
+    grid;
+
+  gap:
+    8px;
+
+  padding:
+    11px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    10px;
+
+  background:
+    var(--color-canvas-soft);
+}
+
+.webinar23-event-list
+small,
+.webinar23-invitation-list
+small,
+.webinar23-request-list
+small {
+  display:
+    block;
+
+  margin-top:
+    3px;
+}
+
+.webinar23-event-actions {
+  display:
+    flex;
+
+  gap:
+    6px;
+
+  flex-wrap:
+    wrap;
+}
+
+.webinar23-event-actions
+:is(
+  button,
+  a
+),
+.webinar23-invitation-list
+button {
+  min-height:
+    34px;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  padding:
+    6px 9px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    8px;
+
+  color:
+    var(--events23-text);
+
+  background:
+    var(--color-surface);
+
+  font:
+    inherit;
+
+  font-size:
+    8px;
+
+  text-decoration:
+    none;
+
+  cursor:
+    pointer;
+}
+
+.webinar23-inline-form {
+  display:
+    flex;
+
+  gap:
+    6px;
+}
+
+.webinar23-inline-form
+input {
+  min-height:
+    35px;
+
+  min-width:
+    0;
+
+  flex:
+    1;
+
+  padding:
+    6px 8px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    8px;
+
+  color:
+    var(--events23-text);
+
+  background:
+    var(--color-surface);
+}
+
+/* Live */
+
+.webinar23-live {
+  min-height:
+    100vh;
+
+  padding:
+    14px;
+
+  background:
+    var(--color-canvas);
+}
+
+.webinar23-live-header {
+  min-height:
+    62px;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    auto
+    1fr
+    auto;
+
+  align-items:
+    center;
+
+  gap:
+    12px;
+
+  padding:
+    10px 14px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    14px;
+
+  background:
+    var(--color-surface);
+}
+
+.webinar23-live-header
+button {
+  color:
+    var(--events23-text);
+
+  background:
+    transparent;
+
+  border:
+    0;
+
+  cursor:
+    pointer;
+}
+
+.webinar23-live-header
+span,
+.webinar23-live-header
+strong {
+  display:
+    block;
+}
+
+.webinar23-connection {
+  padding:
+    5px 8px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    var(--radius-pill);
+
+  font-size:
+    7px;
+}
+
+.webinar23-connect-card {
+  min-height:
+    480px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  flex-direction:
+    column;
+
+  gap:
+    12px;
+
+  margin-top:
+    14px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    18px;
+
+  background:
+    var(--color-surface);
+
+  text-align:
+    center;
+}
+
+.webinar23-connect-card
+.icon {
+  width:
+    44px;
+
+  color:
+    var(--color-primary);
+}
+
+.webinar23-connect-card
+p {
+  max-width:
+    650px;
+
+  line-height:
+    2;
+}
+
+.webinar23-live-layout {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1fr
+    )
+    330px;
+
+  gap:
+    12px;
+
+  margin-top:
+    12px;
+}
+
+.webinar23-stage,
+.webinar23-chat {
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    16px;
+
+  background:
+    var(--color-surface);
+}
+
+.webinar23-stage {
+  padding:
+    12px;
+}
+
+.webinar23-media-grid {
+  min-height:
+    420px;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(
+        260px,
+        1fr
+      )
+    );
+
+  gap:
+    8px;
+
+  padding:
+    8px;
+
+  border-radius:
+    12px;
+
+  background:
+    #0d1518;
+}
+
+.webinar23-media-grid
+:is(
+  video,
+  audio
+) {
+  width:
+    100%;
+
+  max-height:
+    70vh;
+
+  border-radius:
+    10px;
+
+  background:
+    #000000;
+}
+
+.webinar23-controls {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    7px;
+
+  flex-wrap:
+    wrap;
+
+  padding:
+    11px 0 3px;
+}
+
+.webinar23-controls
+button {
+  min-height:
+    38px;
+
+  padding:
+    7px 10px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    9px;
+
+  color:
+    var(--events23-text);
+
+  background:
+    var(--color-surface);
+
+  cursor:
+    pointer;
+}
+
+.webinar23-controls
+button:disabled {
+  opacity:
+    .5;
+
+  cursor:
+    not-allowed;
+}
+
+.webinar23-participant-control {
+  margin-top:
+    13px;
+
+  padding:
+    12px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    12px;
+}
+
+.webinar23-section-title {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    10px;
+
+  margin-bottom:
+    8px;
+}
+
+.webinar23-participant-list {
+  display:
+    grid;
+
+  gap:
+    6px;
+}
+
+.webinar23-participant-list
+article {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    10px;
+
+  padding:
+    9px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    9px;
+
+  background:
+    var(--color-canvas-soft);
+}
+
+.webinar23-participant-list
+article.raised {
+  border-color:
+    var(--color-gold);
+
+  box-shadow:
+    0 0 0 2px
+    color-mix(
+      in srgb,
+      var(--color-gold)
+      12%,
+      transparent
+    );
+}
+
+.webinar23-participant-list
+article
+> div:last-child {
+  display:
+    flex;
+
+  gap:
+    5px;
+
+  flex-wrap:
+    wrap;
+}
+
+.webinar23-participant-list
+button {
+  min-height:
+    31px;
+
+  padding:
+    5px 7px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    7px;
+
+  color:
+    var(--events23-text);
+
+  background:
+    var(--color-surface);
+
+  font-size:
+    7px;
+
+  cursor:
+    pointer;
+}
+
+.webinar23-chat {
+  min-height:
+    580px;
+
+  display:
+    grid;
+
+  grid-template-rows:
+    auto
+    minmax(
+      0,
+      1fr
+    )
+    auto;
+
+  padding:
+    12px;
+}
+
+.webinar23-chat
+h2 {
+  margin:
+    0 0
+    8px;
+
+  font-size:
+    14px;
+}
+
+.webinar23-chat-messages {
+  min-height:
+    0;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    7px;
+
+  overflow-y:
+    auto;
+}
+
+.webinar23-chat-messages
+article {
+  padding:
+    8px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    9px;
+
+  background:
+    var(--color-canvas-soft);
+}
+
+.webinar23-chat-messages
+article
+p {
+  margin:
+    5px 0;
+
+  white-space:
+    pre-wrap;
+
+  overflow-wrap:
+    anywhere;
+}
+
+.webinar23-chat-messages
+time,
+.webinar23-chat-messages
+bdi {
+  font-size:
+    7px;
+}
+
+.webinar23-chat
+form {
+  display:
+    grid;
+
+  gap:
+    7px;
+
+  margin-top:
+    9px;
+}
+
+.webinar23-chat
+textarea {
+  min-height:
+    80px;
+
+  resize:
+    vertical;
+
+  padding:
+    8px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    9px;
+
+  color:
+    var(--events23-text);
+
+  background:
+    var(--color-surface);
+
+  font:
+    inherit;
+}
+
+html[data-theme='dark']
+:is(
+  .events23-card,
+  .events23-detail-card,
+  .events23-empty,
+  .webinar23-dashboard-card,
+  .webinar23-stage,
+  .webinar23-chat,
+  .webinar23-live-header,
+  .webinar23-connect-card
+) {
+  color:
+    #ffffff;
+
+  background:
+    var(--color-surface);
+
+  border-color:
+    var(--color-border);
+}
+
+html[data-theme='dark']
+:is(
+  .events23,
+  .webinar23-live,
+  .webinar23-workspace
+)
+:is(
+  input,
+  select,
+  textarea
+) {
+  color:
+    #ffffff;
+
+  background:
+    var(--color-surface-raised);
+}
+
+@media (
+  max-width: 1000px
+) {
+  .events23-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+
+  .events23-detail-card
+  dl {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+
+  .webinar23-live-layout {
+    grid-template-columns:
+      1fr;
+  }
+
+  .webinar23-chat {
+    min-height:
+      420px;
+  }
+}
+
+@media (
+  max-width: 650px
+) {
+  .events23-wrap {
+    width:
+      calc(
+        100% - 20px
+      );
+  }
+
+  .events23-grid,
+  .events23-detail-card
+  dl,
+  .webinar23-form {
+    grid-template-columns:
+      1fr;
+  }
+
+  .webinar23-inline-form,
+  .webinar23-participant-list
+  article {
+    align-items:
+      stretch;
+
+    flex-direction:
+      column;
+  }
+
+  .webinar23-live {
+    padding:
+      7px;
+  }
+
+  .webinar23-live-header {
+    grid-template-columns:
+      1fr;
+
+    text-align:
+      center;
+  }
+
+  .webinar23-media-grid {
+    min-height:
+      260px;
+
+    grid-template-columns:
+      1fr;
+  }
+}

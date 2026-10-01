@@ -6,6 +6,7 @@ import { HomeExperience } from './home-experience';
 import { ServicesExperience } from './services-experience';
 import { ConsultationJourney } from './consultation23';
 import { QnaExperience } from './qna23';
+import { EventsExperience } from './events23';
 import { localizedText } from './localization-runtime';
 import { languageValue } from './localization-runtime';
 import { localizeTree } from './localization-runtime';
@@ -1438,6 +1439,8 @@ export function Experience({
           <ConsultationJourney locale={locale} />
         ) : path === 'questions' ? (
           <QnaExperience locale={locale} />
+        ) : path === 'events' ? (
+          <EventsExperience locale={locale} />
         ) : info?.kind === 'gallery' ? (
           <Gallery locale={locale} />
         ) : (

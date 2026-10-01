@@ -167,6 +167,9 @@ export function AuthForm({
             ) ||
             requested.startsWith(
               'questions',
+            ) ||
+            requested.startsWith(
+              'events',
             )
           ) &&
           !requested.includes(
