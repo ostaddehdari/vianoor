@@ -905,3 +905,109 @@ The response combines:
 - persistent conversation ID
 - LiveKit token and URL
 - role and media capabilities
+
+### Work23.4 Checkpoint 2B — Helpline product experience
+
+Talk Now is exposed as a complete end-user, Expert and operational experience.
+
+#### Public Helpline
+
+The `/instant` experience provides:
+
+- explicit no-booking model
+- aggregate online Expert availability
+- direct entry into the authenticated Talk Now queue
+
+#### Client
+
+The client Talk Now dashboard supports:
+
+- language
+- AUDIO / VIDEO
+- need description
+- live queue position
+- offering state
+- matched Expert state
+- cancellation
+- first-class Instant payment UI
+- payment reconciliation after external gateway return
+- READY / LIVE call entry
+- support ticket and complaint creation
+- personal support-case history
+
+#### Expert
+
+The Expert Talk Now dashboard supports:
+
+- opt-in / opt-out
+- Online / Away / Offline
+- timezone
+- languages
+- AUDIO / VIDEO
+- price and currency
+- offer timeout
+- consultation duration
+- weekly availability windows
+- live timed offer countdown
+- Accept / Reject
+- matched-request state
+- call entry
+- explicit session completion
+
+#### Live room
+
+The browser experience uses the Checkpoint 2A LiveKit 1:1 room and persistent INSTANT conversation.
+
+It supports:
+
+- microphone
+- VIDEO camera
+- screen share
+- persistent text chat
+- reconnect through a fresh join token
+- Expert-controlled session completion
+
+#### Call-center operator
+
+The operational queue is protected by the existing `call.answer` permission.
+
+Operators can:
+
+- monitor Talk Now queue state
+- inspect matching / payment / live states
+- requeue eligible requests
+- cancel invalid requests
+
+#### Support
+
+The former support-service scaffold is replaced by a real support domain.
+
+Case types:
+
+- TICKET
+- COMPLAINT
+
+States:
+
+- OPEN
+- IN_PROGRESS
+- RESOLVED
+- CLOSED
+
+Support authorization uses:
+
+- `ticket.assign`
+- fallback `call.answer` for call-center operations
+
+A Talk Now request may only be attached to a support case by its matched client or Expert.
+
+#### Interface
+
+The Talk Now interface follows the Stage22 / Stage23 dashboard system:
+
+- Persian / English
+- pure black ordinary text in Light Mode
+- pure white ordinary text in Dark Mode
+- desktop / tablet / mobile responsive layouts
+- icon-first controls
+- no calendar Booking semantics

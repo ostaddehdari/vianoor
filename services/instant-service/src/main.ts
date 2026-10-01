@@ -3238,6 +3238,466 @@ function router(
     ),
   );
 
+  /*
+   * Call-center operator view.
+   *
+   * Authorization is owned by organization-service.
+   */
+  r.get(
+    '/api/v2/instant/operator/queue',
+    endpoint(
+      async (
+        req,
+        res,
+      ) => {
+        await internalCall(
+          'organization-service',
+          '/internal/authorize',
+          req.get(
+            'authorization',
+          ) ??
+            '',
+          {
+            permission:
+              'call.answer',
+
+            scope:
+              'platform',
+          },
+        );
+
+        const query =
+          z
+            .object({
+              status:
+                z
+                  .enum([
+                    'QUEUED',
+                    'OFFERING',
+                    'AWAITING_PAYMENT',
+                    'READY',
+                    'LIVE',
+                    'COMPLETED',
+                    'CANCELLED',
+                  ])
+                  .optional(),
+            })
+            .strict()
+            .parse(
+              req.query,
+            );
+
+        const rows =
+          (
+            await pool.query(
+              `
+              SELECT *
+              FROM instant_requests
+
+              WHERE (
+                $1::text IS NULL
+                OR status=$1
+              )
+
+              ORDER BY
+                CASE status
+                  WHEN 'LIVE'
+                  THEN 0
+                  WHEN 'READY'
+                  THEN 1
+                  WHEN 'AWAITING_PAYMENT'
+                  THEN 2
+                  WHEN 'OFFERING'
+                  THEN 3
+                  WHEN 'QUEUED'
+                  THEN 4
+                  ELSE 5
+                END,
+                created_at
+
+              LIMIT 300
+              `,
+              [
+                query.status ??
+                  null,
+              ],
+            )
+          ).rows as
+            InstantRequest[];
+
+        res.json({
+          data:
+            await Promise.all(
+              rows.map(
+                row =>
+                  presentRequest(
+                    pool,
+                    row,
+                  ),
+              ),
+            ),
+        });
+      },
+    ),
+  );
+
+  r.post(
+    '/api/v2/instant/operator/requests/:id',
+    endpoint(
+      async (
+        req,
+        res,
+      ) => {
+        const operator =
+          await principal(
+            req,
+          );
+
+        await internalCall(
+          'organization-service',
+          '/internal/authorize',
+          req.get(
+            'authorization',
+          ) ??
+            '',
+          {
+            permission:
+              'call.answer',
+
+            scope:
+              'platform',
+          },
+        );
+
+        const id =
+            uuid.parse(
+              req.params.id,
+            ),
+
+          input =
+            z
+              .object({
+                action:
+                  z.enum([
+                    'CANCEL',
+                    'REQUEUE',
+                  ]),
+              })
+              .strict()
+              .parse(
+                req.body,
+              );
+
+        const result =
+          await transaction(
+            pool,
+            async (
+              db,
+            ) => {
+              const current =
+                await loadRequest(
+                  db,
+                  id,
+                  true,
+                );
+
+              if (
+                [
+                  'LIVE',
+                  'COMPLETED',
+                ].includes(
+                  current.status,
+                )
+              )
+                throw new ServiceError(
+                  409,
+                  'INVALID_TRANSITION',
+                );
+
+              if (
+                current.offer_id
+              )
+                await db.query(
+                  `
+                  UPDATE instant_offers
+                  SET
+                    status=
+                      CASE
+                        WHEN status='OFFERED'
+                        THEN 'CANCELLED'
+                        ELSE status
+                      END,
+                    responded_at=
+                      CASE
+                        WHEN status='OFFERED'
+                        THEN now()
+                        ELSE responded_at
+                      END
+                  WHERE id=$1
+                  `,
+                  [
+                    current.offer_id,
+                  ],
+                );
+
+              if (
+                current.expert_id
+              )
+                await db.query(
+                  `
+                  UPDATE instant_experts
+                  SET
+                    busy_request_id=NULL,
+                    updated_at=now()
+                  WHERE expert_id=$1
+                    AND busy_request_id=$2
+                  `,
+                  [
+                    current.expert_id,
+                    current.id,
+                  ],
+                );
+
+              const status =
+                input.action ===
+                  'REQUEUE'
+                  ? 'QUEUED'
+                  : 'CANCELLED';
+
+              const row =
+                (
+                  await db.query(
+                    `
+                    UPDATE instant_requests
+                    SET
+                      status=$2,
+                      expert_id=
+                        CASE
+                          WHEN $2='QUEUED'
+                          THEN NULL
+                          ELSE expert_id
+                        END,
+                      expert_code=
+                        CASE
+                          WHEN $2='QUEUED'
+                          THEN NULL
+                          ELSE expert_code
+                        END,
+                      offer_id=
+                        CASE
+                          WHEN $2='QUEUED'
+                          THEN NULL
+                          ELSE offer_id
+                        END,
+                      updated_at=now()
+                    WHERE id=$1
+                    RETURNING *
+                    `,
+                    [
+                      current.id,
+                      status,
+                    ],
+                  )
+                ).rows[0] as
+                  InstantRequest;
+
+              await audit(
+                db,
+                row.id,
+                operator.id,
+                'OPERATOR_' +
+                  input.action,
+              );
+
+              return row;
+            },
+          );
+
+        res.json({
+          data:
+            await presentRequest(
+              pool,
+              result,
+            ),
+        });
+      },
+    ),
+  );
+
+  /*
+   * Support-service ownership check.
+   *
+   * Unlike session-context this endpoint works for every
+   * Talk Now state, including QUEUED/OFFERING/CANCELLED.
+   */
+  r.post(
+    '/internal/instant/:id/support-authorize',
+    endpoint(
+      async (
+        req,
+        res,
+      ) => {
+        const row =
+            await loadRequest(
+              pool,
+              uuid.parse(
+                req.params.id,
+              ),
+            ),
+
+          input =
+            z
+              .object({
+                account_id:
+                  uuid,
+              })
+              .strict()
+              .parse(
+                req.body,
+              );
+
+        if (
+          ![
+            row.client_id,
+            row.expert_id,
+          ].includes(
+            input.account_id,
+          )
+        )
+          throw new ServiceError(
+            403,
+            'FORBIDDEN',
+          );
+
+        res.json({
+          data: {
+            ok:
+              true,
+          },
+        });
+      },
+    ),
+  );
+
+  /*
+   * Matched request currently owned by this Expert.
+   */
+  r.get(
+    '/api/v2/instant/expert/current',
+    endpoint(
+      async (
+        req,
+        res,
+      ) => {
+        const user =
+          await principal(
+            req,
+          );
+
+        await verifiedExpert(
+          user.public_id,
+        );
+
+        const row =
+          (
+            await pool.query(
+              `
+              SELECT *
+              FROM instant_requests
+              WHERE expert_id=$1
+                AND status IN(
+                  'AWAITING_PAYMENT',
+                  'READY',
+                  'LIVE'
+                )
+              ORDER BY updated_at DESC
+              LIMIT 1
+              `,
+              [
+                user.id,
+              ],
+            )
+          ).rows[0] as
+            | InstantRequest
+            | undefined;
+
+        res.json({
+          data:
+            row
+              ? await presentRequest(
+                  pool,
+                  row,
+                )
+              : null,
+        });
+      },
+    ),
+  );
+
+  /*
+   * The matched Expert explicitly ends the active call.
+   * Client disconnect remains reconnectable and does not
+   * silently complete the consultation.
+   */
+  r.post(
+    '/api/v2/instant/requests/:id/end',
+    endpoint(
+      async (
+        req,
+        res,
+      ) => {
+        const user =
+            await principal(
+              req,
+            ),
+
+          row =
+            await loadRequest(
+              pool,
+              uuid.parse(
+                req.params.id,
+              ),
+            );
+
+        if (
+          row.expert_id !==
+          user.id
+        )
+          throw new ServiceError(
+            403,
+            'FORBIDDEN',
+          );
+
+        if (
+          row.status !==
+          'LIVE'
+        )
+          throw new ServiceError(
+            409,
+            'INSTANT_NOT_LIVE',
+          );
+
+        const result =
+          await internalCall<{
+            status: string;
+          }>(
+            'media-service',
+            '/internal/instant/end',
+            '',
+            {
+              request_id:
+                row.id,
+            },
+          );
+
+        res.json({
+          data:
+            result,
+        });
+      },
+    ),
+  );
+
   return r;
 }
 

@@ -1,0 +1,959 @@
+.talk23-public,
+.talk23-client,
+.talk23-expert,
+.talk23-operator,
+.talk23-support-operator,
+.talk23-live {
+  --talk-text:
+    #000000;
+
+  color:
+    var(--talk-text);
+}
+
+html[data-theme='dark']
+:is(
+  .talk23-public,
+  .talk23-client,
+  .talk23-expert,
+  .talk23-operator,
+  .talk23-support-operator,
+  .talk23-live
+) {
+  --talk-text:
+    #ffffff;
+}
+
+:is(
+  .talk23-public,
+  .talk23-client,
+  .talk23-expert,
+  .talk23-operator,
+  .talk23-support-operator,
+  .talk23-live
+)
+:is(
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  span,
+  strong,
+  small,
+  label,
+  legend,
+  time
+) {
+  color:
+    var(--talk-text);
+}
+
+.talk23-public {
+  min-height:
+    620px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  text-align:
+    center;
+
+  background:
+    radial-gradient(
+      circle at 18% 20%,
+      color-mix(
+        in srgb,
+        var(--color-primary)
+        18%,
+        transparent
+      ),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 82% 25%,
+      color-mix(
+        in srgb,
+        var(--color-success)
+        14%,
+        transparent
+      ),
+      transparent 34%
+    );
+}
+
+.talk23-wrap {
+  width:
+    min(
+      820px,
+      calc(
+        100% - 32px
+      )
+    );
+
+  margin-inline:
+    auto;
+}
+
+.talk23-eyebrow {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    7px;
+
+  padding:
+    7px 11px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    999px;
+
+  background:
+    var(--color-surface);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+}
+
+.talk23-eyebrow
+.icon {
+  width:
+    13px;
+}
+
+.talk23-public
+h1 {
+  margin:
+    18px 0 9px;
+
+  font-size:
+    clamp(
+      30px,
+      5vw,
+      54px
+    );
+}
+
+.talk23-public
+p {
+  line-height:
+    2;
+
+  font-size:
+    12px;
+}
+
+.talk23-public
+small {
+  display:
+    block;
+
+  margin-top:
+    13px;
+}
+
+.talk23-availability {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  margin:
+    22px 0;
+
+  padding:
+    12px 15px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    13px;
+
+  background:
+    var(--color-surface);
+}
+
+.talk23-availability
+strong {
+  font-size:
+    23px;
+
+  color:
+    var(--color-success);
+}
+
+.talk23-client,
+.talk23-expert,
+.talk23-operator,
+.talk23-support-operator {
+  display:
+    grid;
+
+  gap:
+    14px;
+}
+
+.talk23-request-form,
+.talk23-settings-grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    10px;
+
+  padding:
+    15px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    14px;
+
+  background:
+    var(--color-surface);
+}
+
+.talk23-request-form
+h3,
+.talk23-request-form
+.wide {
+  grid-column:
+    1 / -1;
+}
+
+:is(
+  .talk23-request-form,
+  .talk23-settings-grid,
+  .talk23-support,
+  .talk23-support-operator
+)
+:is(
+  input,
+  select,
+  textarea
+) {
+  width:
+    100%;
+
+  min-height:
+    40px;
+
+  padding:
+    7px 9px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    8px;
+
+  color:
+    var(--talk-text);
+
+  background:
+    var(--color-surface);
+
+  font:
+    inherit;
+}
+
+:is(
+  .talk23-request-form,
+  .talk23-support,
+  .talk23-support-operator
+)
+textarea {
+  min-height:
+    96px;
+
+  resize:
+    vertical;
+}
+
+.talk23-current,
+.talk23-support,
+.talk23-weekly,
+.talk23-offer {
+  display:
+    grid;
+
+  gap:
+    10px;
+
+  padding:
+    15px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    14px;
+
+  background:
+    var(--color-surface);
+}
+
+.talk23-current-head {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    8px;
+}
+
+.talk23-current-head
+> div {
+  padding:
+    10px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    9px;
+
+  background:
+    var(--color-canvas-soft);
+}
+
+.talk23-current-head
+span,
+.talk23-current-head
+strong {
+  display:
+    block;
+}
+
+.talk23-payment {
+  display:
+    grid;
+
+  gap:
+    10px;
+
+  padding:
+    13px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    11px;
+
+  background:
+    var(--color-canvas-soft);
+}
+
+.talk23-payment-methods,
+.talk23-presence,
+.talk23-offer-actions,
+.talk23-case-actions {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    6px;
+}
+
+:is(
+  .talk23-payment-methods,
+  .talk23-presence,
+  .talk23-offer-actions,
+  .talk23-case-actions,
+  .talk23-operator-list
+)
+button,
+.talk23-cancel,
+.talk23-call-controls
+button {
+  min-height:
+    35px;
+
+  padding:
+    6px 9px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    8px;
+
+  color:
+    var(--talk-text);
+
+  background:
+    var(--color-surface);
+
+  cursor:
+    pointer;
+}
+
+.talk23-payment-methods
+button.selected {
+  border-color:
+    var(--color-primary);
+
+  background:
+    var(--color-primary-soft);
+}
+
+.talk23-success {
+  color:
+    var(--color-success)
+    !important;
+}
+
+.talk23-error,
+.talk23-danger {
+  color:
+    var(--color-danger)
+    !important;
+}
+
+.talk23-check {
+  display:
+    flex !important;
+
+  flex-direction:
+    row !important;
+
+  align-items:
+    center;
+
+  gap:
+    7px;
+}
+
+.talk23-check
+input {
+  width:
+    16px !important;
+
+  min-height:
+    auto !important;
+}
+
+.talk23-weekly
+> div {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      130px,
+      1fr
+    )
+    120px
+    120px;
+
+  gap:
+    7px;
+
+  align-items:
+    center;
+}
+
+.talk23-weekly
+input[type='time'] {
+  min-height:
+    36px;
+
+  padding:
+    5px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    7px;
+
+  color:
+    var(--talk-text);
+
+  background:
+    var(--color-surface);
+}
+
+.talk23-offer {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--color-primary)
+      45%,
+      var(--color-border)
+    );
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-primary)
+      6%,
+      var(--color-surface)
+    );
+}
+
+.talk23-case-list,
+.talk23-operator-list {
+  display:
+    grid;
+
+  gap:
+    7px;
+}
+
+.talk23-case-list
+article,
+.talk23-operator-list
+article {
+  padding:
+    10px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    10px;
+
+  background:
+    var(--color-surface);
+}
+
+.talk23-case-list
+article {
+  display:
+    grid;
+
+  gap:
+    6px;
+}
+
+.talk23-operator-list
+article {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      180px,
+      2fr
+    )
+    130px
+    80px
+    minmax(
+      180px,
+      1fr
+    );
+
+  gap:
+    8px;
+
+  align-items:
+    center;
+}
+
+.talk23-live {
+  min-height:
+    620px;
+
+  display:
+    grid;
+
+  gap:
+    10px;
+}
+
+.talk23-live
+> header {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  padding:
+    10px 13px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    12px;
+
+  background:
+    var(--color-surface);
+}
+
+.talk23-connect {
+  min-height:
+    380px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  gap:
+    12px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    14px;
+
+  background:
+    var(--color-surface);
+}
+
+.talk23-live-grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1fr
+    )
+    330px;
+
+  gap:
+    10px;
+}
+
+.talk23-call,
+.talk23-chat {
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    14px;
+
+  background:
+    var(--color-surface);
+}
+
+.talk23-call {
+  padding:
+    10px;
+}
+
+.talk23-media {
+  min-height:
+    430px;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(
+        250px,
+        1fr
+      )
+    );
+
+  gap:
+    7px;
+
+  padding:
+    7px;
+
+  border-radius:
+    11px;
+
+  background:
+    #0b1215;
+}
+
+.talk23-media.audio {
+  min-height:
+    260px;
+}
+
+.talk23-media
+:is(
+  video,
+  audio
+) {
+  width:
+    100%;
+
+  max-height:
+    70vh;
+
+  border-radius:
+    9px;
+
+  background:
+    #000000;
+}
+
+.talk23-call-controls {
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  gap:
+    6px;
+
+  flex-wrap:
+    wrap;
+
+  padding-top:
+    10px;
+}
+
+.talk23-chat {
+  min-height:
+    540px;
+
+  display:
+    grid;
+
+  grid-template-rows:
+    auto
+    minmax(
+      0,
+      1fr
+    )
+    auto;
+
+  padding:
+    10px;
+}
+
+.talk23-chat-history {
+  min-height:
+    0;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    6px;
+
+  overflow-y:
+    auto;
+}
+
+.talk23-chat-history
+article {
+  padding:
+    7px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    8px;
+
+  background:
+    var(--color-canvas-soft);
+}
+
+.talk23-chat-history
+p {
+  white-space:
+    pre-wrap;
+
+  overflow-wrap:
+    anywhere;
+}
+
+.talk23-chat
+form {
+  display:
+    grid;
+
+  gap:
+    6px;
+}
+
+.talk23-chat
+textarea {
+  min-height:
+    74px;
+
+  padding:
+    7px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    8px;
+
+  color:
+    var(--talk-text);
+
+  background:
+    var(--color-surface);
+}
+
+html[data-theme='dark']
+:is(
+  .talk23-client,
+  .talk23-expert,
+  .talk23-support,
+  .talk23-support-operator,
+  .talk23-current,
+  .talk23-weekly,
+  .talk23-call,
+  .talk23-chat,
+  .talk23-connect
+)
+:is(
+  input,
+  select,
+  textarea
+) {
+  color:
+    #ffffff;
+
+  background:
+    var(--color-surface-raised);
+}
+
+@media (
+  max-width: 1000px
+) {
+  .talk23-live-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .talk23-operator-list
+  article {
+    grid-template-columns:
+      1fr
+      130px;
+  }
+}
+
+@media (
+  max-width: 650px
+) {
+  .talk23-wrap {
+    width:
+      calc(
+        100% - 20px
+      );
+  }
+
+  .talk23-request-form,
+  .talk23-settings-grid,
+  .talk23-current-head {
+    grid-template-columns:
+      1fr;
+  }
+
+  .talk23-request-form
+  h3,
+  .talk23-request-form
+  .wide {
+    grid-column:
+      auto;
+  }
+
+  .talk23-weekly
+  > div {
+    grid-template-columns:
+      1fr
+      1fr;
+  }
+
+  .talk23-weekly
+  .talk23-check {
+    grid-column:
+      1 / -1;
+  }
+
+  .talk23-operator-list
+  article {
+    grid-template-columns:
+      1fr;
+  }
+
+  .talk23-live-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .talk23-media {
+    min-height:
+      280px;
+
+    grid-template-columns:
+      1fr;
+  }
+}

@@ -7,6 +7,7 @@ import { ServicesExperience } from './services-experience';
 import { ConsultationJourney } from './consultation23';
 import { QnaExperience } from './qna23';
 import { EventsExperience } from './events23';
+import { TalkNowPublic } from './talknow23';
 import { localizedText } from './localization-runtime';
 import { languageValue } from './localization-runtime';
 import { localizeTree } from './localization-runtime';
@@ -186,6 +187,15 @@ function Header({ locale, path }: { locale: Locale; path: string }) {
       ),
     ],
     ['events', t.events],
+    [
+      'instant',
+      localizedText(
+        locale,
+        'shell.nav.instant',
+        'Talk now',
+        'مشاوره فوری',
+      ),
+    ],
     [
       'library',
       localizedText(
@@ -1441,6 +1451,8 @@ export function Experience({
           <QnaExperience locale={locale} />
         ) : path === 'events' ? (
           <EventsExperience locale={locale} />
+        ) : path === 'instant' ? (
+          <TalkNowPublic locale={locale} />
         ) : info?.kind === 'gallery' ? (
           <Gallery locale={locale} />
         ) : (

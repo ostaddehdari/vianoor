@@ -30,6 +30,7 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       'accounting',
       'payouts',
       'disputes',
+      'support',
       'communications',
       'channels',
       'questions',
@@ -49,6 +50,7 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
     instantPreview = process.env.INSTANT_PREVIEW_URL,
     paymentPreview = process.env.PAYMENT_PREVIEW_URL,
     messagingPreview = process.env.MESSAGING_PREVIEW_URL,
+    supportPreview = process.env.SUPPORT_PREVIEW_URL,
     upstream =
       path[0] === 'questions' && qaPreview
         ? qaPreview
@@ -60,7 +62,9 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
             ? paymentPreview
             : path[0] === 'communications' && messagingPreview
               ? messagingPreview
-              : gateway;
+              : path[0] === 'support' && supportPreview
+                ? supportPreview
+                : gateway;
   if (!base || !key || key.length < 48 || !upstream) return fail('NOT_CONFIGURED', 503);
   const publicUrl = new URL(base);
   const secure = publicUrl.protocol === 'https:';

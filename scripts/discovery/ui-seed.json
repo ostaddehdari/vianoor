@@ -8803,6 +8803,12 @@
   {
     "key": "publicPages.16.title",
     "module": "publicpages",
+    "en": "Talk now",
+    "fa": "مشاوره فوری"
+  },
+  {
+    "key": "publicPages.17.title",
+    "module": "publicpages",
     "en": "Explore the workspaces",
     "fa": "محیط‌های کاری ویانور"
   },
@@ -13511,6 +13517,12 @@
     "fa": "دانستنی‌ها"
   },
   {
+    "key": "shell.nav.instant",
+    "module": "shell",
+    "en": "Talk now",
+    "fa": "مشاوره فوری"
+  },
+  {
     "key": "shell.nav.questions",
     "module": "shell",
     "en": "Questions",
@@ -13539,6 +13551,734 @@
     "module": "sitesettings",
     "en": "Site settings",
     "fa": "تنظیمات سایت"
+  },
+  {
+    "key": "talkNow23.accept",
+    "module": "talknow23",
+    "en": "Accept",
+    "fa": "پذیرش",
+    "ar": "Accept"
+  },
+  {
+    "key": "talkNow23.audio",
+    "module": "talknow23",
+    "en": "Audio",
+    "fa": "صوتی",
+    "ar": "Audio"
+  },
+  {
+    "key": "talkNow23.available",
+    "module": "talknow23",
+    "en": "experts available",
+    "fa": "استاد در دسترس",
+    "ar": "experts available"
+  },
+  {
+    "key": "talkNow23.awaitingPayment",
+    "module": "talknow23",
+    "en": "An expert accepted. Complete payment to continue.",
+    "fa": "استاد درخواست را پذیرفته است؛ پرداخت را تکمیل کنید.",
+    "ar": "An expert accepted. Complete payment to continue."
+  },
+  {
+    "key": "talkNow23.away",
+    "module": "talknow23",
+    "en": "Away",
+    "fa": "موقتاً غیرفعال",
+    "ar": "Away"
+  },
+  {
+    "key": "talkNow23.callMode",
+    "module": "talknow23",
+    "en": "Call mode",
+    "fa": "نوع تماس",
+    "ar": "Call mode"
+  },
+  {
+    "key": "talkNow23.cameraOff",
+    "module": "talknow23",
+    "en": "Turn camera off",
+    "fa": "خاموش کردن دوربین",
+    "ar": "Turn camera off"
+  },
+  {
+    "key": "talkNow23.cameraOn",
+    "module": "talknow23",
+    "en": "Turn camera on",
+    "fa": "روشن کردن دوربین",
+    "ar": "Turn camera on"
+  },
+  {
+    "key": "talkNow23.cancel",
+    "module": "talknow23",
+    "en": "Cancel request",
+    "fa": "لغو درخواست",
+    "ar": "Cancel request"
+  },
+  {
+    "key": "talkNow23.cancelled",
+    "module": "talknow23",
+    "en": "Cancelled",
+    "fa": "لغوشده",
+    "ar": "Cancelled"
+  },
+  {
+    "key": "talkNow23.card",
+    "module": "talknow23",
+    "en": "Card / Apple Pay / Google Pay",
+    "fa": "کارت / Apple Pay / Google Pay",
+    "ar": "Card / Apple Pay / Google Pay"
+  },
+  {
+    "key": "talkNow23.caseCreated",
+    "module": "talknow23",
+    "en": "Support case submitted.",
+    "fa": "درخواست پشتیبانی ثبت شد.",
+    "ar": "Support case submitted."
+  },
+  {
+    "key": "talkNow23.cases",
+    "module": "talknow23",
+    "en": "Tickets & complaints",
+    "fa": "تیکت‌ها و شکایت‌ها",
+    "ar": "Tickets & complaints"
+  },
+  {
+    "key": "talkNow23.chat",
+    "module": "talknow23",
+    "en": "Session chat",
+    "fa": "چت جلسه",
+    "ar": "Session chat"
+  },
+  {
+    "key": "talkNow23.chatPlaceholder",
+    "module": "talknow23",
+    "en": "Message…",
+    "fa": "پیام…",
+    "ar": "Message…"
+  },
+  {
+    "key": "talkNow23.checkout",
+    "module": "talknow23",
+    "en": "Continue to secure checkout",
+    "fa": "ادامه در صفحه امن پرداخت",
+    "ar": "Continue to secure checkout"
+  },
+  {
+    "key": "talkNow23.checkPayment",
+    "module": "talknow23",
+    "en": "Check payment",
+    "fa": "بررسی پرداخت",
+    "ar": "Check payment"
+  },
+  {
+    "key": "talkNow23.client",
+    "module": "talknow23",
+    "en": "Client",
+    "fa": "مراجع",
+    "ar": "Client"
+  },
+  {
+    "key": "talkNow23.closed",
+    "module": "talknow23",
+    "en": "Closed",
+    "fa": "بسته",
+    "ar": "Closed"
+  },
+  {
+    "key": "talkNow23.complaint",
+    "module": "talknow23",
+    "en": "Complaint",
+    "fa": "شکایت",
+    "ar": "Complaint"
+  },
+  {
+    "key": "talkNow23.completed",
+    "module": "talknow23",
+    "en": "Completed",
+    "fa": "پایان‌یافته",
+    "ar": "Completed"
+  },
+  {
+    "key": "talkNow23.connect",
+    "module": "talknow23",
+    "en": "Connect",
+    "fa": "اتصال",
+    "ar": "Connect"
+  },
+  {
+    "key": "talkNow23.connecting",
+    "module": "talknow23",
+    "en": "Connecting…",
+    "fa": "در حال اتصال…",
+    "ar": "Connecting…"
+  },
+  {
+    "key": "talkNow23.created",
+    "module": "talknow23",
+    "en": "Requested",
+    "fa": "زمان درخواست",
+    "ar": "Requested"
+  },
+  {
+    "key": "talkNow23.crypto",
+    "module": "talknow23",
+    "en": "Crypto",
+    "fa": "رمزارز",
+    "ar": "Crypto"
+  },
+  {
+    "key": "talkNow23.currency",
+    "module": "talknow23",
+    "en": "Currency",
+    "fa": "واحد پول",
+    "ar": "Currency"
+  },
+  {
+    "key": "talkNow23.currentRequest",
+    "module": "talknow23",
+    "en": "Current consultation",
+    "fa": "مشاوره جاری",
+    "ar": "Current consultation"
+  },
+  {
+    "key": "talkNow23.description",
+    "module": "talknow23",
+    "en": "Short description",
+    "fa": "موضوع یا توضیح کوتاه",
+    "ar": "Short description"
+  },
+  {
+    "key": "talkNow23.descriptionPlaceholder",
+    "module": "talknow23",
+    "en": "Briefly describe what you would like help with…",
+    "fa": "در چند جمله بگویید درباره چه موضوعی نیاز به مشاوره دارید…",
+    "ar": "Briefly describe what you would like help with…"
+  },
+  {
+    "key": "talkNow23.duration",
+    "module": "talknow23",
+    "en": "Consultation length",
+    "fa": "مدت مشاوره",
+    "ar": "Consultation length"
+  },
+  {
+    "key": "talkNow23.enabled",
+    "module": "talknow23",
+    "en": "Accept Talk Now consultations",
+    "fa": "پذیرش مشاوره فوری فعال باشد",
+    "ar": "Accept Talk Now consultations"
+  },
+  {
+    "key": "talkNow23.endSession",
+    "module": "talknow23",
+    "en": "End session",
+    "fa": "پایان جلسه",
+    "ar": "End session"
+  },
+  {
+    "key": "talkNow23.error",
+    "module": "talknow23",
+    "en": "The operation could not be completed. Please try again.",
+    "fa": "انجام عملیات ممکن نشد. دوباره تلاش کنید.",
+    "ar": "The operation could not be completed. Please try again."
+  },
+  {
+    "key": "talkNow23.expert",
+    "module": "talknow23",
+    "en": "Expert",
+    "fa": "استاد",
+    "ar": "Expert"
+  },
+  {
+    "key": "talkNow23.expiresIn",
+    "module": "talknow23",
+    "en": "Expires in",
+    "fa": "مهلت پاسخ",
+    "ar": "Expires in"
+  },
+  {
+    "key": "talkNow23.eyebrow",
+    "module": "talknow23",
+    "en": "Talk now · No booking",
+    "fa": "مشاوره فوری · بدون رزرو",
+    "ar": "Talk now · No booking"
+  },
+  {
+    "key": "talkNow23.friday",
+    "module": "talknow23",
+    "en": "Friday",
+    "fa": "جمعه",
+    "ar": "Friday"
+  },
+  {
+    "key": "talkNow23.incoming",
+    "module": "talknow23",
+    "en": "Incoming request",
+    "fa": "درخواست جدید",
+    "ar": "Incoming request"
+  },
+  {
+    "key": "talkNow23.inProgress",
+    "module": "talknow23",
+    "en": "In progress",
+    "fa": "در حال پیگیری",
+    "ar": "In progress"
+  },
+  {
+    "key": "talkNow23.intro",
+    "module": "talknow23",
+    "en": "Choose your language and call mode. You enter a live queue and the request is offered to the first eligible online expert.",
+    "fa": "زبان و نوع تماس را انتخاب کنید. وارد صف می‌شوید و درخواست شما به نخستین استاد واجد شرایط و آنلاین پیشنهاد می‌شود.",
+    "ar": "Choose your language and call mode. You enter a live queue and the request is offered to the first eligible online expert."
+  },
+  {
+    "key": "talkNow23.joinCall",
+    "module": "talknow23",
+    "en": "Join call",
+    "fa": "ورود به تماس",
+    "ar": "Join call"
+  },
+  {
+    "key": "talkNow23.joinQueue",
+    "module": "talknow23",
+    "en": "Join queue",
+    "fa": "ورود به صف",
+    "ar": "Join queue"
+  },
+  {
+    "key": "talkNow23.language",
+    "module": "talknow23",
+    "en": "Language",
+    "fa": "زبان",
+    "ar": "Language"
+  },
+  {
+    "key": "talkNow23.languages",
+    "module": "talknow23",
+    "en": "Languages",
+    "fa": "زبان‌ها",
+    "ar": "Languages"
+  },
+  {
+    "key": "talkNow23.leave",
+    "module": "talknow23",
+    "en": "Leave call",
+    "fa": "خروج از تماس",
+    "ar": "Leave call"
+  },
+  {
+    "key": "talkNow23.live",
+    "module": "talknow23",
+    "en": "Live",
+    "fa": "در حال برگزاری",
+    "ar": "Live"
+  },
+  {
+    "key": "talkNow23.message",
+    "module": "talknow23",
+    "en": "Description",
+    "fa": "شرح",
+    "ar": "Description"
+  },
+  {
+    "key": "talkNow23.micOff",
+    "module": "talknow23",
+    "en": "Turn microphone off",
+    "fa": "خاموش کردن میکروفن",
+    "ar": "Turn microphone off"
+  },
+  {
+    "key": "talkNow23.micOn",
+    "module": "talknow23",
+    "en": "Turn microphone on",
+    "fa": "روشن کردن میکروفن",
+    "ar": "Turn microphone on"
+  },
+  {
+    "key": "talkNow23.minutes",
+    "module": "talknow23",
+    "en": "minutes",
+    "fa": "دقیقه",
+    "ar": "minutes"
+  },
+  {
+    "key": "talkNow23.modes",
+    "module": "talknow23",
+    "en": "Call modes",
+    "fa": "روش‌های تماس",
+    "ar": "Call modes"
+  },
+  {
+    "key": "talkNow23.monday",
+    "module": "talknow23",
+    "en": "Monday",
+    "fa": "دوشنبه",
+    "ar": "Monday"
+  },
+  {
+    "key": "talkNow23.myCases",
+    "module": "talknow23",
+    "en": "My cases",
+    "fa": "پیگیری‌های من",
+    "ar": "My cases"
+  },
+  {
+    "key": "talkNow23.noBooking",
+    "module": "talknow23",
+    "en": "There is no scheduled booking. Matching uses the queue and the first available eligible expert.",
+    "fa": "این خدمت رزرو زمانی ندارد؛ اتصال بر اساس صف و اولین استاد در دسترس است.",
+    "ar": "There is no scheduled booking. Matching uses the queue and the first available eligible expert."
+  },
+  {
+    "key": "talkNow23.noMessages",
+    "module": "talknow23",
+    "en": "No messages yet.",
+    "fa": "هنوز پیامی ارسال نشده است.",
+    "ar": "No messages yet."
+  },
+  {
+    "key": "talkNow23.offering",
+    "module": "talknow23",
+    "en": "Your request has been offered to an expert…",
+    "fa": "درخواست برای یک استاد ارسال شده است…",
+    "ar": "Your request has been offered to an expert…"
+  },
+  {
+    "key": "talkNow23.offerTimeout",
+    "module": "talknow23",
+    "en": "Offer timeout",
+    "fa": "مهلت پاسخ به پیشنهاد",
+    "ar": "Offer timeout"
+  },
+  {
+    "key": "talkNow23.offline",
+    "module": "talknow23",
+    "en": "Offline",
+    "fa": "آفلاین",
+    "ar": "Offline"
+  },
+  {
+    "key": "talkNow23.online",
+    "module": "talknow23",
+    "en": "Online",
+    "fa": "آنلاین",
+    "ar": "Online"
+  },
+  {
+    "key": "talkNow23.operatorCancel",
+    "module": "talknow23",
+    "en": "Cancel request",
+    "fa": "لغو توسط اپراتور",
+    "ar": "Cancel request"
+  },
+  {
+    "key": "talkNow23.operatorNote",
+    "module": "talknow23",
+    "en": "Operator note",
+    "fa": "یادداشت اپراتور",
+    "ar": "Operator note"
+  },
+  {
+    "key": "talkNow23.operatorQueue",
+    "module": "talknow23",
+    "en": "Talk Now operations queue",
+    "fa": "صف عملیاتی مشاوره فوری",
+    "ar": "Talk Now operations queue"
+  },
+  {
+    "key": "talkNow23.pay",
+    "module": "talknow23",
+    "en": "Pay and continue",
+    "fa": "پرداخت و ادامه",
+    "ar": "Pay and continue"
+  },
+  {
+    "key": "talkNow23.payment",
+    "module": "talknow23",
+    "en": "Payment",
+    "fa": "پرداخت",
+    "ar": "Payment"
+  },
+  {
+    "key": "talkNow23.paymentPending",
+    "module": "talknow23",
+    "en": "Payment is still pending.",
+    "fa": "پرداخت هنوز نهایی نشده است.",
+    "ar": "Payment is still pending."
+  },
+  {
+    "key": "talkNow23.paymentSuccess",
+    "module": "talknow23",
+    "en": "Payment completed. Your call is ready.",
+    "fa": "پرداخت انجام شد و تماس آماده است.",
+    "ar": "Payment completed. Your call is ready."
+  },
+  {
+    "key": "talkNow23.paypal",
+    "module": "talknow23",
+    "en": "PayPal",
+    "fa": "PayPal",
+    "ar": "PayPal"
+  },
+  {
+    "key": "talkNow23.price",
+    "module": "talknow23",
+    "en": "Price",
+    "fa": "هزینه",
+    "ar": "Price"
+  },
+  {
+    "key": "talkNow23.queue",
+    "module": "talknow23",
+    "en": "Talk Now queue",
+    "fa": "صف مشاوره فوری",
+    "ar": "Talk Now queue"
+  },
+  {
+    "key": "talkNow23.queuePosition",
+    "module": "talknow23",
+    "en": "Queue position",
+    "fa": "جایگاه در صف",
+    "ar": "Queue position"
+  },
+  {
+    "key": "talkNow23.ready",
+    "module": "talknow23",
+    "en": "Ready to connect",
+    "fa": "آماده اتصال",
+    "ar": "Ready to connect"
+  },
+  {
+    "key": "talkNow23.refresh",
+    "module": "talknow23",
+    "en": "Refresh",
+    "fa": "تازه‌سازی",
+    "ar": "Refresh"
+  },
+  {
+    "key": "talkNow23.reject",
+    "module": "talknow23",
+    "en": "Reject",
+    "fa": "رد",
+    "ar": "Reject"
+  },
+  {
+    "key": "talkNow23.request",
+    "module": "talknow23",
+    "en": "Request immediate consultation",
+    "fa": "درخواست مشاوره فوری",
+    "ar": "Request immediate consultation"
+  },
+  {
+    "key": "talkNow23.requeue",
+    "module": "talknow23",
+    "en": "Return to queue",
+    "fa": "بازگرداندن به صف",
+    "ar": "Return to queue"
+  },
+  {
+    "key": "talkNow23.resolved",
+    "module": "talknow23",
+    "en": "Resolved",
+    "fa": "حل‌شده",
+    "ar": "Resolved"
+  },
+  {
+    "key": "talkNow23.room",
+    "module": "talknow23",
+    "en": "Talk Now room",
+    "fa": "اتاق مشاوره فوری",
+    "ar": "Talk Now room"
+  },
+  {
+    "key": "talkNow23.saturday",
+    "module": "talknow23",
+    "en": "Saturday",
+    "fa": "شنبه",
+    "ar": "Saturday"
+  },
+  {
+    "key": "talkNow23.save",
+    "module": "talknow23",
+    "en": "Save settings",
+    "fa": "ذخیره تنظیمات",
+    "ar": "Save settings"
+  },
+  {
+    "key": "talkNow23.saved",
+    "module": "talknow23",
+    "en": "Settings saved.",
+    "fa": "تنظیمات ذخیره شد.",
+    "ar": "Settings saved."
+  },
+  {
+    "key": "talkNow23.screenOff",
+    "module": "talknow23",
+    "en": "Stop sharing",
+    "fa": "توقف اشتراک صفحه",
+    "ar": "Stop sharing"
+  },
+  {
+    "key": "talkNow23.screenOn",
+    "module": "talknow23",
+    "en": "Share screen",
+    "fa": "اشتراک صفحه",
+    "ar": "Share screen"
+  },
+  {
+    "key": "talkNow23.seconds",
+    "module": "talknow23",
+    "en": "seconds",
+    "fa": "ثانیه",
+    "ar": "seconds"
+  },
+  {
+    "key": "talkNow23.send",
+    "module": "talknow23",
+    "en": "Send",
+    "fa": "ارسال",
+    "ar": "Send"
+  },
+  {
+    "key": "talkNow23.sendCase",
+    "module": "talknow23",
+    "en": "Submit",
+    "fa": "ثبت و ارسال",
+    "ar": "Submit"
+  },
+  {
+    "key": "talkNow23.sessionLength",
+    "module": "talknow23",
+    "en": "Session length",
+    "fa": "مدت جلسه",
+    "ar": "Session length"
+  },
+  {
+    "key": "talkNow23.settings",
+    "module": "talknow23",
+    "en": "Talk Now settings",
+    "fa": "تنظیمات مشاوره فوری",
+    "ar": "Talk Now settings"
+  },
+  {
+    "key": "talkNow23.startNow",
+    "module": "talknow23",
+    "en": "Start Talk Now",
+    "fa": "شروع مشاوره فوری",
+    "ar": "Start Talk Now"
+  },
+  {
+    "key": "talkNow23.status",
+    "module": "talknow23",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "talkNow23.subject",
+    "module": "talknow23",
+    "en": "Subject",
+    "fa": "عنوان",
+    "ar": "Subject"
+  },
+  {
+    "key": "talkNow23.sunday",
+    "module": "talknow23",
+    "en": "Sunday",
+    "fa": "یکشنبه",
+    "ar": "Sunday"
+  },
+  {
+    "key": "talkNow23.support",
+    "module": "talknow23",
+    "en": "Support & follow-up",
+    "fa": "پشتیبانی و پیگیری",
+    "ar": "Support & follow-up"
+  },
+  {
+    "key": "talkNow23.thursday",
+    "module": "talknow23",
+    "en": "Thursday",
+    "fa": "پنجشنبه",
+    "ar": "Thursday"
+  },
+  {
+    "key": "talkNow23.ticket",
+    "module": "talknow23",
+    "en": "Support ticket",
+    "fa": "تیکت پشتیبانی",
+    "ar": "Support ticket"
+  },
+  {
+    "key": "talkNow23.timezone",
+    "module": "talknow23",
+    "en": "Timezone",
+    "fa": "منطقه زمانی",
+    "ar": "Timezone"
+  },
+  {
+    "key": "talkNow23.title",
+    "module": "talknow23",
+    "en": "Talk to an available expert now",
+    "fa": "همین حالا با یک استاد در دسترس صحبت کنید",
+    "ar": "Talk to an available expert now"
+  },
+  {
+    "key": "talkNow23.tuesday",
+    "module": "talknow23",
+    "en": "Tuesday",
+    "fa": "سه‌شنبه",
+    "ar": "Tuesday"
+  },
+  {
+    "key": "talkNow23.unavailable",
+    "module": "talknow23",
+    "en": "No eligible expert is online right now.",
+    "fa": "در این لحظه استاد واجد شرایطی آنلاین نیست.",
+    "ar": "No eligible expert is online right now."
+  },
+  {
+    "key": "talkNow23.video",
+    "module": "talknow23",
+    "en": "Audio & video",
+    "fa": "صوتی و تصویری",
+    "ar": "Audio & video"
+  },
+  {
+    "key": "talkNow23.waiting",
+    "module": "talknow23",
+    "en": "Finding an available expert…",
+    "fa": "در حال یافتن استاد مناسب…",
+    "ar": "Finding an available expert…"
+  },
+  {
+    "key": "talkNow23.waitingPayment",
+    "module": "talknow23",
+    "en": "Waiting for client payment",
+    "fa": "در انتظار پرداخت مراجع",
+    "ar": "Waiting for client payment"
+  },
+  {
+    "key": "talkNow23.wallet",
+    "module": "talknow23",
+    "en": "Wallet",
+    "fa": "کیف پول",
+    "ar": "Wallet"
+  },
+  {
+    "key": "talkNow23.wednesday",
+    "module": "talknow23",
+    "en": "Wednesday",
+    "fa": "چهارشنبه",
+    "ar": "Wednesday"
+  },
+  {
+    "key": "talkNow23.weekly",
+    "module": "talknow23",
+    "en": "Weekly Talk Now hours",
+    "fa": "ساعات پذیرش هفتگی",
+    "ar": "Weekly Talk Now hours"
   },
   {
     "key": "threeCalendarCopy.allDates",

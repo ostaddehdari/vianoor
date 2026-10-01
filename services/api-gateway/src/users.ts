@@ -28,6 +28,7 @@ const owners: Record<string, string> = {
   accounting: 'accounting-service',
   payouts: 'payout-service',
   disputes: 'dispute-service',
+  support: 'support-service',
   communications: 'messaging-service',
   channels: 'messaging-service',
   questions: 'qa-service',

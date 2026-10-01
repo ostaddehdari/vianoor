@@ -38,6 +38,11 @@ import {
 } from './dashboard22-navigation';
 import { DashboardOverview } from './dashboard22-overview';
 import { WebinarWorkspace } from './webinar23-workspace';
+import {
+  TalkNowWorkspace,
+  TalkNowOperator,
+  SupportOperator,
+} from './talknow23';
 type Locale = string;
 const href = (locale: Locale, path: string) => `${usersBase}/${locale}/${path}`;
 const roleName = (locale: Locale, role: string) =>
@@ -82,6 +87,10 @@ function workspaceIcon(
     files: 'book',
 
     events: 'calendar',
+    instant: 'phone',
+    queue: 'phone',
+    tickets: 'headset',
+    complaints: 'headset',
     wallet: 'wallet',
     earnings: 'wallet',
     payouts: 'wallet',
@@ -1481,6 +1490,25 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
             <WebinarWorkspace
               locale={locale}
               role={role}
+            />
+          ) : section === 'instant' && ['account', 'expert'].includes(role) ? (
+            <TalkNowWorkspace
+              locale={locale}
+              role={role}
+            />
+          ) : role === 'call' && section === 'queue' ? (
+            <TalkNowOperator
+              locale={locale}
+            />
+          ) : role === 'support' && section === 'tickets' ? (
+            <SupportOperator
+              locale={locale}
+              kind="TICKET"
+            />
+          ) : role === 'support' && section === 'complaints' ? (
+            <SupportOperator
+              locale={locale}
+              kind="COMPLAINT"
             />
           ) : section === 'requests' && ['account', 'expert', 'secretary'].includes(role) ? (
             <SessionRequests

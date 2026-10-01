@@ -368,6 +368,13 @@ export const publicPages = localizeTree('publicPages', [
     },
   },
   {
+    path: 'instant',
+    title: {
+      fa: 'مشاوره فوری',
+      en: 'Talk now',
+    },
+  },
+  {
     path: 'dashboards',
     title: {
       fa: 'محیط‌های کاری ویانور',

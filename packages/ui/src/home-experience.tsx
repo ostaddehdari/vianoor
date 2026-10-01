@@ -392,6 +392,65 @@ function initials(
     .toUpperCase();
 }
 
+
+function normalizeHomeQuestions(
+  value: unknown,
+): Question[] {
+  if (
+    Array.isArray(
+      value,
+    )
+  )
+    return value as
+      Question[];
+
+  if (
+    !value ||
+    typeof value !==
+      'object'
+  )
+    return [];
+
+  const record =
+    value as
+      Record<
+        string,
+        unknown
+      >;
+
+  /*
+   * Current Q&A public contract:
+   *
+   * {
+   *   items: Question[],
+   *   next_offset: number | null
+   * }
+   *
+   * The additional collection shapes keep Home tolerant
+   * of compatible API adapters without ever calling
+   * Array methods on an object.
+   */
+  for (
+    const candidate
+    of [
+      record.items,
+      record.questions,
+      record.rows,
+      record.results,
+      record.data,
+    ]
+  )
+    if (
+      Array.isArray(
+        candidate,
+      )
+    )
+      return candidate as
+        Question[];
+
+  return [];
+}
+
 export function HomeExperience({
   locale,
 }: {
@@ -587,7 +646,9 @@ export function HomeExperience({
           'fulfilled'
         )
           setQuestions(
-            results[3].value,
+            normalizeHomeQuestions(
+              results[3].value,
+            ),
           );
 
         setLoading(false);
