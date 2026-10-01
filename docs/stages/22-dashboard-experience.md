@@ -481,3 +481,52 @@ Final Work22.5 acceptance therefore requires:
 - all-role navigation
 - Light/Dark coverage
 - full TypeScript build
+
+## Post-Stage22 visual correction — strict text contrast
+
+After visual Preview review, the dashboard text palette was tightened.
+
+### Light Mode
+
+Normal interface text now uses pure black:
+
+- primary text: `#000000`
+- secondary text: `#000000`
+- muted text: `#000000`
+- placeholders: black
+- table headers/cells: black
+- form labels: black
+- calendar text: black
+- finance text: black
+- communication text: black
+- Live Session supporting text: black
+
+### Dark Mode
+
+The same normal interface text now uses pure white:
+
+- primary text: `#ffffff`
+- secondary text: `#ffffff`
+- muted text: `#ffffff`
+- placeholders: white
+- table headers/cells: white
+- form labels: white
+- calendar text: white
+- finance text: white
+- communication text: white
+- Live Session supporting text: white
+
+### Sidebar
+
+The Stage22 Sidebar has a dark background in both themes, therefore its ordinary text is always pure white.
+
+### Semantic colors
+
+Semantic colors remain intentionally distinct:
+
+- errors remain red
+- success states remain green
+- warnings retain their semantic accent
+- intentional gold/accent icons remain accented
+
+Grey is no longer used as an ordinary Dashboard text color.

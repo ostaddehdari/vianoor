@@ -940,3 +940,496 @@ html[data-theme='dark']
       .01ms !important;
   }
 }
+
+/* STAGE22 STRICT TEXT CONTRAST START */
+
+/*
+ * Normal dashboard text must never be grey.
+ *
+ * Light theme:
+ *   normal text = pure black
+ *
+ * Dark theme:
+ *   normal text = pure white
+ *
+ * Semantic colors for errors, warnings, success states,
+ * badges and intentional accent controls remain available.
+ */
+
+.dash22-app {
+  --color-ink:
+    #000000;
+
+  --color-ink-soft:
+    #000000;
+
+  --color-muted:
+    #000000;
+
+  --dash22-text:
+    #000000;
+
+  --dash22-text-on-dark:
+    #ffffff;
+}
+
+html[data-theme='light']
+.dash22-app {
+  --color-ink:
+    #000000;
+
+  --color-ink-soft:
+    #000000;
+
+  --color-muted:
+    #000000;
+
+  --dash22-text:
+    #000000;
+}
+
+html[data-theme='dark']
+.dash22-app {
+  --color-ink:
+    #ffffff;
+
+  --color-ink-soft:
+    #ffffff;
+
+  --color-muted:
+    #ffffff;
+
+  --dash22-text:
+    #ffffff;
+}
+
+/* Main dashboard content */
+
+.dash22-content {
+  color:
+    var(--dash22-text);
+}
+
+.dash22-content
+:is(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  label,
+  legend,
+  dt,
+  dd,
+  li,
+  time
+) {
+  color:
+    var(--dash22-text);
+}
+
+.dash22-content
+:is(
+  small,
+  .muted,
+  .dash22-page-title small,
+  .dash22-overview-heading p,
+  .dash22-section-heading small,
+  .dash22-overview-stat small,
+  .dash22-overview-stat-title,
+  .dash22-live-data,
+  .dash22-activity-item p,
+  .dash22-activity-item time,
+  .dash22-table-footer,
+  .dash22-mobile-record > div > span,
+  .user-card small,
+  .user-card p,
+  .finance-workspace small,
+  .communication-layout small,
+  .scholar-form small
+) {
+  color:
+    var(--dash22-text) !important;
+
+  opacity:
+    1;
+}
+
+/* Tables */
+
+.dash22-app
+:is(
+  th,
+  td,
+  .dash22-table th,
+  .dash22-table td
+) {
+  color:
+    var(--dash22-text) !important;
+}
+
+.dash22-app
+.dash22-sort-button {
+  color:
+    var(--dash22-text) !important;
+}
+
+/* Form labels and entered text */
+
+.dash22-app
+:is(
+  input,
+  select,
+  textarea
+) {
+  color:
+    var(--dash22-text) !important;
+
+  opacity:
+    1;
+}
+
+.dash22-app
+:is(
+  input,
+  textarea
+)::placeholder {
+  color:
+    var(--dash22-text) !important;
+
+  opacity:
+    1;
+}
+
+.dash22-app
+:is(
+  input,
+  select,
+  textarea
+):disabled {
+  color:
+    var(--dash22-text) !important;
+
+  opacity:
+    1;
+}
+
+/*
+ * Disabled state remains visible using background/border rather
+ * than turning the text grey.
+ */
+
+.dash22-app
+button:disabled {
+  opacity:
+    1;
+
+  border-style:
+    dashed;
+
+  cursor:
+    not-allowed;
+}
+
+/* Header */
+
+.dash22-header
+:is(
+  .dash22-page-title strong,
+  .dash22-page-title small,
+  .dash22-header-person-copy strong,
+  .dash22-header-person-copy small
+) {
+  color:
+    var(--dash22-text) !important;
+
+  opacity:
+    1;
+}
+
+.dash22-header
+.dash22-search
+input {
+  color:
+    var(--dash22-text) !important;
+}
+
+.dash22-header
+.dash22-search
+input::placeholder {
+  color:
+    var(--dash22-text) !important;
+
+  opacity:
+    1;
+}
+
+.dash22-search-results
+:is(
+  a,
+  p,
+  span
+) {
+  color:
+    var(--dash22-text) !important;
+}
+
+/* Drawer / modal text */
+
+.dash22-drawer-panel
+:is(
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  label,
+  small,
+  span,
+  legend,
+  dt,
+  dd
+) {
+  color:
+    var(--dash22-text);
+}
+
+/* Communication */
+
+.dash22-app
+.communication-history
+:is(
+  header,
+  footer,
+  p,
+  small,
+  time,
+  span,
+  strong
+) {
+  color:
+    var(--dash22-text) !important;
+}
+
+/* Finance */
+
+.dash22-app
+.finance-workspace
+:is(
+  p,
+  small,
+  label,
+  dt,
+  dd,
+  th,
+  td
+) {
+  color:
+    var(--dash22-text) !important;
+}
+
+/* Expert / Scholar */
+
+.dash22-app
+.scholar-workspace
+:is(
+  p,
+  small,
+  label,
+  legend,
+  span
+) {
+  color:
+    var(--dash22-text);
+}
+
+/* Calendar */
+
+.dash22-app
+.triple-calendar
+:is(
+  small,
+  span,
+  strong
+) {
+  color:
+    var(--dash22-text);
+}
+
+/* Live session */
+
+.dash22-app
+.session-workspace
+:is(
+  p,
+  small,
+  label,
+  time,
+  span
+) {
+  color:
+    var(--dash22-text);
+}
+
+/*
+ * Semantic status colors stay semantic.
+ */
+
+.dash22-app
+:is(
+  .user-error,
+  .user-error *,
+  [role='alert'].user-error,
+  [role='alert'].user-error *
+) {
+  color:
+    var(--color-danger) !important;
+}
+
+.dash22-app
+:is(
+  .user-success,
+  .user-success *
+) {
+  color:
+    var(--color-success) !important;
+}
+
+/*
+ * Sidebar always has a dark surface, so its text remains
+ * pure white in BOTH Light and Dark themes.
+ */
+
+.dash22-sidebar {
+  --dash22-sidebar-text:
+    #ffffff;
+}
+
+.dash22-sidebar
+:is(
+  .dash22-brand-text,
+  .dash22-user-copy strong,
+  .dash22-user-copy small,
+  .dash22-field-label,
+  .dash22-nav-title,
+  .dash22-nav-link,
+  .dash22-nav-text,
+  .dash22-nav-group-summary,
+  .dash22-nav-child,
+  .dash22-release,
+  .release-badge
+) {
+  color:
+    var(--dash22-sidebar-text) !important;
+
+  opacity:
+    1;
+}
+
+.dash22-sidebar
+.workspace-switch {
+  color:
+    #ffffff !important;
+}
+
+.dash22-sidebar
+.workspace-switch
+option {
+  color:
+    var(--dash22-text) !important;
+
+  background:
+    var(--color-surface);
+}
+
+/* Sidebar navigation icons follow white text */
+
+.dash22-sidebar
+:is(
+  .dash22-nav-link,
+  .dash22-nav-group-summary,
+  .dash22-nav-child
+)
+.icon {
+  color:
+    #ffffff;
+}
+
+/*
+ * Keep intentional gold accent instead of replacing it
+ * with grey or text color.
+ */
+
+.dash22-sidebar
+.dash22-brand-text {
+  color:
+    #ffffff !important;
+}
+
+.dash22-sidebar
+.brand-mark {
+  color:
+    var(--color-gold) !important;
+}
+
+/*
+ * The icon-only flyout is on a normal surface rather than
+ * the dark Sidebar, so it follows the active theme.
+ */
+
+.dash22-collapsed
+.dash22-nav-group[open]
+.dash22-nav-children
+:is(
+  a,
+  span
+) {
+  color:
+    var(--dash22-text) !important;
+}
+
+.dash22-collapsed
+.dash22-nav-group[open]
+.dash22-nav-children
+.icon {
+  color:
+    var(--dash22-text);
+}
+
+/* Tooltip surface */
+
+.dash22-collapsed
+[data-tooltip]:hover:after,
+.dash22-collapsed
+[data-tooltip]:focus-visible:after {
+  color:
+    var(--dash22-text) !important;
+}
+
+/*
+ * Preserve white text on intentionally filled primary buttons.
+ */
+
+.dash22-app
+:is(
+  .dash22-primary-create,
+  .dash22-quick-button,
+  .button:not(.secondary)
+) {
+  color:
+    #ffffff;
+}
+
+/*
+ * Secondary / surface buttons follow active black/white text.
+ */
+
+.dash22-app
+.button.secondary {
+  color:
+    var(--dash22-text);
+}
+
+/* STAGE22 STRICT TEXT CONTRAST END */
