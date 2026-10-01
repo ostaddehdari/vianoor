@@ -116,3 +116,19 @@ Implemented:
 ## Remaining Stage 21
 
 - Work 21.5 — Insights, Events & Responsive Public UI
+
+## Global Persian localization repair
+
+The Stage21 preview exposed a localization precedence defect.
+
+The database localization bundle can contain the English source value when a Persian translation is absent, stale, or historically published incorrectly. The UI previously accepted that value as a valid Persian translation.
+
+The runtime now follows this precedence for Persian UI strings:
+
+1. valid published Persian DB translation;
+2. bundled reviewed Persian UI text when the key is missing, listed as fallback, or the DB value is identical to the English source;
+3. English only when no Persian UI text exists.
+
+Stage21 dictionaries `home21`, `services21`, and `expertProfile21` are now also part of `scripts/discovery/ui-seed.json` and are bootstrapped into the localization database.
+
+Acceptance verifies Persian HTML for Home, Services, Expert Discovery, Login, Dashboard Gallery, Client Preview, Admin Preview, FAQ, About and Contact, plus RTL and English regression.

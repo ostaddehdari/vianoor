@@ -1,4 +1,7 @@
 import { sessionsCopy } from '../../packages/ui/src/sessions-copy.js';
+import { homeCopy } from '../../packages/ui/src/home-copy.js';
+import { servicesCopy } from '../../packages/ui/src/services-copy.js';
+import { expertProfileCopy } from '../../packages/ui/src/expert-profile-copy.js';
 import { communicationCopy } from '../../packages/ui/src/communication-copy.js';
 import { financeCopy } from '../../packages/ui/src/finance-copy.js';
 import { discoveryCopy } from '../../packages/ui/src/discovery-copy.js';
@@ -48,6 +51,9 @@ function visit(key: string, value: unknown) {
 }
 for (const [key, value] of Object.entries({
   discoveryCopy,
+  home21: homeCopy,
+  services21: servicesCopy,
+  expertProfile21: expertProfileCopy,
   financeCopy,
   communicationCopy,
   sessionsCopy,

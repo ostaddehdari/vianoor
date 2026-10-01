@@ -2311,11 +2311,46 @@
     "ar": "Any language"
   },
   {
+    "key": "discoveryCopy.anyPrice",
+    "module": "discoverycopy",
+    "en": "Any price",
+    "fa": "بدون محدودیت",
+    "ar": "Any price"
+  },
+  {
+    "key": "discoveryCopy.anyRating",
+    "module": "discoverycopy",
+    "en": "Any rating",
+    "fa": "همه امتیازها",
+    "ar": "Any rating"
+  },
+  {
+    "key": "discoveryCopy.applyFilters",
+    "module": "discoverycopy",
+    "en": "Apply filters",
+    "fa": "اعمال فیلترها",
+    "ar": "Apply filters"
+  },
+  {
     "key": "discoveryCopy.approve",
     "module": "discoverycopy",
     "en": "Approve and publish",
     "fa": "تأیید و انتشار",
     "ar": "Approve and publish"
+  },
+  {
+    "key": "discoveryCopy.availableToday",
+    "module": "discoverycopy",
+    "en": "Available today",
+    "fa": "امروز وقت آزاد دارد",
+    "ar": "Available today"
+  },
+  {
+    "key": "discoveryCopy.away",
+    "module": "discoverycopy",
+    "en": "Away",
+    "fa": "دور از سیستم",
+    "ar": "Away"
   },
   {
     "key": "discoveryCopy.book",
@@ -2337,6 +2372,13 @@
     "en": "Choose an item",
     "fa": "انتخاب کنید",
     "ar": "Choose an item"
+  },
+  {
+    "key": "discoveryCopy.clearFilters",
+    "module": "discoverycopy",
+    "en": "Clear",
+    "fa": "پاک کردن",
+    "ar": "Clear"
   },
   {
     "key": "discoveryCopy.close",
@@ -2388,11 +2430,32 @@
     "ar": "Direction"
   },
   {
+    "key": "discoveryCopy.discoveryEyebrow",
+    "module": "discoverycopy",
+    "en": "Verified experts · real availability",
+    "fa": "اساتید تأییدشده · زمان‌های واقعی",
+    "ar": "Verified experts · real availability"
+  },
+  {
+    "key": "discoveryCopy.discoveryIntro",
+    "module": "discoverycopy",
+    "en": "Browse experts first, then narrow the list by language, specialty, topic, price, live presence, availability and rating.",
+    "fa": "ابتدا استادها را ببینید و سپس با زبان، تخصص، موضوع، قیمت، وضعیت آنلاین، زمان آزاد و امتیاز فهرست را محدود کنید.",
+    "ar": "Browse experts first, then narrow the list by language, specialty, topic, price, live presence, availability and rating."
+  },
+  {
     "key": "discoveryCopy.dynamic",
     "module": "discoverycopy",
     "en": "Profile and service translations",
     "fa": "ترجمه پروفایل و خدمات",
     "ar": "Profile and service translations"
+  },
+  {
+    "key": "discoveryCopy.earliest",
+    "module": "discoverycopy",
+    "en": "Earliest appointment",
+    "fa": "نزدیک‌ترین وقت",
+    "ar": "Earliest appointment"
   },
   {
     "key": "discoveryCopy.edit",
@@ -2409,11 +2472,25 @@
     "ar": "No matching experts found."
   },
   {
+    "key": "discoveryCopy.emptyHint",
+    "module": "discoverycopy",
+    "en": "Try removing one or more filters.",
+    "fa": "یک یا چند فیلتر را حذف کنید.",
+    "ar": "Try removing one or more filters."
+  },
+  {
     "key": "discoveryCopy.error",
     "module": "discoverycopy",
     "en": "The request could not be completed. Please try again.",
     "fa": "درخواست انجام نشد؛ دوباره تلاش کنید.",
     "ar": "The request could not be completed. Please try again."
+  },
+  {
+    "key": "discoveryCopy.expertsFound",
+    "module": "discoverycopy",
+    "en": "experts",
+    "fa": "استاد",
+    "ar": "experts"
   },
   {
     "key": "discoveryCopy.fallback",
@@ -2521,6 +2598,27 @@
     "ar": "Filter"
   },
   {
+    "key": "discoveryCopy.filters",
+    "module": "discoverycopy",
+    "en": "Filters",
+    "fa": "فیلترها",
+    "ar": "Filters"
+  },
+  {
+    "key": "discoveryCopy.from",
+    "module": "discoverycopy",
+    "en": "From",
+    "fa": "از",
+    "ar": "From"
+  },
+  {
+    "key": "discoveryCopy.gridFirst",
+    "module": "discoverycopy",
+    "en": "Verified public profiles",
+    "fa": "پروفایل‌های عمومی تأییدشده",
+    "ar": "Verified public profiles"
+  },
+  {
     "key": "discoveryCopy.guided",
     "module": "discoverycopy",
     "en": "Find a time",
@@ -2554,6 +2652,20 @@
     "en": "Languages",
     "fa": "زبان‌ها",
     "ar": "Languages"
+  },
+  {
+    "key": "discoveryCopy.maxPrice",
+    "module": "discoverycopy",
+    "en": "Maximum price",
+    "fa": "حداکثر قیمت",
+    "ar": "Maximum price"
+  },
+  {
+    "key": "discoveryCopy.minimumRating",
+    "module": "discoverycopy",
+    "en": "Minimum rating",
+    "fa": "حداقل امتیاز",
+    "ar": "Minimum rating"
   },
   {
     "key": "discoveryCopy.missing",
@@ -2591,6 +2703,41 @@
     "ar": "Next"
   },
   {
+    "key": "discoveryCopy.noAvailability",
+    "module": "discoverycopy",
+    "en": "No open time in the next 7 days",
+    "fa": "در ۷ روز آینده وقت آزادی ثبت نشده",
+    "ar": "No open time in the next 7 days"
+  },
+  {
+    "key": "discoveryCopy.noRatings",
+    "module": "discoverycopy",
+    "en": "No ratings yet",
+    "fa": "هنوز امتیازی ثبت نشده",
+    "ar": "No ratings yet"
+  },
+  {
+    "key": "discoveryCopy.offline",
+    "module": "discoverycopy",
+    "en": "Offline",
+    "fa": "آفلاین",
+    "ar": "Offline"
+  },
+  {
+    "key": "discoveryCopy.online",
+    "module": "discoverycopy",
+    "en": "Online",
+    "fa": "آنلاین",
+    "ar": "Online"
+  },
+  {
+    "key": "discoveryCopy.onlineNow",
+    "module": "discoverycopy",
+    "en": "Online now",
+    "fa": "الان آنلاین",
+    "ar": "Online now"
+  },
+  {
     "key": "discoveryCopy.pending",
     "module": "discoverycopy",
     "en": "Not published",
@@ -2603,6 +2750,20 @@
     "en": "Previous",
     "fa": "قبلی",
     "ar": "Previous"
+  },
+  {
+    "key": "discoveryCopy.price",
+    "module": "discoverycopy",
+    "en": "Price",
+    "fa": "کمترین قیمت",
+    "ar": "Price"
+  },
+  {
+    "key": "discoveryCopy.priceUnavailable",
+    "module": "discoverycopy",
+    "en": "Price on profile",
+    "fa": "قیمت در پروفایل",
+    "ar": "Price on profile"
   },
   {
     "key": "discoveryCopy.profile",
@@ -2626,11 +2787,25 @@
     "ar": "Queue translation"
   },
   {
+    "key": "discoveryCopy.rating",
+    "module": "discoverycopy",
+    "en": "Rating",
+    "fa": "بالاترین امتیاز",
+    "ar": "Rating"
+  },
+  {
     "key": "discoveryCopy.rebuild",
     "module": "discoverycopy",
     "en": "Refresh search index",
     "fa": "به‌روزرسانی نمایه جستجو",
     "ar": "Refresh search index"
+  },
+  {
+    "key": "discoveryCopy.recommended",
+    "module": "discoverycopy",
+    "en": "Recommended",
+    "fa": "پیشنهادی",
+    "ar": "Recommended"
   },
   {
     "key": "discoveryCopy.remove",
@@ -2675,6 +2850,13 @@
     "ar": "Service"
   },
   {
+    "key": "discoveryCopy.sort",
+    "module": "discoverycopy",
+    "en": "Sort",
+    "fa": "مرتب‌سازی",
+    "ar": "Sort"
+  },
+  {
     "key": "discoveryCopy.source",
     "module": "discoverycopy",
     "en": "English source",
@@ -2701,6 +2883,13 @@
     "en": "Specialty translations",
     "fa": "ترجمه تخصص‌ها",
     "ar": "Specialty translations"
+  },
+  {
+    "key": "discoveryCopy.specialty",
+    "module": "discoverycopy",
+    "en": "Specialty",
+    "fa": "تخصص",
+    "ar": "Specialty"
   },
   {
     "key": "discoveryCopy.speech",
@@ -2755,8 +2944,15 @@
     "key": "discoveryCopy.title",
     "module": "discoverycopy",
     "en": "Find an expert",
-    "fa": "جستجوی استاد",
+    "fa": "پیدا کردن استاد",
     "ar": "Find an expert"
+  },
+  {
+    "key": "discoveryCopy.topic",
+    "module": "discoverycopy",
+    "en": "Topic",
+    "fa": "موضوع",
+    "ar": "Topic"
   },
   {
     "key": "discoveryCopy.translation",
@@ -2787,6 +2983,20 @@
     "ar": "Translation"
   },
   {
+    "key": "discoveryCopy.viewProfile",
+    "module": "discoverycopy",
+    "en": "View profile",
+    "fa": "مشاهده پروفایل",
+    "ar": "View profile"
+  },
+  {
+    "key": "discoveryCopy.viewTimes",
+    "module": "discoverycopy",
+    "en": "View times",
+    "fa": "مشاهده زمان‌ها",
+    "ar": "View times"
+  },
+  {
     "key": "discoveryCopy.waiting",
     "module": "discoverycopy",
     "en": "Waiting for a translation provider",
@@ -2799,6 +3009,412 @@
     "en": "Your local date and time",
     "fa": "تاریخ و ساعت به وقت شما",
     "ar": "Your local date and time"
+  },
+  {
+    "key": "expertProfile21.about",
+    "module": "expertprofile21",
+    "en": "About",
+    "fa": "درباره استاد",
+    "ar": "About"
+  },
+  {
+    "key": "expertProfile21.answered",
+    "module": "expertprofile21",
+    "en": "Answered",
+    "fa": "پاسخ داده‌شده",
+    "ar": "Answered"
+  },
+  {
+    "key": "expertProfile21.articles",
+    "module": "expertprofile21",
+    "en": "Articles",
+    "fa": "مقالات",
+    "ar": "Articles"
+  },
+  {
+    "key": "expertProfile21.articlesEmpty",
+    "module": "expertprofile21",
+    "en": "No public articles have been linked to this expert yet.",
+    "fa": "هنوز مقاله عمومی به این استاد متصل نشده است.",
+    "ar": "No public articles have been linked to this expert yet."
+  },
+  {
+    "key": "expertProfile21.ask",
+    "module": "expertprofile21",
+    "en": "Ask a question",
+    "fa": "پرسیدن سؤال",
+    "ar": "Ask a question"
+  },
+  {
+    "key": "expertProfile21.availability",
+    "module": "expertprofile21",
+    "en": "Availability",
+    "fa": "زمان‌های آزاد",
+    "ar": "Availability"
+  },
+  {
+    "key": "expertProfile21.availableSlots",
+    "module": "expertprofile21",
+    "en": "Available times",
+    "fa": "زمان‌های قابل رزرو",
+    "ar": "Available times"
+  },
+  {
+    "key": "expertProfile21.away",
+    "module": "expertprofile21",
+    "en": "Away",
+    "fa": "دور از سیستم",
+    "ar": "Away"
+  },
+  {
+    "key": "expertProfile21.back",
+    "module": "expertprofile21",
+    "en": "Back to experts",
+    "fa": "بازگشت به اساتید",
+    "ar": "Back to experts"
+  },
+  {
+    "key": "expertProfile21.book",
+    "module": "expertprofile21",
+    "en": "Book a session",
+    "fa": "رزرو جلسه",
+    "ar": "Book a session"
+  },
+  {
+    "key": "expertProfile21.bookingText",
+    "module": "expertprofile21",
+    "en": "Choose the service and a suitable time without leaving this page.",
+    "fa": "خدمت و زمان مناسب را همین‌جا انتخاب کنید.",
+    "ar": "Choose the service and a suitable time without leaving this page."
+  },
+  {
+    "key": "expertProfile21.bookingTitle",
+    "module": "expertprofile21",
+    "en": "Book a session",
+    "fa": "رزرو جلسه",
+    "ar": "Book a session"
+  },
+  {
+    "key": "expertProfile21.bookThis",
+    "module": "expertprofile21",
+    "en": "Choose this time",
+    "fa": "انتخاب این زمان",
+    "ar": "Choose this time"
+  },
+  {
+    "key": "expertProfile21.channel",
+    "module": "expertprofile21",
+    "en": "Expert channel",
+    "fa": "کانال استاد",
+    "ar": "Expert channel"
+  },
+  {
+    "key": "expertProfile21.continueBooking",
+    "module": "expertprofile21",
+    "en": "Continue booking",
+    "fa": "ادامه رزرو",
+    "ar": "Continue booking"
+  },
+  {
+    "key": "expertProfile21.credentials",
+    "module": "expertprofile21",
+    "en": "Public credentials",
+    "fa": "مدارک عمومی",
+    "ar": "Public credentials"
+  },
+  {
+    "key": "expertProfile21.documentsEmpty",
+    "module": "expertprofile21",
+    "en": "No public credentials have been published.",
+    "fa": "مدرک عمومی برای نمایش منتشر نشده است.",
+    "ar": "No public credentials have been published."
+  },
+  {
+    "key": "expertProfile21.duration",
+    "module": "expertprofile21",
+    "en": "Duration",
+    "fa": "مدت جلسه",
+    "ar": "Duration"
+  },
+  {
+    "key": "expertProfile21.education",
+    "module": "expertprofile21",
+    "en": "Education",
+    "fa": "تحصیلات",
+    "ar": "Education"
+  },
+  {
+    "key": "expertProfile21.experience",
+    "module": "expertprofile21",
+    "en": "Experience",
+    "fa": "سوابق و تجربه",
+    "ar": "Experience"
+  },
+  {
+    "key": "expertProfile21.free",
+    "module": "expertprofile21",
+    "en": "Free",
+    "fa": "رایگان",
+    "ar": "Free"
+  },
+  {
+    "key": "expertProfile21.languageLevel",
+    "module": "expertprofile21",
+    "en": "Level",
+    "fa": "سطح",
+    "ar": "Level"
+  },
+  {
+    "key": "expertProfile21.languages",
+    "module": "expertprofile21",
+    "en": "Languages",
+    "fa": "زبان‌ها",
+    "ar": "Languages"
+  },
+  {
+    "key": "expertProfile21.links",
+    "module": "expertprofile21",
+    "en": "Professional links",
+    "fa": "پیوندهای حرفه‌ای",
+    "ar": "Professional links"
+  },
+  {
+    "key": "expertProfile21.loadingSlots",
+    "module": "expertprofile21",
+    "en": "Loading available times…",
+    "fa": "در حال دریافت زمان‌های آزاد…",
+    "ar": "Loading available times…"
+  },
+  {
+    "key": "expertProfile21.location",
+    "module": "expertprofile21",
+    "en": "Location",
+    "fa": "موقعیت",
+    "ar": "Location"
+  },
+  {
+    "key": "expertProfile21.loginNote",
+    "module": "expertprofile21",
+    "en": "You will be asked to sign in if needed before the booking is finalized.",
+    "fa": "برای نهایی‌کردن رزرو، در صورت نیاز وارد حساب خود می‌شوید.",
+    "ar": "You will be asked to sign in if needed before the booking is finalized."
+  },
+  {
+    "key": "expertProfile21.minutes",
+    "module": "expertprofile21",
+    "en": "min",
+    "fa": "دقیقه",
+    "ar": "min"
+  },
+  {
+    "key": "expertProfile21.next",
+    "module": "expertprofile21",
+    "en": "Earliest availability",
+    "fa": "نزدیک‌ترین زمان آزاد",
+    "ar": "Earliest availability"
+  },
+  {
+    "key": "expertProfile21.noAvailability",
+    "module": "expertprofile21",
+    "en": "No open time is currently published in this range",
+    "fa": "فعلاً زمان آزادی در این بازه ثبت نشده",
+    "ar": "No open time is currently published in this range"
+  },
+  {
+    "key": "expertProfile21.noRatings",
+    "module": "expertprofile21",
+    "en": "No ratings have been submitted for this expert yet.",
+    "fa": "هنوز امتیازی برای این استاد ثبت نشده است.",
+    "ar": "No ratings have been submitted for this expert yet."
+  },
+  {
+    "key": "expertProfile21.noSlots",
+    "module": "expertprofile21",
+    "en": "No available times were found for this service in the next 14 days.",
+    "fa": "برای این خدمت در ۱۴ روز آینده زمانی ثبت نشده است.",
+    "ar": "No available times were found for this service in the next 14 days."
+  },
+  {
+    "key": "expertProfile21.offline",
+    "module": "expertprofile21",
+    "en": "Offline",
+    "fa": "آفلاین",
+    "ar": "Offline"
+  },
+  {
+    "key": "expertProfile21.online",
+    "module": "expertprofile21",
+    "en": "Online",
+    "fa": "آنلاین",
+    "ar": "Online"
+  },
+  {
+    "key": "expertProfile21.price",
+    "module": "expertprofile21",
+    "en": "Price",
+    "fa": "قیمت",
+    "ar": "Price"
+  },
+  {
+    "key": "expertProfile21.profile",
+    "module": "expertprofile21",
+    "en": "Expert profile",
+    "fa": "پروفایل استاد",
+    "ar": "Expert profile"
+  },
+  {
+    "key": "expertProfile21.publicOnly",
+    "module": "expertprofile21",
+    "en": "Verified public information",
+    "fa": "اطلاعات عمومی تأییدشده",
+    "ar": "Verified public information"
+  },
+  {
+    "key": "expertProfile21.questions",
+    "module": "expertprofile21",
+    "en": "Answered questions",
+    "fa": "پرسش‌های پاسخ‌داده‌شده",
+    "ar": "Answered questions"
+  },
+  {
+    "key": "expertProfile21.questionsEmpty",
+    "module": "expertprofile21",
+    "en": "No published answered questions are currently available for this expert.",
+    "fa": "هنوز پرسش عمومی پاسخ‌داده‌شده‌ای برای این استاد منتشر نشده است.",
+    "ar": "No published answered questions are currently available for this expert."
+  },
+  {
+    "key": "expertProfile21.rating",
+    "module": "expertprofile21",
+    "en": "Rating",
+    "fa": "امتیاز",
+    "ar": "Rating"
+  },
+  {
+    "key": "expertProfile21.ratingSummary",
+    "module": "expertprofile21",
+    "en": "Average rating from completed sessions",
+    "fa": "میانگین امتیاز جلسات تکمیل‌شده",
+    "ar": "Average rating from completed sessions"
+  },
+  {
+    "key": "expertProfile21.reviews",
+    "module": "expertprofile21",
+    "en": "ratings",
+    "fa": "امتیاز ثبت‌شده",
+    "ar": "ratings"
+  },
+  {
+    "key": "expertProfile21.reviewsPrivacy",
+    "module": "expertprofile21",
+    "en": "Only aggregate ratings are public at this stage. Private review text is not published.",
+    "fa": "در این مرحله فقط امتیاز تجمیعی نمایش داده می‌شود؛ متن خصوصی بازخورد کاربران منتشر نمی‌شود.",
+    "ar": "Only aggregate ratings are public at this stage. Private review text is not published."
+  },
+  {
+    "key": "expertProfile21.reviewTab",
+    "module": "expertprofile21",
+    "en": "Reviews & ratings",
+    "fa": "نظرات و امتیازها",
+    "ar": "Reviews & ratings"
+  },
+  {
+    "key": "expertProfile21.selected",
+    "module": "expertprofile21",
+    "en": "Selected time",
+    "fa": "زمان انتخاب‌شده",
+    "ar": "Selected time"
+  },
+  {
+    "key": "expertProfile21.selectService",
+    "module": "expertprofile21",
+    "en": "Select a service",
+    "fa": "انتخاب خدمت",
+    "ar": "Select a service"
+  },
+  {
+    "key": "expertProfile21.serviceEmpty",
+    "module": "expertprofile21",
+    "en": "No public bookable service is currently published.",
+    "fa": "در حال حاضر خدمت عمومی قابل رزروی منتشر نشده است.",
+    "ar": "No public bookable service is currently published."
+  },
+  {
+    "key": "expertProfile21.services",
+    "module": "expertprofile21",
+    "en": "Services & pricing",
+    "fa": "خدمات و قیمت",
+    "ar": "Services & pricing"
+  },
+  {
+    "key": "expertProfile21.serviceType",
+    "module": "expertprofile21",
+    "en": "Service type",
+    "fa": "نوع خدمت",
+    "ar": "Service type"
+  },
+  {
+    "key": "expertProfile21.sessionCountNote",
+    "module": "expertprofile21",
+    "en": "Based on completed sessions recorded by the platform",
+    "fa": "بر اساس جلسات تکمیل‌شده ثبت‌شده در سامانه",
+    "ar": "Based on completed sessions recorded by the platform"
+  },
+  {
+    "key": "expertProfile21.sessions",
+    "module": "expertprofile21",
+    "en": "completed sessions",
+    "fa": "جلسه انجام‌شده",
+    "ar": "completed sessions"
+  },
+  {
+    "key": "expertProfile21.specialties",
+    "module": "expertprofile21",
+    "en": "Specialties",
+    "fa": "تخصص‌ها",
+    "ar": "Specialties"
+  },
+  {
+    "key": "expertProfile21.timezone",
+    "module": "expertprofile21",
+    "en": "Times are shown in your current time zone.",
+    "fa": "زمان‌ها بر اساس منطقه زمانی شما نمایش داده می‌شوند.",
+    "ar": "Times are shown in your current time zone."
+  },
+  {
+    "key": "expertProfile21.today",
+    "module": "expertprofile21",
+    "en": "Today",
+    "fa": "امروز",
+    "ar": "Today"
+  },
+  {
+    "key": "expertProfile21.verified",
+    "module": "expertprofile21",
+    "en": "Verified expert",
+    "fa": "استاد تأییدشده",
+    "ar": "Verified expert"
+  },
+  {
+    "key": "expertProfile21.viewpoints",
+    "module": "expertprofile21",
+    "en": "Areas and viewpoints",
+    "fa": "دیدگاه‌ها و زمینه‌های فعالیت",
+    "ar": "Areas and viewpoints"
+  },
+  {
+    "key": "expertProfile21.visitQuestion",
+    "module": "expertprofile21",
+    "en": "View question",
+    "fa": "مشاهده پرسش",
+    "ar": "View question"
+  },
+  {
+    "key": "expertProfile21.years",
+    "module": "expertprofile21",
+    "en": "years of experience",
+    "fa": "سال تجربه",
+    "ar": "years of experience"
   },
   {
     "key": "expertsPublicCopy.back",
@@ -4262,6 +4878,566 @@
     "en": "Yearly",
     "fa": "سالانه",
     "ar": "Yearly"
+  },
+  {
+    "key": "home21.answered",
+    "module": "home21",
+    "en": "Answered",
+    "fa": "پاسخ داده شده",
+    "ar": "Answered"
+  },
+  {
+    "key": "home21.answeredQuestions",
+    "module": "home21",
+    "en": "Answered",
+    "fa": "دارای پاسخ",
+    "ar": "Answered"
+  },
+  {
+    "key": "home21.anytime",
+    "module": "home21",
+    "en": "Any time",
+    "fa": "هر زمان",
+    "ar": "Any time"
+  },
+  {
+    "key": "home21.askQuestion",
+    "module": "home21",
+    "en": "Ask a question",
+    "fa": "پرسیدن سؤال",
+    "ar": "Ask a question"
+  },
+  {
+    "key": "home21.awaiting",
+    "module": "home21",
+    "en": "Awaiting answer",
+    "fa": "در انتظار پاسخ",
+    "ar": "Awaiting answer"
+  },
+  {
+    "key": "home21.beliefs",
+    "module": "home21",
+    "en": "Beliefs",
+    "fa": "اعتقادات",
+    "ar": "Beliefs"
+  },
+  {
+    "key": "home21.chooseTopic",
+    "module": "home21",
+    "en": "All topics",
+    "fa": "همه موضوع‌ها",
+    "ar": "All topics"
+  },
+  {
+    "key": "home21.consultation",
+    "module": "home21",
+    "en": "Consult an expert",
+    "fa": "مشاوره با استاد",
+    "ar": "Consult an expert"
+  },
+  {
+    "key": "home21.consultationCta",
+    "module": "home21",
+    "en": "Find an expert",
+    "fa": "پیدا کردن استاد",
+    "ar": "Find an expert"
+  },
+  {
+    "key": "home21.consultationText",
+    "module": "home21",
+    "en": "Choose your topic, language and preferred time to find a suitable expert.",
+    "fa": "موضوع، زبان و زمان مناسب را انتخاب کنید و استاد متناسب با نیازتان را پیدا کنید.",
+    "ar": "Choose your topic, language and preferred time to find a suitable expert."
+  },
+  {
+    "key": "home21.ethics",
+    "module": "home21",
+    "en": "Ethics",
+    "fa": "اخلاق",
+    "ar": "Ethics"
+  },
+  {
+    "key": "home21.eventChat",
+    "module": "home21",
+    "en": "Live chat",
+    "fa": "گفت‌وگوی زنده",
+    "ar": "Live chat"
+  },
+  {
+    "key": "home21.eventEmptyText",
+    "module": "home21",
+    "en": "The event experience shell is ready and will connect to live event data in the dedicated event work.",
+    "fa": "زیرساخت تجربه رویداد آماده شده و در مرحله مربوط به رویدادها به داده زنده متصل می‌شود.",
+    "ar": "The event experience shell is ready and will connect to live event data in the dedicated event work."
+  },
+  {
+    "key": "home21.eventEmptyTitle",
+    "module": "home21",
+    "en": "No public events published yet",
+    "fa": "هنوز رویداد عمومی منتشر نشده است",
+    "ar": "No public events published yet"
+  },
+  {
+    "key": "home21.eventLive",
+    "module": "home21",
+    "en": "Live video & audio",
+    "fa": "ویدئو و صوت زنده",
+    "ar": "Live video & audio"
+  },
+  {
+    "key": "home21.eventQa",
+    "module": "home21",
+    "en": "Questions & answers",
+    "fa": "پرسش و پاسخ",
+    "ar": "Questions & answers"
+  },
+  {
+    "key": "home21.events",
+    "module": "home21",
+    "en": "Live events",
+    "fa": "رویدادهای زنده",
+    "ar": "Live events"
+  },
+  {
+    "key": "home21.eventsCta",
+    "module": "home21",
+    "en": "Explore events",
+    "fa": "مشاهده رویدادها",
+    "ar": "Explore events"
+  },
+  {
+    "key": "home21.eventsText",
+    "module": "home21",
+    "en": "Interactive educational sessions with live questions and discussion.",
+    "fa": "جلسه‌های زنده آموزشی و تعاملی با امکان پرسش و گفت‌وگو.",
+    "ar": "Interactive educational sessions with live questions and discussion."
+  },
+  {
+    "key": "home21.eventText",
+    "module": "home21",
+    "en": "Published public events will appear here.",
+    "fa": "رویدادهای عمومی پس از انتشار از این بخش قابل مشاهده خواهند بود.",
+    "ar": "Published public events will appear here."
+  },
+  {
+    "key": "home21.eventTitle",
+    "module": "home21",
+    "en": "Upcoming events",
+    "fa": "رویدادهای پیش رو",
+    "ar": "Upcoming events"
+  },
+  {
+    "key": "home21.expertsText",
+    "module": "home21",
+    "en": "Verified experts matching your selected language and topic.",
+    "fa": "اساتید تأییدشده‌ای که با زبان و موضوع انتخابی شما هماهنگ‌اند.",
+    "ar": "Verified experts matching your selected language and topic."
+  },
+  {
+    "key": "home21.expertsTitle",
+    "module": "home21",
+    "en": "People ready to listen",
+    "fa": "همراهانی برای شنیدن شما",
+    "ar": "People ready to listen"
+  },
+  {
+    "key": "home21.explore",
+    "module": "home21",
+    "en": "Explore services",
+    "fa": "مشاهده خدمات",
+    "ar": "Explore services"
+  },
+  {
+    "key": "home21.eyebrow",
+    "module": "home21",
+    "en": "Answers, guidance and consultation — in your language",
+    "fa": "پاسخ، همراهی و مشاوره؛ به زبان شما",
+    "ar": "Answers, guidance and consultation — in your language"
+  },
+  {
+    "key": "home21.family",
+    "module": "home21",
+    "en": "Family",
+    "fa": "خانواده",
+    "ar": "Family"
+  },
+  {
+    "key": "home21.finalPrimary",
+    "module": "home21",
+    "en": "Start consultation",
+    "fa": "شروع مشاوره",
+    "ar": "Start consultation"
+  },
+  {
+    "key": "home21.finalSecondary",
+    "module": "home21",
+    "en": "Ask a question",
+    "fa": "پرسیدن سؤال",
+    "ar": "Ask a question"
+  },
+  {
+    "key": "home21.finalText",
+    "module": "home21",
+    "en": "Start with one simple question and Vianoor will guide you toward the most suitable path.",
+    "fa": "از یک سؤال ساده شروع کنید؛ ویانور شما را به مناسب‌ترین مسیر هدایت می‌کند.",
+    "ar": "Start with one simple question and Vianoor will guide you toward the most suitable path."
+  },
+  {
+    "key": "home21.finalTitle",
+    "module": "home21",
+    "en": "You do not have to find the way alone.",
+    "fa": "لازم نیست مسیر را تنها پیدا کنید.",
+    "ar": "You do not have to find the way alone."
+  },
+  {
+    "key": "home21.fourWays",
+    "module": "home21",
+    "en": "Four ways we can help",
+    "fa": "چهار راه برای همراهی شما",
+    "ar": "Four ways we can help"
+  },
+  {
+    "key": "home21.fourWaysText",
+    "module": "home21",
+    "en": "Choose an expert, ask a question, join a live event, or enter the helpline queue for immediate guidance.",
+    "fa": "بسته به نیازتان می‌توانید یک استاد را انتخاب کنید، سؤال بپرسید، در رویداد شرکت کنید یا برای مشاوره فوری وارد صف شوید.",
+    "ar": "Choose an expert, ask a question, join a live event, or enter the helpline queue for immediate guidance."
+  },
+  {
+    "key": "home21.free",
+    "module": "home21",
+    "en": "Free",
+    "fa": "رایگان",
+    "ar": "Free"
+  },
+  {
+    "key": "home21.from",
+    "module": "home21",
+    "en": "From",
+    "fa": "از",
+    "ar": "From"
+  },
+  {
+    "key": "home21.helpline",
+    "module": "home21",
+    "en": "Talk now",
+    "fa": "مشاوره فوری",
+    "ar": "Talk now"
+  },
+  {
+    "key": "home21.helplineCta",
+    "module": "home21",
+    "en": "Talk now",
+    "fa": "همین حالا صحبت کنید",
+    "ar": "Talk now"
+  },
+  {
+    "key": "home21.helplineText",
+    "module": "home21",
+    "en": "No expert selection required. Join the queue and connect with the first suitable responder.",
+    "fa": "بدون انتخاب استاد؛ وارد صف شوید تا به اولین پاسخگوی مناسب متصل شوید.",
+    "ar": "No expert selection required. Join the queue and connect with the first suitable responder."
+  },
+  {
+    "key": "home21.insight1",
+    "module": "home21",
+    "en": "Listening is the first step in a good conversation",
+    "fa": "شنیدن، اولین قدم یک گفت‌وگوی خوب",
+    "ar": "Listening is the first step in a good conversation"
+  },
+  {
+    "key": "home21.insight2",
+    "module": "home21",
+    "en": "How can we ask a better question?",
+    "fa": "چطور پرسش بهتری بپرسیم؟",
+    "ar": "How can we ask a better question?"
+  },
+  {
+    "key": "home21.insight3",
+    "module": "home21",
+    "en": "Growth begins with small steps",
+    "fa": "رشد از قدم‌های کوچک آغاز می‌شود",
+    "ar": "Growth begins with small steps"
+  },
+  {
+    "key": "home21.insightsText",
+    "module": "home21",
+    "en": "Short, practical reading for family, relationships, spirituality, parenting and everyday life.",
+    "fa": "مطالب کوتاه و کاربردی برای خانواده، روابط، معنویت، تربیت و زندگی روزمره.",
+    "ar": "Short, practical reading for family, relationships, spirituality, parenting and everyday life."
+  },
+  {
+    "key": "home21.insightsTitle",
+    "module": "home21",
+    "en": "Insights for everyday life",
+    "fa": "دانستنی‌هایی برای زندگی",
+    "ar": "Insights for everyday life"
+  },
+  {
+    "key": "home21.intro",
+    "module": "home21",
+    "en": "Vianoor gives you several ways to ask, talk, join live events, and receive guidance — simply, respectfully, and in your language.",
+    "fa": "ویانور راه‌های مختلفی برای پرسیدن، گفت‌وگو، شرکت در رویداد و دریافت مشاوره در اختیار شما می‌گذارد؛ ساده، محترمانه و متناسب با زبان شما.",
+    "ar": "Vianoor gives you several ways to ask, talk, join live events, and receive guidance — simply, respectfully, and in your language."
+  },
+  {
+    "key": "home21.language",
+    "module": "home21",
+    "en": "In which language?",
+    "fa": "به چه زبانی؟",
+    "ar": "In which language?"
+  },
+  {
+    "key": "home21.languages",
+    "module": "home21",
+    "en": "Languages",
+    "fa": "زبان‌ها",
+    "ar": "Languages"
+  },
+  {
+    "key": "home21.latestQuestions",
+    "module": "home21",
+    "en": "Latest questions",
+    "fa": "پرسش‌های تازه",
+    "ar": "Latest questions"
+  },
+  {
+    "key": "home21.loading",
+    "module": "home21",
+    "en": "Loading…",
+    "fa": "در حال دریافت اطلاعات…",
+    "ar": "Loading…"
+  },
+  {
+    "key": "home21.mental",
+    "module": "home21",
+    "en": "Mental wellbeing",
+    "fa": "سلامت روان",
+    "ar": "Mental wellbeing"
+  },
+  {
+    "key": "home21.minutes",
+    "module": "home21",
+    "en": "min",
+    "fa": "دقیقه",
+    "ar": "min"
+  },
+  {
+    "key": "home21.need",
+    "module": "home21",
+    "en": "What do you need help with?",
+    "fa": "چه کمکی می‌خواهید؟",
+    "ar": "What do you need help with?"
+  },
+  {
+    "key": "home21.noExperts",
+    "module": "home21",
+    "en": "No suitable public experts are currently published.",
+    "fa": "در حال حاضر استاد عمومی متناسبی منتشر نشده است.",
+    "ar": "No suitable public experts are currently published."
+  },
+  {
+    "key": "home21.noQuestions",
+    "module": "home21",
+    "en": "No public questions have been published yet.",
+    "fa": "هنوز پرسش عمومی منتشر نشده است.",
+    "ar": "No public questions have been published yet."
+  },
+  {
+    "key": "home21.parenting",
+    "module": "home21",
+    "en": "Parenting",
+    "fa": "تربیت",
+    "ar": "Parenting"
+  },
+  {
+    "key": "home21.publishedQuestions",
+    "module": "home21",
+    "en": "Published questions",
+    "fa": "پرسش منتشرشده",
+    "ar": "Published questions"
+  },
+  {
+    "key": "home21.qnaText",
+    "module": "home21",
+    "en": "Browse published questions or ask one of your own.",
+    "fa": "پرسش‌های منتشرشده را مرور کنید یا سؤال خودتان را مطرح کنید.",
+    "ar": "Browse published questions or ask one of your own."
+  },
+  {
+    "key": "home21.qnaTitle",
+    "module": "home21",
+    "en": "One step closer to an answer",
+    "fa": "یک قدم نزدیک‌تر به پاسخ",
+    "ar": "One step closer to an answer"
+  },
+  {
+    "key": "home21.questions",
+    "module": "home21",
+    "en": "Questions & answers",
+    "fa": "پرسش و پاسخ",
+    "ar": "Questions & answers"
+  },
+  {
+    "key": "home21.questionsCta",
+    "module": "home21",
+    "en": "Explore questions",
+    "fa": "مشاهده پرسش‌ها",
+    "ar": "Explore questions"
+  },
+  {
+    "key": "home21.questionsText",
+    "module": "home21",
+    "en": "Ask your question and receive a reviewed, traceable answer.",
+    "fa": "سؤال خود را مطرح کنید و پاسخ علمی و قابل پیگیری دریافت کنید.",
+    "ar": "Ask your question and receive a reviewed, traceable answer."
+  },
+  {
+    "key": "home21.read",
+    "module": "home21",
+    "en": "Read",
+    "fa": "مطالعه",
+    "ar": "Read"
+  },
+  {
+    "key": "home21.realData",
+    "module": "home21",
+    "en": "Based on active platform data",
+    "fa": "بر اساس اطلاعات فعال سامانه",
+    "ar": "Based on active platform data"
+  },
+  {
+    "key": "home21.relationships",
+    "module": "home21",
+    "en": "Relationships",
+    "fa": "روابط",
+    "ar": "Relationships"
+  },
+  {
+    "key": "home21.requestSession",
+    "module": "home21",
+    "en": "Request session",
+    "fa": "درخواست جلسه",
+    "ar": "Request session"
+  },
+  {
+    "key": "home21.rulings",
+    "module": "home21",
+    "en": "Religious rulings",
+    "fa": "احکام",
+    "ar": "Religious rulings"
+  },
+  {
+    "key": "home21.seeQuestions",
+    "module": "home21",
+    "en": "View all questions",
+    "fa": "مشاهده همه پرسش‌ها",
+    "ar": "View all questions"
+  },
+  {
+    "key": "home21.showExperts",
+    "module": "home21",
+    "en": "Show suitable experts",
+    "fa": "نمایش استادهای مناسب",
+    "ar": "Show suitable experts"
+  },
+  {
+    "key": "home21.smartText",
+    "module": "home21",
+    "en": "Three quick choices to reach the right path faster.",
+    "fa": "سه انتخاب کوتاه، برای رسیدن سریع‌تر به مسیر مناسب.",
+    "ar": "Three quick choices to reach the right path faster."
+  },
+  {
+    "key": "home21.smartTitle",
+    "module": "home21",
+    "en": "Start right here",
+    "fa": "از همین‌جا شروع کنید",
+    "ar": "Start right here"
+  },
+  {
+    "key": "home21.specialties",
+    "module": "home21",
+    "en": "Specialties",
+    "fa": "تخصص‌ها",
+    "ar": "Specialties"
+  },
+  {
+    "key": "home21.spirituality",
+    "module": "home21",
+    "en": "Spirituality",
+    "fa": "معنویت",
+    "ar": "Spirituality"
+  },
+  {
+    "key": "home21.start",
+    "module": "home21",
+    "en": "Get started",
+    "fa": "شروع کنید",
+    "ar": "Get started"
+  },
+  {
+    "key": "home21.thisWeek",
+    "module": "home21",
+    "en": "This week",
+    "fa": "این هفته",
+    "ar": "This week"
+  },
+  {
+    "key": "home21.title1",
+    "module": "home21",
+    "en": "A clearer way forward,",
+    "fa": "راهی روشن‌تر،",
+    "ar": "A clearer way forward,"
+  },
+  {
+    "key": "home21.title2",
+    "module": "home21",
+    "en": "for what matters today.",
+    "fa": "برای آنچه امروز در ذهن شماست.",
+    "ar": "for what matters today."
+  },
+  {
+    "key": "home21.today",
+    "module": "home21",
+    "en": "Today",
+    "fa": "همین امروز",
+    "ar": "Today"
+  },
+  {
+    "key": "home21.tomorrow",
+    "module": "home21",
+    "en": "Tomorrow",
+    "fa": "فردا",
+    "ar": "Tomorrow"
+  },
+  {
+    "key": "home21.unavailable",
+    "module": "home21",
+    "en": "This information is temporarily unavailable.",
+    "fa": "اطلاعات این بخش موقتاً در دسترس نیست.",
+    "ar": "This information is temporarily unavailable."
+  },
+  {
+    "key": "home21.verified",
+    "module": "home21",
+    "en": "Verified expert",
+    "fa": "استاد تأییدشده",
+    "ar": "Verified expert"
+  },
+  {
+    "key": "home21.viewProfile",
+    "module": "home21",
+    "en": "View profile",
+    "fa": "مشاهده پروفایل",
+    "ar": "View profile"
+  },
+  {
+    "key": "home21.when",
+    "module": "home21",
+    "en": "When?",
+    "fa": "چه زمانی؟",
+    "ar": "When?"
   },
   {
     "key": "inline.auth.1e9cca2d3cfb",
@@ -7759,6 +8935,342 @@
     "fa": "کیف پول‌ها"
   },
   {
+    "key": "services21.consultation",
+    "module": "services21",
+    "en": "Expert consultation",
+    "fa": "مشاوره با استاد",
+    "ar": "Expert consultation"
+  },
+  {
+    "key": "services21.consultationAudience",
+    "module": "services21",
+    "en": "For people who value privacy, a scheduled time, and choosing their expert.",
+    "fa": "برای افرادی که مشاوره خصوصی، زمان مشخص و انتخاب استاد برایشان مهم است.",
+    "ar": "For people who value privacy, a scheduled time, and choosing their expert."
+  },
+  {
+    "key": "services21.consultationCost",
+    "module": "services21",
+    "en": "The service price is shown clearly before booking and payment.",
+    "fa": "هزینه هر خدمت پیش از رزرو و پرداخت به‌صورت شفاف نمایش داده می‌شود.",
+    "ar": "The service price is shown clearly before booking and payment."
+  },
+  {
+    "key": "services21.consultationHow",
+    "module": "services21",
+    "en": "Topic → language → expert → time → payment → audio/video session",
+    "fa": "موضوع → زبان → استاد → زمان → پرداخت → جلسه صوتی/تصویری",
+    "ar": "Topic → language → expert → time → payment → audio/video session"
+  },
+  {
+    "key": "services21.consultationLead",
+    "module": "services21",
+    "en": "For situations that need a direct conversation and dedicated time.",
+    "fa": "برای موضوعی که نیاز به گفت‌وگوی مستقیم و زمان اختصاصی دارد.",
+    "ar": "For situations that need a direct conversation and dedicated time."
+  },
+  {
+    "key": "services21.consultationProblem",
+    "module": "services21",
+    "en": "When a general answer is not enough and you want to discuss your own situation with a suitable expert.",
+    "fa": "وقتی یک پاسخ عمومی کافی نیست و می‌خواهید مسئله خودتان را با استاد مناسب مطرح کنید.",
+    "ar": "When a general answer is not enough and you want to discuss your own situation with a suitable expert."
+  },
+  {
+    "key": "services21.consultationStart",
+    "module": "services21",
+    "en": "Choose an expert",
+    "fa": "انتخاب استاد",
+    "ar": "Choose an expert"
+  },
+  {
+    "key": "services21.cost",
+    "module": "services21",
+    "en": "Cost",
+    "fa": "هزینه",
+    "ar": "Cost"
+  },
+  {
+    "key": "services21.events",
+    "module": "services21",
+    "en": "Live events",
+    "fa": "رویدادهای زنده",
+    "ar": "Live events"
+  },
+  {
+    "key": "services21.eventsAudience",
+    "module": "services21",
+    "en": "For workshops, lectures, classes and group programs.",
+    "fa": "برای کارگاه، نشست، سخنرانی، جلسه آموزشی و برنامه‌های گروهی.",
+    "ar": "For workshops, lectures, classes and group programs."
+  },
+  {
+    "key": "services21.eventsCost",
+    "module": "services21",
+    "en": "Events may be free or paid. The price is shown before registration.",
+    "fa": "هر رویداد می‌تواند رایگان یا پولی باشد و هزینه قبل از ثبت‌نام مشخص می‌شود.",
+    "ar": "Events may be free or paid. The price is shown before registration."
+  },
+  {
+    "key": "services21.eventsHow",
+    "module": "services21",
+    "en": "Find event → register → pay if needed → reminder → join",
+    "fa": "انتخاب رویداد → ثبت‌نام → پرداخت در صورت نیاز → یادآوری → ورود",
+    "ar": "Find event → register → pay if needed → reminder → join"
+  },
+  {
+    "key": "services21.eventsLead",
+    "module": "services21",
+    "en": "For educational sessions and shared live conversations.",
+    "fa": "برای حضور در نشست‌های آموزشی و گفت‌وگوی جمعی.",
+    "ar": "For educational sessions and shared live conversations."
+  },
+  {
+    "key": "services21.eventsLink",
+    "module": "services21",
+    "en": "Live events",
+    "fa": "رویدادهای زنده",
+    "ar": "Live events"
+  },
+  {
+    "key": "services21.eventsProblem",
+    "module": "services21",
+    "en": "Join live programs, watch the speaker and participate through Q&A and interaction.",
+    "fa": "در برنامه‌های زنده شرکت کنید، سخنران را ببینید و در بخش پرسش و پاسخ تعامل داشته باشید.",
+    "ar": "Join live programs, watch the speaker and participate through Q&A and interaction."
+  },
+  {
+    "key": "services21.eventsStart",
+    "module": "services21",
+    "en": "Explore events",
+    "fa": "مشاهده رویدادها",
+    "ar": "Explore events"
+  },
+  {
+    "key": "services21.experts",
+    "module": "services21",
+    "en": "Find a suitable expert",
+    "fa": "پیدا کردن استاد مناسب",
+    "ar": "Find a suitable expert"
+  },
+  {
+    "key": "services21.eyebrow",
+    "module": "services21",
+    "en": "Ways Vianoor can help",
+    "fa": "راه‌های همراهی ویانور",
+    "ar": "Ways Vianoor can help"
+  },
+  {
+    "key": "services21.faq",
+    "module": "services21",
+    "en": "Frequently asked questions",
+    "fa": "پرسش‌های متداول",
+    "ar": "Frequently asked questions"
+  },
+  {
+    "key": "services21.faq1",
+    "module": "services21",
+    "en": "Will I see the price before payment?",
+    "fa": "آیا قبل از پرداخت هزینه را می‌بینم؟",
+    "ar": "Will I see the price before payment?"
+  },
+  {
+    "key": "services21.faq1a",
+    "module": "services21",
+    "en": "Yes. Price and conditions are shown before a booking or registration is finalized.",
+    "fa": "بله. مبلغ و شرایط خدمت پیش از نهایی‌شدن رزرو یا ثبت‌نام نمایش داده می‌شود.",
+    "ar": "Yes. Price and conditions are shown before a booking or registration is finalized."
+  },
+  {
+    "key": "services21.faq2",
+    "module": "services21",
+    "en": "Can I choose the service language?",
+    "fa": "آیا زبان خدمت قابل انتخاب است؟",
+    "ar": "Can I choose the service language?"
+  },
+  {
+    "key": "services21.faq2a",
+    "module": "services21",
+    "en": "Yes. Only languages currently enabled by the platform are shown.",
+    "fa": "بله. فقط زبان‌های فعال سامانه در انتخاب‌گرها نمایش داده می‌شوند.",
+    "ar": "Yes. Only languages currently enabled by the platform are shown."
+  },
+  {
+    "key": "services21.faq3",
+    "module": "services21",
+    "en": "Do I have to choose an expert for every service?",
+    "fa": "آیا برای همه خدمات باید استاد انتخاب کنم؟",
+    "ar": "Do I have to choose an expert for every service?"
+  },
+  {
+    "key": "services21.faq3a",
+    "module": "services21",
+    "en": "No. Talk Now connects you to the first suitable responder.",
+    "fa": "خیر. در مشاوره فوری سامانه شما را به اولین پاسخگوی مناسب متصل می‌کند.",
+    "ar": "No. Talk Now connects you to the first suitable responder."
+  },
+  {
+    "key": "services21.helpline",
+    "module": "services21",
+    "en": "Talk now",
+    "fa": "مشاوره فوری",
+    "ar": "Talk now"
+  },
+  {
+    "key": "services21.helplineAudience",
+    "module": "services21",
+    "en": "For immediate needs that should not wait for ordinary booking.",
+    "fa": "برای نیاز فوری و گفت‌وگویی که امکان انتظار برای رزرو عادی ندارد.",
+    "ar": "For immediate needs that should not wait for ordinary booking."
+  },
+  {
+    "key": "services21.helplineCost",
+    "module": "services21",
+    "en": "Price and conditions are shown before the final connection.",
+    "fa": "هزینه و شرایط پیش از اتصال نهایی نمایش داده می‌شود.",
+    "ar": "Price and conditions are shown before the final connection."
+  },
+  {
+    "key": "services21.helplineHow",
+    "module": "services21",
+    "en": "Topic → language → call type → queue → connection",
+    "fa": "موضوع → زبان → نوع تماس → صف → اتصال",
+    "ar": "Topic → language → call type → queue → connection"
+  },
+  {
+    "key": "services21.helplineLead",
+    "module": "services21",
+    "en": "For moments when you do not want to choose an expert or scheduled time.",
+    "fa": "برای زمانی که نمی‌خواهید استاد یا وقت مشخصی انتخاب کنید.",
+    "ar": "For moments when you do not want to choose an expert or scheduled time."
+  },
+  {
+    "key": "services21.helplineProblem",
+    "module": "services21",
+    "en": "Choose a topic and language, enter the queue, and connect to the first suitable responder.",
+    "fa": "موضوع و زبان را انتخاب کنید و در صف قرار بگیرید تا اولین پاسخگوی مناسب متصل شود.",
+    "ar": "Choose a topic and language, enter the queue, and connect to the first suitable responder."
+  },
+  {
+    "key": "services21.helplineStart",
+    "module": "services21",
+    "en": "Talk now",
+    "fa": "همین حالا صحبت کنید",
+    "ar": "Talk now"
+  },
+  {
+    "key": "services21.how",
+    "module": "services21",
+    "en": "How does it work?",
+    "fa": "چطور کار می‌کند؟",
+    "ar": "How does it work?"
+  },
+  {
+    "key": "services21.intro",
+    "module": "services21",
+    "en": "From a private conversation with an expert to public Q&A, live events and immediate help — choose the path that fits.",
+    "fa": "از گفت‌وگوی خصوصی با استاد تا پرسش عمومی، رویداد زنده و مشاوره فوری؛ مسیر مناسب را انتخاب کنید.",
+    "ar": "From a private conversation with an expert to public Q&A, live events and immediate help — choose the path that fits."
+  },
+  {
+    "key": "services21.languages",
+    "module": "services21",
+    "en": "Languages",
+    "fa": "زبان‌ها",
+    "ar": "Languages"
+  },
+  {
+    "key": "services21.languageText",
+    "module": "services21",
+    "en": "Available languages come directly from the language list enabled by platform administrators.",
+    "fa": "زبان‌های قابل استفاده از همان فهرست فعال‌شده توسط مدیر سامانه انتخاب می‌شوند.",
+    "ar": "Available languages come directly from the language list enabled by platform administrators."
+  },
+  {
+    "key": "services21.questions",
+    "module": "services21",
+    "en": "Questions & answers",
+    "fa": "پرسش و پاسخ",
+    "ar": "Questions & answers"
+  },
+  {
+    "key": "services21.questionsAudience",
+    "module": "services21",
+    "en": "For religious, belief, family and other questions suitable for written answers.",
+    "fa": "برای پرسش‌های دینی، اعتقادی، خانوادگی و موضوعاتی که پاسخ مکتوب برایشان مناسب است.",
+    "ar": "For religious, belief, family and other questions suitable for written answers."
+  },
+  {
+    "key": "services21.questionsCost",
+    "module": "services21",
+    "en": "Depending on the service, Q&A may be free or part of a paid text service.",
+    "fa": "بسته به نوع خدمت می‌تواند رایگان یا بخشی از یک خدمت متنی باشد.",
+    "ar": "Depending on the service, Q&A may be free or part of a paid text service."
+  },
+  {
+    "key": "services21.questionsHow",
+    "module": "services21",
+    "en": "Question → topic → language → answer → follow-up",
+    "fa": "سؤال → موضوع → زبان → پاسخ → پیگیری",
+    "ar": "Question → topic → language → answer → follow-up"
+  },
+  {
+    "key": "services21.questionsLead",
+    "module": "services21",
+    "en": "For questions that benefit from a written, reusable answer.",
+    "fa": "برای سؤالی که می‌تواند پاسخ مکتوب و قابل مراجعه داشته باشد.",
+    "ar": "For questions that benefit from a written, reusable answer."
+  },
+  {
+    "key": "services21.questionsLink",
+    "module": "services21",
+    "en": "Open Q&A",
+    "fa": "ورود به پرسش و پاسخ",
+    "ar": "Open Q&A"
+  },
+  {
+    "key": "services21.questionsProblem",
+    "module": "services21",
+    "en": "Submit a question, receive an expert answer, and continue the discussion when permitted.",
+    "fa": "سؤال خود را ثبت کنید، پاسخ استاد را دریافت کنید و در صورت مجاز بودن بحث را ادامه دهید.",
+    "ar": "Submit a question, receive an expert answer, and continue the discussion when permitted."
+  },
+  {
+    "key": "services21.questionsStart",
+    "module": "services21",
+    "en": "Explore questions",
+    "fa": "مشاهده پرسش‌ها",
+    "ar": "Explore questions"
+  },
+  {
+    "key": "services21.solves",
+    "module": "services21",
+    "en": "What does it solve?",
+    "fa": "چه مسئله‌ای را حل می‌کند؟",
+    "ar": "What does it solve?"
+  },
+  {
+    "key": "services21.suitable",
+    "module": "services21",
+    "en": "Who is it for?",
+    "fa": "برای چه کسی مناسب است؟",
+    "ar": "Who is it for?"
+  },
+  {
+    "key": "services21.talkNow",
+    "module": "services21",
+    "en": "Talk now",
+    "fa": "مشاوره فوری",
+    "ar": "Talk now"
+  },
+  {
+    "key": "services21.title",
+    "module": "services21",
+    "en": "A service that fits what you need today",
+    "fa": "خدمتی متناسب با نیاز امروز شما",
+    "ar": "A service that fits what you need today"
+  },
+  {
     "key": "sessionsCopy.admit",
     "module": "sessionscopy",
     "en": "Join as authorized observer",
@@ -8478,6 +9990,42 @@
     "en": "Waiting room open",
     "fa": "اتاق انتظار باز است",
     "ar": "Waiting room open"
+  },
+  {
+    "key": "shell.nav.insights",
+    "module": "shell",
+    "en": "Insights",
+    "fa": "دانستنی‌ها"
+  },
+  {
+    "key": "shell.nav.questions",
+    "module": "shell",
+    "en": "Questions",
+    "fa": "پرسش‌ها"
+  },
+  {
+    "key": "shell.socialNetworks",
+    "module": "shell",
+    "en": "Social networks",
+    "fa": "شبکه‌های اجتماعی"
+  },
+  {
+    "key": "shell.theme.dark",
+    "module": "shell",
+    "en": "Switch to dark mode",
+    "fa": "حالت شب"
+  },
+  {
+    "key": "shell.theme.light",
+    "module": "shell",
+    "en": "Switch to light mode",
+    "fa": "حالت روشن"
+  },
+  {
+    "key": "siteSettings.tab",
+    "module": "sitesettings",
+    "en": "Site settings",
+    "fa": "تنظیمات سایت"
   },
   {
     "key": "threeCalendarCopy.allDates",
