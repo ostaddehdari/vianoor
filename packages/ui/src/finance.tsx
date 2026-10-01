@@ -2,6 +2,10 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { financeCopy } from './finance-copy';
 import { userApi, usersBase } from './users-client';
+import { DashboardDrawer } from './dashboard22-drawer';
+import { DashboardDataTable } from './dashboard22-table';
+import { dashboard22TableCopy } from './dashboard22-table-copy';
+import { Icon } from './icons';
 type Row = Record<string, unknown>;
 type Copy = Record<string, string>;
 const str = (value: unknown) =>
@@ -52,79 +56,135 @@ function Input({
   );
 }
 function Table({
+  locale,
   rows,
   columns,
   t,
   actions,
 }: {
+  locale: string;
   rows: Row[];
   columns: string[];
   t: Copy;
   actions?: ((row: Row) => React.ReactNode) | undefined;
 }) {
-  return rows.length ? (
-    <div className="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            {columns.map((c) => (
-              <th key={c}>{t[c] ?? c}</th>
-            ))}
-            {actions && <th>{t.process}</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => (
-            <tr key={str(r.id ?? i)}>
-              {columns.map((c) => (
-                <td key={c}>
-                  <bdi>
-                    {[
-                      'amount',
-                      'balance',
-                      'debit',
-                      'credit',
-                      'gross',
-                      'commission',
-                      'tax',
-                      'refunds',
-                      'net_revenue',
-                      'fee',
-                    ].includes(c) && r.currency ? (
-                      <Money
-                        amount={r[c]}
-                        decimals={
-                          ['IRR', 'IRT'].includes(str(r.currency))
-                            ? 0
-                            : str(r.currency) === 'BTC'
-                              ? 8
-                              : str(r.currency) === 'ETH'
-                                ? 18
-                                : ['USDT', 'USDC'].includes(str(r.currency))
-                                  ? 6
-                                  : 2
-                        }
-                      />
-                    ) : (
-                      (t[str(r[c])] ?? str(r[c]))
-                    )}
-                  </bdi>
-                </td>
-              ))}
-              {actions && (
-                <td>
-                  <div className="user-actions">{actions(r)}</div>
-                </td>
+  return (
+    <DashboardDataTable
+      locale={locale}
+      rows={rows}
+      getRowId={(row, index) =>
+        str(
+          row.id ??
+          row.reference ??
+          index
+        )
+      }
+      columns={columns.map(
+        (column) => ({
+          key: column,
+
+          label:
+            t[column] ??
+            column,
+
+          render: (row: Row) => (
+            <bdi>
+              {[
+                'amount',
+                'balance',
+                'debit',
+                'credit',
+                'gross',
+                'commission',
+                'tax',
+                'refunds',
+                'net_revenue',
+                'fee',
+              ].includes(
+                column,
+              ) &&
+              row.currency ? (
+                <Money
+                  amount={
+                    row[column]
+                  }
+                  decimals={
+                    [
+                      'IRR',
+                      'IRT',
+                    ].includes(
+                      str(
+                        row.currency,
+                      ),
+                    )
+                      ? 0
+                      : str(
+                            row.currency,
+                          ) ===
+                          'BTC'
+                        ? 8
+                        : str(
+                              row.currency,
+                            ) ===
+                            'ETH'
+                          ? 18
+                          : [
+                                'USDT',
+                                'USDC',
+                              ].includes(
+                                str(
+                                  row.currency,
+                                ),
+                              )
+                            ? 6
+                            : 2
+                  }
+                />
+              ) : (
+                t[
+                  str(
+                    row[column],
+                  )
+                ] ??
+                str(
+                  row[column],
+                )
               )}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  ) : (
-    <p>{t.empty}</p>
+            </bdi>
+          ),
+
+          searchValue:
+            (row: Row) =>
+              str(
+                row[column],
+              ),
+
+          sortValue:
+            (row: Row) => {
+              const value =
+                row[column];
+
+              return typeof value ===
+                'number'
+                ? value
+                : str(
+                    value,
+                  );
+            },
+        }),
+      )}
+      {...(
+        actions
+          ? {
+              renderActions:
+                actions,
+            }
+          : {}
+      )}
+    />
   );
 }
+
 export function FinanceWorkspace({
   locale,
   admin = false,
@@ -148,7 +208,9 @@ export function FinanceWorkspace({
     [period, setPeriod] = useState('month');
   const [payment, setPayment] = useState<Row | null>(null),
     [booking, setBooking] = useState(''),
-    [quote, setQuote] = useState<Row | null>(null);
+    [quote, setQuote] = useState<Row | null>(null),
+    [paymentDrawerOpen, setPaymentDrawerOpen] = useState(false),
+    [payoutDrawerOpen, setPayoutDrawerOpen] = useState(false);
   const request = useRef({ fingerprint: '', key: '' });
   const path = (part: string) => `${usersBase}/${locale}/${part}`;
   const act = async (fn: () => Promise<unknown>, reload = true) => {
@@ -218,7 +280,17 @@ export function FinanceWorkspace({
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     setBooking(q.get('booking') ?? '');
-    if (q.get('booking')) setProvider('wallet');
+
+    if (q.get('booking')) {
+      setProvider('wallet');
+      setPaymentDrawerOpen(true);
+    }
+
+    if (q.get('create') === 'payment')
+      setPaymentDrawerOpen(true);
+
+    if (q.get('create') === 'withdrawal')
+      setPayoutDrawerOpen(true);
     const id = q.get('payment');
     if (id && /^[a-f0-9-]{36}$/.test(id))
       void userApi<Row>('payments/' + id)
@@ -306,6 +378,7 @@ export function FinanceWorkspace({
           <p>{t.keysHint}</p>
           <p>{t.webhookHint}</p>
           <Table
+            locale={locale}
             rows={rows}
             columns={['provider', 'mode', 'currencies', 'connection_status', 'enabled']}
             t={t}
@@ -450,6 +523,7 @@ export function FinanceWorkspace({
             </form>
           </details>
           <Table
+            locale={locale}
             rows={rows}
             columns={['expert_id', 'country', 'service_kind', 'basis_points', 'priority', 'active']}
             t={t}
@@ -487,6 +561,7 @@ export function FinanceWorkspace({
             <button disabled={busy}>{t.save}</button>
           </form>
           <Table
+            locale={locale}
             rows={rows}
             columns={['base', 'quote', 'numerator', 'denominator', 'valid_until', 'source']}
             t={t}
@@ -495,6 +570,7 @@ export function FinanceWorkspace({
       )}
       {admin && tab === 'payments' && (
         <Table
+            locale={locale}
           rows={rows}
           columns={['id', 'provider', 'amount', 'currency', 'status', 'fulfillment', 'fee', 'risk']}
           t={t}
@@ -536,6 +612,7 @@ export function FinanceWorkspace({
             {t.balance}
           </button>
           <Table
+            locale={locale}
             rows={rows}
             columns={['id', 'reference', 'description', 'created_at']}
             t={t}
@@ -547,6 +624,7 @@ export function FinanceWorkspace({
       )}
       {admin && tab === 'refunds' && (
         <Table
+            locale={locale}
           rows={rows}
           columns={['payment_id', 'target', 'reason', 'status']}
           t={t}
@@ -573,6 +651,7 @@ export function FinanceWorkspace({
             </select>
           </label>
           <Table
+            locale={locale}
             rows={rows}
             columns={[
               'period',
@@ -622,8 +701,9 @@ export function FinanceWorkspace({
       {admin && tab === 'reconciliation' && (
         <>
           {actionButton('review', 'finance/reconcile')}
-          <Table rows={rows} columns={['payment_id', 'code', 'status', 'created_at']} t={t} />
+          <Table locale={locale} rows={rows} columns={['payment_id', 'code', 'status', 'created_at']} t={t} />
           <Table
+            locale={locale}
             rows={(extra.unmatched_events ?? []) as Row[]}
             columns={['gateway_id', 'event_type', 'received_at']}
             t={t}
@@ -633,11 +713,29 @@ export function FinanceWorkspace({
       {!admin && tab === 'wallet' && (
         <>
           <Table
+            locale={locale}
             rows={(extra.balances ?? []) as Row[]}
             columns={['currency', 'kind', 'balance']}
             t={t}
           />
-          <form
+          <div className="dash22-page-actions">
+            <button
+              type="button"
+              className="dash22-primary-create"
+              onClick={() => setPaymentDrawerOpen(true)}
+            >
+              <Icon name="wallet" />
+              {booking ? t.pay : t.topup}
+            </button>
+          </div>
+
+          <DashboardDrawer
+            open={paymentDrawerOpen}
+            title={booking ? (t.pay ?? 'Pay') : (t.topup ?? 'Top up')}
+            closeLabel={dashboard22TableCopy[locale]!.close}
+            onClose={() => setPaymentDrawerOpen(false)}
+          >
+<form
             className="scholar-form"
             onSubmit={(e) => {
               const d = fields(e);
@@ -719,6 +817,7 @@ export function FinanceWorkspace({
               {t.pay}
             </button>
           </form>
+          </DashboardDrawer>
           {payment && (
             <article className="user-card">
               <h3>{t.remaining}</h3>
@@ -770,6 +869,7 @@ export function FinanceWorkspace({
           )}
           <h3 id="payments">{t.payments}</h3>
           <Table
+            locale={locale}
             rows={(extra.payments ?? []) as Row[]}
             columns={['id', 'provider', 'amount', 'currency', 'status']}
             t={t}
@@ -831,6 +931,7 @@ export function FinanceWorkspace({
           </details>
           <h3 id="history">{t.history}</h3>
           <Table
+            locale={locale}
             rows={rows}
             columns={['created_at', 'description', 'kind', 'currency', 'debit', 'credit']}
             t={t}
@@ -841,7 +942,24 @@ export function FinanceWorkspace({
         <>
           {!admin && (
             <>
-              <p>{t.withdrawHint}</p>
+              <div className="dash22-page-actions">
+                <button
+                  type="button"
+                  className="dash22-primary-create"
+                  onClick={() => setPayoutDrawerOpen(true)}
+                >
+                  <Icon name="wallet" />
+                  {t.withdraw}
+                </button>
+              </div>
+
+              <DashboardDrawer
+                open={payoutDrawerOpen}
+                title={t.withdraw ?? 'Withdrawal'}
+                closeLabel={dashboard22TableCopy[locale]!.close}
+                onClose={() => setPayoutDrawerOpen(false)}
+              >
+<p>{t.withdrawHint}</p>
               <form
                 className="scholar-form"
                 onSubmit={(e) => {
@@ -896,9 +1014,11 @@ export function FinanceWorkspace({
                 {currencySelect()}
                 <button disabled={busy}>{t.withdraw}</button>
               </form>
+              </DashboardDrawer>
             </>
           )}
           <Table
+            locale={locale}
             rows={rows}
             columns={['id', 'amount', 'currency', 'method', 'status', 'provider_reference']}
             t={t}
@@ -995,6 +1115,7 @@ export function FinanceWorkspace({
             </form>
           )}
           <Table
+            locale={locale}
             rows={rows}
             columns={['id', 'booking_id', 'reason', 'status']}
             t={t}

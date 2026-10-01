@@ -4,6 +4,9 @@ import { languageValue } from './localization-runtime';
 import { useEffect, useState } from 'react';
 import { userApi, usersBase } from './users-client';
 import { scholarsCopy } from './scholars-copy';
+import { DashboardDrawer } from './dashboard22-drawer';
+import { dashboard22TableCopy } from './dashboard22-table-copy';
+import { Icon } from './icons';
 import {
   emptyProfessional,
   uploadAsset,
@@ -700,7 +703,22 @@ export function ScholarWorkspace({
       documents: '',
     }),
     [editService, setEditService] = useState(''),
+    [serviceDrawer, setServiceDrawer] = useState(false),
     [reviewServices, setReviewServices] = useState(true);
+
+  useEffect(() => {
+    if (
+      !admin &&
+      new URLSearchParams(
+        window.location.search,
+      ).get('create') === '1'
+    ) {
+      setTab('services');
+      setEditService('');
+      setServiceDrawer(true);
+    }
+  }, [admin]);
+
   const load = async () => {
     setTaxons(await userApi<Taxon[]>('taxonomy'));
     if (admin) {
@@ -1042,7 +1060,14 @@ export function ScholarWorkspace({
                         />
                       ) : (
                         <div className="user-actions">
-                          <button onClick={() => setEditService(s.id)}>{t.edit}</button>
+                          <button
+                            onClick={() => {
+                              setEditService(s.id);
+                              setServiceDrawer(true);
+                            }}
+                          >
+                            {t.edit}
+                          </button>
                           <button
                             onClick={() =>
                               void action(() =>
@@ -1066,31 +1091,86 @@ export function ScholarWorkspace({
                     </article>
                   ))}
                   {!admin && row.verified && (
-                    <ServiceForm
-                      key={editService}
-                      locale={locale}
-                      taxons={taxons.filter(
-                        (x) =>
-                          x.kind !== 'specialty' ||
-                          row.specialties.some(
-                            (s) => s.specialty_id === x.id && s.status === 'APPROVED',
-                          ),
-                      )}
-                      {...(editService
-                        ? { initial: row.offerings.find((s) => s.id === editService)!.details }
-                        : {})}
-                      onSave={async (v) => {
-                        await action(() =>
+                    <>
+                      <div className="dash22-page-actions">
+                        <button
+                          type="button"
+                          className="dash22-primary-create"
+                          onClick={() => {
+                            setEditService('');
+                            setServiceDrawer(true);
+                          }}
+                        >
+                          <Icon name="sparkles" />
+                          {dashboard22TableCopy[locale]!.newService}
+                        </button>
+                      </div>
+
+                      <DashboardDrawer
+                        open={serviceDrawer}
+                        title={
                           editService
-                            ? userApi('experts/me/services/' + editService, 'PUT', {
-                                details: v,
-                                revision: row.offerings.find((s) => s.id === editService)!.revision,
-                              })
-                            : userApi('experts/me/services', 'POST', v),
-                        );
-                        setEditService('');
-                      }}
-                    />
+                            ? t.edit
+                            : dashboard22TableCopy[locale]!.newService
+                        }
+                        closeLabel={dashboard22TableCopy[locale]!.close}
+                        onClose={() => {
+                          setServiceDrawer(false);
+                          setEditService('');
+                        }}
+                        wide
+                      >
+                        <ServiceForm
+                          key={editService || 'new-service'}
+                          locale={locale}
+                          taxons={taxons.filter(
+                            (x) =>
+                              x.kind !== 'specialty' ||
+                              row.specialties.some(
+                                (s) =>
+                                  s.specialty_id === x.id &&
+                                  s.status === 'APPROVED',
+                              ),
+                          )}
+                          {...(
+                            editService
+                              ? {
+                                  initial:
+                                    row.offerings.find(
+                                      (service) =>
+                                        service.id === editService,
+                                    )!.details,
+                                }
+                              : {}
+                          )}
+                          onSave={async (value) => {
+                            await action(() =>
+                              editService
+                                ? userApi(
+                                    'experts/me/services/' + editService,
+                                    'PUT',
+                                    {
+                                      details: value,
+                                      revision:
+                                        row.offerings.find(
+                                          (service) =>
+                                            service.id === editService,
+                                        )!.revision,
+                                    },
+                                  )
+                                : userApi(
+                                    'experts/me/services',
+                                    'POST',
+                                    value,
+                                  ),
+                            );
+
+                            setEditService('');
+                            setServiceDrawer(false);
+                          }}
+                        />
+                      </DashboardDrawer>
+                    </>
                   )}
                 </>
               )}

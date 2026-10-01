@@ -254,3 +254,102 @@ Other workspaces receive a clean statistics-only landing surface from the servic
 Operational forms no longer render on the dashboard home.
 
 Creation and operational actions remain in their dedicated pages / Quick Create and are redesigned further in Work 22.4.
+
+## Work 22.4 — Table-first Pages & Quick Create
+
+Implemented.
+
+### Standard Data Table
+
+A reusable dashboard table now provides:
+
+- Search
+- Sort
+- Pagination
+- Column visibility
+- Empty state
+- Row actions
+- optional Bulk Actions
+- responsive mobile cards
+
+The component is used by the principal operational areas and can be reused by later Event and Content modules.
+
+### Standard Drawer
+
+Create/edit workflows now use a common accessible side Drawer with:
+
+- modal semantics
+- background lock
+- Escape close
+- click-outside close
+- focus return
+- Light/Dark support
+- mobile full-width layout
+
+### Bookings
+
+The Sessions / Bookings page is now table-first.
+
+Columns include:
+
+- Expert
+- Subject / service
+- Date
+- Time
+- Status
+- Amount
+- Actions
+
+`New booking` opens the real BookingFlow in a Drawer.
+
+Rescheduling also opens in a Drawer instead of replacing the list.
+
+### Questions
+
+The permanent New Question form was removed.
+
+The page is now table-first and `New question` opens a Drawer.
+
+Answering, assignment, publication controls and visibility management are opened from Row Actions.
+
+### Finance
+
+The existing Finance table component now uses the shared dashboard table standard.
+
+Payment / Wallet top-up is opened in a Drawer.
+
+Withdrawal and destination management are opened in a Drawer.
+
+Existing payment/refund/ledger/risk functionality is preserved.
+
+### User management
+
+The permanent Invite User form was removed.
+
+Users are displayed using the shared Data Table.
+
+`Add user` opens a Drawer.
+
+### Expert services
+
+Creating and editing an Expert Service now occurs inside the standard Drawer.
+
+Existing service publication/review workflows remain unchanged.
+
+### Quick Create
+
+The unified Header Quick Create now sends users directly into create mode:
+
+- Client → New Booking / New Question
+- Expert → New Service
+- Admin → Add User
+
+The target page automatically opens its Drawer.
+
+### Events and Articles
+
+The reusable Table / Drawer infrastructure is ready for Event and Article create flows.
+
+No fake Event or Article creation UI was connected because those service backends are not yet implemented.
+
+This preserves the project rule that UI must not imply a working business capability when its backend owner does not yet exist.

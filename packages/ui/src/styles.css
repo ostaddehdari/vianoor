@@ -6,6 +6,7 @@
 @import './users.css';
 @import './dashboard22.css';
 @import './dashboard22-overview.css';
+@import './dashboard22-table.css';
 :root {
   --green: var(--color-primary);
   --deep: var(--color-primary-strong);

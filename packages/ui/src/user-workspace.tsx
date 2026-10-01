@@ -605,16 +605,20 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     part: string;
     label: string;
     icon: IconName;
+    href?: string | undefined;
   }[] =
     role === 'account'
       ? [
           {
-            part: 'book',
+            part: 'bookings',
             label:
               schedulingCopy[locale]!
                 .book,
             icon:
               'calendar',
+            href:
+              route('bookings') +
+              '?create=1',
           },
 
           {
@@ -624,6 +628,9 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
                 .questions,
             icon:
               'comments',
+            href:
+              route('questions') +
+              '?create=1',
           },
         ]
       : role === 'expert'
@@ -638,12 +645,15 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
             },
 
             {
-              part: 'professional',
+              part: 'offerings',
               label:
                 scholarsCopy[locale]!
-                  .professional,
+                  .services,
               icon:
-                'user',
+                'sparkles',
+              href:
+                route('offerings') +
+                '?create=1',
             },
           ]
         : admin
@@ -654,6 +664,9 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
                   t.users,
                 icon:
                   'user',
+                href:
+                  route('users') +
+                  '?create=1',
               },
 
               {
@@ -1287,6 +1300,7 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
                         item.part
                       }
                       href={
+                        item.href ??
                         route(
                           item.part,
                         )

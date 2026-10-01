@@ -9,6 +9,10 @@ import { schedulingCopy } from './scheduling-copy';
 import { ThreeCalendar } from './three-calendar';
 import { threeCalendarCopy } from './three-calendar-copy';
 import { addDays } from './calendar-dates';
+import { DashboardDrawer } from './dashboard22-drawer';
+import { DashboardDataTable } from './dashboard22-table';
+import { dashboard22TableCopy } from './dashboard22-table-copy';
+import { Icon } from './icons';
 type Locale = string;
 type Copy = typeof schedulingCopy.en;
 type Rule = { day: number; start: string; end: string };
@@ -45,7 +49,16 @@ type Booking = {
   revision: number;
   pending: boolean;
   error_code: string | null;
-  service: { title: string; expert_name: string; cancellation_hours: number } | null;
+  service:
+    | {
+        title: string;
+        expert_name: string;
+        cancellation_hours: number;
+        price_minor?: number;
+        currency?: string;
+        kind?: string;
+      }
+    | null;
 };
 type Note = { id: string; event: string; created_at: string; read_at: string | null };
 const zones = [
@@ -696,251 +709,1101 @@ function BookingFlow({
     </section>
   );
 }
-function BookingList({ locale, view }: { locale: Locale; view: 'mine' | 'expert' | 'admin' }) {
-  const t = schedulingCopy[locale]!,
-    [rows, setRows] = useState<Booking[]>([]),
-    [notes, setNotes] = useState<Note[]>([]),
-    [zone, setZone] = useState('Asia/Tehran'),
-    [period, setPeriod] = useState('all'),
-    [offset, setOffset] = useState(0),
-    [selectedDay, setSelectedDay] = useState(''),
-    [error, setError] = useState(''),
-    [busy, setBusy] = useState(false),
-    [move, setMove] = useState<Booking | null>(null);
-  const load = async () => {
-    const range: Record<string, string> = {};
-    if (selectedDay) {
-      range.from = (
-        await userApi<{ utc: string }>('availability/resolve', 'POST', {
-          local: selectedDay + 'T00:00',
-          timezone: zone,
-        })
-      ).utc;
-      range.to = (
-        await userApi<{ utc: string }>('availability/resolve', 'POST', {
-          local: addDays(selectedDay, 1) + 'T00:00',
-          timezone: zone,
-        })
-      ).utc;
-    }
-    setRows(
-      await userApi<Booking[]>(
-        'bookings/scheduled?' +
-          new URLSearchParams({ view, period, offset: String(offset), ...range }),
-      ),
+function BookingList({
+  locale,
+  view,
+}: {
+  locale: Locale;
+
+  view:
+    | 'mine'
+    | 'expert'
+    | 'admin';
+}) {
+  const t =
+      schedulingCopy[locale]!,
+    table =
+      dashboard22TableCopy[locale]!;
+
+  const [
+    rows,
+    setRows,
+  ] =
+    useState<Booking[]>([]);
+
+  const [
+    notes,
+    setNotes,
+  ] =
+    useState<Note[]>([]);
+
+  const [
+    zone,
+    setZone,
+  ] =
+    useState(
+      'Asia/Tehran',
     );
-    setNotes(await userApi<Note[]>('bookings/notifications'));
-  };
-  const act = async (fn: () => Promise<unknown>) => {
-    setBusy(true);
-    setError('');
-    try {
-      await fn();
-      await load();
-    } catch (e) {
-      setError(failure(t, e));
-    } finally {
-      setBusy(false);
-    }
-  };
-  useEffect(() => {
-    void act(load);
-  }, [period, offset, selectedDay, zone]);
-  useEffect(() => {
-    void userApi<{ timezone: string }>('profiles/timezone')
-      .then((v) => setZone(v.timezone))
-      .catch(() => {});
-  }, []);
-  if (move)
-    return (
+
+  const [
+    period,
+    setPeriod,
+  ] =
+    useState(
+      'all',
+    );
+
+  const [
+    offset,
+    setOffset,
+  ] =
+    useState(
+      0,
+    );
+
+  const [
+    selectedDay,
+    setSelectedDay,
+  ] =
+    useState(
+      '',
+    );
+
+  const [
+    error,
+    setError,
+  ] =
+    useState(
+      '',
+    );
+
+  const [
+    busy,
+    setBusy,
+  ] =
+    useState(
+      false,
+    );
+
+  const [
+    move,
+    setMove,
+  ] =
+    useState<Booking | null>(
+      null,
+    );
+
+  const [
+    createOpen,
+    setCreateOpen,
+  ] =
+    useState(
+      false,
+    );
+
+  const load =
+    async () => {
+      const range:
+        Record<
+          string,
+          string
+        > = {};
+
+      if (
+        selectedDay
+      ) {
+        range.from =
+          (
+            await userApi<{
+              utc: string;
+            }>(
+              'availability/resolve',
+              'POST',
+              {
+                local:
+                  selectedDay +
+                  'T00:00',
+
+                timezone:
+                  zone,
+              },
+            )
+          ).utc;
+
+        range.to =
+          (
+            await userApi<{
+              utc: string;
+            }>(
+              'availability/resolve',
+              'POST',
+              {
+                local:
+                  addDays(
+                    selectedDay,
+                    1,
+                  ) +
+                  'T00:00',
+
+                timezone:
+                  zone,
+              },
+            )
+          ).utc;
+      }
+
+      setRows(
+        await userApi<
+          Booking[]
+        >(
+          'bookings/scheduled?' +
+            new URLSearchParams({
+              view,
+              period,
+
+              offset:
+                String(
+                  offset,
+                ),
+
+              ...range,
+            }),
+        ),
+      );
+
+      setNotes(
+        await userApi<
+          Note[]
+        >(
+          'bookings/notifications',
+        ),
+      );
+    };
+
+  const act =
+    async (
+      fn:
+        () =>
+          Promise<unknown>,
+    ) => {
+      setBusy(
+        true,
+      );
+
+      setError(
+        '',
+      );
+
+      try {
+        await fn();
+
+        await load();
+      } catch (
+        error
+      ) {
+        setError(
+          failure(
+            t,
+            error,
+          ),
+        );
+      } finally {
+        setBusy(
+          false,
+        );
+      }
+    };
+
+  useEffect(
+    () => {
+      void act(
+        load,
+      );
+    },
+    [
+      period,
+      offset,
+      selectedDay,
+      zone,
+    ],
+  );
+
+  useEffect(
+    () => {
+      void userApi<{
+        timezone: string;
+      }>(
+        'profiles/timezone',
+      )
+        .then(
+          (
+            value,
+          ) =>
+            setZone(
+              value.timezone,
+            ),
+        )
+        .catch(
+          () => {},
+        );
+
+      const query =
+        new URLSearchParams(
+          window.location.search,
+        );
+
+      if (
+        view ===
+          'mine' &&
+        query.get(
+          'create',
+        ) ===
+          '1'
+      )
+        setCreateOpen(
+          true,
+        );
+    },
+    [],
+  );
+
+  const dateOnly =
+    (
+      value: string,
+    ) => {
+      try {
+        return new Intl.DateTimeFormat(
+          locale,
+          {
+            timeZone:
+              zone,
+
+            dateStyle:
+              'medium',
+          },
+        ).format(
+          new Date(
+            value,
+          ),
+        );
+      } catch {
+        return value;
+      }
+    };
+
+  const timeOnly =
+    (
+      value: string,
+    ) => {
+      try {
+        return new Intl.DateTimeFormat(
+          locale,
+          {
+            timeZone:
+              zone,
+
+            hour:
+              '2-digit',
+
+            minute:
+              '2-digit',
+          },
+        ).format(
+          new Date(
+            value,
+          ),
+        );
+      } catch {
+        return value;
+      }
+    };
+
+  const money =
+    (
+      row: Booking,
+    ) => {
+      const minor =
+        row.service
+          ?.price_minor;
+
+      const currency =
+        row.service
+          ?.currency;
+
+      if (
+        minor ===
+          undefined ||
+        !currency
+      )
+        return '—';
+
+      const divisor =
+        [
+          'USD',
+          'EUR',
+          'GBP',
+          'AED',
+        ].includes(
+          currency,
+        )
+          ? 100
+          : 1;
+
+      try {
+        return new Intl.NumberFormat(
+          locale,
+          {
+            style:
+              'currency',
+
+            currency,
+          },
+        ).format(
+          minor /
+            divisor,
+        );
+      } catch {
+        return (
+          `${minor} ${currency}`
+        );
+      }
+    };
+
+  const actions =
+    (
+      row: Booking,
+    ) => (
       <>
-        <button onClick={() => setMove(null)}>{t.back}</button>
-        <BookingFlow
-          key={move.id}
-          locale={locale}
-          move={move}
-          onDone={() => {
-            setMove(null);
-            void act(load);
-          }}
-        />
-      </>
-    );
-  return (
-    <section className="user-card scholar-workspace schedule-workspace">
-      <h2>
-        {view === 'mine' ? t.bookings : view === 'expert' ? t.expertBookings : t.adminBookings}
-      </h2>
-      {error && <p role="alert">{error}</p>}
-      <Zone t={t} value={zone} onChange={setZone} />
-      <p>{threeCalendarCopy[locale]!.selectDay}</p>
-      <ThreeCalendar
-        locale={locale}
-        timezone={zone}
-        value={selectedDay}
-        onChange={(day) => {
-          setSelectedDay(day);
-          setOffset(0);
-        }}
-      />
-      {selectedDay && (
-        <button
-          onClick={() => {
-            setSelectedDay('');
-            setOffset(0);
-          }}
-        >
-          {threeCalendarCopy[locale]!.allDates}
-        </button>
-      )}
-      <label>
-        {t.period}
-        <select
-          value={period}
-          onChange={(e) => {
-            setPeriod(e.target.value);
-            setOffset(0);
-          }}
-        >
-          {(['all', 'future', 'past', 'cancelled'] as const).map((k) => (
-            <option key={k} value={k}>
-              {t[k]}
-            </option>
-          ))}
-        </select>
-      </label>
-      <button disabled={busy} onClick={() => void act(load)}>
-        {t.refresh}
-      </button>
-      {!rows.length && <p>{t.empty}</p>}
-      {rows.map((r) => (
-        <article className="user-card" key={r.id} data-booking-id={r.id}>
-          <h3>{r.service?.title ?? t.book}</h3>
-          <p>{r.service?.expert_name ?? r.expert_code}</p>
-          <time dateTime={r.start_at}>{format(r.start_at, zone, locale)}</time>
-          <p>{label(t, r.status)}</p>
-          {r.pending && <p role="status">{t.pending}</p>}
-          {r.error_code && <p>{failure(t, new Error(r.error_code))}</p>}
-          <p>
-            {t.policy} {r.service?.cancellation_hours ?? '—'}
-          </p>
-          {view !== 'admin' && (
-            <div className="user-actions">
-              {['CONFIRMED', 'COMPLETED', 'RESCHEDULED', 'RESCHEDULE_REQUESTED'].includes(
-                r.status,
-              ) && (
+        {view !==
+          'admin' && (
+          <>
+            {[
+              'CONFIRMED',
+              'COMPLETED',
+              'RESCHEDULED',
+              'RESCHEDULE_REQUESTED',
+            ].includes(
+              row.status,
+            ) && (
+              <a
+                href={
+                  usersBase +
+                  '/' +
+                  locale +
+                  '/account/messages?booking=' +
+                  row.id
+                }
+              >
+                {
+                  communicationCopy[
+                    locale
+                  ]!
+                    .conversation
+                }
+              </a>
+            )}
+
+            {[
+              'CONFIRMED',
+              'RESCHEDULED',
+            ].includes(
+              row.status,
+            ) && (
+              <a
+                href={
+                  usersBase +
+                  '/' +
+                  locale +
+                  '/account/sessions?booking=' +
+                  row.id
+                }
+              >
+                {
+                  sessionsCopy[
+                    locale
+                  ]!
+                    .sessions
+                }
+              </a>
+            )}
+
+            {row.status ===
+              'BOOKING_PENDING_PAYMENT' &&
+              view ===
+                'mine' && (
                 <a
-                  className="button"
-                  href={usersBase + '/' + locale + '/account/messages?booking=' + r.id}
+                  href={`${usersBase}/${locale}/account/wallet?booking=${row.id}`}
                 >
-                  {communicationCopy[locale]!.conversation}
+                  {
+                    financeCopy[
+                      locale
+                    ]!
+                      .pay
+                  }
                 </a>
               )}
-              {['CONFIRMED', 'RESCHEDULED'].includes(r.status) && (
-                <a
-                  className="button compact"
-                  href={usersBase + '/' + locale + '/account/sessions?booking=' + r.id}
-                >
-                  {sessionsCopy[locale]!.sessions}
-                </a>
-              )}
-              {r.status === 'BOOKING_PENDING_PAYMENT' && view === 'mine' && (
-                <a
-                  className="button"
-                  href={`${usersBase}/${locale}/account/wallet?booking=${r.id}`}
-                >
-                  {financeCopy[locale]!.pay}
-                </a>
-              )}
-              {r.status === 'HELD' && view === 'mine' && (
+
+            {row.status ===
+              'HELD' &&
+              view ===
+                'mine' && (
                 <button
-                  disabled={busy || r.pending}
+                  disabled={
+                    busy ||
+                    row.pending
+                  }
                   onClick={() =>
-                    void act(() =>
-                      userApi('bookings/scheduled/' + r.id + '/confirm', 'POST', {
-                        revision: r.revision,
-                        request_key: crypto.randomUUID(),
-                      }),
+                    void act(
+                      () =>
+                        userApi(
+                          'bookings/scheduled/' +
+                            row.id +
+                            '/confirm',
+                          'POST',
+                          {
+                            revision:
+                              row.revision,
+
+                            request_key:
+                              crypto.randomUUID(),
+                          },
+                        ),
                     )
                   }
                 >
                   {t.confirm}
                 </button>
               )}
-              {['HELD', 'BOOKING_PENDING_PAYMENT', 'CONFIRMED', 'RESCHEDULED'].includes(
-                r.status,
-              ) && (
+
+            {[
+              'HELD',
+              'BOOKING_PENDING_PAYMENT',
+              'CONFIRMED',
+              'RESCHEDULED',
+            ].includes(
+              row.status,
+            ) && (
+              <button
+                disabled={
+                  busy ||
+                  row.pending
+                }
+                onClick={() =>
+                  void act(
+                    () =>
+                      userApi(
+                        'bookings/scheduled/' +
+                          row.id +
+                          '/cancel',
+                        'POST',
+                        {
+                          revision:
+                            row.revision,
+
+                          request_key:
+                            crypto.randomUUID(),
+                        },
+                      ),
+                  )
+                }
+              >
+                {t.cancel}
+              </button>
+            )}
+
+            {[
+              'CONFIRMED',
+              'RESCHEDULED',
+            ].includes(
+              row.status,
+            ) && (
+              <>
                 <button
-                  disabled={busy || r.pending}
+                  disabled={
+                    busy ||
+                    row.pending
+                  }
                   onClick={() =>
-                    void act(() =>
-                      userApi('bookings/scheduled/' + r.id + '/cancel', 'POST', {
-                        revision: r.revision,
-                        request_key: crypto.randomUUID(),
-                      }),
+                    setMove(
+                      row,
                     )
                   }
                 >
-                  {t.cancel}
+                  {t.reschedule}
                 </button>
-              )}
-              {['CONFIRMED', 'RESCHEDULED'].includes(r.status) && (
-                <>
-                  <button disabled={busy || r.pending} onClick={() => setMove(r)}>
-                    {t.reschedule}
-                  </button>
-                  {view === 'expert' && new Date(r.end_at).getTime() <= Date.now() && (
+
+                {view ===
+                  'expert' &&
+                  row.end_at &&
+                  new Date(
+                    row.end_at,
+                  ).getTime() <=
+                    Date.now() && (
                     <button
-                      disabled={busy || r.pending}
+                      disabled={
+                        busy ||
+                        row.pending
+                      }
                       onClick={() =>
-                        void act(() =>
-                          userApi('bookings/scheduled/' + r.id + '/complete', 'POST', {
-                            revision: r.revision,
-                            request_key: crypto.randomUUID(),
-                          }),
+                        void act(
+                          () =>
+                            userApi(
+                              'bookings/scheduled/' +
+                                row.id +
+                                '/complete',
+                              'POST',
+                              {
+                                revision:
+                                  row.revision,
+
+                                request_key:
+                                  crypto.randomUUID(),
+                              },
+                            ),
                         )
                       }
                     >
                       {t.complete}
                     </button>
                   )}
-                </>
-              )}
-            </div>
-          )}
-        </article>
-      ))}
-      <div className="user-actions">
+              </>
+            )}
+          </>
+        )}
+      </>
+    );
+
+  return (
+    <section className="user-card scholar-workspace schedule-workspace dash22-table-first-page">
+      <div className="user-heading">
+        <div>
+          <h2>
+            {view ===
+            'mine'
+              ? t.bookings
+              : view ===
+                  'expert'
+                ? t.expertBookings
+                : t.adminBookings}
+          </h2>
+        </div>
+
+        {view ===
+          'mine' && (
+          <button
+            type="button"
+            className="dash22-primary-create"
+            onClick={() =>
+              setCreateOpen(
+                true,
+              )
+            }
+          >
+            <Icon name="calendar" />
+            {table.newBooking}
+          </button>
+        )}
+      </div>
+
+      {error && (
+        <p
+          role="alert"
+          className="user-error"
+        >
+          {error}
+        </p>
+      )}
+
+      <DashboardDataTable
+        locale={
+          locale
+        }
+        rows={
+          rows
+        }
+        getRowId={(
+          row,
+        ) =>
+          row.id
+        }
+        pageSize={
+          12
+        }
+        filters={
+          <>
+            <label>
+              {t.period}
+
+              <select
+                value={
+                  period
+                }
+                onChange={(
+                  event,
+                ) => {
+                  setPeriod(
+                    event.target
+                      .value,
+                  );
+
+                  setOffset(
+                    0,
+                  );
+                }}
+              >
+                {(
+                  [
+                    'all',
+                    'future',
+                    'past',
+                    'cancelled',
+                  ] as const
+                ).map(
+                  (
+                    key,
+                  ) => (
+                    <option
+                      key={
+                        key
+                      }
+                      value={
+                        key
+                      }
+                    >
+                      {t[key]}
+                    </option>
+                  ),
+                )}
+              </select>
+            </label>
+
+            <label>
+              {table.date}
+
+              <input
+                type="date"
+                value={
+                  selectedDay
+                }
+                onChange={(
+                  event,
+                ) => {
+                  setSelectedDay(
+                    event.target
+                      .value,
+                  );
+
+                  setOffset(
+                    0,
+                  );
+                }}
+              />
+            </label>
+
+            <button
+              type="button"
+              disabled={
+                busy
+              }
+              onClick={() =>
+                void act(
+                  load,
+                )
+              }
+            >
+              {t.refresh}
+            </button>
+          </>
+        }
+        columns={[
+          {
+            key:
+              'expert',
+
+            label:
+              table.expert,
+
+            render:
+              (
+                row,
+              ) =>
+                row.service
+                  ?.expert_name ??
+                row.expert_code,
+
+            searchValue:
+              (
+                row,
+              ) =>
+                `${row.service?.expert_name ?? ''} ${row.expert_code}`,
+
+            sortValue:
+              (
+                row,
+              ) =>
+                row.service
+                  ?.expert_name ??
+                row.expert_code,
+          },
+
+          {
+            key:
+              'subject',
+
+            label:
+              table.subject,
+
+            render:
+              (
+                row,
+              ) =>
+                row.service
+                  ?.title ??
+                t.book,
+
+            searchValue:
+              (
+                row,
+              ) =>
+                row.service
+                  ?.title ??
+                '',
+          },
+
+          {
+            key:
+              'date',
+
+            label:
+              table.date,
+
+            render:
+              (
+                row,
+              ) =>
+                dateOnly(
+                  row.start_at,
+                ),
+
+            searchValue:
+              (
+                row,
+              ) =>
+                dateOnly(
+                  row.start_at,
+                ),
+
+            sortValue:
+              (
+                row,
+              ) =>
+                Date.parse(
+                  row.start_at,
+                ),
+          },
+
+          {
+            key:
+              'time',
+
+            label:
+              table.time,
+
+            render:
+              (
+                row,
+              ) =>
+                timeOnly(
+                  row.start_at,
+                ),
+
+            searchValue:
+              (
+                row,
+              ) =>
+                timeOnly(
+                  row.start_at,
+                ),
+
+            sortValue:
+              (
+                row,
+              ) =>
+                Date.parse(
+                  row.start_at,
+                ),
+          },
+
+          {
+            key:
+              'status',
+
+            label:
+              table.status,
+
+            render:
+              (
+                row,
+              ) => (
+                <span className="user-badge">
+                  {label(
+                    t,
+                    row.status,
+                  )}
+                </span>
+              ),
+
+            searchValue:
+              (
+                row,
+              ) =>
+                label(
+                  t,
+                  row.status,
+                ),
+
+            sortValue:
+              (
+                row,
+              ) =>
+                row.status,
+          },
+
+          {
+            key:
+              'amount',
+
+            label:
+              table.amount,
+
+            render:
+              money,
+
+            searchValue:
+              money,
+
+            sortValue:
+              (
+                row,
+              ) =>
+                row.service
+                  ?.price_minor ??
+                0,
+          },
+        ]}
+        renderActions={
+          actions
+        }
+      />
+
+      <div className="dash22-server-pagination">
         <button
-          disabled={busy || offset === 0}
-          onClick={() => setOffset(Math.max(0, offset - 100))}
+          disabled={
+            busy ||
+            offset ===
+              0
+          }
+          onClick={() =>
+            setOffset(
+              Math.max(
+                0,
+                offset -
+                  100,
+              ),
+            )
+          }
         >
           {t.previous}
         </button>
-        <button disabled={busy || rows.length < 100} onClick={() => setOffset(offset + 100)}>
+
+        <button
+          disabled={
+            busy ||
+            rows.length <
+              100
+          }
+          onClick={() =>
+            setOffset(
+              offset +
+                100,
+            )
+          }
+        >
           {t.next}
         </button>
       </div>
-      <h3>{t.notifications}</h3>
-      {notes.map((n) => (
-        <article className="user-card" key={n.id}>
-          <p>{label(t, n.event)}</p>
-          <time>{format(n.created_at, zone, locale)}</time>
-          {!n.read_at && (
-            <button
-              disabled={busy}
-              onClick={() =>
-                void act(() => userApi('bookings/notifications/' + n.id + '/read', 'POST', {}))
-              }
-            >
-              {t.read}
-            </button>
-          )}
-        </article>
-      ))}
+
+      {notes.length >
+        0 && (
+        <details className="dash22-secondary-records">
+          <summary>
+            {t.notifications}
+          </summary>
+
+          <DashboardDataTable
+            locale={
+              locale
+            }
+            rows={
+              notes
+            }
+            getRowId={(
+              row,
+            ) =>
+              row.id
+            }
+            columns={[
+              {
+                key:
+                  'event',
+
+                label:
+                  table.status,
+
+                render:
+                  (
+                    row,
+                  ) =>
+                    label(
+                      t,
+                      row.event,
+                    ),
+
+                searchValue:
+                  (
+                    row,
+                  ) =>
+                    label(
+                      t,
+                      row.event,
+                    ),
+              },
+
+              {
+                key:
+                  'created',
+
+                label:
+                  table.created,
+
+                render:
+                  (
+                    row,
+                  ) =>
+                    format(
+                      row.created_at,
+                      zone,
+                      locale,
+                    ),
+
+                sortValue:
+                  (
+                    row,
+                  ) =>
+                    Date.parse(
+                      row.created_at,
+                    ),
+              },
+            ]}
+            renderActions={(
+              row,
+            ) =>
+              !row.read_at ? (
+                <button
+                  disabled={
+                    busy
+                  }
+                  onClick={() =>
+                    void act(
+                      () =>
+                        userApi(
+                          'bookings/notifications/' +
+                            row.id +
+                            '/read',
+                          'POST',
+                          {},
+                        ),
+                    )
+                  }
+                >
+                  {t.read}
+                </button>
+              ) : null
+            }
+          />
+        </details>
+      )}
+
+      <DashboardDrawer
+        open={
+          createOpen
+        }
+        title={
+          table.newBooking
+        }
+        closeLabel={
+          table.close
+        }
+        onClose={() =>
+          setCreateOpen(
+            false,
+          )
+        }
+        wide
+      >
+        <BookingFlow
+          locale={
+            locale
+          }
+        />
+      </DashboardDrawer>
+
+      <DashboardDrawer
+        open={
+          Boolean(
+            move,
+          )
+        }
+        title={
+          t.reschedule
+        }
+        closeLabel={
+          table.close
+        }
+        onClose={() =>
+          setMove(
+            null,
+          )
+        }
+        wide
+      >
+        {move && (
+          <BookingFlow
+            key={
+              move.id
+            }
+            locale={
+              locale
+            }
+            move={
+              move
+            }
+            onDone={() => {
+              setMove(
+                null,
+              );
+
+              void act(
+                load,
+              );
+            }}
+          />
+        )}
+      </DashboardDrawer>
     </section>
   );
 }
+
 function HolidayManager({ locale }: { locale: Locale }) {
   const t = schedulingCopy[locale]!,
     [items, setItems] = useState<

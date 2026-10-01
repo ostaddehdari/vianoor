@@ -3346,6 +3346,307 @@
     "ar": "Workspace overview"
   },
   {
+    "key": "dashboard22Table.actions",
+    "module": "dashboard22table",
+    "en": "Actions",
+    "fa": "عملیات",
+    "ar": "Actions"
+  },
+  {
+    "key": "dashboard22Table.all",
+    "module": "dashboard22table",
+    "en": "All",
+    "fa": "همه",
+    "ar": "All"
+  },
+  {
+    "key": "dashboard22Table.amount",
+    "module": "dashboard22table",
+    "en": "Amount",
+    "fa": "مبلغ",
+    "ar": "Amount"
+  },
+  {
+    "key": "dashboard22Table.answer",
+    "module": "dashboard22table",
+    "en": "Answer",
+    "fa": "پاسخ",
+    "ar": "Answer"
+  },
+  {
+    "key": "dashboard22Table.ascending",
+    "module": "dashboard22table",
+    "en": "Ascending",
+    "fa": "صعودی",
+    "ar": "Ascending"
+  },
+  {
+    "key": "dashboard22Table.clear",
+    "module": "dashboard22table",
+    "en": "Clear search",
+    "fa": "پاک‌کردن جست‌وجو",
+    "ar": "Clear search"
+  },
+  {
+    "key": "dashboard22Table.close",
+    "module": "dashboard22table",
+    "en": "Close",
+    "fa": "بستن",
+    "ar": "Close"
+  },
+  {
+    "key": "dashboard22Table.columns",
+    "module": "dashboard22table",
+    "en": "Columns",
+    "fa": "ستون‌ها",
+    "ar": "Columns"
+  },
+  {
+    "key": "dashboard22Table.create",
+    "module": "dashboard22table",
+    "en": "Create new",
+    "fa": "ایجاد جدید",
+    "ar": "Create new"
+  },
+  {
+    "key": "dashboard22Table.created",
+    "module": "dashboard22table",
+    "en": "Created",
+    "fa": "تاریخ ثبت",
+    "ar": "Created"
+  },
+  {
+    "key": "dashboard22Table.date",
+    "module": "dashboard22table",
+    "en": "Date",
+    "fa": "تاریخ",
+    "ar": "Date"
+  },
+  {
+    "key": "dashboard22Table.descending",
+    "module": "dashboard22table",
+    "en": "Descending",
+    "fa": "نزولی",
+    "ar": "Descending"
+  },
+  {
+    "key": "dashboard22Table.details",
+    "module": "dashboard22table",
+    "en": "Details",
+    "fa": "جزئیات",
+    "ar": "Details"
+  },
+  {
+    "key": "dashboard22Table.edit",
+    "module": "dashboard22table",
+    "en": "Edit",
+    "fa": "ویرایش",
+    "ar": "Edit"
+  },
+  {
+    "key": "dashboard22Table.email",
+    "module": "dashboard22table",
+    "en": "Email",
+    "fa": "ایمیل",
+    "ar": "Email"
+  },
+  {
+    "key": "dashboard22Table.empty",
+    "module": "dashboard22table",
+    "en": "There are no records to display yet.",
+    "fa": "هنوز رکوردی برای نمایش وجود ندارد.",
+    "ar": "There are no records to display yet."
+  },
+  {
+    "key": "dashboard22Table.expert",
+    "module": "dashboard22table",
+    "en": "Expert",
+    "fa": "استاد",
+    "ar": "Expert"
+  },
+  {
+    "key": "dashboard22Table.filters",
+    "module": "dashboard22table",
+    "en": "Filters",
+    "fa": "فیلترها",
+    "ar": "Filters"
+  },
+  {
+    "key": "dashboard22Table.mobileRecord",
+    "module": "dashboard22table",
+    "en": "Record details",
+    "fa": "جزئیات رکورد",
+    "ar": "Record details"
+  },
+  {
+    "key": "dashboard22Table.newBooking",
+    "module": "dashboard22table",
+    "en": "New booking",
+    "fa": "رزرو جلسه جدید",
+    "ar": "New booking"
+  },
+  {
+    "key": "dashboard22Table.newPayment",
+    "module": "dashboard22table",
+    "en": "New payment / top-up",
+    "fa": "پرداخت / شارژ جدید",
+    "ar": "New payment / top-up"
+  },
+  {
+    "key": "dashboard22Table.newQuestion",
+    "module": "dashboard22table",
+    "en": "New question",
+    "fa": "پرسش جدید",
+    "ar": "New question"
+  },
+  {
+    "key": "dashboard22Table.newService",
+    "module": "dashboard22table",
+    "en": "New service",
+    "fa": "خدمت جدید",
+    "ar": "New service"
+  },
+  {
+    "key": "dashboard22Table.newUser",
+    "module": "dashboard22table",
+    "en": "Add user",
+    "fa": "افزودن کاربر",
+    "ar": "Add user"
+  },
+  {
+    "key": "dashboard22Table.newWithdrawal",
+    "module": "dashboard22table",
+    "en": "New withdrawal",
+    "fa": "برداشت جدید",
+    "ar": "New withdrawal"
+  },
+  {
+    "key": "dashboard22Table.next",
+    "module": "dashboard22table",
+    "en": "Next",
+    "fa": "بعدی",
+    "ar": "Next"
+  },
+  {
+    "key": "dashboard22Table.of",
+    "module": "dashboard22table",
+    "en": "of",
+    "fa": "از",
+    "ar": "of"
+  },
+  {
+    "key": "dashboard22Table.page",
+    "module": "dashboard22table",
+    "en": "Page",
+    "fa": "صفحه",
+    "ar": "Page"
+  },
+  {
+    "key": "dashboard22Table.previous",
+    "module": "dashboard22table",
+    "en": "Previous",
+    "fa": "قبلی",
+    "ar": "Previous"
+  },
+  {
+    "key": "dashboard22Table.publication",
+    "module": "dashboard22table",
+    "en": "Publication",
+    "fa": "انتشار",
+    "ar": "Publication"
+  },
+  {
+    "key": "dashboard22Table.publicId",
+    "module": "dashboard22table",
+    "en": "Public ID",
+    "fa": "شناسه عمومی",
+    "ar": "Public ID"
+  },
+  {
+    "key": "dashboard22Table.question",
+    "module": "dashboard22table",
+    "en": "Question",
+    "fa": "پرسش",
+    "ar": "Question"
+  },
+  {
+    "key": "dashboard22Table.records",
+    "module": "dashboard22table",
+    "en": "records",
+    "fa": "رکورد",
+    "ar": "records"
+  },
+  {
+    "key": "dashboard22Table.rowsPerPage",
+    "module": "dashboard22table",
+    "en": "Rows per page",
+    "fa": "تعداد در صفحه",
+    "ar": "Rows per page"
+  },
+  {
+    "key": "dashboard22Table.search",
+    "module": "dashboard22table",
+    "en": "Search…",
+    "fa": "جست‌وجو…",
+    "ar": "Search…"
+  },
+  {
+    "key": "dashboard22Table.searchLabel",
+    "module": "dashboard22table",
+    "en": "Search table",
+    "fa": "جست‌وجو در جدول",
+    "ar": "Search table"
+  },
+  {
+    "key": "dashboard22Table.selectAll",
+    "module": "dashboard22table",
+    "en": "Select all",
+    "fa": "انتخاب همه",
+    "ar": "Select all"
+  },
+  {
+    "key": "dashboard22Table.selected",
+    "module": "dashboard22table",
+    "en": "selected",
+    "fa": "انتخاب‌شده",
+    "ar": "selected"
+  },
+  {
+    "key": "dashboard22Table.showing",
+    "module": "dashboard22table",
+    "en": "Showing",
+    "fa": "نمایش",
+    "ar": "Showing"
+  },
+  {
+    "key": "dashboard22Table.sort",
+    "module": "dashboard22table",
+    "en": "Sort",
+    "fa": "مرتب‌سازی",
+    "ar": "Sort"
+  },
+  {
+    "key": "dashboard22Table.status",
+    "module": "dashboard22table",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "dashboard22Table.subject",
+    "module": "dashboard22table",
+    "en": "Subject",
+    "fa": "موضوع",
+    "ar": "Subject"
+  },
+  {
+    "key": "dashboard22Table.time",
+    "module": "dashboard22table",
+    "en": "Time",
+    "fa": "ساعت",
+    "ar": "Time"
+  },
+  {
     "key": "demoExperts.0.initials",
     "module": "demoexperts",
     "en": "MR",

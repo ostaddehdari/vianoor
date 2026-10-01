@@ -2,6 +2,10 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { userApi, usersBase } from './users-client';
 import { communicationCopy } from './communication-copy';
+import { DashboardDrawer } from './dashboard22-drawer';
+import { DashboardDataTable } from './dashboard22-table';
+import { dashboard22TableCopy } from './dashboard22-table-copy';
+import { Icon } from './icons';
 import { Attachment, uploadCommunication } from './communication';
 type Row = Record<string, unknown>;
 const value = (r: Row, key: string) => String(r[key] ?? '');
@@ -255,179 +259,850 @@ export function ChannelWorkspace({
     </section>
   );
 }
-export function QuestionWorkspace({ locale, admin = false }: { locale: string; admin?: boolean }) {
-  const { t, error, busy, act } = useActions(locale),
-    [rows, setRows] = useState<Row[]>([]),
-    [publicRows, setPublic] = useState<Row[]>([]);
-  const load = async () => {
-    setRows(await userApi<Row[]>(admin ? 'questions/admin' : 'questions'));
-    setPublic(await userApi<Row[]>('questions/public'));
-  };
-  useEffect(() => {
-    void act(load);
-  }, [admin]);
+export function QuestionWorkspace({
+  locale,
+  admin = false,
+}: {
+  locale: string;
+
+  admin?: boolean;
+}) {
+  const {
+      t,
+      error,
+      busy,
+      act,
+    } =
+      useActions(
+        locale,
+      ),
+    table =
+      dashboard22TableCopy[
+        locale
+      ]!;
+
+  const [
+    rows,
+    setRows,
+  ] =
+    useState<Row[]>([]);
+
+  const [
+    publicRows,
+    setPublic,
+  ] =
+    useState<Row[]>([]);
+
+  const [
+    createOpen,
+    setCreateOpen,
+  ] =
+    useState(
+      false,
+    );
+
+  const [
+    selected,
+    setSelected,
+  ] =
+    useState<Row | null>(
+      null,
+    );
+
+  const load =
+    async () => {
+      setRows(
+        await userApi<
+          Row[]
+        >(
+          admin
+            ? 'questions/admin'
+            : 'questions',
+        ),
+      );
+
+      setPublic(
+        await userApi<
+          Row[]
+        >(
+          'questions/public',
+        ),
+      );
+    };
+
+  useEffect(
+    () => {
+      void act(
+        load,
+      );
+
+      if (
+        !admin &&
+        new URLSearchParams(
+          window.location.search,
+        ).get(
+          'create',
+        ) ===
+          '1'
+      )
+        setCreateOpen(
+          true,
+        );
+    },
+    [
+      admin,
+    ],
+  );
+
+  const questionText =
+    (
+      row: Row,
+    ) =>
+      value(
+        row,
+        admin
+          ? 'public_question'
+          : 'question',
+      );
+
+  const answerText =
+    (
+      row: Row,
+    ) =>
+      value(
+        row,
+        admin
+          ? 'public_answer'
+          : 'answer',
+      );
+
   return (
-    <section className="user-card communication-workspace">
-      <h2>{t.questions}</h2>
-      {error && <p role="alert">{error}</p>}
-      <form
-        onSubmit={(e) => {
-          const d = fields(e);
-          void act(async () => {
-            await userApi('questions', 'POST', {
-              request_key: crypto.randomUUID(),
-              question: d.question,
-            });
-            await load();
-          });
-        }}
+    <section className="user-card communication-workspace dash22-table-first-page">
+      <div className="user-heading">
+        <h2>
+          {t.questions}
+        </h2>
+
+        {!admin && (
+          <button
+            type="button"
+            className="dash22-primary-create"
+            onClick={() =>
+              setCreateOpen(
+                true,
+              )
+            }
+          >
+            <Icon name="comments" />
+            {table.newQuestion}
+          </button>
+        )}
+      </div>
+
+      {error && (
+        <p
+          role="alert"
+          className="user-error"
+        >
+          {error}
+        </p>
+      )}
+
+      <DashboardDataTable
+        locale={
+          locale
+        }
+        rows={
+          rows
+        }
+        getRowId={(
+          row,
+          index,
+        ) =>
+          value(
+            row,
+            'id',
+          ) ||
+          String(
+            index,
+          )
+        }
+        columns={[
+          {
+            key:
+              'question',
+
+            label:
+              table.question,
+
+            render:
+              (
+                row,
+              ) =>
+                questionText(
+                  row,
+                ) ||
+                '—',
+
+            searchValue:
+              questionText,
+          },
+
+          {
+            key:
+              'answer',
+
+            label:
+              table.answer,
+
+            render:
+              (
+                row,
+              ) =>
+                answerText(
+                  row,
+                ) ||
+                '—',
+
+            searchValue:
+              answerText,
+
+            defaultHidden:
+              false,
+          },
+
+          {
+            key:
+              'publication',
+
+            label:
+              table.publication,
+
+            render:
+              (
+                row,
+              ) => (
+                <span className="user-badge">
+                  {t[
+                    value(
+                      row,
+                      'publication',
+                    )
+                  ] ??
+                    value(
+                      row,
+                      'publication',
+                    )}
+                </span>
+              ),
+
+            searchValue:
+              (
+                row,
+              ) =>
+                value(
+                  row,
+                  'publication',
+                ),
+          },
+
+          {
+            key:
+              'created',
+
+            label:
+              table.created,
+
+            render:
+              (
+                row,
+              ) => {
+                const raw =
+                  value(
+                    row,
+                    'created_at',
+                  );
+
+                return raw
+                  ? new Date(
+                      raw,
+                    ).toLocaleString(
+                      locale,
+                    )
+                  : '—';
+              },
+
+            sortValue:
+              (
+                row,
+              ) =>
+                Date.parse(
+                  value(
+                    row,
+                    'created_at',
+                  ) ||
+                    '1970-01-01',
+                ),
+          },
+        ]}
+        renderActions={(
+          row,
+        ) => (
+          <button
+            type="button"
+            onClick={() =>
+              setSelected(
+                row,
+              )
+            }
+          >
+            {table.details}
+          </button>
+        )}
+      />
+
+      {publicRows.length >
+        0 && (
+        <details className="dash22-secondary-records">
+          <summary>
+            {t.publicList}
+          </summary>
+
+          <DashboardDataTable
+            locale={
+              locale
+            }
+            rows={
+              publicRows
+            }
+            getRowId={(
+              row,
+              index,
+            ) =>
+              value(
+                row,
+                'id',
+              ) ||
+              String(
+                index,
+              )
+            }
+            columns={[
+              {
+                key:
+                  'question',
+
+                label:
+                  table.question,
+
+                render:
+                  (
+                    row,
+                  ) =>
+                    value(
+                      row,
+                      'question',
+                    ),
+
+                searchValue:
+                  (
+                    row,
+                  ) =>
+                    value(
+                      row,
+                      'question',
+                    ),
+              },
+
+              {
+                key:
+                  'answer',
+
+                label:
+                  table.answer,
+
+                render:
+                  (
+                    row,
+                  ) =>
+                    value(
+                      row,
+                      'answer',
+                    ),
+
+                searchValue:
+                  (
+                    row,
+                  ) =>
+                    value(
+                      row,
+                      'answer',
+                    ),
+              },
+            ]}
+          />
+        </details>
+      )}
+
+      <DashboardDrawer
+        open={
+          createOpen
+        }
+        title={
+          table.newQuestion
+        }
+        closeLabel={
+          table.close
+        }
+        onClose={() =>
+          setCreateOpen(
+            false,
+          )
+        }
       >
-        <label>
-          {t.body}
-          <textarea name="question" required minLength={3} maxLength={12000} />
-        </label>
-        <button disabled={busy}>{t.ask}</button>
-      </form>
-      {rows.map((q) => (
-        <article className="communication-post" key={value(q, 'id')}>
-          <p>{value(q, admin ? 'public_question' : 'question')}</p>
-          <p>{value(q, admin ? 'public_answer' : 'answer')}</p>
-          <small>
-            {t[value(q, 'visibility')]} · {t[value(q, 'publication')] ?? value(q, 'publication')}
-          </small>
-          {admin ? (
-            <>
-              <form
-                className="user-actions"
-                onSubmit={(e) => {
-                  const d = fields(e);
-                  void act(async () => {
-                    await userApi('questions/' + q.id + '/assign', 'POST', {
-                      expert: d.expert,
-                      revision: q.revision,
-                    });
-                    await load();
-                  });
-                }}
-              >
-                <label>
-                  {t.expertCode}
-                  <input name="expert" pattern="[A-Za-z0-9]{13}" required />
-                </label>
-                <button disabled={busy || !!q.expert_id}>{t.assign}</button>
-              </form>
-              {q.publication === 'PENDING' &&
-                [true, false].map((publish) => (
-                  <button
-                    key={String(publish)}
-                    disabled={busy}
-                    onClick={() =>
-                      void act(async () => {
-                        await userApi('questions/' + q.id + '/review', 'POST', {
-                          publish,
-                          revision: q.revision,
-                        });
-                        await load();
-                      })
-                    }
-                  >
-                    {publish ? t.publish : t.reject}
-                  </button>
-                ))}
-            </>
-          ) : (
-            <>
-              {!!q.can_answer && (
+        <form
+          className="scholar-form"
+          onSubmit={(
+            event,
+          ) => {
+            const data =
+              fields(
+                event,
+              );
+
+            void act(
+              async () => {
+                await userApi(
+                  'questions',
+                  'POST',
+                  {
+                    request_key:
+                      crypto.randomUUID(),
+
+                    question:
+                      data.question,
+                  },
+                );
+
+                setCreateOpen(
+                  false,
+                );
+
+                await load();
+              },
+            );
+          }}
+        >
+          <label>
+            {t.body}
+
+            <textarea
+              name="question"
+              required
+              minLength={3}
+              maxLength={12000}
+            />
+          </label>
+
+          <button
+            className="button"
+            disabled={
+              busy
+            }
+          >
+            {t.ask}
+          </button>
+        </form>
+      </DashboardDrawer>
+
+      <DashboardDrawer
+        open={
+          Boolean(
+            selected,
+          )
+        }
+        title={
+          table.details
+        }
+        closeLabel={
+          table.close
+        }
+        onClose={() =>
+          setSelected(
+            null,
+          )
+        }
+        wide
+      >
+        {selected && (
+          <article className="communication-post dash22-question-detail">
+            <h3>
+              {questionText(
+                selected,
+              )}
+            </h3>
+
+            {answerText(
+              selected,
+            ) && (
+              <p>
+                {answerText(
+                  selected,
+                )}
+              </p>
+            )}
+
+            <small>
+              {t[
+                value(
+                  selected,
+                  'visibility',
+                )
+              ] ??
+                value(
+                  selected,
+                  'visibility',
+                )}{' '}
+              ·{' '}
+              {t[
+                value(
+                  selected,
+                  'publication',
+                )
+              ] ??
+                value(
+                  selected,
+                  'publication',
+                )}
+            </small>
+
+            {admin ? (
+              <>
                 <form
-                  onSubmit={(e) => {
-                    const d = fields(e);
-                    void act(async () => {
-                      await userApi('questions/' + q.id + '/answer', 'POST', {
-                        answer: d.answer,
-                        revision: q.revision,
-                      });
-                      await load();
-                    });
+                  className="scholar-form"
+                  onSubmit={(
+                    event,
+                  ) => {
+                    const data =
+                      fields(
+                        event,
+                      );
+
+                    void act(
+                      async () => {
+                        await userApi(
+                          'questions/' +
+                            selected.id +
+                            '/assign',
+                          'POST',
+                          {
+                            expert:
+                              data.expert,
+
+                            revision:
+                              selected.revision,
+                          },
+                        );
+
+                        setSelected(
+                          null,
+                        );
+
+                        await load();
+                      },
+                    );
                   }}
                 >
                   <label>
-                    {t.answer}
-                    <textarea name="answer" required maxLength={20000} />
+                    {t.expertCode}
+
+                    <input
+                      name="expert"
+                      pattern="[A-Za-z0-9]{13}"
+                      required
+                    />
                   </label>
-                  <button disabled={busy}>{t.answer}</button>
+
+                  <button
+                    disabled={
+                      busy ||
+                      Boolean(
+                        selected.expert_id,
+                      )
+                    }
+                  >
+                    {t.assign}
+                  </button>
                 </form>
-              )}
-              {!!q.is_owner && (
-                <details>
-                  <summary>{t.visibility}</summary>
-                  <p>{t.publicationHint}</p>
+
+                {selected.publication ===
+                  'PENDING' &&
+                  [
+                    true,
+                    false,
+                  ].map(
+                    (
+                      publish,
+                    ) => (
+                      <button
+                        key={
+                          String(
+                            publish,
+                          )
+                        }
+                        disabled={
+                          busy
+                        }
+                        onClick={() =>
+                          void act(
+                            async () => {
+                              await userApi(
+                                'questions/' +
+                                  selected.id +
+                                  '/review',
+                                'POST',
+                                {
+                                  publish,
+
+                                  revision:
+                                    selected.revision,
+                                },
+                              );
+
+                              setSelected(
+                                null,
+                              );
+
+                              await load();
+                            },
+                          )
+                        }
+                      >
+                        {publish
+                          ? t.publish
+                          : t.reject}
+                      </button>
+                    ),
+                  )}
+              </>
+            ) : (
+              <>
+                {Boolean(
+                  selected.can_answer,
+                ) && (
                   <form
                     className="scholar-form"
-                    onSubmit={(e) => {
-                      const d = fields(e);
-                      void act(async () => {
-                        await userApi('questions/' + q.id + '/visibility', 'POST', {
-                          visibility: d.visibility,
-                          public_question: d.public_question,
-                          public_answer: d.public_answer,
-                          revision: q.revision,
-                        });
-                        await load();
-                      });
+                    onSubmit={(
+                      event,
+                    ) => {
+                      const data =
+                        fields(
+                          event,
+                        );
+
+                      void act(
+                        async () => {
+                          await userApi(
+                            'questions/' +
+                              selected.id +
+                              '/answer',
+                            'POST',
+                            {
+                              answer:
+                                data.answer,
+
+                              revision:
+                                selected.revision,
+                            },
+                          );
+
+                          setSelected(
+                            null,
+                          );
+
+                          await load();
+                        },
+                      );
                     }}
                   >
                     <label>
-                      {t.visibility}
-                      <select name="visibility" defaultValue={value(q, 'visibility')}>
-                        {['PRIVATE', 'PUBLIC', 'ANONYMOUS'].map((v) => (
-                          <option key={v} value={v}>
-                            {t[v]}
-                          </option>
-                        ))}
-                      </select>
+                      {t.answer}
+
+                      <textarea
+                        name="answer"
+                        required
+                        maxLength={20000}
+                      />
                     </label>
-                    <label>
-                      {t.publicQuestion}
-                      <textarea name="public_question" maxLength={12000} />
-                    </label>
-                    <label>
-                      {t.publicAnswer}
-                      <textarea name="public_answer" maxLength={20000} />
-                    </label>
-                    <button disabled={busy}>{t.save}</button>
+
+                    <button
+                      disabled={
+                        busy
+                      }
+                    >
+                      {t.answer}
+                    </button>
                   </form>
-                </details>
-              )}
-              {!!q.expert_id && (
-                <button
-                  onClick={() =>
-                    void act(async () => {
-                      const c = await userApi<Row>(
-                        'questions/' + q.id + '/conversation',
-                        'POST',
-                        {},
-                      );
-                      location.assign(
-                        `${usersBase}/${locale}/account/messages?conversation=${c.id}`,
-                      );
-                    })
-                  }
-                >
-                  {t.conversation}
-                </button>
-              )}
-            </>
-          )}
-        </article>
-      ))}
-      <h3>{t.publicList}</h3>
-      {publicRows.map((q) => (
-        <article className="communication-post" key={value(q, 'id')}>
-          <p>{value(q, 'question')}</p>
-          <p>{value(q, 'answer')}</p>
-          {!!q.author && <bdi>{value(q, 'author')}</bdi>}
-        </article>
-      ))}
+                )}
+
+                {Boolean(
+                  selected.is_owner,
+                ) && (
+                  <details>
+                    <summary>
+                      {t.visibility}
+                    </summary>
+
+                    <p>
+                      {
+                        t.publicationHint
+                      }
+                    </p>
+
+                    <form
+                      className="scholar-form"
+                      onSubmit={(
+                        event,
+                      ) => {
+                        const data =
+                          fields(
+                            event,
+                          );
+
+                        void act(
+                          async () => {
+                            await userApi(
+                              'questions/' +
+                                selected.id +
+                                '/visibility',
+                              'POST',
+                              {
+                                visibility:
+                                  data.visibility,
+
+                                public_question:
+                                  data.public_question,
+
+                                public_answer:
+                                  data.public_answer,
+
+                                revision:
+                                  selected.revision,
+                              },
+                            );
+
+                            setSelected(
+                              null,
+                            );
+
+                            await load();
+                          },
+                        );
+                      }}
+                    >
+                      <label>
+                        {t.visibility}
+
+                        <select
+                          name="visibility"
+                          defaultValue={
+                            value(
+                              selected,
+                              'visibility',
+                            )
+                          }
+                        >
+                          {[
+                            'PRIVATE',
+                            'PUBLIC',
+                            'ANONYMOUS',
+                          ].map(
+                            (
+                              visibility,
+                            ) => (
+                              <option
+                                key={
+                                  visibility
+                                }
+                                value={
+                                  visibility
+                                }
+                              >
+                                {
+                                  t[
+                                    visibility
+                                  ]
+                                }
+                              </option>
+                            ),
+                          )}
+                        </select>
+                      </label>
+
+                      <label>
+                        {
+                          t.publicQuestion
+                        }
+
+                        <textarea
+                          name="public_question"
+                          maxLength={12000}
+                        />
+                      </label>
+
+                      <label>
+                        {
+                          t.publicAnswer
+                        }
+
+                        <textarea
+                          name="public_answer"
+                          maxLength={20000}
+                        />
+                      </label>
+
+                      <button
+                        disabled={
+                          busy
+                        }
+                      >
+                        {t.save}
+                      </button>
+                    </form>
+                  </details>
+                )}
+
+                {Boolean(
+                  selected.expert_id,
+                ) && (
+                  <button
+                    onClick={() =>
+                      void act(
+                        async () => {
+                          const conversation =
+                            await userApi<Row>(
+                              'questions/' +
+                                selected.id +
+                                '/conversation',
+                              'POST',
+                              {},
+                            );
+
+                          location.assign(
+                            `${usersBase}/${locale}/account/messages?conversation=${conversation.id}`,
+                          );
+                        },
+                      )
+                    }
+                  >
+                    {t.conversation}
+                  </button>
+                )}
+              </>
+            )}
+          </article>
+        )}
+      </DashboardDrawer>
     </section>
   );
 }

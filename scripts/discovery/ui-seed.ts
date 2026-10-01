@@ -7,6 +7,7 @@ import { financeCopy } from '../../packages/ui/src/finance-copy.js';
 import { discoveryCopy } from '../../packages/ui/src/discovery-copy.js';
 import { dashboard22Copy } from '../../packages/ui/src/dashboard22-copy.js';
 import { dashboard22OverviewCopy } from '../../packages/ui/src/dashboard22-overview-copy.js';
+import { dashboard22TableCopy } from '../../packages/ui/src/dashboard22-table-copy.js';
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import ts from 'typescript';
 import { copy } from '../../packages/ui/src/copy.js';
@@ -55,6 +56,7 @@ for (const [key, value] of Object.entries({
   discoveryCopy,
   dashboard22: dashboard22Copy,
   dashboard22Overview: dashboard22OverviewCopy,
+  dashboard22Table: dashboard22TableCopy,
   home21: homeCopy,
   services21: servicesCopy,
   expertProfile21: expertProfileCopy,

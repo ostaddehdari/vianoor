@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react';
 import { usersCopy } from './users-copy';
 import { userApi, type Workspace, type Profile, type FormDraft, usersBase } from './users-client';
 import { ProfileEditor, userError, UserAvatar } from './user-profile';
+import { DashboardDrawer } from './dashboard22-drawer';
+import { DashboardDataTable } from './dashboard22-table';
+import { dashboard22TableCopy } from './dashboard22-table-copy';
+import { Icon } from './icons';
 type Locale = string;
 type Account = {
   public_id: string;
@@ -32,7 +36,8 @@ export function UserManagement({ locale }: { locale: Locale }) {
     [scope, setScope] = useState('platform'),
     [email, setEmail] = useState(''),
     [busy, setBusy] = useState(false),
-    [assigned, setAssigned] = useState('');
+    [assigned, setAssigned] = useState(''),
+    [inviteOpen, setInviteOpen] = useState(false);
   async function load(p = page) {
     const result = await userApi<{ users: Account[]; total: number }>('users/search', 'POST', {
       query,
@@ -74,6 +79,13 @@ export function UserManagement({ locale }: { locale: Locale }) {
   }
   useEffect(() => {
     void load(0).catch((e) => setError(userError(e, locale)));
+
+    if (
+      new URLSearchParams(
+        window.location.search,
+      ).get('create') === '1'
+    )
+      setInviteOpen(true);
   }, []);
   async function grant(r: string, s: string, enabled: boolean) {
     if (!selected) return;
@@ -134,7 +146,24 @@ export function UserManagement({ locale }: { locale: Locale }) {
               </label>
               <button disabled={busy}>{t.search}</button>
             </form>
-            <form
+            <div className="dash22-page-actions">
+              <button
+                type="button"
+                className="dash22-primary-create"
+                onClick={() => setInviteOpen(true)}
+              >
+                <Icon name="user" />
+                {dashboard22TableCopy[locale]!.newUser}
+              </button>
+            </div>
+
+            <DashboardDrawer
+              open={inviteOpen}
+              title={dashboard22TableCopy[locale]!.newUser}
+              closeLabel={dashboard22TableCopy[locale]!.close}
+              onClose={() => setInviteOpen(false)}
+            >
+<form
               className="invite-user"
               onSubmit={(e) => {
                 e.preventDefault();
@@ -142,6 +171,7 @@ export function UserManagement({ locale }: { locale: Locale }) {
                   await userApi('users', 'POST', { email, locale });
                   setEmail('');
                   setNotice(t.invited);
+                  setInviteOpen(false);
                   await load(0);
                 });
               }}
@@ -161,40 +191,50 @@ export function UserManagement({ locale }: { locale: Locale }) {
               </button>
               <small>{t.invitation}</small>
             </form>
-            <div className="user-table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>{t.publicId}</th>
-                    <th>{t.email}</th>
-                    <th>{t.status}</th>
-                    <th>{t.actions}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users.map((account) => (
-                    <tr key={account.public_id}>
-                      <td>
-                        <bdi>{account.public_id}</bdi>
-                      </td>
-                      <td>
-                        <bdi>{account.email}</bdi>
-                      </td>
-                      <td>
-                        {account.disabled_at
-                          ? t.disabled
-                          : account.verified_at
-                            ? t.verified
-                            : t.pending}
-                      </td>
-                      <td>
-                        <button onClick={() => void act(() => open(account))}>{t.edit}</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            </DashboardDrawer>
+            <DashboardDataTable
+              locale={locale}
+              rows={users}
+              getRowId={(account) => account.public_id}
+              pageSize={25}
+              columns={[
+                {
+                  key: 'public-id',
+                  label: dashboard22TableCopy[locale]!.publicId,
+                  render: (account) => <bdi>{account.public_id}</bdi>,
+                  searchValue: (account) => account.public_id,
+                },
+                {
+                  key: 'email',
+                  label: dashboard22TableCopy[locale]!.email,
+                  render: (account) => <bdi>{account.email}</bdi>,
+                  searchValue: (account) => account.email,
+                },
+                {
+                  key: 'status',
+                  label: dashboard22TableCopy[locale]!.status,
+                  render: (account) =>
+                    account.disabled_at
+                      ? t.disabled
+                      : account.verified_at
+                        ? t.verified
+                        : t.pending,
+                  searchValue: (account) =>
+                    account.disabled_at
+                      ? t.disabled
+                      : account.verified_at
+                        ? t.verified
+                        : t.pending,
+                },
+              ]}
+              renderActions={(account) => (
+                <button
+                  onClick={() => void act(() => open(account))}
+                >
+                  {t.edit}
+                </button>
+              )}
+            />
             <div className="user-actions">
               <button disabled={!page || busy} onClick={() => void act(() => load(page - 1))}>
                 {t.previous}
