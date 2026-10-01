@@ -580,3 +580,100 @@ Participant permission state is polled from Event service so server-side revoke 
 Live Webinar text chat uses the durable `EVENT` Messaging conversation.
 
 It supports persistent message history and does not depend on LiveKit DataChannel.
+
+### Work23.3 Final End-to-End Acceptance
+
+The complete Webinar/Event experience passed end-to-end acceptance after the Sponsor preferred-Expert resolver correction.
+
+Validated through real Stage23 Preview APIs:
+
+#### Expert-created Webinar
+
+- verified Expert creates Webinar
+- publishes Webinar
+- public Webinar detail is available
+- starts Live Webinar
+- ends Webinar
+
+#### Invitations and registration
+
+- Presenter sends invitation
+- attendee sees invitation
+- attendee accepts invitation
+- free registration becomes `REGISTERED`
+
+#### Sponsor-requested Webinar
+
+- Sponsor submits request
+- Sponsor selects a preferred Expert
+- preferred Expert resolves through Scholar qualification plus Identity account lookup
+- Expert sees targeted Sponsor request
+- Expert accepts request
+- request becomes a Webinar with Sponsor and Presenter linkage
+
+#### Paid Webinar contract
+
+- paid Webinar can be created and published
+- attendee registration becomes `PENDING_PAYMENT`
+- Event payment quote returns Event context, registration ID, amount and currency
+- payment-method discovery remains functional
+- acceptance intentionally does not execute a real financial transaction
+
+#### Live Webinar policy
+
+Presenter receives:
+
+- microphone
+- camera
+- screen share
+
+Audience receives:
+
+- subscribe access
+- microphone disabled by default
+- camera disabled by default
+- screen share disabled
+
+#### Raise Hand and media grants
+
+Validated:
+
+- Raise Hand
+- Presenter visibility of Raised Hand
+- microphone grant
+- camera grant
+- microphone revoke
+- camera revoke
+- attendee permission-state refresh
+
+#### Persistent text chat
+
+Validated:
+
+- EVENT conversation creation
+- attendee message
+- durable message history
+- Presenter read access
+
+#### Interface acceptance
+
+Validated:
+
+- Persian
+- English
+- Light Mode
+- Dark Mode
+- responsive desktop/tablet/mobile rules
+- public Webinar experience
+- Expert/Sponsor dashboard experience
+- Live Webinar room UI
+
+#### Acceptance isolation
+
+Acceptance notifications were redirected to a local no-op Notification endpoint.
+
+No real payment was executed.
+
+Temporary authentication sessions, Webinar rows, Sponsor requests, invitations, registrations, Event conversations/messages and Webinar room metadata were removed after the run.
+
+Work23.3 is accepted and complete.
