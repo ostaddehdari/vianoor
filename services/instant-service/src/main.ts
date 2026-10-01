@@ -2991,6 +2991,253 @@ function router(
     ),
   );
 
+  /*
+   * Join a matched instant consultation.
+   *
+   * Media and Messaging are created lazily only when a
+   * READY/LIVE consultation is actually entered.
+   */
+  r.post(
+    '/api/v2/instant/requests/:id/join',
+    endpoint(
+      async (
+        req,
+        res,
+      ) => {
+        const user =
+            await principal(
+              req,
+            ),
+
+          row =
+            await loadRequest(
+              pool,
+              uuid.parse(
+                req.params.id,
+              ),
+            );
+
+        if (
+          !row.expert_id ||
+          ![
+            row.client_id,
+            row.expert_id,
+          ].includes(
+            user.id,
+          )
+        )
+          throw new ServiceError(
+            403,
+            'FORBIDDEN',
+          );
+
+        if (
+          ![
+            'READY',
+            'LIVE',
+          ].includes(
+            row.status,
+          )
+        )
+          throw new ServiceError(
+            409,
+            'INSTANT_NOT_READY',
+          );
+
+        const conversation =
+          await internalCall<{
+            id: string;
+          }>(
+            'messaging-service',
+            '/internal/communications/instant',
+            '',
+            {
+              request_id:
+                row.id,
+
+              client_id:
+                row.client_id,
+
+              expert_id:
+                row.expert_id,
+            },
+          );
+
+        await internalCall(
+          'media-service',
+          '/internal/instant/open',
+          '',
+          {
+            request_id:
+              row.id,
+          },
+        );
+
+        const media =
+          await internalCall(
+            'media-service',
+            '/internal/instant/token',
+            '',
+            {
+              request_id:
+                row.id,
+
+              identity:
+                user.id,
+            },
+          );
+
+        res.json({
+          data: {
+            request:
+              await presentRequest(
+                pool,
+                await loadRequest(
+                  pool,
+                  row.id,
+                ),
+              ),
+
+            conversation_id:
+              conversation.id,
+
+            media,
+          },
+        });
+      },
+    ),
+  );
+
+  /*
+   * Payment-service refund hook.
+   *
+   * A consultation already LIVE/COMPLETED cannot be
+   * silently cancelled through the ordinary refund path.
+   */
+  r.post(
+    '/internal/instant/financial-cancel',
+    endpoint(
+      async (
+        req,
+        res,
+      ) => {
+        const input =
+          z
+            .object({
+              request_id:
+                uuid,
+
+              payment_id:
+                uuid,
+            })
+            .strict()
+            .parse(
+              req.body,
+            );
+
+        const result =
+          await transaction(
+            pool,
+            async (
+              db,
+            ) => {
+              const current =
+                await loadRequest(
+                  db,
+                  input.request_id,
+                  true,
+                );
+
+              if (
+                [
+                  'LIVE',
+                  'COMPLETED',
+                ].includes(
+                  current.status,
+                )
+              )
+                throw new ServiceError(
+                  409,
+                  'INSTANT_REFUND_WINDOW_CLOSED',
+                );
+
+              if (
+                current.payment_id &&
+                current.payment_id !==
+                  input.payment_id
+              )
+                throw new ServiceError(
+                  409,
+                  'INSTANT_PAYMENT_MISMATCH',
+                );
+
+              if (
+                current.status ===
+                  'CANCELLED'
+              )
+                return current;
+
+              const cancelled =
+                (
+                  await db.query(
+                    `
+                    UPDATE instant_requests
+                    SET
+                      status='CANCELLED',
+                      updated_at=now()
+                    WHERE id=$1
+                    RETURNING *
+                    `,
+                    [
+                      current.id,
+                    ],
+                  )
+                ).rows[0] as
+                  InstantRequest;
+
+              if (
+                current.expert_id
+              )
+                await db.query(
+                  `
+                  UPDATE instant_experts
+                  SET
+                    busy_request_id=NULL,
+                    updated_at=now()
+                  WHERE expert_id=$1
+                    AND busy_request_id=$2
+                  `,
+                  [
+                    current.expert_id,
+                    current.id,
+                  ],
+                );
+
+              await audit(
+                db,
+                current.id,
+                null,
+                'FINANCIAL_CANCELLED',
+                {
+                  payment_id:
+                    input.payment_id,
+                },
+              );
+
+              return cancelled;
+            },
+          );
+
+        res.json({
+          data: {
+            status:
+              result.status,
+          },
+        });
+      },
+    ),
+  );
+
   return r;
 }
 

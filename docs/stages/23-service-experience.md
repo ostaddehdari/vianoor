@@ -830,3 +830,78 @@ Work23.4 Checkpoint 2 adds:
 - Expert Talk Now hours/settings UI
 - operator queue panel
 - support ticket / complaint path
+
+### Work23.4 Checkpoint 2A — Payment, LiveKit and persistent chat
+
+Talk Now now has first-class integration with the finance, media and communication services.
+
+#### Payment
+
+Payment service supports:
+
+`instant_request_id`
+
+as a first-class payable context beside Booking and Webinar registration.
+
+A Talk Now payment:
+
+- fetches the authoritative quote from instant-service
+- validates account, amount, currency and payment hold
+- prevents duplicate active payments for the same Instant request
+- snapshots the Instant quote
+- applies ordinary commission/tax/risk rules
+- fulfills the payment by calling instant-service
+- transitions `AWAITING_PAYMENT → READY`
+- uses `/instant?payment=...` as the external gateway return path
+- supports the refund financial-cancel hook
+
+#### LiveKit 1:1
+
+media-service owns a dedicated `instant_rooms` table.
+
+The Instant room is created lazily when a READY consultation is entered.
+
+The room:
+
+- max participants: 2
+- persistent text chat is not sent through LiveKit DataChannel
+- both parties can publish microphone
+- VIDEO requests allow camera
+- AUDIO requests do not allow camera
+- screen share is available
+- tokens are short-lived
+- only the matched client and Expert receive tokens
+
+Opening the room changes the Instant request:
+
+`READY → LIVE`
+
+Ending the room changes it:
+
+`LIVE → COMPLETED`
+
+and releases the Expert.
+
+#### Persistent INSTANT conversation
+
+Messaging supports conversation type:
+
+`INSTANT`
+
+The conversation is keyed by the Instant request and contains exactly:
+
+- CUSTOMER
+- EXPERT
+
+Writes are authorized against instant-service, so unrelated accounts cannot use the conversation.
+
+#### Join endpoint
+
+The client or matched Expert enters an Instant consultation through the Instant request join endpoint.
+
+The response combines:
+
+- current Instant request
+- persistent conversation ID
+- LiveKit token and URL
+- role and media capabilities

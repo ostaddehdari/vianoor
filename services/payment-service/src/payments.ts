@@ -32,6 +32,7 @@ type Payment = {
   account_id: string;
   booking_id: string | null;
   event_registration_id: string | null;
+  instant_request_id: string | null;
   expert_id: string | null;
   gateway_id: string | null;
   provider: string;
@@ -81,9 +82,24 @@ type EventQuote = {
   end_at: string;
 };
 
+type InstantQuote = {
+  id: string;
+  account_id: string;
+  expert_id: string;
+  status: string;
+  expires_at: string;
+  amount: string;
+  currency: string;
+  specialty_id: null;
+  country: string;
+  kind: 'INSTANT';
+  end_at: string;
+};
+
 type PaymentQuote =
   | BookingQuote
-  | EventQuote;
+  | EventQuote
+  | InstantQuote;
 
 function quoteAccount(
   quote: PaymentQuote,
@@ -96,16 +112,27 @@ function quoteAccount(
 function quoteActive(
   quote: PaymentQuote,
 ) {
-  return 'client_id' in quote
-    ? [
-        'HELD',
-        'BOOKING_PENDING_PAYMENT',
-      ].includes(
-        quote.status,
-      )
-    : quote.status ===
-        'PENDING_PAYMENT';
+  if (
+    'client_id' in quote
+  )
+    return [
+      'HELD',
+      'BOOKING_PENDING_PAYMENT',
+    ].includes(
+      quote.status,
+    );
+
+  if (
+    quote.kind ===
+    'EVENT'
+  )
+    return quote.status ===
+      'PENDING_PAYMENT';
+
+  return quote.status ===
+    'AWAITING_PAYMENT';
 }
+
 export async function initializePayments(pool: Pool) {
   await pool.query(`
  CREATE TABLE IF NOT EXISTS payment_notification_start(id boolean PRIMARY KEY DEFAULT true CHECK(id),since timestamptz NOT NULL DEFAULT now()); INSERT INTO payment_notification_start(id) VALUES(true) ON CONFLICT DO NOTHING;
@@ -126,6 +153,8 @@ export async function initializePayments(pool: Pool) {
  ALTER TABLE payments ADD COLUMN IF NOT EXISTS tax numeric(30,0) NOT NULL DEFAULT 0;
  ALTER TABLE payments ADD COLUMN IF NOT EXISTS event_registration_id uuid;
  CREATE UNIQUE INDEX IF NOT EXISTS one_event_registration_payment ON payments(event_registration_id) WHERE event_registration_id IS NOT NULL AND status NOT IN ('FAILED','CANCELLED');
+ ALTER TABLE payments ADD COLUMN IF NOT EXISTS instant_request_id uuid;
+ CREATE UNIQUE INDEX IF NOT EXISTS one_instant_request_payment ON payments(instant_request_id) WHERE instant_request_id IS NOT NULL AND status NOT IN ('FAILED','CANCELLED');
  ALTER TABLE finance_settings ADD COLUMN IF NOT EXISTS tax_bps int NOT NULL DEFAULT 0 CHECK(tax_bps BETWEEN 0 AND 10000);
  CREATE TABLE IF NOT EXISTS reconciliation_issues(id uuid PRIMARY KEY,payment_id uuid,code text NOT NULL,status text NOT NULL DEFAULT 'OPEN',created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now(),UNIQUE(payment_id,code));
  `);
@@ -176,6 +205,7 @@ const publicPayment = (p: Payment) => ({
   tax: p.tax ?? '0',
   booking_id: p.booking_id,
   event_registration_id: p.event_registration_id,
+  instant_request_id: p.instant_request_id,
   provider: p.provider,
   amount: p.amount,
   currency: p.currency,
@@ -207,12 +237,10 @@ async function fulfill(
   )
     return;
 
-  /*
-   * No booking/event context means a normal wallet top-up.
-   */
   if (
     !p.booking_id &&
-    !p.event_registration_id
+    !p.event_registration_id &&
+    !p.instant_request_id
   ) {
     await wallet(
       p,
@@ -231,10 +259,6 @@ async function fulfill(
     return;
   }
 
-  /*
-   * Purchase debit is idempotent. External and wallet
-   * providers use the same accounting path.
-   */
   await wallet(
     p,
     p.provider ===
@@ -249,6 +273,37 @@ async function fulfill(
     false;
 
   if (
+    p.instant_request_id
+  ) {
+    const result =
+      await internalCall<{
+        status: string;
+      }>(
+        'instant-service',
+        '/internal/instant/payment-confirm',
+        '',
+        {
+          request_id:
+            p.instant_request_id,
+
+          payment_id:
+            p.id,
+
+          account_id:
+            p.account_id,
+
+          amount:
+            p.amount,
+
+          currency:
+            p.currency,
+        },
+      );
+
+    accepted =
+      result.status ===
+      'READY';
+  } else if (
     p.event_registration_id
   ) {
     const result =
@@ -335,9 +390,11 @@ async function fulfill(
     await issue(
       db,
       p.id,
-      p.event_registration_id
-        ? 'LATE_EVENT_PAYMENT_WALLET_CREDIT'
-        : 'LATE_PAYMENT_WALLET_CREDIT',
+      p.instant_request_id
+        ? 'LATE_INSTANT_PAYMENT_WALLET_CREDIT'
+        : p.event_registration_id
+          ? 'LATE_EVENT_PAYMENT_WALLET_CREDIT'
+          : 'LATE_PAYMENT_WALLET_CREDIT',
     );
 
     return;
@@ -402,11 +459,14 @@ export async function processPayment(pool: Pool, id: string) {
               'en'
             ) +
             (
-              p.event_registration_id
-                ? '/events?payment=' +
+              p.instant_request_id
+                ? '/instant?payment=' +
                   p.id
-                : '/account/wallet?payment=' +
-                  p.id
+                : p.event_registration_id
+                  ? '/events?payment=' +
+                    p.id
+                  : '/account/wallet?payment=' +
+                    p.id
             ),
           callback_url: base + '/api/payment-webhooks/' + g.id,
           ...(p.network ? { network: p.network } : {}),
@@ -523,10 +583,24 @@ export async function processRefund(pool: Pool, id: string) {
             p.id,
         },
       );
+
+    if (p.instant_request_id)
+      await internalCall(
+        'instant-service',
+        '/internal/instant/financial-cancel',
+        '',
+        {
+          request_id:
+            p.instant_request_id,
+
+          payment_id:
+            p.id,
+        },
+      );
     if (!f.funds_locked) {
       await wallet(
         p,
-        (!p.booking_id && !p.event_registration_id) ||
+        (!p.booking_id && !p.event_registration_id && !p.instant_request_id) ||
         p.fulfillment === 'CREDITED_LATE'
           ? 'REFUND_LOCK_TOPUP'
           : p.released_at
@@ -687,6 +761,9 @@ export function paymentsRouter(pool: Pool) {
               event_registration_id:
                 uuid.optional(),
 
+              instant_request_id:
+                uuid.optional(),
+
               amount:
                 minor.optional(),
 
@@ -714,9 +791,18 @@ export function paymentsRouter(pool: Pool) {
                 value,
                 context,
               ) => {
+                const contexts =
+                  [
+                    value.booking_id,
+                    value.event_registration_id,
+                    value.instant_request_id,
+                  ].filter(
+                    Boolean,
+                  ).length;
+
                 if (
-                  value.booking_id &&
-                  value.event_registration_id
+                  contexts >
+                  1
                 )
                   context.addIssue({
                     code:
@@ -835,6 +921,22 @@ export function paymentsRouter(pool: Pool) {
           );
 
       if (
+        d.instant_request_id
+      )
+        quote =
+          await internalCall<
+            InstantQuote
+          >(
+            'instant-service',
+            '/internal/instant/payment-quote/' +
+              d.instant_request_id,
+            req.get(
+              'authorization',
+            ) ??
+              '',
+          );
+
+      if (
         quote &&
         (
           quoteAccount(
@@ -880,6 +982,22 @@ export function paymentsRouter(pool: Pool) {
           throw new ServiceError(
             409,
             'EVENT_REGISTRATION_ALREADY_PAID',
+          );
+
+        if (
+          d.instant_request_id &&
+          (
+            await pool.query(
+              "SELECT 1 FROM payments WHERE instant_request_id=$1 AND status NOT IN ('FAILED','CANCELLED')",
+              [
+                d.instant_request_id,
+              ],
+            )
+          ).rowCount
+        )
+          throw new ServiceError(
+            409,
+            'INSTANT_REQUEST_ALREADY_PAID',
           );
 
         throw new ServiceError(
@@ -1218,6 +1336,33 @@ export function paymentsRouter(pool: Pool) {
               );
           }
 
+          if (
+            d.instant_request_id
+          ) {
+            await db.query(
+              'SELECT pg_advisory_xact_lock(hashtextextended($1,0))',
+              [
+                'instant-payment:' +
+                  d.instant_request_id,
+              ],
+            );
+
+            if (
+              (
+                await db.query(
+                  "SELECT 1 FROM payments WHERE instant_request_id=$1 AND status NOT IN ('FAILED','CANCELLED')",
+                  [
+                    d.instant_request_id,
+                  ],
+                )
+              ).rowCount
+            )
+              throw new ServiceError(
+                409,
+                'INSTANT_REQUEST_ALREADY_PAID',
+              );
+          }
+
           await db.query(
             `
             INSERT INTO payments(
@@ -1225,6 +1370,7 @@ export function paymentsRouter(pool: Pool) {
               account_id,
               booking_id,
               event_registration_id,
+              instant_request_id,
               expert_id,
               gateway_id,
               provider,
@@ -1239,7 +1385,7 @@ export function paymentsRouter(pool: Pool) {
             )
             VALUES(
               $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,
-              $11,$12,$13,$14,$15
+              $11,$12,$13,$14,$15,$16
             )
             `,
             [
@@ -1248,6 +1394,8 @@ export function paymentsRouter(pool: Pool) {
               d.booking_id ??
                 null,
               d.event_registration_id ??
+                null,
+              d.instant_request_id ??
                 null,
               quote
                 ?.expert_id ??
@@ -1283,6 +1431,11 @@ export function paymentsRouter(pool: Pool) {
                   d.event_registration_id
                     ? quote
                     : null,
+
+                instant_request:
+                  d.instant_request_id
+                    ? quote
+                    : null,
               },
               d.request_key,
               d,
@@ -1310,11 +1463,13 @@ export function paymentsRouter(pool: Pool) {
                 d.provider,
 
               context:
-                d.event_registration_id
-                  ? 'EVENT'
-                  : d.booking_id
-                    ? 'BOOKING'
-                    : 'TOPUP',
+                d.instant_request_id
+                  ? 'INSTANT'
+                  : d.event_registration_id
+                    ? 'EVENT'
+                    : d.booking_id
+                      ? 'BOOKING'
+                      : 'TOPUP',
             },
           );
         },

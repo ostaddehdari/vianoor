@@ -316,6 +316,72 @@ export function conversationRouter(
     }),
   );
   r.post(
+    '/internal/communications/instant',
+    endpoint(
+      async (
+        req,
+        res,
+      ) => {
+        const input =
+          z
+            .object({
+              request_id:
+                uuid,
+
+              client_id:
+                uuid,
+
+              expert_id:
+                uuid,
+            })
+            .strict()
+            .parse(
+              req.body,
+            );
+
+        res.json({
+          data:
+            await createConversation(
+              pool,
+              {
+                type:
+                  'INSTANT',
+
+                context_id:
+                  input.request_id,
+
+                context_key:
+                  'instant:' +
+                  input.request_id,
+
+                creator:
+                  input.client_id,
+
+                members: [
+                  {
+                    id:
+                      input.client_id,
+
+                    role:
+                      'CUSTOMER',
+                  },
+
+                  {
+                    id:
+                      input.expert_id,
+
+                    role:
+                      'EXPERT',
+                  },
+                ],
+              },
+            ),
+        });
+      },
+    ),
+  );
+
+  r.post(
     '/internal/communications/event',
     endpoint(async (req, res) => {
       const d = z
