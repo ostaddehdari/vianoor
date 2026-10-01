@@ -2856,6 +2856,496 @@
     "ar": "Workspace"
   },
   {
+    "key": "dashboard22Overview.accountOverview",
+    "module": "dashboard22overview",
+    "en": "Client overview",
+    "fa": "نمای کلی مراجع",
+    "ar": "Client overview"
+  },
+  {
+    "key": "dashboard22Overview.activityAnswer",
+    "module": "dashboard22overview",
+    "en": "Question answered",
+    "fa": "پرسش پاسخ داده شده",
+    "ar": "Question answered"
+  },
+  {
+    "key": "dashboard22Overview.activityEmpty",
+    "module": "dashboard22overview",
+    "en": "There is no recent activity to display yet.",
+    "fa": "هنوز فعالیتی برای نمایش وجود ندارد.",
+    "ar": "There is no recent activity to display yet."
+  },
+  {
+    "key": "dashboard22Overview.activityMessage",
+    "module": "dashboard22overview",
+    "en": "Conversation activity",
+    "fa": "فعالیت در گفتگو",
+    "ar": "Conversation activity"
+  },
+  {
+    "key": "dashboard22Overview.activityNotification",
+    "module": "dashboard22overview",
+    "en": "New notification",
+    "fa": "اعلان جدید",
+    "ar": "New notification"
+  },
+  {
+    "key": "dashboard22Overview.activityPayment",
+    "module": "dashboard22overview",
+    "en": "Payment recorded",
+    "fa": "پرداخت ثبت شد",
+    "ar": "Payment recorded"
+  },
+  {
+    "key": "dashboard22Overview.activityQuestion",
+    "module": "dashboard22overview",
+    "en": "Question submitted",
+    "fa": "پرسش ثبت شد",
+    "ar": "Question submitted"
+  },
+  {
+    "key": "dashboard22Overview.activitySession",
+    "module": "dashboard22overview",
+    "en": "Session",
+    "fa": "جلسه",
+    "ar": "Session"
+  },
+  {
+    "key": "dashboard22Overview.activityWallet",
+    "module": "dashboard22overview",
+    "en": "Wallet activity",
+    "fa": "گردش کیف پول",
+    "ar": "Wallet activity"
+  },
+  {
+    "key": "dashboard22Overview.adminOverview",
+    "module": "dashboard22overview",
+    "en": "Administration overview",
+    "fa": "نمای کلی مدیریت",
+    "ar": "Administration overview"
+  },
+  {
+    "key": "dashboard22Overview.answer",
+    "module": "dashboard22overview",
+    "en": "Answer received",
+    "fa": "پاسخ دریافت شد",
+    "ar": "Answer received"
+  },
+  {
+    "key": "dashboard22Overview.answeredQuestions",
+    "module": "dashboard22overview",
+    "en": "Answered questions",
+    "fa": "پرسش‌های پاسخ‌داده‌شده",
+    "ar": "Answered questions"
+  },
+  {
+    "key": "dashboard22Overview.assignedQuestions",
+    "module": "dashboard22overview",
+    "en": "Questions awaiting answer",
+    "fa": "پرسش‌های در انتظار پاسخ",
+    "ar": "Questions awaiting answer"
+  },
+  {
+    "key": "dashboard22Overview.booking",
+    "module": "dashboard22overview",
+    "en": "Booking",
+    "fa": "رزرو",
+    "ar": "Booking"
+  },
+  {
+    "key": "dashboard22Overview.cancelled",
+    "module": "dashboard22overview",
+    "en": "Cancelled",
+    "fa": "لغوشده",
+    "ar": "Cancelled"
+  },
+  {
+    "key": "dashboard22Overview.completed",
+    "module": "dashboard22overview",
+    "en": "Completed",
+    "fa": "تکمیل‌شده",
+    "ar": "Completed"
+  },
+  {
+    "key": "dashboard22Overview.completedSessions",
+    "module": "dashboard22overview",
+    "en": "Completed sessions",
+    "fa": "جلسات انجام‌شده",
+    "ar": "Completed sessions"
+  },
+  {
+    "key": "dashboard22Overview.confirmed",
+    "module": "dashboard22overview",
+    "en": "Confirmed",
+    "fa": "تأییدشده",
+    "ar": "Confirmed"
+  },
+  {
+    "key": "dashboard22Overview.countdown",
+    "module": "dashboard22overview",
+    "en": "Time remaining",
+    "fa": "زمان باقی‌مانده",
+    "ar": "Time remaining"
+  },
+  {
+    "key": "dashboard22Overview.currencies",
+    "module": "dashboard22overview",
+    "en": "currencies",
+    "fa": "ارز",
+    "ar": "currencies"
+  },
+  {
+    "key": "dashboard22Overview.date",
+    "module": "dashboard22overview",
+    "en": "Time",
+    "fa": "زمان",
+    "ar": "Time"
+  },
+  {
+    "key": "dashboard22Overview.day",
+    "module": "dashboard22overview",
+    "en": "day",
+    "fa": "روز",
+    "ar": "day"
+  },
+  {
+    "key": "dashboard22Overview.eventsUnavailable",
+    "module": "dashboard22overview",
+    "en": "The events service is not active yet.",
+    "fa": "سرویس رویدادها هنوز فعال نشده است.",
+    "ar": "The events service is not active yet."
+  },
+  {
+    "key": "dashboard22Overview.eventZero",
+    "module": "dashboard22overview",
+    "en": "0",
+    "fa": "۰",
+    "ar": "0"
+  },
+  {
+    "key": "dashboard22Overview.expert",
+    "module": "dashboard22overview",
+    "en": "Expert",
+    "fa": "استاد",
+    "ar": "Expert"
+  },
+  {
+    "key": "dashboard22Overview.expertOverview",
+    "module": "dashboard22overview",
+    "en": "Expert overview",
+    "fa": "نمای کلی استاد",
+    "ar": "Expert overview"
+  },
+  {
+    "key": "dashboard22Overview.failed",
+    "module": "dashboard22overview",
+    "en": "Failed",
+    "fa": "ناموفق",
+    "ar": "Failed"
+  },
+  {
+    "key": "dashboard22Overview.hour",
+    "module": "dashboard22overview",
+    "en": "hour",
+    "fa": "ساعت",
+    "ar": "hour"
+  },
+  {
+    "key": "dashboard22Overview.joinSession",
+    "module": "dashboard22overview",
+    "en": "Enter session",
+    "fa": "ورود به جلسه",
+    "ar": "Enter session"
+  },
+  {
+    "key": "dashboard22Overview.loadError",
+    "module": "dashboard22overview",
+    "en": "Some statistics are temporarily unavailable. Available data is still shown.",
+    "fa": "بخشی از آمار در حال حاضر در دسترس نیست؛ اطلاعات موجود همچنان نمایش داده می‌شود.",
+    "ar": "Some statistics are temporarily unavailable. Available data is still shown."
+  },
+  {
+    "key": "dashboard22Overview.managedInbox",
+    "module": "dashboard22overview",
+    "en": "Managed inbox items",
+    "fa": "موارد صندوق مدیریت",
+    "ar": "Managed inbox items"
+  },
+  {
+    "key": "dashboard22Overview.message",
+    "module": "dashboard22overview",
+    "en": "Message",
+    "fa": "پیام",
+    "ar": "Message"
+  },
+  {
+    "key": "dashboard22Overview.minute",
+    "module": "dashboard22overview",
+    "en": "minute",
+    "fa": "دقیقه",
+    "ar": "minute"
+  },
+  {
+    "key": "dashboard22Overview.myQuestions",
+    "module": "dashboard22overview",
+    "en": "My questions",
+    "fa": "پرسش‌های من",
+    "ar": "My questions"
+  },
+  {
+    "key": "dashboard22Overview.newMessage",
+    "module": "dashboard22overview",
+    "en": "Conversation with unread messages",
+    "fa": "گفت‌وگوی دارای پیام خوانده‌نشده",
+    "ar": "Conversation with unread messages"
+  },
+  {
+    "key": "dashboard22Overview.nextExpertSession",
+    "module": "dashboard22overview",
+    "en": "Next session",
+    "fa": "جلسه بعدی",
+    "ar": "Next session"
+  },
+  {
+    "key": "dashboard22Overview.nextSession",
+    "module": "dashboard22overview",
+    "en": "Your next session",
+    "fa": "جلسه بعدی شما",
+    "ar": "Your next session"
+  },
+  {
+    "key": "dashboard22Overview.noBalance",
+    "module": "dashboard22overview",
+    "en": "No balance",
+    "fa": "بدون موجودی",
+    "ar": "No balance"
+  },
+  {
+    "key": "dashboard22Overview.noData",
+    "module": "dashboard22overview",
+    "en": "No data has been recorded yet.",
+    "fa": "داده‌ای ثبت نشده است.",
+    "ar": "No data has been recorded yet."
+  },
+  {
+    "key": "dashboard22Overview.noNextSession",
+    "module": "dashboard22overview",
+    "en": "No upcoming session is currently scheduled.",
+    "fa": "جلسه آینده‌ای ثبت نشده است.",
+    "ar": "No upcoming session is currently scheduled."
+  },
+  {
+    "key": "dashboard22Overview.notification",
+    "module": "dashboard22overview",
+    "en": "Notification",
+    "fa": "اعلان",
+    "ar": "Notification"
+  },
+  {
+    "key": "dashboard22Overview.overview",
+    "module": "dashboard22overview",
+    "en": "Overview",
+    "fa": "نمای کلی",
+    "ar": "Overview"
+  },
+  {
+    "key": "dashboard22Overview.overviewText",
+    "module": "dashboard22overview",
+    "en": "Your most important account activity at a glance.",
+    "fa": "وضعیت حساب و فعالیت‌های مهم شما در یک نگاه.",
+    "ar": "Your most important account activity at a glance."
+  },
+  {
+    "key": "dashboard22Overview.paid",
+    "module": "dashboard22overview",
+    "en": "Paid",
+    "fa": "پرداخت‌شده",
+    "ar": "Paid"
+  },
+  {
+    "key": "dashboard22Overview.partial",
+    "module": "dashboard22overview",
+    "en": "Showing available information",
+    "fa": "نمایش اطلاعات موجود",
+    "ar": "Showing available information"
+  },
+  {
+    "key": "dashboard22Overview.payment",
+    "module": "dashboard22overview",
+    "en": "Payment",
+    "fa": "پرداخت",
+    "ar": "Payment"
+  },
+  {
+    "key": "dashboard22Overview.pendingQuestions",
+    "module": "dashboard22overview",
+    "en": "Questions awaiting review",
+    "fa": "پرسش‌های در انتظار بررسی",
+    "ar": "Questions awaiting review"
+  },
+  {
+    "key": "dashboard22Overview.question",
+    "module": "dashboard22overview",
+    "en": "Question",
+    "fa": "پرسش",
+    "ar": "Question"
+  },
+  {
+    "key": "dashboard22Overview.receivedAnswers",
+    "module": "dashboard22overview",
+    "en": "Answers received",
+    "fa": "پاسخ‌های دریافت‌شده",
+    "ar": "Answers received"
+  },
+  {
+    "key": "dashboard22Overview.recentActivity",
+    "module": "dashboard22overview",
+    "en": "Recent activity",
+    "fa": "فعالیت‌های اخیر",
+    "ar": "Recent activity"
+  },
+  {
+    "key": "dashboard22Overview.recentActivityText",
+    "module": "dashboard22overview",
+    "en": "The latest real activity recorded for this account.",
+    "fa": "آخرین تغییرات واقعی ثبت‌شده در حساب شما.",
+    "ar": "The latest real activity recorded for this account."
+  },
+  {
+    "key": "dashboard22Overview.refunded",
+    "module": "dashboard22overview",
+    "en": "Refunded",
+    "fa": "بازپرداخت‌شده",
+    "ar": "Refunded"
+  },
+  {
+    "key": "dashboard22Overview.registeredEvents",
+    "module": "dashboard22overview",
+    "en": "Registered events",
+    "fa": "رویدادهای ثبت‌نام‌شده",
+    "ar": "Registered events"
+  },
+  {
+    "key": "dashboard22Overview.service",
+    "module": "dashboard22overview",
+    "en": "Service",
+    "fa": "خدمت",
+    "ar": "Service"
+  },
+  {
+    "key": "dashboard22Overview.session",
+    "module": "dashboard22overview",
+    "en": "Session",
+    "fa": "جلسه",
+    "ar": "Session"
+  },
+  {
+    "key": "dashboard22Overview.status",
+    "module": "dashboard22overview",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "dashboard22Overview.totalBookings",
+    "module": "dashboard22overview",
+    "en": "Total bookings",
+    "fa": "کل رزروها",
+    "ar": "Total bookings"
+  },
+  {
+    "key": "dashboard22Overview.unreadMessages",
+    "module": "dashboard22overview",
+    "en": "Unread messages",
+    "fa": "پیام‌های خوانده‌نشده",
+    "ar": "Unread messages"
+  },
+  {
+    "key": "dashboard22Overview.unreadNotifications",
+    "module": "dashboard22overview",
+    "en": "Unread notifications",
+    "fa": "اعلان‌های خوانده‌نشده",
+    "ar": "Unread notifications"
+  },
+  {
+    "key": "dashboard22Overview.upcomingSessions",
+    "module": "dashboard22overview",
+    "en": "Upcoming sessions",
+    "fa": "جلسات آینده",
+    "ar": "Upcoming sessions"
+  },
+  {
+    "key": "dashboard22Overview.updated",
+    "module": "dashboard22overview",
+    "en": "Live account data",
+    "fa": "داده‌های زنده حساب",
+    "ar": "Live account data"
+  },
+  {
+    "key": "dashboard22Overview.viewBookings",
+    "module": "dashboard22overview",
+    "en": "View bookings",
+    "fa": "مشاهده رزروها",
+    "ar": "View bookings"
+  },
+  {
+    "key": "dashboard22Overview.viewMessages",
+    "module": "dashboard22overview",
+    "en": "View messages",
+    "fa": "مشاهده پیام‌ها",
+    "ar": "View messages"
+  },
+  {
+    "key": "dashboard22Overview.viewQuestions",
+    "module": "dashboard22overview",
+    "en": "View questions",
+    "fa": "مشاهده پرسش‌ها",
+    "ar": "View questions"
+  },
+  {
+    "key": "dashboard22Overview.viewSessions",
+    "module": "dashboard22overview",
+    "en": "View sessions",
+    "fa": "مشاهده جلسات",
+    "ar": "View sessions"
+  },
+  {
+    "key": "dashboard22Overview.viewWallet",
+    "module": "dashboard22overview",
+    "en": "View finances",
+    "fa": "مشاهده امور مالی",
+    "ar": "View finances"
+  },
+  {
+    "key": "dashboard22Overview.wallet",
+    "module": "dashboard22overview",
+    "en": "Wallet",
+    "fa": "کیف پول",
+    "ar": "Wallet"
+  },
+  {
+    "key": "dashboard22Overview.walletBalance",
+    "module": "dashboard22overview",
+    "en": "Available balance",
+    "fa": "موجودی قابل مصرف",
+    "ar": "Available balance"
+  },
+  {
+    "key": "dashboard22Overview.welcome",
+    "module": "dashboard22overview",
+    "en": "Welcome",
+    "fa": "خوش آمدید",
+    "ar": "Welcome"
+  },
+  {
+    "key": "dashboard22Overview.workspaceOverview",
+    "module": "dashboard22overview",
+    "en": "Workspace overview",
+    "fa": "نمای کلی محیط کاری",
+    "ar": "Workspace overview"
+  },
+  {
     "key": "demoExperts.0.initials",
     "module": "demoexperts",
     "en": "MR",

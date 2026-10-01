@@ -36,6 +36,7 @@ import {
   buildDashboard22Navigation,
   flattenDashboard22Navigation,
 } from './dashboard22-navigation';
+import { DashboardOverview } from './dashboard22-overview';
 type Locale = string;
 const href = (locale: Locale, path: string) => `${usersBase}/${locale}/${path}`;
 const roleName = (locale: Locale, role: string) =>
@@ -1466,42 +1467,42 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
               complete={profile.complete}
             />
           ) : section === '' ? (
-            <>
-              <section className="user-card welcome-card">
-                <UserAvatar avatar={profile.avatar} name={profile.display_name} size={76} />
-                <div>
-                  <h2>{profile.display_name || t.title}</h2>
-                  <p>
-                    {t.publicId}: <bdi>{profile.public_id}</bdi>
-                  </p>
-                  <span className="user-badge">
-                    {profile.complete ? t.completeBadge : t.complete}
-                  </span>
-                </div>
-                <a href={href(locale, 'members/' + profile.public_id)}>{t.profileLink}</a>
-              </section>
-              {['account', 'expert', 'secretary'].includes(role) ? (
-                <SessionRequests
-                  locale={locale}
-                  role={role}
-                  scope={scope}
-                  complete={profile.complete}
-                />
-              ) : admin ? (
-                <div className="workspace-shortcuts">
-                  {links.slice(1).map(([part, label]) => (
-                    <a className="user-card" key={part} href={route(part)}>
-                      {label}
-                      <span aria-hidden="true">←</span>
-                    </a>
-                  ))}
-                </div>
-              ) : (
-                <section className="user-card">
-                  <p>{t.roleReady}</p>
-                </section>
-              )}
-            </>
+            <DashboardOverview
+              locale={locale}
+              role={role}
+              profileName={
+                profile.display_name ||
+                t.title
+              }
+              links={{
+                sessions:
+                  route('sessions'),
+
+                bookings:
+                  route('bookings'),
+
+                questions:
+                  route('questions'),
+
+                messages:
+                  route('messages'),
+
+                notifications:
+                  route('notifications'),
+
+                wallet:
+                  route(
+                    role === 'expert'
+                      ? 'earnings'
+                      : role === 'admin'
+                        ? 'finance'
+                        : 'wallet',
+                  ),
+
+                events:
+                  route('events'),
+              }}
+            />
           ) : (
             <section className="user-card">
               <h2>{links.find(([part]) => part === section)?.[1] ?? roleName(locale, role)}</h2>

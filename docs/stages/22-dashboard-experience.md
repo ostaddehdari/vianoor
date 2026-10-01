@@ -172,3 +172,85 @@ Call Center navigation groups configuration separately from call history, record
 Specialist roles retain their capabilities under one logical Workspace Tools group.
 
 No backend capability has been removed. Existing routes remain directly addressable.
+
+## Work 22.3 — Dashboard Overview & Real Statistics
+
+Implemented.
+
+The dashboard landing page is now an Overview rather than an operational form.
+
+### Client Overview
+
+Real data is loaded from the existing authenticated services:
+
+- `bookings/scheduled`
+- `questions`
+- `communications/conversations`
+- `notifications`
+- `wallet`
+- `wallet/history`
+- `accounting/currencies`
+- `payments`
+
+The Client Overview displays:
+
+- upcoming sessions
+- completed sessions
+- submitted questions
+- received answers
+- registered events
+- unread messages
+- available wallet balance
+
+The Events metric intentionally remains zero with an explicit unavailable state because the events backend is not implemented yet. No demo event count is fabricated.
+
+### Next Session
+
+The nearest confirmed/rescheduled future booking is displayed with:
+
+- service
+- expert
+- localized time
+- countdown
+- direct handoff to the real Session Workspace using the booking ID
+
+### Recent Activity
+
+The timeline combines actual activity from:
+
+- payments
+- wallet ledger history
+- questions
+- conversations
+- notifications
+- completed sessions
+
+### Expert Overview
+
+Uses real:
+
+- expert bookings
+- assigned questions
+- answered questions
+- unread messages
+- available wallet balance
+- next session
+
+### Admin Overview
+
+Uses real:
+
+- booking totals/statuses
+- pending question moderation
+- managed inbox
+- unread notifications
+
+### Other roles
+
+Other workspaces receive a clean statistics-only landing surface from the services they can access, without rendering permanent forms on the dashboard home.
+
+### UX rule
+
+Operational forms no longer render on the dashboard home.
+
+Creation and operational actions remain in their dedicated pages / Quick Create and are redesigned further in Work 22.4.
