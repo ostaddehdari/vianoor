@@ -5062,6 +5062,13 @@
     "ar": "Bank"
   },
   {
+    "key": "financeCopy.BANK",
+    "module": "financecopy",
+    "en": "Bank",
+    "fa": "بانکی",
+    "ar": "Bank"
+  },
+  {
     "key": "financeCopy.base",
     "module": "financecopy",
     "en": "From currency",
@@ -5256,6 +5263,13 @@
     "en": "Hold expired; amount credited to wallet",
     "fa": "مهلت رزرو تمام شده؛ مبلغ به کیف پول برگشت",
     "ar": "Hold expired; amount credited to wallet"
+  },
+  {
+    "key": "financeCopy.CRYPTO",
+    "module": "financecopy",
+    "en": "Crypto",
+    "fa": "رمزارز",
+    "ar": "Crypto"
   },
   {
     "key": "financeCopy.CRYPTO_REFUND_REQUIRES_PAYOUT",
@@ -11199,7 +11213,7 @@
     "key": "sessionsCopy.recordingUnavailable",
     "module": "sessionscopy",
     "en": "Recording deployment and consent validation are still pending; recording is unavailable.",
-    "fa": "Recording is currently unavailable.",
+    "fa": "ضبط جلسه در حال حاضر در دسترس نیست.",
     "ar": "Recording deployment and consent validation are still pending; recording is unavailable."
   },
   {
@@ -12123,9 +12137,9 @@
   {
     "key": "usersCopy.language",
     "module": "userscopy",
-    "en": "فارسی",
-    "fa": "English",
-    "ar": "فارسی"
+    "en": "Persian",
+    "fa": "انگلیسی",
+    "ar": "Persian"
   },
   {
     "key": "usersCopy.layout",

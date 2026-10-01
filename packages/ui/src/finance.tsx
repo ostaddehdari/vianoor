@@ -731,7 +731,17 @@ export function FinanceWorkspace({
 
           <DashboardDrawer
             open={paymentDrawerOpen}
-            title={booking ? (t.pay ?? 'Pay') : (t.topup ?? 'Top up')}
+            title={
+              booking
+                ? (
+                    t.pay ??
+                    dashboard22TableCopy[locale]!.newPayment
+                  )
+                : (
+                    t.topup ??
+                    dashboard22TableCopy[locale]!.newPayment
+                  )
+            }
             closeLabel={dashboard22TableCopy[locale]!.close}
             onClose={() => setPaymentDrawerOpen(false)}
           >
@@ -955,7 +965,10 @@ export function FinanceWorkspace({
 
               <DashboardDrawer
                 open={payoutDrawerOpen}
-                title={t.withdraw ?? 'Withdrawal'}
+                title={
+                  t.withdraw ??
+                  dashboard22TableCopy[locale]!.newWithdrawal
+                }
                 closeLabel={dashboard22TableCopy[locale]!.close}
                 onClose={() => setPayoutDrawerOpen(false)}
               >
@@ -971,9 +984,17 @@ export function FinanceWorkspace({
                 <label>
                   {t.method}
                   <select value={method} onChange={(e) => setMethod(e.target.value)}>
-                    <option>BANK</option>
-                    <option>PAYPAL</option>
-                    <option>CRYPTO</option>
+                    <option value="BANK">
+                      {t.BANK}
+                    </option>
+
+                    <option value="PAYPAL">
+                      {t.PAYPAL}
+                    </option>
+
+                    <option value="CRYPTO">
+                      {t.CRYPTO}
+                    </option>
                   </select>
                 </label>
                 {(method === 'BANK'

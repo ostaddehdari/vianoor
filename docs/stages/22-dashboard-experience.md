@@ -353,3 +353,131 @@ The reusable Table / Drawer infrastructure is ready for Event and Article create
 No fake Event or Article creation UI was connected because those service backends are not yet implemented.
 
 This preserves the project rule that UI must not imply a working business capability when its backend owner does not yet exist.
+
+## Work 22.5 — All Roles + Localization + Dark Mode
+
+Implemented.
+
+### All Roles
+
+The unified Stage22 Dashboard Shell is used by all authenticated workspaces, including:
+
+- Client
+- Expert
+- Administrator
+- Support
+- Operations
+- Call Center
+- Secretary
+- Responder
+- Scientific management
+- Finance
+- Content
+- Organization
+- Auditor
+- AI workspace
+
+Every workspace now receives the Stage22 shell, role-aware navigation, header, theme system and responsive behavior.
+
+### Localization integrity
+
+Stage22 adds automated FA/EN localization auditing.
+
+The audit verifies:
+
+- FA/EN dictionary key parity
+- no Persian-script label in English dictionaries
+- no untranslated English-only label in Persian dictionaries
+- no direct hard-coded English JSX labels in dashboard operational components
+- Client and Expert primary navigation structure
+- navigation availability for all supported roles
+
+The database localization runtime also contains a script-integrity guard:
+
+- an English-only database value cannot override reviewed Persian bundled copy
+- a Persian database value cannot override reviewed English bundled copy
+
+This protects the UI from stale or historically incorrect localization rows while still allowing valid same-language database translations.
+
+### Language labels
+
+Language-switch labels are now localized:
+
+- Persian UI → `انگلیسی`
+- English UI → `Persian`
+
+### Finance labels
+
+Withdrawal method labels are localized instead of exposing backend enums such as `BANK` or `CRYPTO`.
+
+### Dark / Light coverage
+
+Stage22 Design System tokens now explicitly cover:
+
+- Sidebar
+- Header
+- Cards
+- Forms
+- Inputs
+- Selects
+- Textareas
+- Tables
+- Mobile table cards
+- Drawers / modals
+- Expert workspace
+- Finance workspace
+- Communication workspace
+- Form builder
+- Calendar
+- Live Session UI
+- technical report panels
+- generic chart surfaces
+
+The actual media canvas remains intentionally dark in both themes to prevent bright flashes around live video.
+
+### Accessibility
+
+Reduced-motion users receive near-zero dashboard animation.
+
+### Stage22 completion
+
+Works completed:
+
+- 22.1 Unified Dashboard Shell
+- 22.2 Navigation & Information Architecture
+- 22.3 Dashboard Overview & Statistics
+- 22.4 Tables, Modals & Quick Create
+- 22.5 All Roles, Localization & Dark Mode
+
+Stage22 is ready for Preview acceptance before Stage23 Service UX.
+
+### Work 22.5 final localization audit correction
+
+The localization audit correctly detected one genuine Persian defect:
+
+`sessionsCopy.recordingUnavailable`
+
+The Persian copy previously contained an English sentence and now reads:
+
+`ضبط جلسه در حال حاضر در دسترس نیست.`
+
+The English source is intentionally unchanged:
+
+`Recording deployment and consent validation are still pending; recording is unavailable.`
+
+The first direct-label audit expression also produced false positives from TypeScript generic syntax, including:
+
+- `Promise<T>`
+- `userApi<Row>`
+
+The audit now evaluates literal text inside actual JSX opening and closing tags rather than arbitrary angle-bracket pairs.
+
+Final Work22.5 acceptance therefore requires:
+
+- FA/EN dictionary parity
+- Persian-script integrity
+- English-script integrity
+- literal JSX label audit
+- all-role navigation
+- Light/Dark coverage
+- full TypeScript build

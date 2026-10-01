@@ -209,7 +209,7 @@ export const sessionsCopy = createDictionary('sessionsCopy', {
     audio: 'صوتی',
     text: 'متنی',
     recordingOff: 'ضبط خاموش است.',
-    recordingUnavailable: 'Recording is currently unavailable.',
+    recordingUnavailable: 'ضبط جلسه در حال حاضر در دسترس نیست.',
     layout: 'تغییر چیدمان تصویر',
     notes: 'یادداشت‌ها',
     network: 'پشتیبانی WebRTC',

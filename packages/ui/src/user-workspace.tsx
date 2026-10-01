@@ -722,6 +722,8 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
           ? ' dash22-drawer-open'
           : ''
       }`}
+      data-dashboard-stage="22"
+      data-dashboard-role={role}
     >
       <a
         className="skip-link"

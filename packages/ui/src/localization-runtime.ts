@@ -135,6 +135,48 @@ function shouldUseBundledLocale(
   )
     return true;
 
+  /*
+   * Script-integrity guard.
+   *
+   * Old catalogue rows may have been published under the
+   * wrong locale. A pure English database value must never
+   * replace reviewed bundled Persian copy, and a Persian
+   * database value must never replace reviewed English copy.
+   *
+   * Brand names such as PayPal remain safe because the
+   * bundled Persian value itself is also Latin-script.
+   */
+  const persianScript =
+    /[\u0600-\u06ff]/u;
+
+  const latinScript =
+    /[A-Za-z]/u;
+
+  if (
+    locale === 'fa' &&
+    persianScript.test(
+      bundledLocale,
+    ) &&
+    latinScript.test(
+      databaseValue,
+    ) &&
+    !persianScript.test(
+      databaseValue,
+    )
+  )
+    return true;
+
+  if (
+    locale === 'en' &&
+    latinScript.test(
+      bundledLocale,
+    ) &&
+    persianScript.test(
+      databaseValue,
+    )
+  )
+    return true;
+
   return false;
 }
 

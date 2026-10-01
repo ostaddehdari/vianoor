@@ -127,8 +127,11 @@ export function DashboardDrawer({
       >
         <header className="dash22-drawer-header">
           <div>
-            <span className="dash22-drawer-kicker">
-              VIANOOR
+            <span
+              className="dash22-drawer-kicker"
+              aria-hidden="true"
+            >
+              <Icon name="sparkles" />
             </span>
 
             <h2>

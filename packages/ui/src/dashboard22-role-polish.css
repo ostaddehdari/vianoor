@@ -1,0 +1,942 @@
+/* ==========================================================
+   Stage22 / Work22.5
+   All Roles + Localization + Dark/Light
+   ========================================================== */
+
+.dash22-app {
+  color-scheme:
+    light;
+}
+
+html[data-theme='dark']
+.dash22-app {
+  color-scheme:
+    dark;
+}
+
+/* ----------------------------------------------------------
+   Shared role surfaces
+   ---------------------------------------------------------- */
+
+.dash22-app
+:is(
+  .user-card,
+  .scholar-review,
+  .communication-post,
+  .finance-details,
+  .field-palette,
+  .field-settings,
+  .field-canvas,
+  .invite-user,
+  .user-note,
+  .completion-banner
+) {
+  color:
+    var(--color-ink);
+
+  background:
+    var(--color-surface);
+
+  border-color:
+    var(--color-border);
+
+  box-shadow:
+    var(--shadow-xs);
+}
+
+.dash22-app
+.user-card {
+  border:
+    1px solid
+    var(--color-border);
+}
+
+.dash22-app
+.user-card
+:is(
+  h1,
+  h2,
+  h3,
+  h4,
+  strong,
+  legend,
+  dt
+) {
+  color:
+    var(--color-ink);
+}
+
+.dash22-app
+.user-card
+:is(
+  p,
+  small,
+  dd
+) {
+  color:
+    var(--color-muted);
+}
+
+/* ----------------------------------------------------------
+   Forms
+   ---------------------------------------------------------- */
+
+.dash22-app
+:is(
+  .user-card,
+  .scholar-workspace,
+  .finance-workspace,
+  .communication-workspace,
+  .session-workspace,
+  .localization-manager,
+  .form-builder
+)
+:is(
+  input,
+  select,
+  textarea
+) {
+  color:
+    var(--color-ink);
+
+  background:
+    var(--color-surface);
+
+  border-color:
+    var(--color-border-strong);
+
+  caret-color:
+    var(--color-primary);
+}
+
+.dash22-app
+:is(
+  input,
+  select,
+  textarea
+)::placeholder {
+  color:
+    var(--color-muted);
+}
+
+.dash22-app
+:is(
+  .scholar-workspace,
+  .finance-workspace,
+  .communication-workspace,
+  .session-workspace
+)
+fieldset {
+  border-color:
+    var(--color-border);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-surface)
+      96%,
+      var(--color-canvas-soft)
+    );
+}
+
+.dash22-app
+:is(
+  button,
+  .button
+):not(
+  .dash22-primary-create
+):not(
+  .dash22-quick-button
+):not(
+  .dash22-collapse-button
+):not(
+  .dash22-drawer-close
+):not(
+  .dash22-mobile-menu
+) {
+  border-color:
+    var(--color-border);
+
+  color:
+    var(--color-primary);
+
+  background:
+    var(--color-surface);
+}
+
+.dash22-app
+:is(
+  button,
+  .button
+):not(
+  :disabled
+):hover {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--color-primary)
+      30%,
+      var(--color-border)
+    );
+
+  background:
+    var(--color-primary-soft);
+}
+
+/* ----------------------------------------------------------
+   Status surfaces
+   ---------------------------------------------------------- */
+
+.dash22-app
+.user-badge {
+  color:
+    var(--color-primary);
+
+  background:
+    var(--color-primary-soft);
+}
+
+.dash22-app
+.user-error {
+  color:
+    var(--color-danger);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-danger)
+      8%,
+      var(--color-surface)
+    );
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--color-danger)
+      25%,
+      var(--color-border)
+    );
+}
+
+.dash22-app
+.user-success {
+  color:
+    var(--color-success);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-success)
+      8%,
+      var(--color-surface)
+    );
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--color-success)
+      22%,
+      var(--color-border)
+    );
+}
+
+.dash22-app
+.user-note,
+.dash22-app
+.completion-banner {
+  color:
+    var(--color-ink-soft);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-warning)
+      8%,
+      var(--color-surface)
+    );
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--color-warning)
+      24%,
+      var(--color-border)
+    );
+}
+
+/* ----------------------------------------------------------
+   Legacy tables not yet moved to DashboardDataTable
+   ---------------------------------------------------------- */
+
+.dash22-app
+:is(
+  .user-card,
+  .finance-workspace,
+  .localization-manager
+)
+table {
+  color:
+    var(--color-ink);
+
+  background:
+    var(--color-surface);
+}
+
+.dash22-app
+:is(
+  .user-card,
+  .finance-workspace,
+  .localization-manager
+)
+th {
+  color:
+    var(--color-muted);
+
+  background:
+    var(--color-canvas-soft);
+
+  border-color:
+    var(--color-border);
+}
+
+.dash22-app
+:is(
+  .user-card,
+  .finance-workspace,
+  .localization-manager
+)
+td {
+  color:
+    var(--color-ink-soft);
+
+  background:
+    transparent;
+
+  border-color:
+    var(--color-border);
+}
+
+.dash22-app
+:is(
+  .user-card,
+  .finance-workspace,
+  .localization-manager
+)
+tbody tr:hover {
+  background:
+    color-mix(
+      in srgb,
+      var(--color-primary-soft)
+      40%,
+      transparent
+    );
+}
+
+/* ----------------------------------------------------------
+   Expert / scholar UI
+   ---------------------------------------------------------- */
+
+.dash22-app
+.scholar-tabs {
+  padding:
+    5px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    12px;
+
+  background:
+    var(--color-canvas-soft);
+}
+
+.dash22-app
+.scholar-tabs
+button[aria-selected='true'] {
+  color:
+    white;
+
+  background:
+    var(--color-primary);
+
+  border-color:
+    var(--color-primary);
+}
+
+.dash22-app
+.scholar-list-row,
+.dash22-app
+.scholar-upload {
+  border-color:
+    var(--color-border);
+
+  background:
+    var(--color-surface);
+}
+
+.dash22-app
+.scholar-review {
+  border:
+    1px solid
+    var(--color-border);
+}
+
+.dash22-app
+progress {
+  accent-color:
+    var(--color-primary);
+}
+
+/* ----------------------------------------------------------
+   Communication
+   ---------------------------------------------------------- */
+
+.dash22-app
+.communication-layout
+> nav {
+  border-color:
+    var(--color-border);
+}
+
+.dash22-app
+.communication-history
+> li {
+  color:
+    var(--color-ink);
+
+  background:
+    var(--color-surface-raised);
+
+  border-color:
+    var(--color-border);
+}
+
+.dash22-app
+.communication-post {
+  border:
+    1px solid
+    var(--color-border);
+}
+
+.dash22-app
+.communication-comment {
+  border-color:
+    var(--color-border-strong);
+}
+
+.dash22-app
+.communication-center
+summary {
+  color:
+    var(--color-ink-soft);
+
+  background:
+    var(--color-surface);
+
+  border-color:
+    var(--color-border);
+}
+
+/* ----------------------------------------------------------
+   Finance
+   ---------------------------------------------------------- */
+
+.dash22-app
+.finance-workspace
+nav {
+  padding:
+    5px;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    12px;
+
+  background:
+    var(--color-canvas-soft);
+}
+
+.dash22-app
+.finance-details {
+  border:
+    1px solid
+    var(--color-border);
+}
+
+/* ----------------------------------------------------------
+   Form builder / administration
+   ---------------------------------------------------------- */
+
+.dash22-app
+:is(
+  .field-palette,
+  .field-settings,
+  .field-canvas
+) {
+  border:
+    1px solid
+    var(--color-border);
+}
+
+.dash22-app
+.field-tile {
+  color:
+    var(--color-ink) !important;
+
+  background:
+    var(--color-surface) !important;
+
+  border-color:
+    var(--color-border) !important;
+}
+
+.dash22-app
+.field-placeholder {
+  background:
+    var(--color-canvas-soft);
+
+  border-color:
+    var(--color-border);
+}
+
+.dash22-app
+.grant-list
+li {
+  border-color:
+    var(--color-border);
+}
+
+/* ----------------------------------------------------------
+   Calendars
+   ---------------------------------------------------------- */
+
+.dash22-app
+.triple-calendar {
+  color:
+    var(--color-ink);
+
+  background:
+    var(--color-canvas-soft);
+
+  border-color:
+    var(--color-border);
+}
+
+.dash22-app
+.triple-calendar-paper {
+  background:
+    var(--color-surface);
+}
+
+.dash22-app
+.triple-calendar-heading
+strong {
+  color:
+    var(--color-primary);
+}
+
+.dash22-app
+.triple-calendar-heading
+small,
+.dash22-app
+.triple-calendar-note {
+  color:
+    var(--color-muted);
+}
+
+.dash22-app
+.triple-calendar
+.triple-calendar-heading
+button {
+  color:
+    var(--color-primary);
+
+  background:
+    transparent;
+}
+
+.dash22-app
+.triple-calendar-week {
+  color:
+    white;
+
+  background:
+    var(--color-primary);
+}
+
+.dash22-app
+.triple-calendar
+.triple-calendar-days
+button {
+  color:
+    var(--color-ink);
+
+  background:
+    transparent;
+}
+
+.dash22-app
+.triple-calendar
+.triple-calendar-days
+.is-outside {
+  color:
+    var(--color-muted);
+
+  background:
+    var(--color-canvas-soft);
+}
+
+.dash22-app
+.triple-calendar
+.triple-calendar-days
+.is-weekend {
+  color:
+    var(--color-danger);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-danger)
+      7%,
+      var(--color-surface)
+    );
+}
+
+.dash22-app
+.triple-calendar
+.triple-calendar-days
+.is-today {
+  border-color:
+    var(--color-primary);
+}
+
+.dash22-app
+.triple-calendar
+.triple-calendar-days
+.is-selected {
+  color:
+    var(--color-primary-strong);
+
+  background:
+    var(--color-primary-soft);
+
+  border-color:
+    var(--color-primary);
+}
+
+.dash22-app
+.triple-calendar
+.triple-calendar-days
+button:hover {
+  background:
+    var(--color-primary-soft);
+
+  border-color:
+    var(--color-primary);
+}
+
+.dash22-app
+.triple-calendar
+.triple-calendar-today {
+  color:
+    white;
+
+  background:
+    var(--color-primary);
+}
+
+/* ----------------------------------------------------------
+   Live Session UI
+   ---------------------------------------------------------- */
+
+.dash22-app
+.session-workspace {
+  color:
+    var(--color-ink);
+}
+
+.dash22-app
+.session-workspace
+> header,
+.dash22-app
+.session-workspace
+> section,
+.dash22-app
+.session-workspace
+> article {
+  border-color:
+    var(--color-border);
+}
+
+.dash22-app
+.session-preview {
+  border:
+    1px solid
+    var(--color-border);
+
+  box-shadow:
+    var(--shadow-sm);
+}
+
+/*
+ * Media itself deliberately keeps a neutral dark canvas
+ * in both themes. This avoids bright flashes around video.
+ */
+.dash22-app
+.session-media {
+  background:
+    #111a20;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--color-border)
+      70%,
+      transparent
+    );
+
+  box-shadow:
+    var(--shadow-md);
+}
+
+.dash22-app
+.session-workspace
+pre {
+  max-width:
+    100%;
+
+  padding:
+    13px;
+
+  overflow:
+    auto;
+
+  color:
+    var(--color-ink);
+
+  background:
+    var(--color-canvas-soft);
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    10px;
+}
+
+.dash22-app
+.session-workspace
+:is(
+  audio,
+  video
+) {
+  max-width:
+    100%;
+}
+
+/* ----------------------------------------------------------
+   Charts / visual data
+   ---------------------------------------------------------- */
+
+.dash22-app
+:is(
+  .chart,
+  .chart-card,
+  [data-chart]
+) {
+  color:
+    var(--color-ink);
+
+  background:
+    var(--color-surface);
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    var(--radius-md);
+}
+
+.dash22-app
+:is(
+  .chart,
+  .chart-card,
+  [data-chart]
+)
+canvas {
+  max-width:
+    100%;
+}
+
+/* ----------------------------------------------------------
+   Details / disclosure
+   ---------------------------------------------------------- */
+
+.dash22-app
+details:not(
+  .dashboard-account-menu
+):not(
+  .dash22-nav-group
+):not(
+  .dash22-column-menu
+):not(
+  .dash22-quick-create
+) {
+  border-color:
+    var(--color-border);
+}
+
+.dash22-app
+details
+> summary {
+  color:
+    var(--color-ink-soft);
+}
+
+/* ----------------------------------------------------------
+   Dark mode explicit legacy overrides
+   ---------------------------------------------------------- */
+
+html[data-theme='dark']
+.dash22-app
+:is(
+  .user-card,
+  .scholar-review,
+  .communication-post,
+  .finance-details,
+  .field-palette,
+  .field-settings,
+  .field-canvas,
+  .invite-user,
+  .user-note,
+  .completion-banner,
+  .triple-calendar,
+  .triple-calendar-paper,
+  .communication-history > li
+) {
+  color:
+    var(--color-ink);
+
+  border-color:
+    var(--color-border);
+}
+
+html[data-theme='dark']
+.dash22-app
+.user-avatar {
+  border-color:
+    var(--color-surface);
+
+  box-shadow:
+    0 0 0 1px
+    var(--color-border);
+}
+
+html[data-theme='dark']
+.dash22-app
+:is(
+  .user-card,
+  .scholar-workspace,
+  .finance-workspace,
+  .communication-workspace,
+  .session-workspace,
+  .localization-manager,
+  .form-builder
+)
+:is(
+  input,
+  select,
+  textarea
+) {
+  color:
+    var(--color-ink);
+
+  background:
+    var(--color-surface-raised);
+
+  border-color:
+    var(--color-border-strong);
+}
+
+html[data-theme='dark']
+.dash22-app
+:is(
+  .dash22-drawer-panel,
+  .dash22-table-scroll,
+  .dash22-mobile-record,
+  .dash22-search-results,
+  .dash22-quick-popover,
+  .dashboard-account-popover
+) {
+  color:
+    var(--color-ink);
+
+  background:
+    var(--color-surface);
+
+  border-color:
+    var(--color-border);
+}
+
+html[data-theme='dark']
+.dash22-app
+:is(
+  th,
+  .dash22-table th
+) {
+  color:
+    var(--color-muted);
+
+  background:
+    var(--color-canvas-soft);
+}
+
+/* Drawer decorative mark */
+
+.dash22-drawer-kicker {
+  display:
+    inline-flex;
+
+  color:
+    var(--color-primary);
+}
+
+.dash22-drawer-kicker
+.icon {
+  width:
+    14px;
+
+  height:
+    14px;
+}
+
+/* Accessibility */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+  .dash22-app *,
+  .dash22-drawer-panel {
+    scroll-behavior:
+      auto !important;
+
+    animation-duration:
+      .01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      .01ms !important;
+  }
+}

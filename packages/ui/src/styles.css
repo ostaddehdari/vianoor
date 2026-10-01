@@ -7,6 +7,7 @@
 @import './dashboard22.css';
 @import './dashboard22-overview.css';
 @import './dashboard22-table.css';
+@import './dashboard22-role-polish.css';
 :root {
   --green: var(--color-primary);
   --deep: var(--color-primary-strong);
