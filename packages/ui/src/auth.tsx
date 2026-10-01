@@ -161,8 +161,13 @@ export function AuthForm({
           ).get('return') ?? '';
 
         const safeReturn =
-          requested.startsWith(
-            'consultation',
+          (
+            requested.startsWith(
+              'consultation',
+            ) ||
+            requested.startsWith(
+              'questions',
+            )
           ) &&
           !requested.includes(
             '://',

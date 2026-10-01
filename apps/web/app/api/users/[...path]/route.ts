@@ -41,7 +41,12 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
     return fail('NOT_FOUND', 404);
   const base = process.env.AUTH_PUBLIC_URL,
     key = process.env.AUTH_INTERNAL_KEY,
-    upstream = process.env.AUTH_GATEWAY_URL;
+    gateway = process.env.AUTH_GATEWAY_URL,
+    qaPreview = process.env.QA_PREVIEW_URL,
+    upstream =
+      path[0] === 'questions' && qaPreview
+        ? qaPreview
+        : gateway;
   if (!base || !key || key.length < 48 || !upstream) return fail('NOT_CONFIGURED', 503);
   const publicUrl = new URL(base);
   const secure = publicUrl.protocol === 'https:';
@@ -69,6 +74,7 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       (path[0] === 'bookings' && path[1] === 'public-stats') ||
       (path[0] === 'ratings' && path[1] === 'public') ||
       (path[0] === 'presence' && path[1] === 'public') ||
+      (path[0] === 'questions' && path[1] === 'public') ||
       (path[0] === 'site-settings' && path[1] === 'social-links' && req.nextUrl.searchParams.get('admin') !== '1') ||
       (path[0] === 'localization' && ['bundle', 'translation'].includes(path[1] ?? '')) ||
       (path[0] === 'search' && path[1] === 'experts') ||

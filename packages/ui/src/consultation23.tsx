@@ -332,6 +332,7 @@ function serviceForNeed(
   need:
     | Taxon
     | null,
+  preferredKind = '',
 ) {
   if (!need)
     return null;
@@ -344,6 +345,11 @@ function serviceForNeed(
         ) =>
           service.booking_required !==
             false &&
+          (
+            !preferredKind ||
+            service.kind ===
+              preferredKind
+          ) &&
           (
             need.kind ===
               'specialty'
@@ -403,6 +409,12 @@ export function ConsultationJourney({
   const [
     needId,
     setNeedId,
+  ] =
+    useState('');
+
+  const [
+    preferredKind,
+    setPreferredKind,
   ] =
     useState('');
 
@@ -706,6 +718,19 @@ export function ConsultationJourney({
           window.location.search,
         );
 
+      const requestedMode =
+        params.get(
+          'mode',
+        );
+
+      if (
+        requestedMode ===
+        'text'
+      )
+        setPreferredKind(
+          'TEXT',
+        );
+
       const initialLanguage =
         params.get(
           'spoken_language',
@@ -979,6 +1004,7 @@ export function ConsultationJourney({
                 serviceForNeed(
                   expert,
                   selectedNeed,
+                  preferredKind,
                 ),
             }),
           )

@@ -9,6 +9,7 @@
 @import './dashboard22-table.css';
 @import './dashboard22-role-polish.css';
 @import './consultation23.css';
+@import './qna23.css';
 :root {
   --green: var(--color-primary);
   --deep: var(--color-primary-strong);

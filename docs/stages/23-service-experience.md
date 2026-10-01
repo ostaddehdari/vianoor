@@ -138,3 +138,122 @@ The journey does not fabricate:
 - booking state
 
 Unavailable enrichments remain unavailable instead of being replaced by demo data.
+
+## Work 23.2 — Q&A & Text Consultation
+
+Implemented.
+
+### Public Q&A Experience
+
+The `/questions` experience is now a dedicated Q&A surface rather than a generic content page.
+
+Main filters:
+
+- Search
+- Topics
+- Latest
+- Unanswered
+- Popular
+- My questions
+
+### Question model
+
+Stage23 extends the existing question model with:
+
+- Title
+- Category
+- Tags
+- Original language
+- View count
+- Multiple answers
+- Accepted answer
+- Public comments
+- Stored translations
+
+All database extensions are additive and remain backward-compatible with the Stage12/22 question model.
+
+### Public questions before answers
+
+A public question may now be moderated and published before it has an answer.
+
+This makes the `Unanswered` feed real instead of synthetic.
+
+### Multiple answers
+
+The existing assigned-expert security model is preserved.
+
+Only the expert assigned to a question can submit answers.
+
+The question owner alone can mark an answer as accepted.
+
+The accepted answer is synchronized back to the legacy single-answer field so older Dashboard surfaces continue to work.
+
+### Comments
+
+Authenticated users may post public comments on:
+
+- the question
+- individual published answers
+
+Comments are explicitly public.
+
+### Translation
+
+The Q&A detail view separates:
+
+- Original
+- Translated
+
+The original language is always visible.
+
+A translated view is shown only when a real stored translation exists.
+
+Work23.2 does not fabricate translations or call an unconfigured external translation provider.
+
+The new translation table and API are ready for automated translation later when Stage7 / AI is implemented.
+
+### Private follow-up
+
+When a question has an assigned expert, the existing secure Question conversation can be opened by:
+
+- the question owner
+- the assigned expert
+
+This creates/reuses a separate private messaging thread.
+
+### Text consultation
+
+The Q&A Experience has a separate `Private text consultation` path.
+
+It routes to the Work23.1 Consultation Journey with:
+
+`mode=text`
+
+The Consultation Journey then restricts matching services to real `TEXT` services.
+
+Paid text consultation therefore continues through:
+
+- real service
+- real availability
+- booking
+- payment
+- real `CONSULTATION` messaging context
+
+### Public Web proxy
+
+The Web proxy now correctly permits unauthenticated:
+
+- `/questions/public`
+- `/questions/public/:id`
+
+The API Gateway already supported public question reads.
+
+### Preview backend isolation
+
+Work23.2 can run an isolated Stage23 `qa-service` for Preview by using:
+
+`QA_PREVIEW_URL`
+
+Only Preview Web traffic for the `questions` owner is redirected to that service.
+
+Production Web and Production qa-service remain untouched.

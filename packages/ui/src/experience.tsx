@@ -5,6 +5,7 @@ import { PublicSocialLinks } from './site-settings';
 import { HomeExperience } from './home-experience';
 import { ServicesExperience } from './services-experience';
 import { ConsultationJourney } from './consultation23';
+import { QnaExperience } from './qna23';
 import { localizedText } from './localization-runtime';
 import { languageValue } from './localization-runtime';
 import { localizeTree } from './localization-runtime';
@@ -1435,6 +1436,8 @@ export function Experience({
           <ServicesExperience locale={locale} />
         ) : path === 'consultation' ? (
           <ConsultationJourney locale={locale} />
+        ) : path === 'questions' ? (
+          <QnaExperience locale={locale} />
         ) : info?.kind === 'gallery' ? (
           <Gallery locale={locale} />
         ) : (

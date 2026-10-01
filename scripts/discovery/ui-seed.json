@@ -7973,6 +7973,524 @@
     "fa": "با ما در ارتباط باشید"
   },
   {
+    "key": "qna23.acceptAnswer",
+    "module": "qna23",
+    "en": "Accept this answer",
+    "fa": "پذیرفتن این پاسخ",
+    "ar": "Accept this answer"
+  },
+  {
+    "key": "qna23.accepted",
+    "module": "qna23",
+    "en": "Accepted answer",
+    "fa": "پاسخ پذیرفته‌شده",
+    "ar": "Accepted answer"
+  },
+  {
+    "key": "qna23.allTopics",
+    "module": "qna23",
+    "en": "All topics",
+    "fa": "همه موضوعات",
+    "ar": "All topics"
+  },
+  {
+    "key": "qna23.anonymous",
+    "module": "qna23",
+    "en": "Anonymous",
+    "fa": "ناشناس",
+    "ar": "Anonymous"
+  },
+  {
+    "key": "qna23.answerBody",
+    "module": "qna23",
+    "en": "Answer",
+    "fa": "متن پاسخ",
+    "ar": "Answer"
+  },
+  {
+    "key": "qna23.answered",
+    "module": "qna23",
+    "en": "Answered",
+    "fa": "پاسخ داده شده",
+    "ar": "Answered"
+  },
+  {
+    "key": "qna23.answerPublicHint",
+    "module": "qna23",
+    "en": "This answer is being written for a public question and may appear publicly.",
+    "fa": "این پاسخ برای پرسش عمومی نوشته می‌شود و در صفحه عمومی قابل نمایش است.",
+    "ar": "This answer is being written for a public question and may appear publicly."
+  },
+  {
+    "key": "qna23.answerQuestion",
+    "module": "qna23",
+    "en": "Post an answer",
+    "fa": "ثبت پاسخ",
+    "ar": "Post an answer"
+  },
+  {
+    "key": "qna23.answers",
+    "module": "qna23",
+    "en": "answers",
+    "fa": "پاسخ",
+    "ar": "answers"
+  },
+  {
+    "key": "qna23.ask",
+    "module": "qna23",
+    "en": "Ask a question",
+    "fa": "پرسش جدید",
+    "ar": "Ask a question"
+  },
+  {
+    "key": "qna23.askTitle",
+    "module": "qna23",
+    "en": "Ask your question",
+    "fa": "پرسش خود را مطرح کنید",
+    "ar": "Ask your question"
+  },
+  {
+    "key": "qna23.assigned",
+    "module": "qna23",
+    "en": "Assigned",
+    "fa": "تخصیص داده شده",
+    "ar": "Assigned"
+  },
+  {
+    "key": "qna23.assignedOnly",
+    "module": "qna23",
+    "en": "Only the assigned expert can post answers.",
+    "fa": "ثبت پاسخ به استاد تخصیص‌یافته محدود است.",
+    "ar": "Only the assigned expert can post answers."
+  },
+  {
+    "key": "qna23.author",
+    "module": "qna23",
+    "en": "Asked by",
+    "fa": "پرسش‌کننده",
+    "ar": "Asked by"
+  },
+  {
+    "key": "qna23.back",
+    "module": "qna23",
+    "en": "Back to questions",
+    "fa": "بازگشت به پرسش‌ها",
+    "ar": "Back to questions"
+  },
+  {
+    "key": "qna23.category",
+    "module": "qna23",
+    "en": "Category",
+    "fa": "دسته‌بندی",
+    "ar": "Category"
+  },
+  {
+    "key": "qna23.comment",
+    "module": "qna23",
+    "en": "Add comment",
+    "fa": "افزودن نظر",
+    "ar": "Add comment"
+  },
+  {
+    "key": "qna23.commentPlaceholder",
+    "module": "qna23",
+    "en": "A short relevant comment…",
+    "fa": "نظر کوتاه و مرتبط…",
+    "ar": "A short relevant comment…"
+  },
+  {
+    "key": "qna23.comments",
+    "module": "qna23",
+    "en": "comments",
+    "fa": "نظر",
+    "ar": "comments"
+  },
+  {
+    "key": "qna23.created",
+    "module": "qna23",
+    "en": "Created",
+    "fa": "ثبت‌شده",
+    "ar": "Created"
+  },
+  {
+    "key": "qna23.draftSaved",
+    "module": "qna23",
+    "en": "Your draft is preserved and restored after sign-in.",
+    "fa": "متن پرسش شما حفظ می‌شود و بعد از ورود برمی‌گردید.",
+    "ar": "Your draft is preserved and restored after sign-in."
+  },
+  {
+    "key": "qna23.error",
+    "module": "qna23",
+    "en": "The information could not be loaded or saved. Please try again.",
+    "fa": "دریافت یا ثبت اطلاعات ممکن نشد. دوباره تلاش کنید.",
+    "ar": "The information could not be loaded or saved. Please try again."
+  },
+  {
+    "key": "qna23.expert",
+    "module": "qna23",
+    "en": "Expert",
+    "fa": "استاد",
+    "ar": "Expert"
+  },
+  {
+    "key": "qna23.eyebrow",
+    "module": "qna23",
+    "en": "Vianoor Q&A",
+    "fa": "پرسش و پاسخ ویانور",
+    "ar": "Vianoor Q&A"
+  },
+  {
+    "key": "qna23.followUp",
+    "module": "qna23",
+    "en": "Continue privately",
+    "fa": "ادامه خصوصی گفتگو",
+    "ar": "Continue privately"
+  },
+  {
+    "key": "qna23.followUpHint",
+    "module": "qna23",
+    "en": "This thread is restricted to the question owner and assigned expert.",
+    "fa": "این Thread فقط میان صاحب پرسش و استاد تخصیص‌یافته ایجاد می‌شود.",
+    "ar": "This thread is restricted to the question owner and assigned expert."
+  },
+  {
+    "key": "qna23.intro",
+    "module": "qna23",
+    "en": "Search published questions, read accepted answers and continue privately when the topic requires a personal discussion.",
+    "fa": "پرسش‌های منتشرشده را جست‌وجو کنید، پاسخ‌های پذیرفته‌شده را ببینید و در صورت نیاز گفت‌وگو را به مسیر خصوصی ادامه دهید.",
+    "ar": "Search published questions, read accepted answers and continue privately when the topic requires a personal discussion."
+  },
+  {
+    "key": "qna23.language",
+    "module": "qna23",
+    "en": "Original language",
+    "fa": "زبان اصلی",
+    "ar": "Original language"
+  },
+  {
+    "key": "qna23.latest",
+    "module": "qna23",
+    "en": "Latest",
+    "fa": "تازه‌ترین",
+    "ar": "Latest"
+  },
+  {
+    "key": "qna23.loading",
+    "module": "qna23",
+    "en": "Loading questions…",
+    "fa": "در حال دریافت پرسش‌ها…",
+    "ar": "Loading questions…"
+  },
+  {
+    "key": "qna23.loadMore",
+    "module": "qna23",
+    "en": "Load more",
+    "fa": "نمایش بیشتر",
+    "ar": "Load more"
+  },
+  {
+    "key": "qna23.login",
+    "module": "qna23",
+    "en": "Sign in",
+    "fa": "ورود",
+    "ar": "Sign in"
+  },
+  {
+    "key": "qna23.mine",
+    "module": "qna23",
+    "en": "My questions",
+    "fa": "پرسش‌های من",
+    "ar": "My questions"
+  },
+  {
+    "key": "qna23.myEmpty",
+    "module": "qna23",
+    "en": "No questions have been recorded in your account yet.",
+    "fa": "هنوز پرسشی در حساب شما ثبت نشده است.",
+    "ar": "No questions have been recorded in your account yet."
+  },
+  {
+    "key": "qna23.noAnswers",
+    "module": "qna23",
+    "en": "No answer has been submitted yet.",
+    "fa": "هنوز پاسخی ثبت نشده است.",
+    "ar": "No answer has been submitted yet."
+  },
+  {
+    "key": "qna23.noQuestions",
+    "module": "qna23",
+    "en": "No questions match these filters.",
+    "fa": "پرسشی با این شرایط پیدا نشد.",
+    "ar": "No questions match these filters."
+  },
+  {
+    "key": "qna23.notAssigned",
+    "module": "qna23",
+    "en": "Not assigned to an expert yet",
+    "fa": "هنوز به استادی تخصیص داده نشده",
+    "ar": "Not assigned to an expert yet"
+  },
+  {
+    "key": "qna23.open",
+    "module": "qna23",
+    "en": "Open question",
+    "fa": "مشاهده پرسش",
+    "ar": "Open question"
+  },
+  {
+    "key": "qna23.original",
+    "module": "qna23",
+    "en": "Original",
+    "fa": "متن اصلی",
+    "ar": "Original"
+  },
+  {
+    "key": "qna23.originalLanguage",
+    "module": "qna23",
+    "en": "Original language",
+    "fa": "زبان اصلی",
+    "ar": "Original language"
+  },
+  {
+    "key": "qna23.otherAnswers",
+    "module": "qna23",
+    "en": "Other answers",
+    "fa": "پاسخ‌های دیگر",
+    "ar": "Other answers"
+  },
+  {
+    "key": "qna23.pendingReview",
+    "module": "qna23",
+    "en": "Your question was submitted and will appear publicly after review.",
+    "fa": "پرسش ثبت شد و پس از بررسی برای عموم نمایش داده می‌شود.",
+    "ar": "Your question was submitted and will appear publicly after review."
+  },
+  {
+    "key": "qna23.popular",
+    "module": "qna23",
+    "en": "Popular",
+    "fa": "پربازدید",
+    "ar": "Popular"
+  },
+  {
+    "key": "qna23.privateQuestion",
+    "module": "qna23",
+    "en": "Private question",
+    "fa": "پرسش خصوصی",
+    "ar": "Private question"
+  },
+  {
+    "key": "qna23.publicComment",
+    "module": "qna23",
+    "en": "Your comment is public.",
+    "fa": "نظر شما عمومی است.",
+    "ar": "Your comment is public."
+  },
+  {
+    "key": "qna23.publicQuestion",
+    "module": "qna23",
+    "en": "This question is submitted for public publication after moderation.",
+    "fa": "این پرسش برای انتشار عمومی و بررسی مدیریت ارسال می‌شود.",
+    "ar": "This question is submitted for public publication after moderation."
+  },
+  {
+    "key": "qna23.publicStatus",
+    "module": "qna23",
+    "en": "Publication status",
+    "fa": "وضعیت انتشار",
+    "ar": "Publication status"
+  },
+  {
+    "key": "qna23.published",
+    "module": "qna23",
+    "en": "Published",
+    "fa": "منتشرشده",
+    "ar": "Published"
+  },
+  {
+    "key": "qna23.questionBody",
+    "module": "qna23",
+    "en": "Question details",
+    "fa": "شرح پرسش",
+    "ar": "Question details"
+  },
+  {
+    "key": "qna23.questionId",
+    "module": "qna23",
+    "en": "Question ID",
+    "fa": "شناسه پرسش",
+    "ar": "Question ID"
+  },
+  {
+    "key": "qna23.questionTitle",
+    "module": "qna23",
+    "en": "Title",
+    "fa": "عنوان",
+    "ar": "Title"
+  },
+  {
+    "key": "qna23.refresh",
+    "module": "qna23",
+    "en": "Refresh",
+    "fa": "تازه‌سازی",
+    "ar": "Refresh"
+  },
+  {
+    "key": "qna23.search",
+    "module": "qna23",
+    "en": "Search questions…",
+    "fa": "جست‌وجو در پرسش‌ها…",
+    "ar": "Search questions…"
+  },
+  {
+    "key": "qna23.searchButton",
+    "module": "qna23",
+    "en": "Search",
+    "fa": "جست‌وجو",
+    "ar": "Search"
+  },
+  {
+    "key": "qna23.sendAnswer",
+    "module": "qna23",
+    "en": "Submit answer",
+    "fa": "ارسال پاسخ",
+    "ar": "Submit answer"
+  },
+  {
+    "key": "qna23.sendComment",
+    "module": "qna23",
+    "en": "Post comment",
+    "fa": "ارسال نظر",
+    "ar": "Post comment"
+  },
+  {
+    "key": "qna23.signInAsk",
+    "module": "qna23",
+    "en": "Sign in to ask",
+    "fa": "برای ثبت پرسش وارد شوید",
+    "ar": "Sign in to ask"
+  },
+  {
+    "key": "qna23.signInComment",
+    "module": "qna23",
+    "en": "Sign in to comment",
+    "fa": "برای ثبت نظر وارد شوید",
+    "ar": "Sign in to comment"
+  },
+  {
+    "key": "qna23.stackHint",
+    "module": "qna23",
+    "en": "The accepted answer is shown first and other answers remain separate.",
+    "fa": "پاسخ پذیرفته‌شده در بالا نمایش داده می‌شود و سایر پاسخ‌ها جدا باقی می‌مانند.",
+    "ar": "The accepted answer is shown first and other answers remain separate."
+  },
+  {
+    "key": "qna23.startTextConsultation",
+    "module": "qna23",
+    "en": "Start text consultation",
+    "fa": "شروع مشاوره متنی",
+    "ar": "Start text consultation"
+  },
+  {
+    "key": "qna23.submit",
+    "module": "qna23",
+    "en": "Submit question",
+    "fa": "ارسال پرسش",
+    "ar": "Submit question"
+  },
+  {
+    "key": "qna23.tags",
+    "module": "qna23",
+    "en": "Tags",
+    "fa": "برچسب‌ها",
+    "ar": "Tags"
+  },
+  {
+    "key": "qna23.tagsEmpty",
+    "module": "qna23",
+    "en": "No tags",
+    "fa": "بدون برچسب",
+    "ar": "No tags"
+  },
+  {
+    "key": "qna23.tagsHint",
+    "module": "qna23",
+    "en": "Separate tags with commas.",
+    "fa": "برچسب‌ها را با ویرگول جدا کنید.",
+    "ar": "Separate tags with commas."
+  },
+  {
+    "key": "qna23.textConsultation",
+    "module": "qna23",
+    "en": "Private text consultation",
+    "fa": "مشاوره متنی خصوصی",
+    "ar": "Private text consultation"
+  },
+  {
+    "key": "qna23.textConsultationHint",
+    "module": "qna23",
+    "en": "If your topic is private or needs an ongoing discussion, book a separate text consultation.",
+    "fa": "اگر موضوع شما خصوصی است یا نیاز به گفت‌وگوی ادامه‌دار دارد، مشاوره متنی جداگانه رزرو کنید.",
+    "ar": "If your topic is private or needs an ongoing discussion, book a separate text consultation."
+  },
+  {
+    "key": "qna23.title",
+    "module": "qna23",
+    "en": "Your question may help someone else too",
+    "fa": "پرسش شما می‌تواند راهگشای دیگران هم باشد",
+    "ar": "Your question may help someone else too"
+  },
+  {
+    "key": "qna23.topics",
+    "module": "qna23",
+    "en": "Topics",
+    "fa": "موضوعات",
+    "ar": "Topics"
+  },
+  {
+    "key": "qna23.translated",
+    "module": "qna23",
+    "en": "Translated",
+    "fa": "ترجمه",
+    "ar": "Translated"
+  },
+  {
+    "key": "qna23.translationNotice",
+    "module": "qna23",
+    "en": "A translation is shown only when it has actually been stored; the original is always clearly identified.",
+    "fa": "ترجمه فقط زمانی نمایش داده می‌شود که واقعاً در سامانه ثبت شده باشد؛ متن اصلی همیشه مشخص است.",
+    "ar": "A translation is shown only when it has actually been stored; the original is always clearly identified."
+  },
+  {
+    "key": "qna23.translationUnavailable",
+    "module": "qna23",
+    "en": "No translation has been stored for this language yet.",
+    "fa": "ترجمه‌ای برای این زبان هنوز ثبت نشده است.",
+    "ar": "No translation has been stored for this language yet."
+  },
+  {
+    "key": "qna23.unanswered",
+    "module": "qna23",
+    "en": "Unanswered",
+    "fa": "بدون پاسخ",
+    "ar": "Unanswered"
+  },
+  {
+    "key": "qna23.views",
+    "module": "qna23",
+    "en": "views",
+    "fa": "بازدید",
+    "ar": "views"
+  },
+  {
+    "key": "qna23.waiting",
+    "module": "qna23",
+    "en": "Awaiting answer",
+    "fa": "در انتظار پاسخ",
+    "ar": "Awaiting answer"
+  },
+  {
     "key": "release.installed",
     "module": "release",
     "en": "Installed version",

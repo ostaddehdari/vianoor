@@ -9,6 +9,7 @@ import { dashboard22Copy } from '../../packages/ui/src/dashboard22-copy.js';
 import { dashboard22OverviewCopy } from '../../packages/ui/src/dashboard22-overview-copy.js';
 import { dashboard22TableCopy } from '../../packages/ui/src/dashboard22-table-copy.js';
 import { consultation23Copy } from '../../packages/ui/src/consultation23-copy.js';
+import { qna23Copy } from '../../packages/ui/src/qna23-copy.js';
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import ts from 'typescript';
 import { copy } from '../../packages/ui/src/copy.js';
@@ -59,6 +60,7 @@ for (const [key, value] of Object.entries({
   dashboard22Overview: dashboard22OverviewCopy,
   dashboard22Table: dashboard22TableCopy,
   consultation23: consultation23Copy,
+  qna23: qna23Copy,
   home21: homeCopy,
   services21: servicesCopy,
   expertProfile21: expertProfileCopy,
