@@ -1011,3 +1011,39 @@ The Talk Now interface follows the Stage22 / Stage23 dashboard system:
 - desktop / tablet / mobile responsive layouts
 - icon-first controls
 - no calendar Booking semantics
+
+<!-- WORK23_4_FINAL_ACCEPTANCE -->
+
+## Work23.4 — Final End-to-End Acceptance
+
+Final acceptance executed on `20261001-204118` against the durable Stage 23 Preview runtime.
+
+Validated successfully:
+
+- public Talk Now availability;
+- expert opt-in, weekly schedule, language and AUDIO/VIDEO configuration;
+- Redis-backed online presence and timed offer;
+- client instant request without booking;
+- expert acceptance and transition to `AWAITING_PAYMENT`;
+- payment quote using the real Payment → Instant authentication contract;
+- payment confirmation using the exact strict contract:
+  `request_id`, `payment_id`, `account_id`, `amount`, `currency`;
+- transition from `AWAITING_PAYMENT` to `READY`;
+- client and expert LiveKit join;
+- persistent `INSTANT` conversation with both participants;
+- live-session lifecycle;
+- client denied permission to terminate the session;
+- expert explicit session termination;
+- transition to `COMPLETED`;
+- expert capacity release;
+- linked support ticket and complaint;
+- support operator visibility and complaint resolution;
+- protected call-center queue and operator cancellation;
+- no dependency on the booking subsystem for Talk Now;
+- Home Q&A paginated-response normalization and browser hydration regression test;
+- durable Web, Instant and Support Preview runtimes without temporary build mounts;
+- zero service restarts and zero OOM kills during final acceptance;
+- cleanup of all temporary accounts sessions, permissions, requests, offers, rooms, conversations, expert settings and support fixtures;
+- Production safety checks passed; Production remained unchanged.
+
+**Work23.4 status: COMPLETE.**
