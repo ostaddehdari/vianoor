@@ -32,6 +32,7 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       'communications',
       'channels',
       'questions',
+      'events',
       'notifications',
       'presence',
       'sessions',
@@ -43,10 +44,13 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
     key = process.env.AUTH_INTERNAL_KEY,
     gateway = process.env.AUTH_GATEWAY_URL,
     qaPreview = process.env.QA_PREVIEW_URL,
+    eventPreview = process.env.EVENT_PREVIEW_URL,
     upstream =
       path[0] === 'questions' && qaPreview
         ? qaPreview
-        : gateway;
+        : path[0] === 'events' && eventPreview
+          ? eventPreview
+          : gateway;
   if (!base || !key || key.length < 48 || !upstream) return fail('NOT_CONFIGURED', 503);
   const publicUrl = new URL(base);
   const secure = publicUrl.protocol === 'https:';
@@ -75,6 +79,7 @@ async function handle(req: NextRequest, context: { params: Promise<{ path: strin
       (path[0] === 'ratings' && path[1] === 'public') ||
       (path[0] === 'presence' && path[1] === 'public') ||
       (path[0] === 'questions' && path[1] === 'public') ||
+      (path[0] === 'events' && path[1] === 'public') ||
       (path[0] === 'site-settings' && path[1] === 'social-links' && req.nextUrl.searchParams.get('admin') !== '1') ||
       (path[0] === 'localization' && ['bundle', 'translation'].includes(path[1] ?? '')) ||
       (path[0] === 'search' && path[1] === 'experts') ||

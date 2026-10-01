@@ -30,6 +30,7 @@ const owners: Record<string, string> = {
   communications: 'messaging-service',
   channels: 'messaging-service',
   questions: 'qa-service',
+  events: 'event-service',
   notifications: 'notification-service',
   presence: 'presence-service',
   sessions: 'media-service',
@@ -51,6 +52,8 @@ export function usersProxy() {
         req.method === 'GET' &&
         (/^\/channels\/public\/[a-z0-9-]+$/.test(req.path) ||
           req.path === '/questions/public' ||
+          req.path === '/events/public' ||
+          /^\/events\/public\/[a-f0-9-]{36}$/.test(req.path) ||
           req.path === '/experts/public' ||
           (req.path === '/languages' && req.query.admin !== '1') ||
           req.path === '/availability/public' ||

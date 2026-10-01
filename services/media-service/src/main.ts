@@ -8,10 +8,15 @@ import { initializeMedia } from './model.js';
 import { recordingsRouter, recordingTick } from './recordings.js';
 import { sessionsRouter } from './sessions.js';
 import { mediaWebhook, mediaTick } from './events.js';
+import {
+  initializeWebinarMedia,
+  webinarMediaRouter,
+} from './webinars.js';
 if (process.env.LIVE_SESSIONS_ENABLED !== '1') await bootstrap('media-service', 4111);
 else {
   const infra = await connectInfrastructure('media-service');
   await initializeMedia(infra.pool!);
+  await initializeWebinarMedia(infra.pool!);
   const app = await createService('media-service', {
       infrastructure: infra,
       ready: infra.healthy,
@@ -19,6 +24,7 @@ else {
         a.use(mediaWebhook(infra.pool!));
         a.use(sessionsRouter(infra.pool!));
         a.use(recordingsRouter(infra.pool!));
+        a.use(webinarMediaRouter(infra.pool!));
       },
     }),
     c = readRuntimeConfig(4111);

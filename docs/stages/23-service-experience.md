@@ -257,3 +257,200 @@ Work23.2 can run an isolated Stage23 `qa-service` for Preview by using:
 Only Preview Web traffic for the `questions` owner is redirected to that service.
 
 Production Web and Production qa-service remain untouched.
+
+## Work 23.3 — Webinar / Events Experience
+
+### Backend checkpoint — Webinar Core
+
+The Event service is no longer a Stage1 scaffold.
+
+The Webinar domain supports two creation paths.
+
+#### Expert-created Webinar
+
+A verified expert can create and publish a Webinar with:
+
+- title
+- description
+- language
+- start and end time
+- timezone
+- capacity
+- free or paid price
+- public/private visibility
+- text chat
+- Q&A
+- Raise Hand
+- cover image reference
+
+#### Sponsor-requested Webinar
+
+An authenticated person can become the Sponsor / requester and submit:
+
+- title
+- purpose / description
+- language
+- proposed date
+- expected duration
+- estimated audience
+- optional budget
+- optional preferred expert
+
+The requested expert may:
+
+- accept
+- reject
+- propose another time
+
+A request without a specified expert is visible to verified experts as an open Webinar request.
+
+When accepted, the resulting Webinar records the Sponsor separately from the Presenter.
+
+### Invitations
+
+The Presenter can invite existing Vianoor accounts as:
+
+- Attendee
+- Moderator
+
+Invitation lifecycle:
+
+- INVITED
+- ACCEPTED
+- DECLINED
+- REGISTERED
+- JOINED
+
+Invitation acceptance uses the normal Webinar registration and capacity rules.
+
+### Registration and capacity
+
+Registration is atomic against Webinar capacity.
+
+Free Webinar:
+
+- registration becomes REGISTERED immediately
+
+Paid Webinar:
+
+- registration becomes PENDING_PAYMENT
+- a temporary capacity hold is created
+- expired unpaid holds are released automatically
+
+### Live Webinar roles
+
+Roles:
+
+- PRESENTER
+- MODERATOR
+- SPONSOR
+- ATTENDEE
+
+### LiveKit policy
+
+Default Webinar media permissions are deliberately asymmetric.
+
+PRESENTER:
+
+- subscribe: ON
+- microphone: ON
+- camera: ON
+- screen share: ON
+
+MODERATOR / SPONSOR / ATTENDEE:
+
+- subscribe: ON
+- microphone: OFF by default
+- camera: OFF by default
+- screen share: OFF
+
+The Presenter can grant or revoke microphone and camera independently for each participant.
+
+Live permission changes are applied to an already connected LiveKit participant through `RoomServiceClient.updateParticipant`.
+
+Persisted permission flags are also used for newly issued tokens.
+
+### Raise Hand
+
+Registered audience members can raise or lower their hand.
+
+The Presenter participant list prioritizes raised hands.
+
+Granting microphone/camera automatically clears the raised-hand state.
+
+### Text chat
+
+Webinar text chat does not use the LiveKit DataChannel.
+
+LiveKit Webinar tokens set:
+
+`canPublishData: false`
+
+Text chat is a normal Vianoor `EVENT` conversation owned by `messaging-service`.
+
+Only registered Webinar members can write to the Event conversation.
+
+This preserves:
+
+- persistent history
+- read state
+- normal moderation infrastructure
+- notification behavior
+
+### Lazy room creation
+
+Defining or publishing a Webinar does not create a LiveKit Room.
+
+The room is provisioned/opened only when the Presenter starts the Webinar near its scheduled start time.
+
+### Reminder intents
+
+Registered participants receive durable reminder intents at:
+
+- 24 hours
+- 1 hour
+- 10 minutes
+
+This checkpoint reuses the existing MESSAGES notification preference so no existing notification schema is broken.
+
+### Payment preparation
+
+Event service exposes internal:
+
+- registration payment quote
+- registration payment confirmation
+
+These are intentionally separated from normal Consultation booking payments.
+
+The next Work23.3 checkpoint connects them to payment-service and the Event UI.
+
+### Preview isolation
+
+The Event, Media and Messaging implementations are first validated through isolated Stage23 Preview containers.
+
+Production application containers remain unchanged during this checkpoint.
+
+### Work23.3 runtime correction
+
+The initial isolated Event runtime exposed a PostgreSQL parameter typing issue in the reminder worker.
+
+The same SQL parameter was previously used both as:
+
+- text for interval construction
+- integer for `webinar_reminders.minutes`
+
+PostgreSQL therefore inferred incompatible types and raised:
+
+`operator does not exist: integer = text`
+
+The reminder query now uses explicit integer semantics:
+
+- `$1::int * interval '1 minute'`
+- `d.minutes = $1::int`
+
+The event background worker is also fault-isolated:
+
+- a reminder/cleanup tick failure no longer terminates event-service
+- the next scheduled cycle retries the work
+
+Runtime acceptance verifies that event-service remains running with zero restarts after the initial worker tick.

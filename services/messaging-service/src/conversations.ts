@@ -316,6 +316,45 @@ export function conversationRouter(
     }),
   );
   r.post(
+    '/internal/communications/event',
+    endpoint(async (req, res) => {
+      const d = z
+        .object({
+          event_id: uuid,
+          presenter_id: uuid,
+          account_id: uuid,
+          role: z.enum([
+            'PRESENTER',
+            'MODERATOR',
+            'SPONSOR',
+            'ATTENDEE',
+          ]),
+        })
+        .strict()
+        .parse(req.body);
+
+      res.json({
+        data: await createConversation(pool, {
+          type: 'EVENT',
+          context_id: d.event_id,
+          context_key: 'event:' + d.event_id,
+          creator: d.presenter_id,
+          members: [
+            {
+              id: d.presenter_id,
+              role: 'PRESENTER',
+            },
+            {
+              id: d.account_id,
+              role: d.role,
+            },
+          ],
+        }),
+      });
+    }),
+  );
+
+  r.post(
     '/internal/communications/question',
     endpoint(async (req, res) => {
       const u = await principal(req),

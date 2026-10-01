@@ -14,7 +14,7 @@ export const seal = (value: unknown, id: string) => sealJson(value, 'communicati
 export const open = (value: string, id: string) => openJson(value, 'communication:' + id, keyName);
 export async function initializeMessaging(pool: Pool) {
   await pool.query(`
-CREATE TABLE IF NOT EXISTS conversations(id uuid PRIMARY KEY,type text NOT NULL CHECK(type IN ('BOOKING','CONSULTATION','SUPPORT','CHANNEL_INBOX','QUESTION')),context_key text NOT NULL UNIQUE,context_id uuid NOT NULL,created_by uuid NOT NULL,state text NOT NULL DEFAULT 'OPEN',category text NOT NULL DEFAULT '',next_sequence bigint NOT NULL DEFAULT 0,created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS conversations(id uuid PRIMARY KEY,type text NOT NULL CHECK(type IN ('BOOKING','CONSULTATION','SUPPORT','CHANNEL_INBOX','QUESTION','EVENT')),context_key text NOT NULL UNIQUE,context_id uuid NOT NULL,created_by uuid NOT NULL,state text NOT NULL DEFAULT 'OPEN',category text NOT NULL DEFAULT '',next_sequence bigint NOT NULL DEFAULT 0,created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now());
 CREATE TABLE IF NOT EXISTS conversation_members(conversation_id uuid REFERENCES conversations(id),account_id uuid NOT NULL,role text NOT NULL,delivered_sequence bigint NOT NULL DEFAULT 0,read_sequence bigint NOT NULL DEFAULT 0,joined_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(conversation_id,account_id));
 CREATE TABLE IF NOT EXISTS messages(id uuid PRIMARY KEY,conversation_id uuid NOT NULL REFERENCES conversations(id),sender_id uuid NOT NULL,sequence bigint NOT NULL,type text NOT NULL,sealed_content text NOT NULL,reply_to uuid REFERENCES messages(id),files jsonb NOT NULL DEFAULT '[]',request_key uuid NOT NULL,fingerprint text NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),UNIQUE(conversation_id,sequence),UNIQUE(conversation_id,sender_id,request_key));
 CREATE INDEX IF NOT EXISTS messages_history ON messages(conversation_id,sequence DESC);
@@ -26,6 +26,28 @@ CREATE TABLE IF NOT EXISTS channel_followers(channel_id uuid REFERENCES expert_c
 CREATE TABLE IF NOT EXISTS channel_posts(id uuid PRIMARY KEY,channel_id uuid NOT NULL REFERENCES expert_channels(id),author_id uuid NOT NULL,body text NOT NULL,files jsonb NOT NULL DEFAULT '[]',request_key uuid NOT NULL,deleted_at timestamptz,created_at timestamptz NOT NULL DEFAULT now(),UNIQUE(channel_id,request_key));
 CREATE TABLE IF NOT EXISTS channel_comments(id uuid PRIMARY KEY,post_id uuid NOT NULL REFERENCES channel_posts(id),author_id uuid NOT NULL,sealed_body text NOT NULL,request_key uuid NOT NULL,state text NOT NULL DEFAULT 'PENDING',created_at timestamptz NOT NULL DEFAULT now(),UNIQUE(post_id,author_id,request_key));
 `);
+
+  /*
+   * Existing Stage12 databases already contain the original
+   * CHECK constraint. Recreate it additively with EVENT.
+   */
+  await pool.query(`
+    ALTER TABLE conversations
+      DROP CONSTRAINT IF EXISTS conversations_type_check;
+
+    ALTER TABLE conversations
+      ADD CONSTRAINT conversations_type_check
+      CHECK(
+        type IN(
+          'BOOKING',
+          'CONSULTATION',
+          'SUPPORT',
+          'CHANNEL_INBOX',
+          'QUESTION',
+          'EVENT'
+        )
+      );
+  `);
 }
 export type Conversation = {
   id: string;
@@ -44,6 +66,20 @@ export async function member(pool: Pool | PoolClient, id: string, account: strin
   ).rows[0] as Conversation | undefined;
   if (!c) throw new ServiceError(404, 'CONVERSATION_NOT_FOUND');
   if (write && c.state !== 'OPEN') throw new ServiceError(409, 'CONVERSATION_CLOSED');
+  if (write && c.type === 'EVENT') {
+    await internalCall(
+      'event-service',
+      '/internal/events/' +
+        c.context_id +
+        '/chat-authorize',
+      '',
+      {
+        account_id:
+          account,
+      },
+    );
+  }
+
   if (write && ['BOOKING', 'CONSULTATION'].includes(c.type)) {
     const context = await internalCall<{ status: string; client_id: string; expert_id: string }>(
       'booking-service',
