@@ -2233,6 +2233,160 @@
     "ar": "Workspace navigation"
   },
   {
+    "key": "dashboard22.account",
+    "module": "dashboard22",
+    "en": "Account",
+    "fa": "حساب کاربری",
+    "ar": "Account"
+  },
+  {
+    "key": "dashboard22.appearance",
+    "module": "dashboard22",
+    "en": "Appearance",
+    "fa": "ظاهر",
+    "ar": "Appearance"
+  },
+  {
+    "key": "dashboard22.closeMenu",
+    "module": "dashboard22",
+    "en": "Close dashboard menu",
+    "fa": "بستن منوی داشبورد",
+    "ar": "Close dashboard menu"
+  },
+  {
+    "key": "dashboard22.collapse",
+    "module": "dashboard22",
+    "en": "Collapse sidebar",
+    "fa": "جمع‌کردن سایدبار",
+    "ar": "Collapse sidebar"
+  },
+  {
+    "key": "dashboard22.currentWorkspace",
+    "module": "dashboard22",
+    "en": "Current workspace",
+    "fa": "محیط فعلی",
+    "ar": "Current workspace"
+  },
+  {
+    "key": "dashboard22.dashboard",
+    "module": "dashboard22",
+    "en": "Dashboard",
+    "fa": "داشبورد",
+    "ar": "Dashboard"
+  },
+  {
+    "key": "dashboard22.expand",
+    "module": "dashboard22",
+    "en": "Expand sidebar",
+    "fa": "بازکردن سایدبار",
+    "ar": "Expand sidebar"
+  },
+  {
+    "key": "dashboard22.home",
+    "module": "dashboard22",
+    "en": "Back to website",
+    "fa": "بازگشت به سایت",
+    "ar": "Back to website"
+  },
+  {
+    "key": "dashboard22.mainNavigation",
+    "module": "dashboard22",
+    "en": "Dashboard navigation",
+    "fa": "منوی اصلی داشبورد",
+    "ar": "Dashboard navigation"
+  },
+  {
+    "key": "dashboard22.menu",
+    "module": "dashboard22",
+    "en": "Menu",
+    "fa": "منو",
+    "ar": "Menu"
+  },
+  {
+    "key": "dashboard22.messages",
+    "module": "dashboard22",
+    "en": "Messages",
+    "fa": "پیام‌ها",
+    "ar": "Messages"
+  },
+  {
+    "key": "dashboard22.navigation",
+    "module": "dashboard22",
+    "en": "Navigation",
+    "fa": "ناوبری",
+    "ar": "Navigation"
+  },
+  {
+    "key": "dashboard22.noResults",
+    "module": "dashboard22",
+    "en": "No navigation result found.",
+    "fa": "نتیجه‌ای در منو پیدا نشد.",
+    "ar": "No navigation result found."
+  },
+  {
+    "key": "dashboard22.notifications",
+    "module": "dashboard22",
+    "en": "Notifications",
+    "fa": "اعلان‌ها",
+    "ar": "Notifications"
+  },
+  {
+    "key": "dashboard22.openMenu",
+    "module": "dashboard22",
+    "en": "Open dashboard menu",
+    "fa": "بازکردن منوی داشبورد",
+    "ar": "Open dashboard menu"
+  },
+  {
+    "key": "dashboard22.profile",
+    "module": "dashboard22",
+    "en": "Profile",
+    "fa": "پروفایل",
+    "ar": "Profile"
+  },
+  {
+    "key": "dashboard22.quickActions",
+    "module": "dashboard22",
+    "en": "Quick actions",
+    "fa": "اقدامات سریع",
+    "ar": "Quick actions"
+  },
+  {
+    "key": "dashboard22.quickCreate",
+    "module": "dashboard22",
+    "en": "Quick create",
+    "fa": "ایجاد سریع",
+    "ar": "Quick create"
+  },
+  {
+    "key": "dashboard22.role",
+    "module": "dashboard22",
+    "en": "Role",
+    "fa": "نقش",
+    "ar": "Role"
+  },
+  {
+    "key": "dashboard22.search",
+    "module": "dashboard22",
+    "en": "Search this dashboard…",
+    "fa": "جست‌وجو در داشبورد…",
+    "ar": "Search this dashboard…"
+  },
+  {
+    "key": "dashboard22.searchLabel",
+    "module": "dashboard22",
+    "en": "Quick search",
+    "fa": "جست‌وجوی سریع",
+    "ar": "Quick search"
+  },
+  {
+    "key": "dashboard22.workspace",
+    "module": "dashboard22",
+    "en": "Workspace",
+    "fa": "محیط کاری",
+    "ar": "Workspace"
+  },
+  {
     "key": "demoExperts.0.initials",
     "module": "demoexperts",
     "en": "MR",

@@ -9,8 +9,9 @@ import { financeCopy } from './finance-copy';
 import { LocalizationManager } from './localization-manager';
 import { discoveryCopy } from './discovery-copy';
 import { LanguageSwitcher } from './language-switcher';
+import { ThemeToggle } from './theme-toggle';
 import { languageValue } from './localization-runtime';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usersCopy } from './users-copy';
 import { dashboardSections, sectionNames } from './routing';
 import { ReleaseBadge } from './release';
@@ -29,10 +30,77 @@ import { ScholarWorkspace, TaxonomyManager, FileManager, ServiceReviewQueue } fr
 import { scholarsCopy } from './scholars-copy';
 import { schedulingCopy } from './scheduling-copy';
 import { SchedulingWorkspace } from './scheduling';
+import { Icon, type IconName } from './icons';
+import { dashboard22Copy } from './dashboard22-copy';
 type Locale = string;
 const href = (locale: Locale, path: string) => `${usersBase}/${locale}/${path}`;
 const roleName = (locale: Locale, role: string) =>
   usersCopy[locale]!.roleNames[role as keyof typeof usersCopy.fa.roleNames] ?? role;
+function workspaceIcon(
+  part: string,
+  role: string,
+): IconName {
+  if (!part)
+    return 'grid';
+
+  const map: Record<
+    string,
+    IconName
+  > = {
+    sessions: 'video',
+    messages: 'mail',
+    channels: 'comments',
+    questions: 'help',
+    notifications: 'bell',
+    inbox: 'mail',
+
+    book: 'calendar',
+    bookings: 'calendar',
+    calendar: 'calendar',
+    availability: 'clock',
+    'calendar-settings': 'calendar',
+    holidays: 'calendar',
+    requests: 'calendar',
+
+    professional: 'user',
+    profile: 'user',
+    credentials: 'shield',
+    offerings: 'sparkles',
+
+    experts: 'user',
+    'expert-applications': 'user',
+    verification: 'shield',
+    'expert-documents': 'book',
+    services: 'sparkles',
+    taxonomy: 'grid',
+    files: 'book',
+
+    wallet: 'wallet',
+    earnings: 'wallet',
+    payouts: 'wallet',
+    finance: 'wallet',
+
+    localization: 'globe',
+    users: 'user',
+    forms: 'book',
+    organizations: 'building',
+    audit: 'shield',
+
+    settings: 'filter',
+  };
+
+  return (
+    map[part] ??
+    (
+      role === 'operations'
+        ? 'server'
+        : role === 'call'
+          ? 'phone'
+          : 'grid'
+    )
+  );
+}
+
 async function logout(locale: Locale) {
   const result = await fetch(`${usersBase}/api/auth/logout`, {
     method: 'POST',
@@ -296,7 +364,14 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
     [workspaces, setWorkspaces] = useState<Workspace[]>([]),
     [scope, setScope] = useState('platform'),
     [error, setError] = useState(''),
-    [loading, setLoading] = useState(true);
+    [loading, setLoading] = useState(true),
+    [sidebarCollapsed, setSidebarCollapsed] = useState(false),
+    [drawerOpen, setDrawerOpen] = useState(false),
+    [shellSearch, setShellSearch] = useState('');
+
+  const sidebarRef = useRef<HTMLElement>(null);
+  const drawerButtonRef = useRef<HTMLButtonElement>(null);
+
   const root = path.split('/')[0] || 'account';
   const role = root === 'call-center' ? 'call' : root;
   const section = path.split('/')[1] ?? '';
@@ -323,6 +398,50 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
       active = false;
     };
   }, [locale, path]);
+  useEffect(() => {
+    try {
+      setSidebarCollapsed(
+        window.localStorage.getItem(
+          'vianoor:dashboard-sidebar',
+        ) === 'collapsed',
+      );
+    } catch {
+      /* localStorage is optional */
+    }
+  }, []);
+
+  useEffect(() => {
+    setDrawerOpen(false);
+    setShellSearch('');
+  }, [path]);
+
+  useEffect(() => {
+    if (!drawerOpen)
+      return;
+
+    const previous =
+      document.activeElement as HTMLElement | null;
+
+    const oldOverflow =
+      document.body.style.overflow;
+
+    document.body.style.overflow =
+      'hidden';
+
+    sidebarRef.current
+      ?.querySelector<HTMLElement>(
+        '[data-drawer-close]',
+      )
+      ?.focus();
+
+    return () => {
+      document.body.style.overflow =
+        oldOverflow;
+
+      previous?.focus();
+    };
+  }, [drawerOpen]);
+
   const workspace = workspaces.find((w) => w.role === role && w.scope === scope);
   const admin = role === 'admin' && scope === 'platform';
   if (loading)
@@ -409,73 +528,722 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
   for (const part of dashboardSections(role)) {
     if (!existing.has(part) && sectionNames[part]) links.push([part, sectionNames[part]![locale]!]);
   }
+  const shell =
+    dashboard22Copy[locale]!;
+
+  const currentLabel =
+    links.find(
+      ([part]) =>
+        part === section,
+    )?.[1] ??
+    roleName(
+      locale,
+      role,
+    );
+
+  const searchValue =
+    shellSearch
+      .trim()
+      .toLocaleLowerCase(
+        locale,
+      );
+
+  const shellMatches =
+    searchValue
+      ? links
+          .filter(
+            ([, label]) =>
+              label
+                .toLocaleLowerCase(
+                  locale,
+                )
+                .includes(
+                  searchValue,
+                ),
+          )
+          .slice(
+            0,
+            6,
+          )
+      : [];
+
+  const quickItems: {
+    part: string;
+    label: string;
+    icon: IconName;
+  }[] =
+    role === 'account'
+      ? [
+          {
+            part: 'book',
+            label:
+              schedulingCopy[locale]!
+                .book,
+            icon:
+              'calendar',
+          },
+
+          {
+            part: 'questions',
+            label:
+              communicationCopy[locale]!
+                .questions,
+            icon:
+              'comments',
+          },
+        ]
+      : role === 'expert'
+        ? [
+            {
+              part: 'calendar',
+              label:
+                schedulingCopy[locale]!
+                  .calendar,
+              icon:
+                'calendar',
+            },
+
+            {
+              part: 'professional',
+              label:
+                scholarsCopy[locale]!
+                  .professional,
+              icon:
+                'user',
+            },
+          ]
+        : admin
+          ? [
+              {
+                part: 'users',
+                label:
+                  t.users,
+                icon:
+                  'user',
+              },
+
+              {
+                part:
+                  'expert-applications',
+                label:
+                  scholarsCopy[locale]!
+                    .applications,
+                icon:
+                  'shield',
+              },
+            ]
+          : [
+              {
+                part: 'messages',
+                label:
+                  communicationCopy[locale]!
+                    .messages,
+                icon:
+                  'mail',
+              },
+            ];
+
+  const changeCollapsed =
+    () => {
+      const next =
+        !sidebarCollapsed;
+
+      setSidebarCollapsed(
+        next,
+      );
+
+      try {
+        window.localStorage.setItem(
+          'vianoor:dashboard-sidebar',
+          next
+            ? 'collapsed'
+            : 'expanded',
+        );
+      } catch {
+        /* localStorage is optional */
+      }
+    };
+
   return (
-    <div className="users-app">
-      <a className="skip-link" href="#workspace-main">
+    <div
+      className={`users-app dash22-app${
+        sidebarCollapsed
+          ? ' dash22-collapsed'
+          : ''
+      }${
+        drawerOpen
+          ? ' dash22-drawer-open'
+          : ''
+      }`}
+    >
+      <a
+        className="skip-link"
+        href="#workspace-main"
+      >
         {t.title}
       </a>
-      <aside className="users-sidebar">
-        <a className="brand" href={href(locale, '')}>
-          <span className="brand-mark">✺</span>
-          <strong>{t.brand}</strong>
-        </a>
-        <label className="workspace-picker">
-          {t.workspace}
-          <select
-            className="workspace-switch"
-            value={role + '|' + scope}
-            onChange={(e) => {
-              const [r, s] = e.target.value.split('|');
-              window.location.assign(
-                href(locale, r!) + (s === 'platform' ? '' : '?scope=' + encodeURIComponent(s!)),
-              );
-            }}
+
+      <aside
+        ref={sidebarRef}
+        id="dashboard-navigation"
+        className={`users-sidebar dash22-sidebar${
+          drawerOpen
+            ? ' is-open'
+            : ''
+        }`}
+        aria-label={
+          shell.mainNavigation
+        }
+        onKeyDown={(event) => {
+          if (
+            event.key ===
+            'Escape'
+          ) {
+            setDrawerOpen(
+              false,
+            );
+
+            drawerButtonRef
+              .current
+              ?.focus();
+          }
+        }}
+      >
+        <div className="dash22-sidebar-brand">
+          <a
+            className="brand"
+            href={href(
+              locale,
+              '',
+            )}
+            data-tooltip={
+              t.brand
+            }
           >
-            {workspaces.map((w) => (
-              <option key={w.role + w.scope} value={w.role + '|' + w.scope}>
-                {roleName(locale, w.role)}
-                {w.organization_name ? ' · ' + w.organization_name : ''}
-              </option>
-            ))}
-          </select>
-        </label>
-        <nav aria-label={t.workspace}>
-          {links.map(([part, label]) => (
-            <a key={part} href={route(part)} aria-current={section === part ? 'page' : undefined}>
-              {label}
-            </a>
-          ))}
-          <a href={href(locale, 'account/profile')}>{t.profile}</a>
-          <a href={href(locale, 'account/security')}>{t.security}</a>
-          <a href={href(locale, '')}>{t.home}</a>
-        </nav>
-        <div className="sidebar-person">
-          <UserAvatar avatar={profile.avatar} size={42} />
-          <div>
-            {profile.display_name || profile.public_id}
+            <span className="brand-mark">
+              ✺
+            </span>
+
+            <strong className="dash22-brand-text">
+              {t.brand}
+            </strong>
+          </a>
+
+          <button
+            type="button"
+            className="dash22-collapse-button"
+            aria-label={
+              sidebarCollapsed
+                ? shell.expand
+                : shell.collapse
+            }
+            aria-pressed={
+              sidebarCollapsed
+            }
+            onClick={
+              changeCollapsed
+            }
+          >
+            <Icon
+              name={
+                sidebarCollapsed
+                  ? 'next'
+                  : 'chevron'
+              }
+              className="direction-icon"
+            />
+          </button>
+
+          <button
+            type="button"
+            data-drawer-close
+            className="dash22-drawer-close"
+            aria-label={
+              shell.closeMenu
+            }
+            onClick={() =>
+              setDrawerOpen(
+                false,
+              )
+            }
+          >
+            <Icon name="close" />
+          </button>
+        </div>
+
+        <div
+          className="dash22-user-card"
+          data-tooltip={
+            profile.display_name ||
+            roleName(
+              locale,
+              role,
+            )
+          }
+        >
+          <UserAvatar
+            avatar={
+              profile.avatar
+            }
+            name={
+              profile.display_name
+            }
+            size={48}
+          />
+
+          <div className="dash22-user-copy">
+            <strong>
+              {profile.display_name ||
+                t.title}
+            </strong>
+
             <small>
-              <bdi>{profile.public_id}</bdi>
+              {roleName(
+                locale,
+                role,
+              )}
             </small>
           </div>
         </div>
-      </aside>
-      <div className="users-content">
-        <header className="users-header">
-          <div>
-            <small>{t.workspace}</small>
-            <h1>
-              {roleName(locale, role)}
-              {workspace.organization_name ? ' · ' + workspace.organization_name : ''}
-            </h1>
+
+        <label
+          className="workspace-picker dash22-workspace-picker"
+          data-tooltip={
+            roleName(
+              locale,
+              role,
+            )
+          }
+        >
+          <span className="dash22-field-label">
+            {shell.currentWorkspace}
+          </span>
+
+          <select
+            className="workspace-switch"
+            aria-label={
+              shell.workspace
+            }
+            value={
+              role +
+              '|' +
+              scope
+            }
+            onChange={(
+              event,
+            ) => {
+              const [
+                nextRole,
+                nextScope,
+              ] =
+                event.target.value.split(
+                  '|',
+                );
+
+              window.location.assign(
+                href(
+                  locale,
+                  nextRole!,
+                ) +
+                  (
+                    nextScope ===
+                    'platform'
+                      ? ''
+                      : '?scope=' +
+                        encodeURIComponent(
+                          nextScope!,
+                        )
+                  ),
+              );
+            }}
+          >
+            {workspaces.map(
+              (
+                item,
+              ) => (
+                <option
+                  key={
+                    item.role +
+                    item.scope
+                  }
+                  value={
+                    item.role +
+                    '|' +
+                    item.scope
+                  }
+                >
+                  {roleName(
+                    locale,
+                    item.role,
+                  )}
+                  {item.organization_name
+                    ? ' · ' +
+                      item.organization_name
+                    : ''}
+                </option>
+              ),
+            )}
+          </select>
+        </label>
+
+        <div className="dash22-nav-title">
+          {shell.navigation}
+        </div>
+
+        <nav
+          className="dash22-navigation"
+          aria-label={
+            shell.mainNavigation
+          }
+        >
+          {links.map(
+            ([
+              part,
+              label,
+            ]) => {
+              const active =
+                section ===
+                part;
+
+              return (
+                <a
+                  key={
+                    part
+                  }
+                  className="dash22-nav-link"
+                  href={
+                    route(
+                      part,
+                    )
+                  }
+                  aria-current={
+                    active
+                      ? 'page'
+                      : undefined
+                  }
+                  data-tooltip={
+                    label
+                  }
+                  title={
+                    sidebarCollapsed
+                      ? label
+                      : undefined
+                  }
+                  onClick={() =>
+                    setDrawerOpen(
+                      false,
+                    )
+                  }
+                >
+                  <Icon
+                    name={workspaceIcon(
+                      part,
+                      role,
+                    )}
+                  />
+
+                  <span className="dash22-nav-text">
+                    {label}
+                  </span>
+
+                  {active && (
+                    <span
+                      className="dash22-active-mark"
+                      aria-hidden="true"
+                    />
+                  )}
+                </a>
+              );
+            },
+          )}
+        </nav>
+
+        <div className="dash22-sidebar-footer">
+          <a
+            className="dash22-nav-link"
+            href={href(
+              locale,
+              'account/security',
+            )}
+            data-tooltip={
+              t.security
+            }
+          >
+            <Icon name="shield" />
+
+            <span className="dash22-nav-text">
+              {t.security}
+            </span>
+          </a>
+
+          <a
+            className="dash22-nav-link"
+            href={href(
+              locale,
+              '',
+            )}
+            data-tooltip={
+              shell.home
+            }
+          >
+            <Icon name="exit" />
+
+            <span className="dash22-nav-text">
+              {shell.home}
+            </span>
+          </a>
+
+          <div className="dash22-release">
+            <ReleaseBadge
+              locale={
+                locale
+              }
+            />
           </div>
-          <div className="user-actions">
-            <CommunicationCenter locale={locale} />
-            <ReleaseBadge locale={locale} />
-            <LanguageSwitcher locale={locale} />
-            <UserAccountMenu locale={locale} profile={profile} />
+        </div>
+      </aside>
+
+      {drawerOpen && (
+        <button
+          type="button"
+          className="dash22-backdrop"
+          aria-label={
+            shell.closeMenu
+          }
+          onClick={() =>
+            setDrawerOpen(
+              false,
+            )
+          }
+        />
+      )}
+
+      <div
+        className="users-content dash22-content"
+        inert={
+          drawerOpen ||
+          undefined
+        }
+      >
+        <header className="users-header dash22-header">
+          <div className="dash22-header-start">
+            <button
+              ref={
+                drawerButtonRef
+              }
+              type="button"
+              className="dash22-mobile-menu"
+              aria-label={
+                shell.openMenu
+              }
+              aria-controls="dashboard-navigation"
+              aria-expanded={
+                drawerOpen
+              }
+              onClick={() =>
+                setDrawerOpen(
+                  true,
+                )
+              }
+            >
+              <Icon name="menu" />
+            </button>
+
+            <div className="dash22-page-title">
+              <small>
+                {workspace.organization_name ??
+                  roleName(
+                    locale,
+                    role,
+                  )}
+              </small>
+
+              <strong>
+                {section
+                  ? currentLabel
+                  : shell.dashboard}
+              </strong>
+            </div>
+          </div>
+
+          <div className="dash22-search">
+            <Icon name="search" />
+
+            <input
+              value={
+                shellSearch
+              }
+              aria-label={
+                shell.searchLabel
+              }
+              placeholder={
+                shell.search
+              }
+              onChange={(
+                event,
+              ) =>
+                setShellSearch(
+                  event.target
+                    .value,
+                )
+              }
+            />
+
+            {shellSearch && (
+              <div
+                className="dash22-search-results"
+                role="listbox"
+              >
+                {shellMatches.length ? (
+                  shellMatches.map(
+                    ([
+                      part,
+                      label,
+                    ]) => (
+                      <a
+                        key={
+                          part
+                        }
+                        href={
+                          route(
+                            part,
+                          )
+                        }
+                      >
+                        <Icon
+                          name={workspaceIcon(
+                            part,
+                            role,
+                          )}
+                        />
+
+                        <span>
+                          {label}
+                        </span>
+                      </a>
+                    ),
+                  )
+                ) : (
+                  <p>
+                    {shell.noResults}
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="dash22-header-actions">
+            <details className="dash22-quick-create">
+              <summary
+                className="dash22-quick-button"
+                aria-label={
+                  shell.quickCreate
+                }
+              >
+                <Icon name="sparkles" />
+
+                <span>
+                  {shell.quickCreate}
+                </span>
+
+                <Icon name="down" />
+              </summary>
+
+              <div className="dash22-quick-popover">
+                <strong>
+                  {shell.quickActions}
+                </strong>
+
+                {quickItems.map(
+                  (
+                    item,
+                  ) => (
+                    <a
+                      key={
+                        item.part
+                      }
+                      href={
+                        route(
+                          item.part,
+                        )
+                      }
+                    >
+                      <Icon
+                        name={
+                          item.icon
+                        }
+                      />
+
+                      <span>
+                        {item.label}
+                      </span>
+                    </a>
+                  ),
+                )}
+              </div>
+            </details>
+
+            <CommunicationCenter
+              locale={
+                locale
+              }
+              compact
+              messageHref={
+                route(
+                  'messages',
+                )
+              }
+              notificationHref={
+                route(
+                  'notifications',
+                )
+              }
+            />
+
+            <ThemeToggle
+              locale={
+                locale
+              }
+            />
+
+            <LanguageSwitcher
+              locale={
+                locale
+              }
+            />
+
+            <div className="dash22-header-person">
+              <span className="dash22-header-person-copy">
+                <strong>
+                  {profile.display_name ||
+                    t.title}
+                </strong>
+
+                <small>
+                  {roleName(
+                    locale,
+                    role,
+                  )}
+                </small>
+              </span>
+
+              <UserAccountMenu
+                locale={
+                  locale
+                }
+                profile={
+                  profile
+                }
+              />
+            </div>
           </div>
         </header>
-        <main id="workspace-main">
+
+        <main
+          id="workspace-main"
+          className="dash22-main"
+        >
+
           {!profile.complete && section !== 'profile' && (
             <div className="completion-banner">
               <p>{t.incomplete}</p>

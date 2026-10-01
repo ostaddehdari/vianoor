@@ -4,6 +4,7 @@
 @import './discovery21.css';
 @import './expert-profile.css';
 @import './users.css';
+@import './dashboard22.css';
 :root {
   --green: var(--color-primary);
   --deep: var(--color-primary-strong);
