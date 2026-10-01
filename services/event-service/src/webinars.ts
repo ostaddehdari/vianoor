@@ -1507,35 +1507,30 @@ export function webinarRouter(
         if (
           input.proposed_expert
         ) {
-          const list =
-            await internalCall<
-              {
-                account_id:
-                  string;
+          /*
+           * Sponsor-selected Experts are resolved by their
+           * canonical Expert public ID, not by the public
+           * Discovery/search projection.
+           *
+           * 1. Scholar confirms current Expert qualification.
+           * 2. Identity resolves the active account.
+           */
+          await expert(
+            input.proposed_expert,
+          );
 
-                expert_code:
-                  string;
-              }[]
-            >(
-              'scholar-service',
-              '/internal/discovery/identities?' +
-                new URLSearchParams({
-                  codes:
-                    input.proposed_expert,
-                }),
+          const target =
+            await account(
+              input.proposed_expert,
             );
 
-          proposed =
-            list[0] ??
-            null;
+          proposed = {
+            account_id:
+              target.id,
 
-          if (
-            !proposed
-          )
-            throw new ServiceError(
-              404,
-              'EXPERT_UNAVAILABLE',
-            );
+            expert_code:
+              target.public_id,
+          };
         }
 
         const old =
