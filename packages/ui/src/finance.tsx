@@ -768,7 +768,7 @@ export function FinanceWorkspace({
               <a href={path('account/bookings')}>{t.bookings}</a>
             </article>
           )}
-          <h3>{t.payments}</h3>
+          <h3 id="payments">{t.payments}</h3>
           <Table
             rows={(extra.payments ?? []) as Row[]}
             columns={['id', 'provider', 'amount', 'currency', 'status']}
@@ -829,7 +829,7 @@ export function FinanceWorkspace({
               </>
             )}
           </details>
-          <h3>{t.history}</h3>
+          <h3 id="history">{t.history}</h3>
           <Table
             rows={rows}
             columns={['created_at', 'description', 'kind', 'currency', 'debit', 'credit']}

@@ -86,3 +86,89 @@ The new shell uses Stage21 design tokens and supports:
 Work 22.1 does **not** reduce the large existing navigation structure.
 
 That is deliberately handled by Work 22.2 — Navigation & Information Architecture, where client navigation is reduced to five principal areas and the other roles receive equivalent role-aware grouping.
+
+## Work 22.2 — Navigation & Information Architecture
+
+Implemented.
+
+### Core principle
+
+Backend capability names no longer define the primary Sidebar structure.
+
+Related capabilities are grouped according to the user's task and mental model.
+
+### Client
+
+The Client Sidebar now has exactly five principal areas:
+
+1. Dashboard
+2. My services
+3. Messages
+4. Finances
+5. Profile
+
+`My services` contains:
+
+- My sessions
+- My questions
+- My events
+- Talk Now
+
+`Finances` contains:
+
+- Wallet
+- Payments
+- Transactions
+- Refunds
+- Invoices
+
+`Profile` contains:
+
+- Personal information
+- Languages
+- Security
+- Connected accounts
+- Settings
+
+New booking remains available through Quick Create rather than becoming another permanent primary Sidebar entry.
+
+### Expert
+
+The Expert navigation is grouped into:
+
+1. Dashboard
+2. Services & sessions
+3. Messages
+4. Professional profile
+5. Earnings & payouts
+
+Operational details such as calendar, availability, credentials, offerings and channel management remain accessible as children rather than independent top-level items.
+
+### Administrator
+
+Administration is grouped into:
+
+- Users & organizations
+- Experts & services
+- Operations & communications
+- Finance & payments
+- Platform & settings
+
+### Support / Operator
+
+Support is grouped around:
+
+- operational queue / sessions / bookings
+- messages
+- tickets and complaints
+- shifts and reports
+
+### Call Center
+
+Call Center navigation groups configuration separately from call history, recordings and cost/quality information.
+
+### Other roles
+
+Specialist roles retain their capabilities under one logical Workspace Tools group.
+
+No backend capability has been removed. Existing routes remain directly addressable.

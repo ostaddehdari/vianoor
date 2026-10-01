@@ -2115,3 +2115,442 @@ html[data-theme='dark']
   background:
     var(--color-canvas-soft);
 }
+
+/* ==========================================================
+   Stage22 / Work22.2
+   Information Architecture
+   ========================================================== */
+
+.dash22-nav-group {
+  position:
+    relative;
+
+  margin:
+    0;
+
+  padding:
+    0;
+}
+
+.dash22-nav-group-summary {
+  min-height:
+    45px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    11px;
+
+  position:
+    relative;
+
+  padding:
+    8px 11px;
+
+  list-style:
+    none;
+
+  border-radius:
+    12px;
+
+  color:
+    rgba(
+      239,
+      247,
+      242,
+      .76
+    );
+
+  cursor:
+    pointer;
+
+  font-size:
+    10px;
+
+  font-weight:
+    620;
+
+  user-select:
+    none;
+
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.dash22-nav-group-summary::-webkit-details-marker {
+  display:
+    none;
+}
+
+.dash22-nav-group-summary:hover,
+.dash22-nav-group-summary.active {
+  color:
+    white;
+
+  background:
+    color-mix(
+      in srgb,
+      white 8%,
+      transparent
+    );
+}
+
+.dash22-nav-group-summary
+> .icon:first-child {
+  width:
+    15px;
+
+  height:
+    15px;
+
+  min-width:
+    15px;
+}
+
+.dash22-group-arrow {
+  width:
+    9px !important;
+
+  height:
+    9px !important;
+
+  margin-inline-start:
+    auto;
+
+  opacity:
+    .55;
+
+  transition:
+    transform var(--transition-fast);
+}
+
+.dash22-nav-group[open]
+.dash22-group-arrow {
+  transform:
+    rotate(
+      180deg
+    );
+}
+
+.dash22-nav-children {
+  display:
+    grid;
+
+  gap:
+    2px;
+
+  margin:
+    3px 0 7px;
+
+  padding-inline-start:
+    17px;
+}
+
+.dash22-nav-child {
+  min-height:
+    37px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    9px;
+
+  position:
+    relative;
+
+  padding:
+    7px 10px;
+
+  border-radius:
+    9px;
+
+  color:
+    rgba(
+      238,
+      246,
+      241,
+      .65
+    );
+
+  text-decoration:
+    none;
+
+  font-size:
+    9px;
+}
+
+.dash22-nav-child
+.icon {
+  width:
+    11px;
+
+  height:
+    11px;
+
+  min-width:
+    11px;
+
+  opacity:
+    .75;
+}
+
+.dash22-nav-child:hover {
+  color:
+    white;
+
+  background:
+    color-mix(
+      in srgb,
+      white 7%,
+      transparent
+    );
+}
+
+.dash22-nav-child[
+  aria-current='page'
+] {
+  color:
+    white;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--color-secondary)
+      18%,
+      transparent
+    );
+}
+
+.dash22-child-dot {
+  width:
+    5px;
+
+  height:
+    5px;
+
+  margin-inline-start:
+    auto;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--color-gold);
+}
+
+/* Collapsed sidebar:
+   only the principal groups remain visible.
+   Child navigation opens as a floating panel. */
+
+.dash22-collapsed
+.dash22-nav-group-summary {
+  justify-content:
+    center;
+
+  padding-inline:
+    8px;
+}
+
+.dash22-collapsed
+.dash22-nav-group-summary
+.dash22-group-arrow {
+  display:
+    none;
+}
+
+.dash22-collapsed
+.dash22-nav-group[open]
+.dash22-nav-children {
+  width:
+    220px;
+
+  max-height:
+    min(
+      420px,
+      70vh
+    );
+
+  position:
+    absolute;
+
+  z-index:
+    210;
+
+  top:
+    0;
+
+  inset-inline-start:
+    calc(
+      100% + 11px
+    );
+
+  margin:
+    0;
+
+  padding:
+    8px;
+
+  overflow-y:
+    auto;
+
+  border:
+    1px solid
+    var(--color-border);
+
+  border-radius:
+    13px;
+
+  color:
+    var(--color-ink);
+
+  background:
+    var(--color-surface);
+
+  box-shadow:
+    var(--shadow-lg);
+}
+
+.dash22-collapsed
+.dash22-nav-group[open]
+.dash22-nav-child {
+  color:
+    var(--color-ink-soft);
+}
+
+.dash22-collapsed
+.dash22-nav-group[open]
+.dash22-nav-child:hover,
+.dash22-collapsed
+.dash22-nav-group[open]
+.dash22-nav-child[
+  aria-current='page'
+] {
+  color:
+    var(--color-primary);
+
+  background:
+    var(--color-primary-soft);
+}
+
+/* Main-navigation roots are deliberately sparse.
+   Backend capabilities live inside groups instead of each
+   becoming a first-class Sidebar item. */
+
+.dash22-nav-root {
+  font-weight:
+    700;
+}
+
+/* Anchored Finance sections */
+
+.finance-workspace
+#payments,
+.finance-workspace
+#history {
+  scroll-margin-top:
+    calc(
+      var(--dash22-header-height) +
+      22px
+    );
+}
+
+/* Mobile drawer keeps grouped navigation expanded normally. */
+
+@media (
+  max-width: 900px
+) {
+  .dash22-collapsed
+  .dash22-nav-group-summary {
+    justify-content:
+      flex-start;
+  }
+
+  .dash22-collapsed
+  .dash22-nav-group-summary
+  .dash22-group-arrow {
+    display:
+      block;
+  }
+
+  .dash22-collapsed
+  .dash22-nav-group[open]
+  .dash22-nav-children {
+    width:
+      auto;
+
+    max-height:
+      none;
+
+    position:
+      static;
+
+    margin:
+      3px 0 7px;
+
+    padding:
+      0 0 0 17px;
+
+    overflow:
+      visible;
+
+    border:
+      0;
+
+    border-radius:
+      0;
+
+    background:
+      transparent;
+
+    box-shadow:
+      none;
+  }
+
+  html[dir='rtl']
+  .dash22-collapsed
+  .dash22-nav-group[open]
+  .dash22-nav-children {
+    padding:
+      0 17px 0 0;
+  }
+
+  .dash22-collapsed
+  .dash22-nav-group[open]
+  .dash22-nav-child {
+    color:
+      rgba(
+        238,
+        246,
+        241,
+        .65
+      );
+  }
+
+  .dash22-collapsed
+  .dash22-nav-group[open]
+  .dash22-nav-child:hover,
+  .dash22-collapsed
+  .dash22-nav-group[open]
+  .dash22-nav-child[
+    aria-current='page'
+  ] {
+    color:
+      white;
+
+    background:
+      color-mix(
+        in srgb,
+        white 7%,
+        transparent
+      );
+  }
+}

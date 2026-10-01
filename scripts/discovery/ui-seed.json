@@ -2247,6 +2247,48 @@
     "ar": "Appearance"
   },
   {
+    "key": "dashboard22.applications",
+    "module": "dashboard22",
+    "en": "Expert applications",
+    "fa": "درخواست‌های استادان",
+    "ar": "Expert applications"
+  },
+  {
+    "key": "dashboard22.audit",
+    "module": "dashboard22",
+    "en": "Audit",
+    "fa": "گزارش عملیات",
+    "ar": "Audit"
+  },
+  {
+    "key": "dashboard22.bookings",
+    "module": "dashboard22",
+    "en": "Bookings",
+    "fa": "رزروها",
+    "ar": "Bookings"
+  },
+  {
+    "key": "dashboard22.calendarSettings",
+    "module": "dashboard22",
+    "en": "Calendar & holidays",
+    "fa": "تقویم و تعطیلات",
+    "ar": "Calendar & holidays"
+  },
+  {
+    "key": "dashboard22.callHistory",
+    "module": "dashboard22",
+    "en": "Call history",
+    "fa": "سوابق تماس",
+    "ar": "Call history"
+  },
+  {
+    "key": "dashboard22.callOperations",
+    "module": "dashboard22",
+    "en": "Call center",
+    "fa": "مرکز تماس",
+    "ar": "Call center"
+  },
+  {
     "key": "dashboard22.closeMenu",
     "module": "dashboard22",
     "en": "Close dashboard menu",
@@ -2259,6 +2301,34 @@
     "en": "Collapse sidebar",
     "fa": "جمع‌کردن سایدبار",
     "ar": "Collapse sidebar"
+  },
+  {
+    "key": "dashboard22.complaints",
+    "module": "dashboard22",
+    "en": "Complaints",
+    "fa": "شکایت‌ها",
+    "ar": "Complaints"
+  },
+  {
+    "key": "dashboard22.connectedAccounts",
+    "module": "dashboard22",
+    "en": "Connected accounts",
+    "fa": "حساب‌های متصل",
+    "ar": "Connected accounts"
+  },
+  {
+    "key": "dashboard22.costs",
+    "module": "dashboard22",
+    "en": "Costs & quality",
+    "fa": "هزینه و کیفیت",
+    "ar": "Costs & quality"
+  },
+  {
+    "key": "dashboard22.credentials",
+    "module": "dashboard22",
+    "en": "Credentials",
+    "fa": "مدارک",
+    "ar": "Credentials"
   },
   {
     "key": "dashboard22.currentWorkspace",
@@ -2275,11 +2345,116 @@
     "ar": "Dashboard"
   },
   {
+    "key": "dashboard22.earnings",
+    "module": "dashboard22",
+    "en": "Earnings & payouts",
+    "fa": "درآمد و تسویه",
+    "ar": "Earnings & payouts"
+  },
+  {
     "key": "dashboard22.expand",
     "module": "dashboard22",
     "en": "Expand sidebar",
     "fa": "بازکردن سایدبار",
     "ar": "Expand sidebar"
+  },
+  {
+    "key": "dashboard22.expertChannel",
+    "module": "dashboard22",
+    "en": "My channel",
+    "fa": "کانال من",
+    "ar": "My channel"
+  },
+  {
+    "key": "dashboard22.expertDocuments",
+    "module": "dashboard22",
+    "en": "Expert documents",
+    "fa": "مدارک استادان",
+    "ar": "Expert documents"
+  },
+  {
+    "key": "dashboard22.expertEvents",
+    "module": "dashboard22",
+    "en": "My events",
+    "fa": "رویدادهای من",
+    "ar": "My events"
+  },
+  {
+    "key": "dashboard22.expertQuestions",
+    "module": "dashboard22",
+    "en": "Questions & consultation",
+    "fa": "پرسش‌ها و مشاوره",
+    "ar": "Questions & consultation"
+  },
+  {
+    "key": "dashboard22.experts",
+    "module": "dashboard22",
+    "en": "Experts",
+    "fa": "اساتید",
+    "ar": "Experts"
+  },
+  {
+    "key": "dashboard22.expertsArea",
+    "module": "dashboard22",
+    "en": "Experts & services",
+    "fa": "اساتید و خدمات",
+    "ar": "Experts & services"
+  },
+  {
+    "key": "dashboard22.expertSessions",
+    "module": "dashboard22",
+    "en": "Sessions & schedule",
+    "fa": "جلسات و برنامه زمانی",
+    "ar": "Sessions & schedule"
+  },
+  {
+    "key": "dashboard22.expertWork",
+    "module": "dashboard22",
+    "en": "Services & sessions",
+    "fa": "خدمات و جلسات",
+    "ar": "Services & sessions"
+  },
+  {
+    "key": "dashboard22.extensions",
+    "module": "dashboard22",
+    "en": "Extensions",
+    "fa": "داخلی‌ها",
+    "ar": "Extensions"
+  },
+  {
+    "key": "dashboard22.files",
+    "module": "dashboard22",
+    "en": "Files",
+    "fa": "فایل‌ها",
+    "ar": "Files"
+  },
+  {
+    "key": "dashboard22.financeAdmin",
+    "module": "dashboard22",
+    "en": "Finance & payments",
+    "fa": "مالی و پرداخت",
+    "ar": "Finance & payments"
+  },
+  {
+    "key": "dashboard22.financeArea",
+    "module": "dashboard22",
+    "en": "Finances",
+    "fa": "امور مالی",
+    "ar": "Finances"
+  },
+  {
+    "key": "dashboard22.forms",
+    "module": "dashboard22",
+    "en": "Forms",
+    "fa": "فرم‌ها",
+    "ar": "Forms"
+  },
+  {
+    "key": "dashboard22.group",
+    "module": "dashboard22",
+    "en": "Group",
+    "fa": "گروه",
+    "ar": "Group"
   },
   {
     "key": "dashboard22.home",
@@ -2289,11 +2464,46 @@
     "ar": "Back to website"
   },
   {
+    "key": "dashboard22.income",
+    "module": "dashboard22",
+    "en": "Earnings",
+    "fa": "درآمد",
+    "ar": "Earnings"
+  },
+  {
+    "key": "dashboard22.invoices",
+    "module": "dashboard22",
+    "en": "Invoices",
+    "fa": "فاکتورها",
+    "ar": "Invoices"
+  },
+  {
+    "key": "dashboard22.languages",
+    "module": "dashboard22",
+    "en": "Languages",
+    "fa": "زبان‌ها",
+    "ar": "Languages"
+  },
+  {
+    "key": "dashboard22.localization",
+    "module": "dashboard22",
+    "en": "Languages & translations",
+    "fa": "زبان و ترجمه",
+    "ar": "Languages & translations"
+  },
+  {
     "key": "dashboard22.mainNavigation",
     "module": "dashboard22",
     "en": "Dashboard navigation",
     "fa": "منوی اصلی داشبورد",
     "ar": "Dashboard navigation"
+  },
+  {
+    "key": "dashboard22.managedInbox",
+    "module": "dashboard22",
+    "en": "Managed inbox",
+    "fa": "صندوق مدیریت",
+    "ar": "Managed inbox"
   },
   {
     "key": "dashboard22.menu",
@@ -2308,6 +2518,48 @@
     "en": "Messages",
     "fa": "پیام‌ها",
     "ar": "Messages"
+  },
+  {
+    "key": "dashboard22.monitoredSessions",
+    "module": "dashboard22",
+    "en": "Sessions",
+    "fa": "جلسات",
+    "ar": "Sessions"
+  },
+  {
+    "key": "dashboard22.more",
+    "module": "dashboard22",
+    "en": "More",
+    "fa": "بیشتر",
+    "ar": "More"
+  },
+  {
+    "key": "dashboard22.myEvents",
+    "module": "dashboard22",
+    "en": "My events",
+    "fa": "رویدادهای من",
+    "ar": "My events"
+  },
+  {
+    "key": "dashboard22.myQuestions",
+    "module": "dashboard22",
+    "en": "My questions",
+    "fa": "پرسش‌های من",
+    "ar": "My questions"
+  },
+  {
+    "key": "dashboard22.myServices",
+    "module": "dashboard22",
+    "en": "My services",
+    "fa": "خدمات من",
+    "ar": "My services"
+  },
+  {
+    "key": "dashboard22.mySessions",
+    "module": "dashboard22",
+    "en": "My sessions",
+    "fa": "جلسات من",
+    "ar": "My sessions"
   },
   {
     "key": "dashboard22.navigation",
@@ -2331,6 +2583,13 @@
     "ar": "Notifications"
   },
   {
+    "key": "dashboard22.offerings",
+    "module": "dashboard22",
+    "en": "Services & pricing",
+    "fa": "خدمات و تعرفه‌ها",
+    "ar": "Services & pricing"
+  },
+  {
     "key": "dashboard22.openMenu",
     "module": "dashboard22",
     "en": "Open dashboard menu",
@@ -2338,11 +2597,88 @@
     "ar": "Open dashboard menu"
   },
   {
+    "key": "dashboard22.operations",
+    "module": "dashboard22",
+    "en": "Operations & communications",
+    "fa": "عملیات و ارتباطات",
+    "ar": "Operations & communications"
+  },
+  {
+    "key": "dashboard22.organizations",
+    "module": "dashboard22",
+    "en": "Organizations",
+    "fa": "سازمان‌ها",
+    "ar": "Organizations"
+  },
+  {
+    "key": "dashboard22.payments",
+    "module": "dashboard22",
+    "en": "Payments",
+    "fa": "پرداخت‌ها",
+    "ar": "Payments"
+  },
+  {
+    "key": "dashboard22.payouts",
+    "module": "dashboard22",
+    "en": "Payouts",
+    "fa": "تسویه و برداشت",
+    "ar": "Payouts"
+  },
+  {
+    "key": "dashboard22.people",
+    "module": "dashboard22",
+    "en": "Users & organizations",
+    "fa": "کاربران و سازمان‌ها",
+    "ar": "Users & organizations"
+  },
+  {
+    "key": "dashboard22.personalInfo",
+    "module": "dashboard22",
+    "en": "Personal information",
+    "fa": "اطلاعات شخصی",
+    "ar": "Personal information"
+  },
+  {
+    "key": "dashboard22.platform",
+    "module": "dashboard22",
+    "en": "Platform & settings",
+    "fa": "سامانه و تنظیمات",
+    "ar": "Platform & settings"
+  },
+  {
+    "key": "dashboard22.professional",
+    "module": "dashboard22",
+    "en": "Professional profile",
+    "fa": "پروفایل حرفه‌ای",
+    "ar": "Professional profile"
+  },
+  {
+    "key": "dashboard22.professionalInfo",
+    "module": "dashboard22",
+    "en": "Professional information",
+    "fa": "اطلاعات حرفه‌ای",
+    "ar": "Professional information"
+  },
+  {
     "key": "dashboard22.profile",
     "module": "dashboard22",
     "en": "Profile",
     "fa": "پروفایل",
     "ar": "Profile"
+  },
+  {
+    "key": "dashboard22.profileArea",
+    "module": "dashboard22",
+    "en": "Profile",
+    "fa": "پروفایل",
+    "ar": "Profile"
+  },
+  {
+    "key": "dashboard22.queue",
+    "module": "dashboard22",
+    "en": "Queue",
+    "fa": "صف",
+    "ar": "Queue"
   },
   {
     "key": "dashboard22.quickActions",
@@ -2359,11 +2695,32 @@
     "ar": "Quick create"
   },
   {
+    "key": "dashboard22.recordings",
+    "module": "dashboard22",
+    "en": "Recordings",
+    "fa": "ضبط‌ها",
+    "ar": "Recordings"
+  },
+  {
+    "key": "dashboard22.refunds",
+    "module": "dashboard22",
+    "en": "Refunds",
+    "fa": "بازپرداخت‌ها",
+    "ar": "Refunds"
+  },
+  {
     "key": "dashboard22.role",
     "module": "dashboard22",
     "en": "Role",
     "fa": "نقش",
     "ar": "Role"
+  },
+  {
+    "key": "dashboard22.routes",
+    "module": "dashboard22",
+    "en": "Routes & IVR",
+    "fa": "مسیرها و IVR",
+    "ar": "Routes & IVR"
   },
   {
     "key": "dashboard22.search",
@@ -2378,6 +2735,118 @@
     "en": "Quick search",
     "fa": "جست‌وجوی سریع",
     "ar": "Quick search"
+  },
+  {
+    "key": "dashboard22.security",
+    "module": "dashboard22",
+    "en": "Security",
+    "fa": "امنیت",
+    "ar": "Security"
+  },
+  {
+    "key": "dashboard22.services",
+    "module": "dashboard22",
+    "en": "Services",
+    "fa": "خدمات",
+    "ar": "Services"
+  },
+  {
+    "key": "dashboard22.settings",
+    "module": "dashboard22",
+    "en": "Settings",
+    "fa": "تنظیمات",
+    "ar": "Settings"
+  },
+  {
+    "key": "dashboard22.shifts",
+    "module": "dashboard22",
+    "en": "Shifts & reports",
+    "fa": "شیفت و گزارش",
+    "ar": "Shifts & reports"
+  },
+  {
+    "key": "dashboard22.supportBookings",
+    "module": "dashboard22",
+    "en": "Bookings",
+    "fa": "رزروها",
+    "ar": "Bookings"
+  },
+  {
+    "key": "dashboard22.supportCases",
+    "module": "dashboard22",
+    "en": "Tickets & complaints",
+    "fa": "تیکت و شکایت",
+    "ar": "Tickets & complaints"
+  },
+  {
+    "key": "dashboard22.supportOperations",
+    "module": "dashboard22",
+    "en": "Support operations",
+    "fa": "عملیات پشتیبانی",
+    "ar": "Support operations"
+  },
+  {
+    "key": "dashboard22.talkNow",
+    "module": "dashboard22",
+    "en": "Talk now",
+    "fa": "مشاوره فوری",
+    "ar": "Talk now"
+  },
+  {
+    "key": "dashboard22.taxonomy",
+    "module": "dashboard22",
+    "en": "Specialties & taxonomy",
+    "fa": "تخصص‌ها و دسته‌بندی‌ها",
+    "ar": "Specialties & taxonomy"
+  },
+  {
+    "key": "dashboard22.tickets",
+    "module": "dashboard22",
+    "en": "Tickets",
+    "fa": "تیکت‌ها",
+    "ar": "Tickets"
+  },
+  {
+    "key": "dashboard22.tools",
+    "module": "dashboard22",
+    "en": "Workspace tools",
+    "fa": "ابزارهای کاری",
+    "ar": "Workspace tools"
+  },
+  {
+    "key": "dashboard22.transactions",
+    "module": "dashboard22",
+    "en": "Transactions",
+    "fa": "تراکنش‌ها",
+    "ar": "Transactions"
+  },
+  {
+    "key": "dashboard22.trunks",
+    "module": "dashboard22",
+    "en": "SIP trunks",
+    "fa": "اتصال SIP",
+    "ar": "SIP trunks"
+  },
+  {
+    "key": "dashboard22.users",
+    "module": "dashboard22",
+    "en": "Users",
+    "fa": "کاربران",
+    "ar": "Users"
+  },
+  {
+    "key": "dashboard22.verification",
+    "module": "dashboard22",
+    "en": "Review & verification",
+    "fa": "بررسی و تأیید",
+    "ar": "Review & verification"
+  },
+  {
+    "key": "dashboard22.wallet",
+    "module": "dashboard22",
+    "en": "Wallet",
+    "fa": "کیف پول",
+    "ar": "Wallet"
   },
   {
     "key": "dashboard22.workspace",

@@ -32,6 +32,10 @@ import { schedulingCopy } from './scheduling-copy';
 import { SchedulingWorkspace } from './scheduling';
 import { Icon, type IconName } from './icons';
 import { dashboard22Copy } from './dashboard22-copy';
+import {
+  buildDashboard22Navigation,
+  flattenDashboard22Navigation,
+} from './dashboard22-navigation';
 type Locale = string;
 const href = (locale: Locale, path: string) => `${usersBase}/${locale}/${path}`;
 const roleName = (locale: Locale, role: string) =>
@@ -531,7 +535,34 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
   const shell =
     dashboard22Copy[locale]!;
 
+  const navigation =
+    buildDashboard22Navigation({
+      locale,
+      role,
+      admin,
+      links,
+      route,
+      securityHref:
+        href(
+          locale,
+          'account/security',
+        ),
+    });
+
+  const navigationItems =
+    flattenDashboard22Navigation(
+      navigation,
+    );
+
   const currentLabel =
+    navigationItems.find(
+      (
+        item,
+      ) =>
+        item.activeSections.includes(
+          section,
+        ),
+    )?.label ??
     links.find(
       ([part]) =>
         part === section,
@@ -550,10 +581,12 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
 
   const shellMatches =
     searchValue
-      ? links
+      ? navigationItems
           .filter(
-            ([, label]) =>
-              label
+            (
+              item,
+            ) =>
+              item.label
                 .toLocaleLowerCase(
                   locale,
                 )
@@ -563,7 +596,7 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
           )
           .slice(
             0,
-            6,
+            8,
           )
       : [];
 
@@ -896,86 +929,180 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
             shell.mainNavigation
           }
         >
-          {links.map(
-            ([
-              part,
-              label,
-            ]) => {
+          {navigation.map(
+            (
+              entry,
+            ) => {
+              if (
+                entry.kind ===
+                'link'
+              ) {
+                const item =
+                  entry.item;
+
+                const active =
+                  item.activeSections.includes(
+                    section,
+                  );
+
+                return (
+                  <a
+                    key={
+                      entry.key
+                    }
+                    className="dash22-nav-link dash22-nav-root"
+                    href={
+                      item.href
+                    }
+                    aria-current={
+                      active
+                        ? 'page'
+                        : undefined
+                    }
+                    data-tooltip={
+                      item.label
+                    }
+                    title={
+                      sidebarCollapsed
+                        ? item.label
+                        : undefined
+                    }
+                    onClick={() =>
+                      setDrawerOpen(
+                        false,
+                      )
+                    }
+                  >
+                    <Icon
+                      name={
+                        item.icon
+                      }
+                    />
+
+                    <span className="dash22-nav-text">
+                      {item.label}
+                    </span>
+
+                    {active && (
+                      <span
+                        className="dash22-active-mark"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </a>
+                );
+              }
+
               const active =
-                section ===
-                part;
+                entry.items.some(
+                  (
+                    item,
+                  ) =>
+                    item.activeSections.includes(
+                      section,
+                    ),
+                );
 
               return (
-                <a
+                <details
                   key={
-                    part
+                    entry.key
                   }
-                  className="dash22-nav-link"
-                  href={
-                    route(
-                      part,
-                    )
-                  }
-                  aria-current={
-                    active
-                      ? 'page'
-                      : undefined
-                  }
-                  data-tooltip={
-                    label
-                  }
-                  title={
-                    sidebarCollapsed
-                      ? label
-                      : undefined
-                  }
-                  onClick={() =>
-                    setDrawerOpen(
-                      false,
-                    )
+                  className="dash22-nav-group"
+                  open={
+                    active ||
+                    undefined
                   }
                 >
-                  <Icon
-                    name={workspaceIcon(
-                      part,
-                      role,
-                    )}
-                  />
-
-                  <span className="dash22-nav-text">
-                    {label}
-                  </span>
-
-                  {active && (
-                    <span
-                      className="dash22-active-mark"
-                      aria-hidden="true"
+                  <summary
+                    className={`dash22-nav-group-summary${
+                      active
+                        ? ' active'
+                        : ''
+                    }`}
+                    data-tooltip={
+                      entry.label
+                    }
+                    title={
+                      sidebarCollapsed
+                        ? entry.label
+                        : undefined
+                    }
+                  >
+                    <Icon
+                      name={
+                        entry.icon
+                      }
                     />
-                  )}
-                </a>
+
+                    <span className="dash22-nav-text">
+                      {entry.label}
+                    </span>
+
+                    <Icon
+                      name="down"
+                      className="dash22-group-arrow"
+                    />
+                  </summary>
+
+                  <div className="dash22-nav-children">
+                    {entry.items.map(
+                      (
+                        item,
+                      ) => {
+                        const childActive =
+                          item.activeSections.includes(
+                            section,
+                          );
+
+                        return (
+                          <a
+                            key={
+                              item.key
+                            }
+                            className="dash22-nav-child"
+                            href={
+                              item.href
+                            }
+                            aria-current={
+                              childActive
+                                ? 'page'
+                                : undefined
+                            }
+                            onClick={() =>
+                              setDrawerOpen(
+                                false,
+                              )
+                            }
+                          >
+                            <Icon
+                              name={
+                                item.icon
+                              }
+                            />
+
+                            <span>
+                              {item.label}
+                            </span>
+
+                            {childActive && (
+                              <span
+                                className="dash22-child-dot"
+                                aria-hidden="true"
+                              />
+                            )}
+                          </a>
+                        );
+                      },
+                    )}
+                  </div>
+                </details>
               );
             },
           )}
         </nav>
 
         <div className="dash22-sidebar-footer">
-          <a
-            className="dash22-nav-link"
-            href={href(
-              locale,
-              'account/security',
-            )}
-            data-tooltip={
-              t.security
-            }
-          >
-            <Icon name="shield" />
-
-            <span className="dash22-nav-text">
-              {t.security}
-            </span>
-          </a>
-
           <a
             className="dash22-nav-link"
             href={href(
@@ -1096,29 +1223,25 @@ export function UserWorkspace({ locale, path }: { locale: Locale; path: string }
               >
                 {shellMatches.length ? (
                   shellMatches.map(
-                    ([
-                      part,
-                      label,
-                    ]) => (
+                    (
+                      item,
+                    ) => (
                       <a
                         key={
-                          part
+                          item.key
                         }
                         href={
-                          route(
-                            part,
-                          )
+                          item.href
                         }
                       >
                         <Icon
-                          name={workspaceIcon(
-                            part,
-                            role,
-                          )}
+                          name={
+                            item.icon
+                          }
                         />
 
                         <span>
-                          {label}
+                          {item.label}
                         </span>
                       </a>
                     ),
