@@ -277,6 +277,13 @@ export const publicPages = localizeTree('publicPages', [
     },
   },
   {
+    path: 'consultation',
+    title: {
+      fa: 'رزرو مشاوره',
+      en: 'Book a consultation',
+    },
+  },
+  {
     path: 'topics',
     title: {
       fa: 'از کجا شروع کنیم؟',

@@ -678,7 +678,7 @@ export function HomeExperience({
   const smartHref =
     href(
       locale,
-      `experts?${searchParams.toString()}`,
+      `consultation?${searchParams.toString()}`,
     );
 
   return (

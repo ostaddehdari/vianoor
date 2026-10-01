@@ -155,7 +155,33 @@ export function AuthForm({
           : {}),
       });
       if (action === 'login') {
-        window.location.assign(path(locale, 'account'));
+        const requested =
+          new URLSearchParams(
+            window.location.search,
+          ).get('return') ?? '';
+
+        const safeReturn =
+          requested.startsWith(
+            'consultation',
+          ) &&
+          !requested.includes(
+            '://',
+          ) &&
+          !requested.startsWith(
+            '//',
+          ) &&
+          requested.length <=
+            500
+            ? requested
+            : 'account';
+
+        window.location.assign(
+          path(
+            locale,
+            safeReturn,
+          ),
+        );
+
         return;
       }
       setSuccess(

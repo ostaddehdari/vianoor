@@ -31,7 +31,7 @@ const cards = [
     tone:
       'emerald',
     path:
-      'experts',
+      'consultation',
   },
 
   {
@@ -106,7 +106,7 @@ export function ServicesExperience({
               className="button"
               href={url(
                 locale,
-                'experts',
+                'consultation',
               )}
             >
               {t.experts}

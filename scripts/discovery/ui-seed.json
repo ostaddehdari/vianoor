@@ -1218,6 +1218,685 @@
     "ar": "Publication choice"
   },
   {
+    "key": "consultation23.availability",
+    "module": "consultation23",
+    "en": "Next available",
+    "fa": "نزدیک‌ترین زمان",
+    "ar": "Next available"
+  },
+  {
+    "key": "consultation23.availabilityMatch",
+    "module": "consultation23",
+    "en": "Has matching availability",
+    "fa": "زمان آزاد متناسب دارد",
+    "ar": "Has matching availability"
+  },
+  {
+    "key": "consultation23.back",
+    "module": "consultation23",
+    "en": "Back",
+    "fa": "مرحله قبل",
+    "ar": "Back"
+  },
+  {
+    "key": "consultation23.bookingId",
+    "module": "consultation23",
+    "en": "Booking ID",
+    "fa": "شناسه رزرو",
+    "ar": "Booking ID"
+  },
+  {
+    "key": "consultation23.change",
+    "module": "consultation23",
+    "en": "Change",
+    "fa": "تغییر",
+    "ar": "Change"
+  },
+  {
+    "key": "consultation23.checkPayment",
+    "module": "consultation23",
+    "en": "Check payment status",
+    "fa": "بررسی وضعیت پرداخت",
+    "ar": "Check payment status"
+  },
+  {
+    "key": "consultation23.chooseDate",
+    "module": "consultation23",
+    "en": "Preferred date",
+    "fa": "تاریخ موردنظر",
+    "ar": "Preferred date"
+  },
+  {
+    "key": "consultation23.choosePayment",
+    "module": "consultation23",
+    "en": "Payment method",
+    "fa": "روش پرداخت",
+    "ar": "Payment method"
+  },
+  {
+    "key": "consultation23.confirmationText",
+    "module": "consultation23",
+    "en": "The session is saved to your account and is also available under My sessions.",
+    "fa": "اطلاعات جلسه در حساب شما ذخیره شده و از بخش جلسات من نیز در دسترس است.",
+    "ar": "The session is saved to your account and is also available under My sessions."
+  },
+  {
+    "key": "consultation23.confirmationTitle",
+    "module": "consultation23",
+    "en": "Your booking is confirmed",
+    "fa": "رزرو شما ثبت شد",
+    "ar": "Your booking is confirmed"
+  },
+  {
+    "key": "consultation23.creatingBooking",
+    "module": "consultation23",
+    "en": "Holding your selected session time…",
+    "fa": "در حال نگه‌داشتن زمان جلسه…",
+    "ar": "Holding your selected session time…"
+  },
+  {
+    "key": "consultation23.cryptoAddress",
+    "module": "consultation23",
+    "en": "Payment address",
+    "fa": "آدرس پرداخت",
+    "ar": "Payment address"
+  },
+  {
+    "key": "consultation23.cryptoAmount",
+    "module": "consultation23",
+    "en": "Exact amount",
+    "fa": "مقدار دقیق",
+    "ar": "Exact amount"
+  },
+  {
+    "key": "consultation23.draftSaved",
+    "module": "consultation23",
+    "en": "Your choices will be preserved and you will return to this step after sign-in.",
+    "fa": "انتخاب‌های شما حفظ می‌شود و پس از ورود به همین مرحله برمی‌گردید.",
+    "ar": "Your choices will be preserved and you will return to this step after sign-in."
+  },
+  {
+    "key": "consultation23.duration",
+    "module": "consultation23",
+    "en": "Duration",
+    "fa": "مدت",
+    "ar": "Duration"
+  },
+  {
+    "key": "consultation23.error",
+    "module": "consultation23",
+    "en": "This step could not be completed. Please try again.",
+    "fa": "انجام این مرحله ممکن نشد. دوباره تلاش کنید.",
+    "ar": "This step could not be completed. Please try again."
+  },
+  {
+    "key": "consultation23.expertsText",
+    "module": "consultation23",
+    "en": "Results consider topic, language, availability, rating and price.",
+    "fa": "ترتیب نمایش بر اساس تطابق موضوع، زبان، دسترسی، امتیاز و هزینه است.",
+    "ar": "Results consider topic, language, availability, rating and price."
+  },
+  {
+    "key": "consultation23.expertsTitle",
+    "module": "consultation23",
+    "en": "Experts suited to your request",
+    "fa": "استادهای مناسب برای شما",
+    "ar": "Experts suited to your request"
+  },
+  {
+    "key": "consultation23.eyebrow",
+    "module": "consultation23",
+    "en": "A simpler consultation journey",
+    "fa": "مسیر ساده مشاوره",
+    "ar": "A simpler consultation journey"
+  },
+  {
+    "key": "consultation23.free",
+    "module": "consultation23",
+    "en": "Free",
+    "fa": "رایگان",
+    "ar": "Free"
+  },
+  {
+    "key": "consultation23.freeConfirmation",
+    "module": "consultation23",
+    "en": "This service is free and requires no payment.",
+    "fa": "این خدمت رایگان است و نیازی به پرداخت ندارد.",
+    "ar": "This service is free and requires no payment."
+  },
+  {
+    "key": "consultation23.from",
+    "module": "consultation23",
+    "en": "From",
+    "fa": "از",
+    "ar": "From"
+  },
+  {
+    "key": "consultation23.intro",
+    "module": "consultation23",
+    "en": "Choose your topic, language and preferred time. Vianoor shows suitable experts with real availability, ratings and prices.",
+    "fa": "موضوع، زبان و زمان را مشخص کنید. ویانور استادهای متناسب را با زمان‌های واقعی، امتیاز و هزینه به شما نشان می‌دهد.",
+    "ar": "Choose your topic, language and preferred time. Vianoor shows suitable experts with real availability, ratings and prices."
+  },
+  {
+    "key": "consultation23.joinSession",
+    "module": "consultation23",
+    "en": "Enter session",
+    "fa": "ورود به جلسه",
+    "ar": "Enter session"
+  },
+  {
+    "key": "consultation23.joinText",
+    "module": "consultation23",
+    "en": "When the session becomes joinable, enter the room from here. You can check your camera and microphone before joining.",
+    "fa": "در زمان مجاز می‌توانید از همین مسیر وارد اتاق جلسه شوید. پیش از ورود، دوربین و میکروفون قابل بررسی هستند.",
+    "ar": "When the session becomes joinable, enter the room from here. You can check your camera and microphone before joining."
+  },
+  {
+    "key": "consultation23.joinTitle",
+    "module": "consultation23",
+    "en": "Everything is ready for your session",
+    "fa": "همه‌چیز برای جلسه آماده است",
+    "ar": "Everything is ready for your session"
+  },
+  {
+    "key": "consultation23.languageMatch",
+    "module": "consultation23",
+    "en": "Supports your selected language",
+    "fa": "ارائه خدمت به زبان انتخابی",
+    "ar": "Supports your selected language"
+  },
+  {
+    "key": "consultation23.languages",
+    "module": "consultation23",
+    "en": "Languages",
+    "fa": "زبان‌ها",
+    "ar": "Languages"
+  },
+  {
+    "key": "consultation23.languageText",
+    "module": "consultation23",
+    "en": "The site language is selected by default and can be changed here.",
+    "fa": "زبان صفحه به‌صورت پیش‌فرض انتخاب شده و هر زمان قابل تغییر است.",
+    "ar": "The site language is selected by default and can be changed here."
+  },
+  {
+    "key": "consultation23.languageTitle",
+    "module": "consultation23",
+    "en": "Which language would you like to use?",
+    "fa": "به چه زبانی گفتگو کنیم؟",
+    "ar": "Which language would you like to use?"
+  },
+  {
+    "key": "consultation23.loading",
+    "module": "consultation23",
+    "en": "Loading…",
+    "fa": "در حال دریافت اطلاعات…",
+    "ar": "Loading…"
+  },
+  {
+    "key": "consultation23.login",
+    "module": "consultation23",
+    "en": "Sign in",
+    "fa": "ورود",
+    "ar": "Sign in"
+  },
+  {
+    "key": "consultation23.matchReason",
+    "module": "consultation23",
+    "en": "Why this matches",
+    "fa": "دلیل تطابق",
+    "ar": "Why this matches"
+  },
+  {
+    "key": "consultation23.minutes",
+    "module": "consultation23",
+    "en": "minutes",
+    "fa": "دقیقه",
+    "ar": "minutes"
+  },
+  {
+    "key": "consultation23.myBookings",
+    "module": "consultation23",
+    "en": "My sessions",
+    "fa": "جلسات من",
+    "ar": "My sessions"
+  },
+  {
+    "key": "consultation23.needText",
+    "module": "consultation23",
+    "en": "Choose the topic that most closely matches what you want to discuss.",
+    "fa": "موضوعی را انتخاب کنید که بیشترین ارتباط را با نیاز شما دارد.",
+    "ar": "Choose the topic that most closely matches what you want to discuss."
+  },
+  {
+    "key": "consultation23.needTitle",
+    "module": "consultation23",
+    "en": "What do you need help with?",
+    "fa": "چه کمکی می‌خواهید؟",
+    "ar": "What do you need help with?"
+  },
+  {
+    "key": "consultation23.network",
+    "module": "consultation23",
+    "en": "Crypto network",
+    "fa": "شبکه رمزارز",
+    "ar": "Crypto network"
+  },
+  {
+    "key": "consultation23.next",
+    "module": "consultation23",
+    "en": "Continue",
+    "fa": "ادامه",
+    "ar": "Continue"
+  },
+  {
+    "key": "consultation23.noExperts",
+    "module": "consultation23",
+    "en": "No expert with a suitable available time was found. Try changing the date or topic.",
+    "fa": "در حال حاضر استادی با زمان آزاد متناسب پیدا نشد. می‌توانید زمان یا موضوع را تغییر دهید.",
+    "ar": "No expert with a suitable available time was found. Try changing the date or topic."
+  },
+  {
+    "key": "consultation23.noRating",
+    "module": "consultation23",
+    "en": "No ratings yet",
+    "fa": "هنوز امتیازی ثبت نشده",
+    "ar": "No ratings yet"
+  },
+  {
+    "key": "consultation23.noSlots",
+    "module": "consultation23",
+    "en": "No matching time remains available for this expert.",
+    "fa": "برای این استاد در بازه انتخابی زمان آزادی باقی نمانده است.",
+    "ar": "No matching time remains available for this expert."
+  },
+  {
+    "key": "consultation23.notSelected",
+    "module": "consultation23",
+    "en": "Not selected yet",
+    "fa": "هنوز انتخاب نشده",
+    "ar": "Not selected yet"
+  },
+  {
+    "key": "consultation23.nowpayments",
+    "module": "consultation23",
+    "en": "Crypto",
+    "fa": "رمزارز",
+    "ar": "Crypto"
+  },
+  {
+    "key": "consultation23.pay",
+    "module": "consultation23",
+    "en": "Continue payment",
+    "fa": "ادامه پرداخت",
+    "ar": "Continue payment"
+  },
+  {
+    "key": "consultation23.paymentPending",
+    "module": "consultation23",
+    "en": "Payment has not been finalized yet.",
+    "fa": "پرداخت هنوز نهایی نشده است.",
+    "ar": "Payment has not been finalized yet."
+  },
+  {
+    "key": "consultation23.paymentSuccess",
+    "module": "consultation23",
+    "en": "Payment completed successfully.",
+    "fa": "پرداخت با موفقیت ثبت شد.",
+    "ar": "Payment completed successfully."
+  },
+  {
+    "key": "consultation23.paymentText",
+    "module": "consultation23",
+    "en": "Your selected slot is securely held before payment is completed.",
+    "fa": "زمان انتخابی ابتدا به‌صورت امن نگه داشته می‌شود و سپس پرداخت انجام می‌شود.",
+    "ar": "Your selected slot is securely held before payment is completed."
+  },
+  {
+    "key": "consultation23.paymentTitle",
+    "module": "consultation23",
+    "en": "Booking and payment",
+    "fa": "رزرو و پرداخت",
+    "ar": "Booking and payment"
+  },
+  {
+    "key": "consultation23.paymentUnavailable",
+    "module": "consultation23",
+    "en": "No active payment method is available for this booking.",
+    "fa": "درگاه پرداخت فعالی برای این رزرو در دسترس نیست.",
+    "ar": "No active payment method is available for this booking."
+  },
+  {
+    "key": "consultation23.paypal",
+    "module": "consultation23",
+    "en": "PayPal",
+    "fa": "PayPal",
+    "ar": "PayPal"
+  },
+  {
+    "key": "consultation23.price",
+    "module": "consultation23",
+    "en": "Price",
+    "fa": "هزینه",
+    "ar": "Price"
+  },
+  {
+    "key": "consultation23.profile",
+    "module": "consultation23",
+    "en": "View profile",
+    "fa": "مشاهده پروفایل",
+    "ar": "View profile"
+  },
+  {
+    "key": "consultation23.rating",
+    "module": "consultation23",
+    "en": "Rating",
+    "fa": "امتیاز",
+    "ar": "Rating"
+  },
+  {
+    "key": "consultation23.realData",
+    "module": "consultation23",
+    "en": "Information comes from live Vianoor services",
+    "fa": "اطلاعات از سرویس‌های واقعی ویانور دریافت می‌شود",
+    "ar": "Information comes from live Vianoor services"
+  },
+  {
+    "key": "consultation23.refresh",
+    "module": "consultation23",
+    "en": "Refresh status",
+    "fa": "به‌روزرسانی وضعیت",
+    "ar": "Refresh status"
+  },
+  {
+    "key": "consultation23.restart",
+    "module": "consultation23",
+    "en": "Start another booking",
+    "fa": "شروع رزرو جدید",
+    "ar": "Start another booking"
+  },
+  {
+    "key": "consultation23.retry",
+    "module": "consultation23",
+    "en": "Try again",
+    "fa": "تلاش دوباره",
+    "ar": "Try again"
+  },
+  {
+    "key": "consultation23.searching",
+    "module": "consultation23",
+    "en": "Finding suitable experts…",
+    "fa": "در حال یافتن استادهای مناسب…",
+    "ar": "Finding suitable experts…"
+  },
+  {
+    "key": "consultation23.secureCheckout",
+    "module": "consultation23",
+    "en": "Open secure checkout",
+    "fa": "ورود به صفحه امن پرداخت",
+    "ar": "Open secure checkout"
+  },
+  {
+    "key": "consultation23.selected",
+    "module": "consultation23",
+    "en": "Selected",
+    "fa": "انتخاب‌شده",
+    "ar": "Selected"
+  },
+  {
+    "key": "consultation23.selectedExpert",
+    "module": "consultation23",
+    "en": "Selected expert",
+    "fa": "استاد انتخابی",
+    "ar": "Selected expert"
+  },
+  {
+    "key": "consultation23.selectedService",
+    "module": "consultation23",
+    "en": "Selected service",
+    "fa": "خدمت انتخابی",
+    "ar": "Selected service"
+  },
+  {
+    "key": "consultation23.selectedTime",
+    "module": "consultation23",
+    "en": "Selected time",
+    "fa": "زمان انتخابی",
+    "ar": "Selected time"
+  },
+  {
+    "key": "consultation23.selectExpert",
+    "module": "consultation23",
+    "en": "Choose this expert",
+    "fa": "انتخاب این استاد",
+    "ar": "Choose this expert"
+  },
+  {
+    "key": "consultation23.service",
+    "module": "consultation23",
+    "en": "Service",
+    "fa": "خدمت",
+    "ar": "Service"
+  },
+  {
+    "key": "consultation23.sessionStatusConfirmed",
+    "module": "consultation23",
+    "en": "Confirmed",
+    "fa": "تأییدشده",
+    "ar": "Confirmed"
+  },
+  {
+    "key": "consultation23.sessionStatusHeld",
+    "module": "consultation23",
+    "en": "Slot temporarily held",
+    "fa": "زمان موقتاً نگه داشته شده",
+    "ar": "Slot temporarily held"
+  },
+  {
+    "key": "consultation23.sessionStatusPending",
+    "module": "consultation23",
+    "en": "Awaiting payment",
+    "fa": "منتظر پرداخت",
+    "ar": "Awaiting payment"
+  },
+  {
+    "key": "consultation23.signInContinue",
+    "module": "consultation23",
+    "en": "Sign in and continue this booking",
+    "fa": "ورود و ادامه همین رزرو",
+    "ar": "Sign in and continue this booking"
+  },
+  {
+    "key": "consultation23.signInRequired",
+    "module": "consultation23",
+    "en": "Sign in to finalize this booking.",
+    "fa": "برای نهایی‌کردن رزرو باید وارد حساب خود شوید.",
+    "ar": "Sign in to finalize this booking."
+  },
+  {
+    "key": "consultation23.slotText",
+    "module": "consultation23",
+    "en": "Times are displayed in your device timezone.",
+    "fa": "تمام زمان‌ها براساس منطقه زمانی دستگاه شما نمایش داده می‌شوند.",
+    "ar": "Times are displayed in your device timezone."
+  },
+  {
+    "key": "consultation23.slotTitle",
+    "module": "consultation23",
+    "en": "Choose your session time",
+    "fa": "زمان جلسه را انتخاب کنید",
+    "ar": "Choose your session time"
+  },
+  {
+    "key": "consultation23.slotUnavailable",
+    "module": "consultation23",
+    "en": "This time is no longer available. Please select another slot.",
+    "fa": "این زمان دیگر در دسترس نیست. لطفاً زمان دیگری انتخاب کنید.",
+    "ar": "This time is no longer available. Please select another slot."
+  },
+  {
+    "key": "consultation23.specialties",
+    "module": "consultation23",
+    "en": "Specialties",
+    "fa": "تخصص‌ها",
+    "ar": "Specialties"
+  },
+  {
+    "key": "consultation23.specific",
+    "module": "consultation23",
+    "en": "Specific date",
+    "fa": "زمان مشخص",
+    "ar": "Specific date"
+  },
+  {
+    "key": "consultation23.status",
+    "module": "consultation23",
+    "en": "Status",
+    "fa": "وضعیت",
+    "ar": "Status"
+  },
+  {
+    "key": "consultation23.step",
+    "module": "consultation23",
+    "en": "Step",
+    "fa": "مرحله",
+    "ar": "Step"
+  },
+  {
+    "key": "consultation23.step1",
+    "module": "consultation23",
+    "en": "Need",
+    "fa": "نیاز",
+    "ar": "Need"
+  },
+  {
+    "key": "consultation23.step2",
+    "module": "consultation23",
+    "en": "Language",
+    "fa": "زبان",
+    "ar": "Language"
+  },
+  {
+    "key": "consultation23.step3",
+    "module": "consultation23",
+    "en": "Time",
+    "fa": "زمان",
+    "ar": "Time"
+  },
+  {
+    "key": "consultation23.step4",
+    "module": "consultation23",
+    "en": "Expert",
+    "fa": "استاد",
+    "ar": "Expert"
+  },
+  {
+    "key": "consultation23.step5",
+    "module": "consultation23",
+    "en": "Slot",
+    "fa": "ساعت",
+    "ar": "Slot"
+  },
+  {
+    "key": "consultation23.step6",
+    "module": "consultation23",
+    "en": "Payment",
+    "fa": "پرداخت",
+    "ar": "Payment"
+  },
+  {
+    "key": "consultation23.step7",
+    "module": "consultation23",
+    "en": "Confirm",
+    "fa": "تأیید",
+    "ar": "Confirm"
+  },
+  {
+    "key": "consultation23.step8",
+    "module": "consultation23",
+    "en": "Session",
+    "fa": "جلسه",
+    "ar": "Session"
+  },
+  {
+    "key": "consultation23.stripe",
+    "module": "consultation23",
+    "en": "Card / Apple Pay / Google Pay",
+    "fa": "کارت بانکی / Apple Pay / Google Pay",
+    "ar": "Card / Apple Pay / Google Pay"
+  },
+  {
+    "key": "consultation23.summary",
+    "module": "consultation23",
+    "en": "Your selections",
+    "fa": "خلاصه انتخاب شما",
+    "ar": "Your selections"
+  },
+  {
+    "key": "consultation23.timezone",
+    "module": "consultation23",
+    "en": "Timezone",
+    "fa": "منطقه زمانی",
+    "ar": "Timezone"
+  },
+  {
+    "key": "consultation23.title",
+    "module": "consultation23",
+    "en": "A few simple choices to reach the right expert",
+    "fa": "برای رسیدن به استاد مناسب، فقط چند انتخاب ساده",
+    "ar": "A few simple choices to reach the right expert"
+  },
+  {
+    "key": "consultation23.today",
+    "module": "consultation23",
+    "en": "Today",
+    "fa": "همین امروز",
+    "ar": "Today"
+  },
+  {
+    "key": "consultation23.tomorrow",
+    "module": "consultation23",
+    "en": "Tomorrow",
+    "fa": "فردا",
+    "ar": "Tomorrow"
+  },
+  {
+    "key": "consultation23.topicMatch",
+    "module": "consultation23",
+    "en": "Relevant to your topic",
+    "fa": "مرتبط با موضوع شما",
+    "ar": "Relevant to your topic"
+  },
+  {
+    "key": "consultation23.unavailable",
+    "module": "consultation23",
+    "en": "Unavailable",
+    "fa": "ناموجود",
+    "ar": "Unavailable"
+  },
+  {
+    "key": "consultation23.wallet",
+    "module": "consultation23",
+    "en": "Wallet",
+    "fa": "کیف پول",
+    "ar": "Wallet"
+  },
+  {
+    "key": "consultation23.week",
+    "module": "consultation23",
+    "en": "This week",
+    "fa": "این هفته",
+    "ar": "This week"
+  },
+  {
+    "key": "consultation23.whenTitle",
+    "module": "consultation23",
+    "en": "When would you like the session?",
+    "fa": "چه زمانی برایتان مناسب است؟",
+    "ar": "When would you like the session?"
+  },
+  {
     "key": "copy.about",
     "module": "copy",
     "en": "About",
@@ -7206,35 +7885,41 @@
   {
     "key": "publicPages.10.title",
     "module": "publicpages",
+    "en": "Vianoor updates",
+    "fa": "تازه‌های ویانور"
+  },
+  {
+    "key": "publicPages.11.title",
+    "module": "publicpages",
     "en": "Share your expertise",
     "fa": "دانش شما، همراه راه دیگران"
   },
   {
-    "key": "publicPages.11.title",
+    "key": "publicPages.12.title",
     "module": "publicpages",
     "en": "Partner with Vianoor",
     "fa": "همکاری برای اثری ماندگار"
   },
   {
-    "key": "publicPages.12.title",
+    "key": "publicPages.13.title",
     "module": "publicpages",
     "en": "Questions and understanding",
     "fa": "پرسش شما، آغاز روشنایی"
   },
   {
-    "key": "publicPages.13.title",
+    "key": "publicPages.14.title",
     "module": "publicpages",
     "en": "Read, listen, reflect",
     "fa": "برای دانستن و بهتر زیستن"
   },
   {
-    "key": "publicPages.14.title",
+    "key": "publicPages.15.title",
     "module": "publicpages",
     "en": "Learn together",
     "fa": "فرصتی برای با هم آموختن"
   },
   {
-    "key": "publicPages.15.title",
+    "key": "publicPages.16.title",
     "module": "publicpages",
     "en": "Explore the workspaces",
     "fa": "محیط‌های کاری ویانور"
@@ -7248,44 +7933,44 @@
   {
     "key": "publicPages.3.title",
     "module": "publicpages",
+    "en": "Book a consultation",
+    "fa": "رزرو مشاوره"
+  },
+  {
+    "key": "publicPages.4.title",
+    "module": "publicpages",
     "en": "Find your starting point",
     "fa": "از کجا شروع کنیم؟"
   },
   {
-    "key": "publicPages.4.title",
+    "key": "publicPages.5.title",
     "module": "publicpages",
     "en": "Find your expert",
     "fa": "همراهی یک نگاه آگاه"
   },
   {
-    "key": "publicPages.5.title",
+    "key": "publicPages.6.title",
     "module": "publicpages",
     "en": "Explore Vianoor",
     "fa": "جست‌وجو در ویانور"
   },
   {
-    "key": "publicPages.6.title",
+    "key": "publicPages.7.title",
     "module": "publicpages",
     "en": "Help center",
     "fa": "مرکز راهنما"
   },
   {
-    "key": "publicPages.7.title",
+    "key": "publicPages.8.title",
     "module": "publicpages",
     "en": "Frequently asked questions",
     "fa": "پرسش‌های متداول"
   },
   {
-    "key": "publicPages.8.title",
+    "key": "publicPages.9.title",
     "module": "publicpages",
     "en": "Get in touch",
     "fa": "با ما در ارتباط باشید"
-  },
-  {
-    "key": "publicPages.9.title",
-    "module": "publicpages",
-    "en": "Vianoor updates",
-    "fa": "تازه‌های ویانور"
   },
   {
     "key": "release.installed",
